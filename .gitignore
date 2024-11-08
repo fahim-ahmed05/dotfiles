@@ -1,0 +1,12 @@
+*.json.bak
+
+FlowLauncher/Logs/
+FlowLauncher/Cache/
+
+**/CachedImages
+
+FlowLauncher/Settings/History.json
+FlowLauncher/Settings/TopMostRecord.json
+FlowLauncher/Settings/UserSelectedRecord.json
+
+**/ClipboardPlus.db

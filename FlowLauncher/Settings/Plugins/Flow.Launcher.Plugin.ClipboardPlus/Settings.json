@@ -1,0 +1,16 @@
+{
+  "ClearKeyword": "clear",
+  "MaxRecords": 10000,
+  "RecordOrder": 0,
+  "ClickAction": 0,
+  "CacheImages": false,
+  "CacheFormat": "yyyy-MM-dd-hhmmss-app",
+  "EncryptData": false,
+  "EncryptKey": "4bed2e3a68be4a8caf4bb9813c7cded4",
+  "KeepText": false,
+  "TextKeepTime": 0,
+  "KeepImages": false,
+  "ImagesKeepTime": 0,
+  "KeepFiles": false,
+  "FilesKeepTime": 0
+}

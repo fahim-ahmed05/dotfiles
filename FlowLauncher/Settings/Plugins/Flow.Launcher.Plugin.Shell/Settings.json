@@ -1,0 +1,15 @@
+{
+  "Shell": 3,
+  "ReplaceWinR": false,
+  "CloseShellAfterPress": true,
+  "LeaveShellOpen": false,
+  "RunAsAdministrator": false,
+  "ShowOnlyMostUsedCMDs": false,
+  "ShowOnlyMostUsedCMDsNumber": 5,
+  "CommandHistory": {
+    "upgrade": 16,
+    "upgrade \u0026 exit": 1,
+    "wu": 2,
+    "wi ffmpeg": 1
+  }
+}
