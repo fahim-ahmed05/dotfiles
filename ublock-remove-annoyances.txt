@@ -1,7 +1,7 @@
 ! Title: Random Site Annoyances
 ! Description: Removes random annoying elements from websites
-! Version: 1.4.5
-! Last modified: 2024-11-09 8:23 am
+! Version: 1.4.8
+! Last modified: 2024-11-12 7:04 am
 ! Expires: 2 weeks (update frequency)
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
@@ -39,3 +39,6 @@ www.youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer[is-post]
 
 ! youtube.com - Hide "1080p Premium" in the video quality menu
 youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
+
+! youtube.com - Hide Brand image in the player corner
+youtube.com##.ytp-button.branding-img-container
