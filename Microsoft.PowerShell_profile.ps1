@@ -32,7 +32,7 @@ function ws {
 function wi {
     winget install @args --accept-package-agreements --accept-source-agreements
     Start-Sleep -Seconds 1.5
-    Remove-ItemSafely $HOME\Desktop\*.lnk, C:\Users\Public\Desktop\*.lnk 
+    Remove-ItemSafely "$HOME\Desktop\*.lnk", "C:\Users\Public\Desktop\*.lnk"
 }
 
 function wul { 
