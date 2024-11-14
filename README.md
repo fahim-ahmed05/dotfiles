@@ -91,7 +91,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 [Firefox](https://www.mozilla.org/en-US/firefox/new/), [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/), [Twinkle Tray](https://apps.microsoft.com/detail/9pljwwsv01lk), [Python](https://www.python.org/downloads/), [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm), [Git](https://git-scm.com/download/win), [Visual Studio Code](https://code.visualstudio.com/), [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases), [Brave](https://brave.com/), 7zip, Ente Auth, Notepad++, ProtonVPN, OnlyOffice, Everything, FileConverter, gSudo, SyncTrayzor, Gpg4win IDM, Stremio, qBittorrent, QuickLook, Bitwarden, Notion, Fastfetch, Flow Launcher, FFmpeg, OhMyPosh, SumatraPDF, Kdenlive, PowerToys
 
 ###### Pipx Packages
-yt-dlp
+yt-dlp, spotdl
 
 ###### Setup Script
 - Manually install Python, Git
@@ -107,10 +107,10 @@ yt-dlp
 ### DNS
 | **Provider**   | **IPv4**                     | **IPv6**                             | **DOT**                        | **DOH**                                           |
 |----------------|------------------------------|--------------------------------------|--------------------------------|---------------------------------------------------|
-| **Adguard**    | `94.140.14.14`<br>`94.140.15.15` | `2a10:50c0::ad1:ff`<br>`2a10:50c0::ad2:ff` | `dns.adguard-dns.com`          | `https://dns.adguard-dns.com/dns-query`           |
-| **Mullvad**    | -                            | -                                    | `base.dns.mullvad.net`         | `https://base.dns.mullvad.net/dns-query`          |
-| **Cloudflare** | `1.1.1.2`<br>`1.0.0.2`       | `2606:4700:4700::1112`<br>`2606:4700:4700::1002` | `security.cloudflare-dns.com`  | `https://security.cloudflare-dns.com/dns-query`   |
-| **Quad9**      | `9.9.9.9`<br>`149.112.112.112` | `2620:fe::fe`<br>`2620:fe::9`       | `dns.quad9.net`                | `https://dns.quad9.net/dns-query`                 |
+| **Adguard** <br> *Block Ad & Malware*  | `94.140.14.14`<br>`94.140.15.15` | `2a10:50c0::ad1:ff`<br>`2a10:50c0::ad2:ff` | `dns.adguard-dns.com`          | `https://dns.adguard-dns.com/dns-query`           |
+| **Mullvad** <br> *Block Ad & Malware*   | -                            | -                                    | `base.dns.mullvad.net`         | `https://base.dns.mullvad.net/dns-query`          |
+| **Cloudflare** <br> *Block Malware* | `1.1.1.2`<br>`1.0.0.2`       | `2606:4700:4700::1112`<br>`2606:4700:4700::1002` | `security.cloudflare-dns.com`  | `https://security.cloudflare-dns.com/dns-query`   |
+| **Quad9** <br> *Block Malware*     | `9.9.9.9`<br>`149.112.112.112` | `2620:fe::fe`<br>`2620:fe::9`       | `dns.quad9.net`                | `https://dns.quad9.net/dns-query`                 |
 
 
 ### Tweaks
