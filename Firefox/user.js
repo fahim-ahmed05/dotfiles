@@ -1,170 +1,226 @@
-// General
-user_pref("content.notify.interval", 100000);
+// =============================================
+// General Settings
+// =============================================
+user_pref("content.notify.interval", 100000); // Set content notification interval
 
-// GFX
-user_pref("gfx.canvas.accelerated.cache-items", 4096);
-user_pref("gfx.canvas.accelerated.cache-size", 512);
-user_pref("gfx.content.skia-font-cache-size", 20);
-user_pref("media.av1.enabled", true);
-user_pref("gfx.canvas.accelerated", true);
-user_pref("image.jxl.enabled", false);
+// =============================================
+// Graphics (GFX) Settings
+// =============================================
+user_pref("gfx.canvas.accelerated.cache-items", 4096); // Canvas cache items for acceleration
+user_pref("gfx.canvas.accelerated.cache-size", 512); // Canvas cache size for acceleration
+user_pref("gfx.content.skia-font-cache-size", 20); // Skia font cache size
+user_pref("media.av1.enabled", true); // Enable AV1 video codec
+user_pref("gfx.canvas.accelerated", true); // Enable canvas acceleration
+user_pref("image.jxl.enabled", false); // Disable JPEG XL support
 
-// Cache
-user_pref("browser.cache.jsbc_compression_level", 3);
-user_pref("media.memory_cache_max_size", 65536);
-user_pref("media.cache_readahead_limit", 7200);
-user_pref("media.cache_resume_threshold", 3600);
-user_pref("image.mem.decode_bytes_at_a_time", 32768);
-user_pref("browser.sessionhistory.max_total_viewers", 4);
-user_pref("network.dnsCacheEntries", 1000);
+// =============================================
+// Cache Settings
+// =============================================
+user_pref("browser.cache.jsbc_compression_level", 3); // JavaScript bytecode cache compression level
+user_pref("media.memory_cache_max_size", 65536); // Maximum size for media memory cache
+user_pref("media.cache_readahead_limit", 7200); // Media cache read-ahead limit
+user_pref("media.cache_resume_threshold", 3600); // Media cache resume threshold
+user_pref("image.mem.decode_bytes_at_a_time", 32768); // Image decode bytes at a time
+user_pref("browser.sessionhistory.max_total_viewers", 4); // Max session history viewers
+user_pref("network.dnsCacheEntries", 1000); // DNS cache entries
 
-// Network
-user_pref("network.http.max-connections", 1800);
-user_pref("network.http.max-persistent-connections-per-server", 10);
-user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5);
-user_pref("network.http.pacing.requests.enabled", false);
-user_pref("network.dnsCacheExpiration", 3600);
-user_pref("network.ssl_tokens_cache_capacity", 10240);
-user_pref("network.trr.mode", 2);
-user_pref("network.trr.custom_uri", "https://dns.adguard-dns.com/dns-query");
-user_pref("network.dns.disableIPv6", true);
+// =============================================
+// Network Settings
+// =============================================
+user_pref("network.http.max-connections", 1800); // Maximum HTTP connections
+user_pref("network.http.max-persistent-connections-per-server", 10); // Max persistent connections per server
+user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5); // Max urgent start excessive connections
+user_pref("network.http.pacing.requests.enabled", false); // Disable HTTP request pacing
+user_pref("network.dnsCacheExpiration", 3600); // DNS cache expiration time
+user_pref("network.ssl_tokens_cache_capacity", 10240); // SSL tokens cache capacity
+user_pref("network.trr.mode", 3); // Use DNS over HTTPS (DoH) as primary resolver
+user_pref("network.trr.uri", "https://base.dns.mullvad.net/dns-query"); // Mullvad DoH URI
+user_pref("network.trr.custom_uri", "https://base.dns.mullvad.net/dns-query"); // Custom Mullvad DoH URI
+user_pref("network.dns.disableIPv6", true); // Disable IPv6 for DNS resolution
+user_pref("network.trr.bootstrapAddress", "194.242.2.4"); // Mullvad IP for DoH bootstrap
 
-// Prefetch
-user_pref("network.dns.disablePrefetch", true);
-user_pref("network.dns.disablePrefetchFromHTTPS", true);
-user_pref("network.prefetch-next", false);
-user_pref("network.predictor.enabled", false);
-user_pref("network.predictor.enable-prefetch", false);
+// =============================================
+// Prefetching Settings
+// =============================================
+user_pref("network.dns.disablePrefetch", true); // Disable DNS prefetching
+user_pref("network.dns.disablePrefetchFromHTTPS", true); // Disable HTTPS DNS prefetching
+user_pref("network.prefetch-next", false); // Disable link prefetching
+user_pref("network.predictor.enabled", false); // Disable network predictor
+user_pref("network.predictor.enable-prefetch", false); // Disable predictor prefetching
 
-// Experimental
-user_pref("layout.css.grid-template-masonry-value.enabled", true);
-user_pref("dom.enable_web_task_scheduling", true);
-user_pref("dom.security.sanitizer.enabled", true);
+// =============================================
+// Experimental Settings
+// =============================================
+user_pref("layout.css.grid-template-masonry-value.enabled", true); // Enable CSS masonry layout
+user_pref("dom.enable_web_task_scheduling", true); // Enable web task scheduling
+user_pref("dom.security.sanitizer.enabled", true); // Enable DOM sanitizer for security
 
-// Telemetry
-user_pref("datareporting.policy.dataSubmissionEnabled", false);
-user_pref("datareporting.healthreport.uploadEnabled", false);
-user_pref("toolkit.telemetry.unified", false);
-user_pref("toolkit.telemetry.enabled", false);
-user_pref("toolkit.telemetry.server", "data:,");
-user_pref("toolkit.telemetry.archive.enabled", false);
-user_pref("toolkit.telemetry.newProfilePing.enabled", false);
-user_pref("toolkit.telemetry.shutdownPingSender.enabled", false);
-user_pref("toolkit.telemetry.updatePing.enabled", false);
-user_pref("toolkit.telemetry.bhrPing.enabled", false);
-user_pref("toolkit.telemetry.firstShutdownPing.enabled", false);
-user_pref("toolkit.telemetry.coverage.opt-out", true);
-user_pref("toolkit.coverage.opt-out", true);
-user_pref("toolkit.coverage.endpoint.base", "");
-user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
-user_pref("browser.newtabpage.activity-stream.telemetry", false);
-user_pref("breakpad.reportURL", "");
-user_pref("browser.tabs.crashReporting.sendReport", false);
-user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false);
-user_pref("browser.shopping.experience2023.enabled", false);
-user_pref("browser.shopping.experience2023.ads.exposure", false);
-user_pref("app.shield.optoutstudies.enabled", false);
-user_pref("app.normandy.enabled", false);
-user_pref("app.normandy.api_url", "");
-user_pref("default-browser-agent.enabled", false);
+// =============================================
+// Telemetry & Data Collection
+// =============================================
+user_pref("datareporting.policy.dataSubmissionEnabled", false); // Disable data submission
+user_pref("datareporting.healthreport.uploadEnabled", false); // Disable health report upload
+user_pref("toolkit.telemetry.unified", false); // Disable unified telemetry
+user_pref("toolkit.telemetry.enabled", false); // Disable telemetry
+user_pref("toolkit.telemetry.server", "data:,"); // Set empty server for telemetry
+user_pref("toolkit.telemetry.archive.enabled", false); // Disable telemetry archive
+user_pref("toolkit.telemetry.newProfilePing.enabled", false); // Disable new profile ping
+user_pref("toolkit.telemetry.shutdownPingSender.enabled", false); // Disable shutdown ping sender
+user_pref("toolkit.telemetry.updatePing.enabled", false); // Disable update ping
+user_pref("toolkit.telemetry.bhrPing.enabled", false); // Disable browser hang report
+user_pref("toolkit.telemetry.firstShutdownPing.enabled", false); // Disable first shutdown ping
+user_pref("toolkit.telemetry.coverage.opt-out", true); // Opt-out of telemetry coverage
+user_pref("toolkit.coverage.opt-out", true); // Opt-out of coverage studies
+user_pref("toolkit.coverage.endpoint.base", ""); // Empty endpoint for coverage studies
+user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false); // Disable new tab telemetry
+user_pref("browser.newtabpage.activity-stream.telemetry", false); // Disable activity stream telemetry
+user_pref("breakpad.reportURL", ""); // Disable crash report URL
+user_pref("browser.tabs.crashReporting.sendReport", false); // Disable crash reporting
+user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false); // Disable auto submit crash reports
+user_pref("app.shield.optoutstudies.enabled", false); // Disable Shield studies
+user_pref("app.normandy.enabled", false); // Disable Normandy experiments
+user_pref("app.normandy.api_url", ""); // Empty Normandy API URL
+user_pref("default-browser-agent.enabled", false); // Disable default browser agent
 
-// UI
-user_pref("browser.privatebrowsing.vpnpromourl", "");
-user_pref("extensions.getAddons.showPane", false);
-user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
-user_pref("browser.discovery.enabled", false);
-user_pref("browser.shell.checkDefaultBrowser", false);
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
-user_pref("browser.preferences.moreFromMozilla", false);
-user_pref("browser.aboutConfig.showWarning", false);
-user_pref("browser.aboutwelcome.enabled", false);
-user_pref("browser.tabs.loadBookmarksInBackground", true);
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-user_pref("browser.compactmode.show", true);
-user_pref("full-screen-api.warning.delay", -1);
-user_pref("full-screen-api.warning.timeout", 0);
-user_pref("browser.messaging-system.whatsNewPanel.enabled", false);
-user_pref("browser.startup.homepage_override.mstone", "ignore");
-user_pref("browser.profiles.enabled", true);
-user_pref("browser.privateWindowSeparation.enabled", false);
-user_pref("browser.menu.showViewImageInfo", true);
-user_pref("browser.zoom.full", true);
-user_pref("browser.urlbar.showSearchSuggestionsFirst", true);
+// =============================================
+// User Interface (UI) Settings
+// =============================================
+user_pref("browser.privatebrowsing.vpnpromourl", ""); // Disable VPN promo in private browsing
+user_pref("extensions.getAddons.showPane", false); // Hide add-ons pane
+user_pref("extensions.htmlaboutaddons.recommendations.enabled", false); // Disable add-on recommendations
+user_pref("browser.discovery.enabled", false); // Disable Discovery Pane
+user_pref("browser.shell.checkDefaultBrowser", false); // Disable default browser check
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false); // Disable add-ons CFR
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false); // Disable features CFR
+user_pref("browser.preferences.moreFromMozilla", false); // Disable "More from Mozilla" in preferences
+user_pref("browser.aboutConfig.showWarning", false); // Disable about:config warning
+user_pref("browser.aboutwelcome.enabled", false); // Disable welcome page
+user_pref("browser.tabs.loadBookmarksInBackground", true); // Load bookmarks in background
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // Enable userChrome/userContent CSS
+user_pref("browser.compactmode.show", true); // Enable compact mode option
+user_pref("full-screen-api.warning.delay", -1); // Remove full-screen warning delay
+user_pref("full-screen-api.warning.timeout", 0); // Remove full-screen warning timeout
+user_pref("browser.messaging-system.whatsNewPanel.enabled", false); // Disable "What's New" panel
+user_pref("browser.startup.homepage_override.mstone", "ignore"); // Ignore startup homepage override
+user_pref("browser.profiles.enabled", true); // Enable profile management
+user_pref("browser.privateWindowSeparation.enabled", false); // Disable private window separation
+user_pref("browser.menu.showViewImageInfo", true); // Enable view image info option
+user_pref("browser.zoom.full", true); // Enable full zoom
+user_pref("browser.urlbar.showSearchSuggestionsFirst", true); // Show search suggestions first
 
-// Tab
-user_pref("browser.tabs.hoverPreview.enabled", true);
-user_pref("browser.tabs.hoverPreview.showThumbnails", true);
-user_pref("browser.tabs.tabmanager.enabled", false);
+// =============================================
+// Tab Settings
+// =============================================
+user_pref("browser.tabs.hoverPreview.enabled", true); // Enable tab hover preview
+user_pref("browser.tabs.hoverPreview.showThumbnails", true); // Show thumbnails in tab hover
+user_pref("browser.tabs.tabmanager.enabled", false); // Disable tab manager
 
-// URL Bar
-user_pref("browser.urlbar.suggest.calculator", true);
-user_pref("browser.urlbar.unitConversion.enabled", true);
-user_pref("browser.urlbar.trimURLs", true);
-user_pref("browser.urlbar.trimHttps", true);
-user_pref("browser.urlbar.untrimOnUserInteraction.featureGate", true);
+// =============================================
+// URL Bar Settings
+// =============================================
+user_pref("browser.urlbar.suggest.calculator", true); // Enable calculator in URL bar
+user_pref("browser.urlbar.unitConversion.enabled", true); // Enable unit conversion in URL bar
+user_pref("browser.urlbar.trimURLs", true); // Trim URLs in the address bar
+user_pref("browser.urlbar.trimHttps", true); // Trim HTTPS in the address bar
+user_pref("browser.urlbar.untrimOnUserInteraction.featureGate", true); // Untrim URL on interaction
 
-// Settings
-user_pref("browser.urlbar.update2.engineAliasRefresh", true);
-user_pref("permissions.default.desktop-notification", 2);
-user_pref("browser.download.manager.addToRecentDocs", false);
+// =============================================
+// Download Settings
+// =============================================
+user_pref("browser.urlbar.update2.engineAliasRefresh", true); // Enable search engine alias refresh
+user_pref("permissions.default.desktop-notification", 2); // Block desktop notifications
+user_pref("browser.download.manager.addToRecentDocs", false); // Do not add downloads to recent docs
 
-// Translation
-user_pref("browser.translations.enable", true);
-user_pref("browser.translations.autoTranslate", true);
+// =============================================
+// Translation Settings
+// =============================================
+user_pref("browser.translations.enable", true); // Enable in-browser translations
+user_pref("browser.translations.autoTranslate", true); // Enable automatic translations
 
-// Cookie Banner
-user_pref("cookiebanners.service.mode", 1);
-user_pref("cookiebanners.service.mode.privateBrowsing", 1);
+// =============================================
+// Cookie Banner Handling
+// =============================================
+user_pref("cookiebanners.service.mode", 1); // Set cookie banner mode for normal browsing
+user_pref("cookiebanners.service.mode.privateBrowsing", 1); // Set cookie banner mode for private browsing
 
-// Font
-user_pref("gfx.webrender.quality.force-subpixel-aa-where-possible", true);
-user_pref("gfx.font_rendering.cleartype_params.rendering_mode", 5);
-user_pref("gfx.font_rendering.cleartype_params.cleartype_level", 100);
-user_pref("gfx.font_rendering.cleartype_params.force_gdi_classic_for_families", "");
-user_pref("gfx.font_rendering.cleartype_params.force_gdi_classic_max_size", 6);
-user_pref("gfx.font_rendering.directwrite.use_gdi_table_loading", false);
-user_pref("gfx.font_rendering.cleartype_params.gamma", 1750);
-user_pref("gfx.font_rendering.cleartype_params.enhanced_contrast", 100);
-user_pref("gfx.font_rendering.cleartype_params.pixel_structure", 1)
-user_pref("dom.text_fragments.enabled", true);
+// =============================================
+// Font Rendering Settings
+// =============================================
+user_pref("gfx.webrender.quality.force-subpixel-aa-where-possible", true); // Force subpixel AA for WebRender
+user_pref("gfx.font_rendering.cleartype_params.rendering_mode", 5); // Set ClearType rendering mode
+user_pref("gfx.font_rendering.cleartype_params.cleartype_level", 100); // ClearType level
+user_pref("gfx.font_rendering.cleartype_params.gamma", 1750); // ClearType gamma level
+user_pref("gfx.font_rendering.cleartype_params.enhanced_contrast", 100); // ClearType enhanced contrast
+user_pref("gfx.font_rendering.cleartype_params.pixel_structure", 1); // ClearType pixel structure
+user_pref("dom.text_fragments.enabled", true); // Enable text fragments
 
-// Scrolling
-user_pref("apz.overscroll.enabled", true);
-user_pref("general.smoothScroll", true);
-user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
-user_pref("general.smoothScroll.msdPhysics.enabled", true);
-user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 600);
-user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 650);
-user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25);
-user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio", "2");
-user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
-user_pref("general.smoothScroll.currentVelocityWeighting", "1");
-user_pref("general.smoothScroll.stopDecelerationWeighting", "1");
-user_pref("mousewheel.default.delta_multiplier_y", 300);
+// =============================================
+// Scrolling Settings
+// =============================================
+user_pref("apz.overscroll.enabled", true); // Enable overscroll effect
+user_pref("general.smoothScroll", true); // Enable smooth scrolling
+user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12); // Continuous motion max delta
+user_pref("general.smoothScroll.msdPhysics.enabled", true); // Enable MSD physics for scrolling
+user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 600); // Begin spring constant
+user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 650); // Regular spring constant
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25); // Min delta for slowdown
+user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250); // Slowdown spring constant
+user_pref("general.smoothScroll.currentVelocityWeighting", "1"); // Current velocity weighting
+user_pref("general.smoothScroll.stopDecelerationWeighting", "1"); // Stop deceleration weighting
+user_pref("mousewheel.default.delta_multiplier_y", 300); // Mousewheel scroll speed
 
-// Privacy
-user_pref("extensions.postDownloadThirdPartyPrompt", false);
-user_pref("security.mixed_content.block_display_content", true);
-user_pref("pdfjs.enableScripting", false);
-user_pref("dom.security.https_first", true);
-user_pref("browser.contentblocking.category", "strict");
-user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com");
-user_pref("urlclassifier.features.socialtracking.skipURLs", "*.instagram.com, *.twitter.com, *.twimg.com");
-user_pref("network.cookie.sameSite.noneRequiresSecure", true);
-user_pref("browser.download.start_downloads_in_tmp_dir", true);
-user_pref("browser.helperApps.deleteTempFileOnExit", true);
-user_pref("browser.uitour.enabled", false);
-user_pref("privacy.globalprivacycontrol.enabled", true);
-user_pref("security.OCSP.enabled", 0);
-user_pref("security.remote_settings.crlite_filters.enabled", true);
-user_pref("security.pki.crlite_mode", 2);
-user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
-user_pref("browser.xul.error_pages.expert_bad_cert", true);
-user_pref("security.tls.enable_0rtt_data", false);
-user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
-user_pref("media.peerconnection.ice.default_address_only", true);
-user_pref("browser.safebrowsing.downloads.remote.enabled", false);
+// =============================================
+// Privacy Settings
+// =============================================
+user_pref("extensions.postDownloadThirdPartyPrompt", false); // Disable third-party prompt after downloads
+user_pref("security.mixed_content.block_display_content", true); // Block mixed display content
+user_pref("pdfjs.enableScripting", false); // Disable PDF scripting
+user_pref("dom.security.https_first", true); // Enforce HTTPS first
+user_pref("browser.contentblocking.category", "strict"); // Set content blocking to strict
+user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com"); // Skip tracking for selected URLs
+user_pref("urlclassifier.features.socialtracking.skipURLs", "*.instagram.com, *.twitter.com, *.twimg.com"); // Skip social tracking for selected URLs
+user_pref("network.cookie.sameSite.noneRequiresSecure", true); // Enforce secure sameSite cookies
+user_pref("browser.download.start_downloads_in_tmp_dir", true); // Start downloads in temp directory
+user_pref("browser.helperApps.deleteTempFileOnExit", true); // Delete temp files on exit
+user_pref("browser.uitour.enabled", false); // Disable UITour
+user_pref("privacy.globalprivacycontrol.enabled", true); // Enable Global Privacy Control
+user_pref("security.OCSP.enabled", 0); // Disable OCSP
+user_pref("security.remote_settings.crlite_filters.enabled", true); // Enable CRLite filters
+user_pref("security.pki.crlite_mode", 2); // Set CRLite mode
+user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true); // Treat unsafe SSL negotiation as broken
+user_pref("browser.xul.error_pages.expert_bad_cert", true); // Show expert options for bad certs
+user_pref("security.tls.enable_0rtt_data", false); // Disable 0-RTT data
+user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true); // ICE only behind proxy
+user_pref("media.peerconnection.ice.default_address_only", true); // ICE default address only
+user_pref("browser.safebrowsing.downloads.remote.enabled", false); // Disable Safe Browsing for downloads
+user_pref("network.cookie.cookieBehavior", 5); // Cookie behavior set to total blocking
+user_pref("privacy.trackingprotection.enabled", true); // Enable tracking protection
+user_pref("privacy.trackingprotection.socialtracking.enabled", true); // Enable social tracking protection
+user_pref("privacy.trackingprotection.cryptomining.enabled", true); // Enable cryptomining protection
+user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // Enable fingerprinting protection
 
-// Extensions
-user_pref("extensions.enabledScopes", 5);
+// =============================================
+// Extension Settings
+// =============================================
+user_pref("extensions.enabledScopes", 5); // Restrict extension installation to user and application scopes
+
+// =============================================
+// Home Page Settings
+// =============================================
+
+// Set homepage and new windows to a blank page
+user_pref("browser.startup.homepage", "about:blank");
+user_pref("browser.startup.page", 0); // 0 = Blank page, 1 = Homepage, 2 = Last visited page, 3 = Resume previous session
+
+// Set new tabs to a blank page
+user_pref("browser.newtabpage.enabled", false); // Disable new tab page content
+user_pref("browser.newtab.url", "about:blank");
+
+// Firefox Home Content Settings
+user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // Disable recommended stories
+user_pref("browser.newtabpage.activity-stream.feeds.section.highlights", false); // Disable highlights
+user_pref("browser.newtabpage.activity-stream.showSearch", false); // Disable search bar on new tab
+user_pref("browser.newtabpage.activity-stream.feeds.topsites", false); // Disable shortcuts (top sites)
+user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Disable sponsored shortcuts
+user_pref("browser.newtabpage.activity-stream.feeds.recent", false); // Disable recent activity (visited pages, bookmarks, downloads)
+user_pref("browser.newtabpage.activity-stream.showRecentSaves", false); // Disable Pocket saves in recent activity
