@@ -105,15 +105,13 @@ yt-dlp
 [Inter](https://rsms.me/inter/download/), [FiraCode-NF, CascadiaCode-NF, JetBrainsMono-NF, Meslo-NF, SpaceMono-NF, UbuntuSans-NF](https://github.com/ryanoasis/nerd-fonts/releases), [SolaimanLipi, AdorshoLipi](https://www.omicronlab.com/bangla-fonts.html), [Ekushey Lal Salu Normal](https://ekushey.org/fonts/)
 
 ### DNS
-###### Adguard
-IPv4: `94.140.14.14` <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `94.140.15.15` <br/>
-IPv6: `2a10:50c0::ad1:ff` <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `2a10:50c0::ad2:ff` <br/>
-DOT: `dns.adguard-dns.com` <br/>
-DOH: `https://dns.adguard-dns.com/dns-query`
+| **Provider**   | **IPv4**                     | **IPv6**                             | **DOT**                        | **DOH**                                           |
+|----------------|------------------------------|--------------------------------------|--------------------------------|---------------------------------------------------|
+| **Adguard**    | `94.140.14.14`<br>`94.140.15.15` | `2a10:50c0::ad1:ff`<br>`2a10:50c0::ad2:ff` | `dns.adguard-dns.com`          | `https://dns.adguard-dns.com/dns-query`           |
+| **Mullvad**    | -                            | -                                    | `base.dns.mullvad.net`         | `https://base.dns.mullvad.net/dns-query`          |
+| **Cloudflare** | `1.1.1.2`<br>`1.0.0.2`       | `2606:4700:4700::1112`<br>`2606:4700:4700::1002` | `security.cloudflare-dns.com`  | `https://security.cloudflare-dns.com/dns-query`   |
+| **Quad9**      | `9.9.9.9`<br>`149.112.112.112` | `2620:fe::fe`<br>`2620:fe::9`       | `dns.quad9.net`                | `https://dns.quad9.net/dns-query`                 |
 
-###### Mullvad
-DOT: `base.dns.mullvad.net` <br/>
-DOH: `https://base.dns.mullvad.net/dns-query`
 
 ### Tweaks
 ###### Disable IDM Update Check:
