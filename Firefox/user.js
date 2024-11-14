@@ -130,6 +130,8 @@ user_pref("browser.urlbar.untrimOnUserInteraction.featureGate", true); // Untrim
 user_pref("browser.urlbar.update2.engineAliasRefresh", true); // Enable search engine alias refresh
 user_pref("permissions.default.desktop-notification", 2); // Block desktop notifications
 user_pref("browser.download.manager.addToRecentDocs", false); // Do not add downloads to recent docs
+user_pref("browser.download.useDownloadDir", true); // Do not ask where to download
+user_pref("browser.download.dir", "C:\Users\Fahim\Downloads\Firefox");
 
 // =============================================
 // Translation Settings
@@ -207,16 +209,10 @@ user_pref("extensions.enabledScopes", 5); // Restrict extension installation to 
 // =============================================
 // Home Page Settings
 // =============================================
-
-// Set homepage and new windows to a blank page
-user_pref("browser.startup.homepage", "about:blank");
+user_pref("browser.startup.homepage", "about:blank");// Set homepage and new windows to a blank page
 user_pref("browser.startup.page", 0); // 0 = Blank page, 1 = Homepage, 2 = Last visited page, 3 = Resume previous session
-
-// Set new tabs to a blank page
 user_pref("browser.newtabpage.enabled", false); // Disable new tab page content
-user_pref("browser.newtab.url", "about:blank");
-
-// Firefox Home Content Settings
+user_pref("browser.newtab.url", "about:blank"); // Set new tabs to a blank page
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // Disable recommended stories
 user_pref("browser.newtabpage.activity-stream.feeds.section.highlights", false); // Disable highlights
 user_pref("browser.newtabpage.activity-stream.showSearch", false); // Disable search bar on new tab
@@ -224,3 +220,11 @@ user_pref("browser.newtabpage.activity-stream.feeds.topsites", false); // Disabl
 user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Disable sponsored shortcuts
 user_pref("browser.newtabpage.activity-stream.feeds.recent", false); // Disable recent activity (visited pages, bookmarks, downloads)
 user_pref("browser.newtabpage.activity-stream.showRecentSaves", false); // Disable Pocket saves in recent activity
+user_pref("browser.newtabpage.activity-stream.newtabWallpapers.enabled", false); // Disable wallpapers on New Tab
+user_pref("browser.newtabpage.activity-stream.default.sites", ""); // Clear default topsites
+user_pref("browser.toolbars.bookmarks.visibility", "always"); // Bookmarks Toolbar visibility
+
+// =============================================
+// Site Permission Settings
+// =============================================
+user_pref("media.autoplay.default", 5); // 0 = Allow all, 1 = Block non-muted media (default), 5 = Block all
