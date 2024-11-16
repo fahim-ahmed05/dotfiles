@@ -11,7 +11,7 @@ user_pref("gfx.canvas.accelerated.cache-size", 512); // Canvas cache size for ac
 user_pref("gfx.content.skia-font-cache-size", 20); // Skia font cache size
 user_pref("media.av1.enabled", true); // Enable AV1 video codec
 user_pref("gfx.canvas.accelerated", true); // Enable canvas acceleration
-user_pref("image.jxl.enabled", false); // Disable JPEG XL support
+// user_pref("image.jxl.enabled", false); // Disable JPEG XL support
 
 // =============================================
 // Cache Settings
@@ -131,7 +131,8 @@ user_pref("browser.urlbar.update2.engineAliasRefresh", true); // Enable search e
 user_pref("permissions.default.desktop-notification", 2); // Block desktop notifications
 user_pref("browser.download.manager.addToRecentDocs", false); // Do not add downloads to recent docs
 user_pref("browser.download.useDownloadDir", true); // Do not ask where to download
-user_pref("browser.download.dir", "C:\Users\Fahim\Downloads\Firefox");
+user_pref("browser.download.dir", "C:\\Users\\Fahim\\Downloads\\Firefox"); // Download folder
+user_pref("browser.helperApps.neverAsk.saveToDisk", "application/pdf"); // Set PDF to download automatically
 
 // =============================================
 // Translation Settings
@@ -177,7 +178,9 @@ user_pref("mousewheel.default.delta_multiplier_y", 300); // Mousewheel scroll sp
 user_pref("extensions.postDownloadThirdPartyPrompt", false); // Disable third-party prompt after downloads
 user_pref("security.mixed_content.block_display_content", true); // Block mixed display content
 user_pref("pdfjs.enableScripting", false); // Disable PDF scripting
-user_pref("dom.security.https_first", true); // Enforce HTTPS first
+// user_pref("dom.security.https_first", true); // Enforce HTTPS first
+user_pref("dom.security.https_only_mode", true); // Enable HTTPS-Only Mode in all windows
+user_pref("dom.security.https_only_mode_pbm", true); // Enable HTTPS-Only Mode in private windows only
 user_pref("browser.contentblocking.category", "strict"); // Set content blocking to strict
 user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com"); // Skip tracking for selected URLs
 user_pref("urlclassifier.features.socialtracking.skipURLs", "*.instagram.com, *.twitter.com, *.twimg.com"); // Skip social tracking for selected URLs
@@ -200,6 +203,8 @@ user_pref("privacy.trackingprotection.enabled", true); // Enable tracking protec
 user_pref("privacy.trackingprotection.socialtracking.enabled", true); // Enable social tracking protection
 user_pref("privacy.trackingprotection.cryptomining.enabled", true); // Enable cryptomining protection
 user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // Enable fingerprinting protection
+user_pref("privacy.donottrackheader.enabled", true); // Send "Do Not Track" signal to websites
+user_pref("browser.firefoxRelay.enabled", false); // Disable Firefox Relay suggestion
 
 // =============================================
 // Extension Settings
@@ -228,3 +233,15 @@ user_pref("browser.toolbars.bookmarks.visibility", "always"); // Bookmarks Toolb
 // Site Permission Settings
 // =============================================
 user_pref("media.autoplay.default", 5); // 0 = Allow all, 1 = Block non-muted media (default), 5 = Block all
+user_pref("permissions.default.geo", 2); // Disable location access
+user_pref("permissions.default.camera", 2); // Disable camera access
+user_pref("permissions.default.microphone", 2); // Disable microphone access
+
+// =============================================
+// Firefox Labs Settings
+// =============================================
+user_pref("browser.tabs.firefox-view-labs.enabled", true); // Enable Firefox Labs features
+user_pref("media.videocontrols.picture-in-picture.auto-toggle", true); // Enable Picture-in-Picture to auto-open on tab switch
+user_pref("browser.tabs.firefox-view-labs.ai_chatbot.enabled", true); // Enable AI Chatbot (ChatGPT integration, if available in Firefox Labs)
+user_pref("browser.tabs.firefox-view-labs.ai_chatbot.show_prompts_on_text_select", false); // Disable "Show prompts on text select" for the AI Chatbot
+// user_pref("image.jxl.enabled", true); // Enable JPEG-XL support in Firefox
