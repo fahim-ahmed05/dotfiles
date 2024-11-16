@@ -200,7 +200,7 @@ user_pref("browser.firefoxRelay.enabled", false); // Disable Firefox Relay sugge
 // =============================================
 // Tracking Protection Settings
 // =============================================
-user_pref("browser.contentblocking.category", "strict"); // Set content blocking to strict
+// user_pref("browser.contentblocking.category", "strict"); // Set content blocking to strict
 user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com"); // Skip tracking for selected URLs
 user_pref("urlclassifier.features.socialtracking.skipURLs", "*.instagram.com, *.twitter.com, *.twimg.com"); // Skip social tracking for selected URLs
 user_pref("privacy.trackingprotection.mode", 3); // Enable Custom Enhanced Tracking Protection (ETP) mode
@@ -244,6 +244,15 @@ user_pref("media.autoplay.default", 5); // 0 = Allow all, 1 = Block non-muted me
 user_pref("permissions.default.geo", 2); // Disable location access
 user_pref("permissions.default.camera", 2); // Disable camera access
 user_pref("permissions.default.microphone", 2); // Disable microphone access
+user_pref("permissions.default.xr", 2); // Block requests for XR (Extended Reality) device access
+
+// =============================================
+// Virtual Reality (VR) Settings
+// =============================================
+
+user_pref("dom.vr.enabled", false); // Disable Virtual Reality (VR) support
+user_pref("dom.webvr.enabled", false); // Disable WebVR support
+user_pref("dom.webxr.enabled", false); // Disable WebXR support (for AR/VR devices)
 
 // =============================================
 // PDF Settings
