@@ -133,9 +133,9 @@ user_pref("browser.urlbar.update2.engineAliasRefresh", true); // Enable search e
 user_pref("permissions.default.desktop-notification", 2); // Block desktop notifications
 user_pref("browser.download.manager.addToRecentDocs", false); // Do not add downloads to recent docs
 user_pref("browser.download.useDownloadDir", true); // Do not ask where to download
-user_pref("browser.download.dir", "C:\\Users\\Fahim\\Downloads\\Firefox"); // Download folder
+user_pref("browser.download.dir", "C:/Users/Fahim/Downloads/Firefox"); // Download folder
 user_pref("browser.helperApps.neverAsk.saveToDisk", "application/pdf"); // Set PDF to download automatically
-
+user_pref("browser.download.promptForDownload", false); // Disable prompt for download location
 // =============================================
 // Translation Settings
 // =============================================
@@ -179,7 +179,6 @@ user_pref("mousewheel.default.delta_multiplier_y", 300); // Mousewheel scroll sp
 // =============================================
 user_pref("extensions.postDownloadThirdPartyPrompt", false); // Disable third-party prompt after downloads
 user_pref("security.mixed_content.block_display_content", true); // Block mixed display content
-user_pref("pdfjs.enableScripting", false); // Disable PDF scripting
 // user_pref("dom.security.https_first", true); // Enforce HTTPS first
 user_pref("dom.security.https_only_mode", true); // Enable HTTPS-Only Mode in all windows
 user_pref("dom.security.https_only_mode_pbm", true); // Enable HTTPS-Only Mode in private windows only
@@ -245,6 +244,12 @@ user_pref("media.autoplay.default", 5); // 0 = Allow all, 1 = Block non-muted me
 user_pref("permissions.default.geo", 2); // Disable location access
 user_pref("permissions.default.camera", 2); // Disable camera access
 user_pref("permissions.default.microphone", 2); // Disable microphone access
+
+// =============================================
+// PDF Settings
+// =============================================
+user_pref("pdfjs.disabled", true);
+user_pref("pdfjs.enableScripting", false); // Disable PDF scripting
 
 // =============================================
 // Firefox Labs Settings
