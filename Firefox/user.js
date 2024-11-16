@@ -106,7 +106,7 @@ user_pref("browser.profiles.enabled", true); // Enable profile management
 user_pref("browser.privateWindowSeparation.enabled", false); // Disable private window separation
 user_pref("browser.menu.showViewImageInfo", true); // Enable view image info option
 user_pref("browser.zoom.full", true); // Enable full zoom
-user_pref("browser.urlbar.showSearchSuggestionsFirst", true); // Show search suggestions first
+user_pref("browser.uitour.enabled", false); // Disable UITour
 
 // =============================================
 // Tab Settings
@@ -123,11 +123,13 @@ user_pref("browser.urlbar.unitConversion.enabled", true); // Enable unit convers
 user_pref("browser.urlbar.trimURLs", true); // Trim URLs in the address bar
 user_pref("browser.urlbar.trimHttps", true); // Trim HTTPS in the address bar
 user_pref("browser.urlbar.untrimOnUserInteraction.featureGate", true); // Untrim URL on interaction
+user_pref("browser.privatebrowsing.searchSuggest", true); // Enable search suggestions in private window
+user_pref("browser.urlbar.showSearchSuggestionsFirst", true); // Show search suggestions first
+user_pref("browser.urlbar.update2.engineAliasRefresh", true); // Enable search engine alias refresh
 
 // =============================================
 // Download Settings
 // =============================================
-user_pref("browser.urlbar.update2.engineAliasRefresh", true); // Enable search engine alias refresh
 user_pref("permissions.default.desktop-notification", 2); // Block desktop notifications
 user_pref("browser.download.manager.addToRecentDocs", false); // Do not add downloads to recent docs
 user_pref("browser.download.useDownloadDir", true); // Do not ask where to download
@@ -181,13 +183,9 @@ user_pref("pdfjs.enableScripting", false); // Disable PDF scripting
 // user_pref("dom.security.https_first", true); // Enforce HTTPS first
 user_pref("dom.security.https_only_mode", true); // Enable HTTPS-Only Mode in all windows
 user_pref("dom.security.https_only_mode_pbm", true); // Enable HTTPS-Only Mode in private windows only
-user_pref("browser.contentblocking.category", "strict"); // Set content blocking to strict
-user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com"); // Skip tracking for selected URLs
-user_pref("urlclassifier.features.socialtracking.skipURLs", "*.instagram.com, *.twitter.com, *.twimg.com"); // Skip social tracking for selected URLs
 user_pref("network.cookie.sameSite.noneRequiresSecure", true); // Enforce secure sameSite cookies
 user_pref("browser.download.start_downloads_in_tmp_dir", true); // Start downloads in temp directory
 user_pref("browser.helperApps.deleteTempFileOnExit", true); // Delete temp files on exit
-user_pref("browser.uitour.enabled", false); // Disable UITour
 user_pref("privacy.globalprivacycontrol.enabled", true); // Enable Global Privacy Control
 user_pref("security.OCSP.enabled", 0); // Disable OCSP
 user_pref("security.remote_settings.crlite_filters.enabled", true); // Enable CRLite filters
@@ -198,13 +196,24 @@ user_pref("security.tls.enable_0rtt_data", false); // Disable 0-RTT data
 user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true); // ICE only behind proxy
 user_pref("media.peerconnection.ice.default_address_only", true); // ICE default address only
 user_pref("browser.safebrowsing.downloads.remote.enabled", false); // Disable Safe Browsing for downloads
-user_pref("network.cookie.cookieBehavior", 5); // Cookie behavior set to total blocking
+user_pref("browser.firefoxRelay.enabled", false); // Disable Firefox Relay suggestion
+
+// =============================================
+// Tracking Protection Settings
+// =============================================
+user_pref("browser.contentblocking.category", "strict"); // Set content blocking to strict
+user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com"); // Skip tracking for selected URLs
+user_pref("urlclassifier.features.socialtracking.skipURLs", "*.instagram.com, *.twitter.com, *.twimg.com"); // Skip social tracking for selected URLs
+user_pref("privacy.trackingprotection.mode", 3); // Enable Custom Enhanced Tracking Protection (ETP) mode
 user_pref("privacy.trackingprotection.enabled", true); // Enable tracking protection
 user_pref("privacy.trackingprotection.socialtracking.enabled", true); // Enable social tracking protection
 user_pref("privacy.trackingprotection.cryptomining.enabled", true); // Enable cryptomining protection
 user_pref("privacy.trackingprotection.fingerprinting.enabled", true); // Enable fingerprinting protection
 user_pref("privacy.donottrackheader.enabled", true); // Send "Do Not Track" signal to websites
-user_pref("browser.firefoxRelay.enabled", false); // Disable Firefox Relay suggestion
+user_pref("privacy.trackingprotection.custom.cookies", 1); // Block third-party cookies
+user_pref("privacy.trackingprotection.custom.cryptominers", 1); // Block cryptominers
+user_pref("privacy.trackingprotection.custom.fingerprinters", 1); // Block fingerprinters
+user_pref("network.cookie.cookieBehavior", 5); // Block third-party cookies
 
 // =============================================
 // Extension Settings
