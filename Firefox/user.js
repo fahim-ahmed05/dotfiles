@@ -200,7 +200,7 @@ user_pref("browser.firefoxRelay.enabled", false); // Disable Firefox Relay sugge
 // =============================================
 // Tracking Protection Settings
 // =============================================
-// user_pref("browser.contentblocking.category", "strict"); // Set content blocking to strict
+user_pref("browser.contentblocking.category", "strict"); // Set content blocking to strict
 user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com"); // Skip tracking for selected URLs
 user_pref("urlclassifier.features.socialtracking.skipURLs", "*.instagram.com, *.twitter.com, *.twimg.com"); // Skip social tracking for selected URLs
 user_pref("privacy.trackingprotection.mode", 3); // Enable Custom Enhanced Tracking Protection (ETP) mode
