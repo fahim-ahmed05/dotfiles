@@ -263,8 +263,8 @@ user_pref("pdfjs.enableScripting", false); // Disable PDF scripting
 // =============================================
 // Firefox Labs Settings
 // =============================================
-user_pref("browser.tabs.firefox-view-labs.enabled", true); // Enable Firefox Labs features
-user_pref("media.videocontrols.picture-in-picture.auto-toggle", true); // Enable Picture-in-Picture to auto-open on tab switch
-user_pref("browser.tabs.firefox-view-labs.ai_chatbot.enabled", true); // Enable AI Chatbot (ChatGPT integration, if available in Firefox Labs)
-user_pref("browser.tabs.firefox-view-labs.ai_chatbot.show_prompts_on_text_select", false); // Disable "Show prompts on text select" for the AI Chatbot
+// user_pref("browser.tabs.firefox-view-labs.enabled", true); // Enable Firefox Labs features
+// user_pref("media.videocontrols.picture-in-picture.auto-toggle", true); // Enable Picture-in-Picture to auto-open on tab switch
+// user_pref("browser.tabs.firefox-view-labs.ai_chatbot.enabled", true); // Enable AI Chatbot (ChatGPT integration, if available in Firefox Labs)
+// user_pref("browser.tabs.firefox-view-labs.ai_chatbot.show_prompts_on_text_select", false); // Disable "Show prompts on text select" for the AI Chatbot
 // user_pref("image.jxl.enabled", true); // Enable JPEG-XL support in Firefox
