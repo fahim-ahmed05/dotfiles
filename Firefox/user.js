@@ -235,7 +235,7 @@ user_pref("browser.newtabpage.activity-stream.feeds.recent", false); // Disable 
 user_pref("browser.newtabpage.activity-stream.showRecentSaves", false); // Disable Pocket saves in recent activity
 user_pref("browser.newtabpage.activity-stream.newtabWallpapers.enabled", false); // Disable wallpapers on New Tab
 user_pref("browser.newtabpage.activity-stream.default.sites", ""); // Clear default topsites
-user_pref("browser.toolbars.bookmarks.visibility", "always"); // Bookmarks Toolbar visibility
+// user_pref("browser.toolbars.bookmarks.visibility", "always"); // Bookmarks Toolbar visibility
 
 // =============================================
 // Site Permission Settings
