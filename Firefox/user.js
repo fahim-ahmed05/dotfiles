@@ -133,7 +133,7 @@ user_pref("browser.urlbar.update2.engineAliasRefresh", true); // Enable search e
 user_pref("permissions.default.desktop-notification", 2); // Block desktop notifications
 user_pref("browser.download.manager.addToRecentDocs", false); // Do not add downloads to recent docs
 user_pref("browser.download.useDownloadDir", true); // Do not ask where to download
-user_pref("browser.download.dir", "C:/Users/Fahim/Downloads/Firefox"); // Download folder
+user_pref("browser.download.dir", "C:\\Users\\Fahim\\Downloads\\Firefox"); // Download folder
 user_pref("browser.helperApps.neverAsk.saveToDisk", "application/pdf"); // Set PDF to download automatically
 user_pref("browser.download.promptForDownload", false); // Disable prompt for download location
 // =============================================
