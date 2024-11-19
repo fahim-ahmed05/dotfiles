@@ -44,6 +44,12 @@ function wul {
     Write-Host "`nChecking updates for Scoop packages...`n" -ForegroundColor "Cyan"
 	scoop status
 
+    Write-Host "`nChecking updates for Chocolatey packages...`n" -ForegroundColor "Cyan"
+    choco outdated
+
+    Write-Host "`nChecking updates for MSYS2 packages...`n" -ForegroundColor "Cyan"
+    & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$PWD' && pacman -Syup"
+
     Write-Host "`nChecking updates for Windows system...`n" -ForegroundColor "Cyan"
     gsudo Get-WindowsUpdate -Verbose
 }
@@ -54,8 +60,6 @@ function wu {
 
     Write-Host "`nUpgrading Scoop packages...`n" -ForegroundColor "Cyan"
     scoop update
-	scoop update --all
-    scoop status
 
     Write-Host "`nUpgrading Chocolatey packages...`n" -ForegroundColor "Cyan"
     gsudo choco upgrade all -y
@@ -64,7 +68,7 @@ function wu {
     python.exe -m pip install --upgrade pip
 
     Write-Host "`nUpgrading Pipx packages...`n" -ForegroundColor "Cyan"
-    pipx upgrade-all --verbose
+    pipx upgrade-all
     
     Write-Host "`nUpgrading MSYS2 packages...`n" -ForegroundColor "Cyan"
     & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$PWD' && pacman -Syu --noconfirm && paccache -r"
