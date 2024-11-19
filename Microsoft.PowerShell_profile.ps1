@@ -15,7 +15,9 @@ Set-PSReadLineOption -Colors @{
 }
 
 # Terminal
-function reloadterminal { exit & wt }
+function reloadterminal { 
+    Stop-Process -Name "WindowsTerminal" -Force ; Start-Process "$env:LOCALAPPDATA\Microsoft\WindowsApps\wt.exe"
+}
 
 # Winget
 function ws {
@@ -133,4 +135,19 @@ Invoke-Expression (&scoop-search --hook)
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
   Import-Module "$ChocolateyProfile"
+}
+
+# MSYS2
+function ucr {
+    param (
+        [string]$Command = $null
+    )
+
+    if ($Command) {
+        # Run the command in ucrt64 and output the result
+        & "C:\msys64\usr\bin\bash.exe" -c "export MSYSTEM=UCRT64 && $Command"
+    } else {
+        # Start an interactive ucrt64 shell in the current terminal
+        & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && exec bash"
+    }
 }
