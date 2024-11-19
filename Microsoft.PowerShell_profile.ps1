@@ -14,14 +14,9 @@ Set-PSReadLineOption -Colors @{
     String    = 'DarkCyan'
 }
 
-function reloadprofile {
-    . $PROFILE
-}
-
 # Terminal
 function reloadterminal { 
-    exit
-    wt
+    exit & wt
 }
 
 # Winget
@@ -71,6 +66,9 @@ function wu {
     Write-Host "`nUpgrading Pipx packages...`n" -ForegroundColor "Cyan"
     pipx upgrade-all --verbose
     
+    Write-Host "`nUpgrading MSYS2 packages...`n" -ForegroundColor "Cyan"
+    & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$PWD' && pacman -Syu --noconfirm && paccache -r"
+
     Write-Host "`nUpgrading Windows system...`n" -ForegroundColor "Cyan"
     gsudo Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -Verbose
 
@@ -143,7 +141,7 @@ if (Test-Path($ChocolateyProfile)) {
 }
 
 # MSYS2
-function msys {
+function ucr {
     param (
         [string]$Command = $null
     )
