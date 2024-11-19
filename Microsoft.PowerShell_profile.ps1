@@ -14,9 +14,14 @@ Set-PSReadLineOption -Colors @{
     String    = 'DarkCyan'
 }
 
+function reloadprofile {
+    . $PROFILE
+}
+
 # Terminal
 function reloadterminal { 
-    Stop-Process -Name "WindowsTerminal" -Force ; Start-Process "$env:LOCALAPPDATA\Microsoft\WindowsApps\wt.exe"
+    exit
+    wt
 }
 
 # Winget
@@ -138,16 +143,16 @@ if (Test-Path($ChocolateyProfile)) {
 }
 
 # MSYS2
-function ucr {
+function msys {
     param (
         [string]$Command = $null
     )
 
+    $currentDir = Get-Location
+
     if ($Command) {
-        # Run the command in ucrt64 and output the result
-        & "C:\msys64\usr\bin\bash.exe" -c "export MSYSTEM=UCRT64 && $Command"
+        & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$currentDir' && $Command"
     } else {
-        # Start an interactive ucrt64 shell in the current terminal
-        & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && exec bash"
+        & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$currentDir' && exec bash"
     }
 }
