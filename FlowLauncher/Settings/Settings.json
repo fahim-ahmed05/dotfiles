@@ -82,7 +82,7 @@
       "Editable": true
     }
   ],
-  "CustomBrowserIndex": 4,
+  "CustomBrowserIndex": 0,
   "CustomBrowserList": [
     {
       "Name": "Default",
@@ -115,14 +115,6 @@
       "EnablePrivate": false,
       "OpenInTab": true,
       "Editable": false
-    },
-    {
-      "Name": "Zen Browser",
-      "Path": "C:\\Program Files\\Zen Browser\\zen.exe",
-      "PrivateArg": null,
-      "EnablePrivate": false,
-      "OpenInTab": true,
-      "Editable": true
     }
   ],
   "ShouldUsePinyin": false,
@@ -130,13 +122,13 @@
   "AlwaysStartEn": false,
   "QuerySearchPrecision": "Regular",
   "AutoUpdates": false,
-  "WindowLeft": 960,
+  "WindowLeft": 320,
   "WindowTop": 10,
   "CustomWindowLeft": 0,
   "CustomWindowTop": 0,
   "KeepMaxResults": true,
   "MaxResultsToShow": 10,
-  "ActivateTimes": 1255,
+  "ActivateTimes": 1518,
   "CustomPluginHotkeys": [],
   "CustomShortcuts": [],
   "DontPromptUpdateMsg": false,
