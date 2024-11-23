@@ -171,8 +171,8 @@
     {
       "Title": "ChatGPT",
       "ActionKeyword": "gpt",
-      "Icon": "web_search.png",
-      "CustomIcon": false,
+      "Icon": "chatgpt.png",
+      "CustomIcon": true,
       "Url": "https://chat.openai.com/?q={q} ",
       "Enabled": true
     }
