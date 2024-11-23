@@ -167,6 +167,14 @@
       "CustomIcon": false,
       "Url": "https://www.baidu.com/#ie=UTF-8\u0026wd={q}",
       "Enabled": true
+    },
+    {
+      "Title": "ChatGPT",
+      "ActionKeyword": "gpt",
+      "Icon": "web_search.png",
+      "CustomIcon": false,
+      "Url": "https://chat.openai.com/?q={q} ",
+      "Enabled": true
     }
   ],
   "EnableSuggestion": true,

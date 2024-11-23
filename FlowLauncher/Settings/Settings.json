@@ -48,8 +48,8 @@
   "FirstLaunch": false,
   "SettingWindowWidth": 1331,
   "SettingWindowHeight": 946,
-  "SettingWindowTop": 37,
-  "SettingWindowLeft": 511,
+  "SettingWindowTop": 26,
+  "SettingWindowLeft": 156,
   "SettingWindowState": 0,
   "CustomExplorerIndex": 0,
   "CustomExplorerList": [
@@ -128,7 +128,7 @@
   "CustomWindowTop": 0,
   "KeepMaxResults": true,
   "MaxResultsToShow": 10,
-  "ActivateTimes": 1518,
+  "ActivateTimes": 1617,
   "CustomPluginHotkeys": [],
   "CustomShortcuts": [],
   "DontPromptUpdateMsg": false,
@@ -284,7 +284,8 @@
           "bd",
           "g",
           "d",
-          "y"
+          "y",
+          "gpt"
         ],
         "Priority": 0,
         "Disabled": false
