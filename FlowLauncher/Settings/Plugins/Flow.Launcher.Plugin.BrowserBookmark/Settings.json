@@ -6,7 +6,7 @@
   "LoadEdgeBookmark": true,
   "CustomChromiumBrowsers": [
     {
-      "Name": "Zen Browser",
+      "Name": "Zen",
       "DataDirectoryPath": "C:\\Users\\Fahim\\AppData\\Roaming\\zen\\Profiles\\wkbzac09.Personal",
       "BrowserType": 1
     }
