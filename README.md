@@ -67,6 +67,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 8. Web Scrobbler [Firefox](https://addons.mozilla.org/en-US/firefox/addon/web-scrobbler/) [Chrome](https://chromewebstore.google.com/detail/web-scrobbler/hhinaapppaileiechjoiifaancjggfjm?hl=en) [Edge](https://microsoftedge.microsoft.com/addons/detail/web-scrobbler/obiekdelmkmlgnhddmmnpnfhngejbnnc)
 9. Firefox Multi-Account Containers [Firefox](https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/)
 10. Picture-in-Picture Extension [Chrome](https://chromewebstore.google.com/detail/picture-in-picture-extens/hkgfoiooedgoejojocmhlaklaeopbecg?hl=en)
+11. MAL-Sync [Firefox](https://addons.mozilla.org/en-US/firefox/addon/mal-sync/)
 
 ###### Shortcut Keys
 - Bitwarden Password Manager
