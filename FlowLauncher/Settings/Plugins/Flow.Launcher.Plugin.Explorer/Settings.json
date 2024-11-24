@@ -15,7 +15,7 @@
   "SearchActionKeywordEnabled": true,
   "FileContentSearchActionKeyword": "doc:",
   "FileContentSearchKeywordEnabled": false,
-  "PathSearchActionKeyword": "*",
+  "PathSearchActionKeyword": "ps",
   "PathSearchKeywordEnabled": false,
   "IndexSearchActionKeyword": "*",
   "IndexSearchKeywordEnabled": false,
