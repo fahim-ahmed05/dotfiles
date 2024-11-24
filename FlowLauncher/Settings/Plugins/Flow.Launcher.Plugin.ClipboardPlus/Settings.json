@@ -5,7 +5,7 @@
   "ClickAction": 0,
   "CacheImages": true,
   "CacheFormat": "yyyy-MM-dd-hhmmss-app",
-  "EncryptData": true,
+  "EncryptData": false,
   "EncryptKey": "4bed2e3a68be4a8caf4bb9813c7cded4",
   "KeepText": true,
   "TextKeepTime": 3,
