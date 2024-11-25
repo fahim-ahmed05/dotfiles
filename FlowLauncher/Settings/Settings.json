@@ -128,7 +128,7 @@
   "CustomWindowTop": 0,
   "KeepMaxResults": true,
   "MaxResultsToShow": 10,
-  "ActivateTimes": 1745,
+  "ActivateTimes": 1779,
   "CustomPluginHotkeys": [],
   "CustomShortcuts": [],
   "DontPromptUpdateMsg": false,
@@ -336,16 +336,6 @@
         "Version": "2.3.1",
         "ActionKeywords": [
           "r"
-        ],
-        "Priority": 0,
-        "Disabled": false
-      },
-      "F32C0CF0270944AFAC9298BB67E16292": {
-        "ID": "F32C0CF0270944AFAC9298BB67E16292",
-        "Name": "Emoji\u002B",
-        "Version": "2.0.0",
-        "ActionKeywords": [
-          ":"
         ],
         "Priority": 0,
         "Disabled": false
