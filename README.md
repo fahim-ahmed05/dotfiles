@@ -119,6 +119,9 @@ yt-dlp, spotdl
 - Open regedit & goto `Computer\HKEY_CURRENT_USER\Software\DownloadManager`
 - Double click on `LstCheck` & change the year value to `99`.
 
+### Wallpapers
+[Unsplash](https://unsplash.com/collections/flfrGRQpfgU/wallpapers), [Google Photos](https://photos.app.goo.gl/KBUxAoErDPASNR182), [GitHub](https://github.com/fahim-ahmed05/dotfiles/tree/main/Wallpapers)
+
 ### Credits
 - https://github.com/yokoffing/Betterfox
 - https://github.com/ChrisTitusTech/powershell-profile
