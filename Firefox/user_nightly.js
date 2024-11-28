@@ -103,7 +103,6 @@ user_pref("captivedetect.canonicalURL", "");
 user_pref("network.captive-portal-service.enabled", false);
 user_pref("network.connectivity-service.enabled", false);
 
-
 // Mozilla UI
 user_pref("browser.privatebrowsing.vpnpromourl", "");
 user_pref("extensions.getAddons.showPane", false);
@@ -133,6 +132,7 @@ user_pref("browser.urlbar.update2.engineAliasRefresh", true);
 user_pref("security.insecure_connection_text.enabled", true);
 user_pref("security.insecure_connection_text.pbmode.enabled", true);
 user_pref("network.IDN_show_punycode", true);
+user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
 
 // Smooth Scrolling
 user_pref("apz.overscroll.enabled", true);
