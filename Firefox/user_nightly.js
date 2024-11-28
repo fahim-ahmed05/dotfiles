@@ -182,3 +182,6 @@ user_pref("network.dns.disableIPv6", true);
 
 // Keyboard
 user_pref("ui.key.menuAccessKeyFocuses", false);
+
+// New Tab
+user_pref("browser.newtabpage.activity-stream.system.showWeather", true);
