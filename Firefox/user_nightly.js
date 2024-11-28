@@ -179,3 +179,6 @@ user_pref("network.trr.bootstrapAddress", "94.140.14.14");
 
 // IPv6
 user_pref("network.dns.disableIPv6", true);
+
+// Keyboard
+user_pref("ui.key.menuAccessKeyFocuses", false);
