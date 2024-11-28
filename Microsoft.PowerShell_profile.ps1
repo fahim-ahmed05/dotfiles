@@ -68,7 +68,7 @@ function wu {
     python.exe -m pip install --upgrade pip
 
     Write-Host "`nUpgrading Pipx packages...`n" -ForegroundColor "Cyan"
-    pipx upgrade-all --verbose
+    pipx upgrade-all
     
     Write-Host "`nUpgrading MSYS2 packages...`n" -ForegroundColor "Cyan"
     & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$PWD' && pacman -Syu --noconfirm && paccache -r"
