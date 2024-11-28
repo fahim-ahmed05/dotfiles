@@ -114,7 +114,6 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", 
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.aboutwelcome.enabled", false);
-user_pref("browser.compactmode.show", true);
 
 // Cookie Banner
 user_pref("cookiebanners.service.mode", 1);
