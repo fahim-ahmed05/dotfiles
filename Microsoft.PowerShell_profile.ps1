@@ -158,3 +158,12 @@ function ucr {
         & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$currentDir' && exec bash"
     }
 }
+
+# Github
+function gs {
+    git status
+}
+
+function ga {
+    git add @args
+}
