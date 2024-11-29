@@ -5,6 +5,7 @@ user_pref("content.notify.interval", 100000);
 user_pref("gfx.canvas.accelerated.cache-items", 4096);
 user_pref("gfx.canvas.accelerated.cache-size", 512);
 user_pref("gfx.content.skia-font-cache-size", 20);
+user_pref("gfx.canvas.accelerated", true);
 
 // Disk Cache
 user_pref("browser.cache.jsbc_compression_level", 3);
@@ -25,7 +26,7 @@ user_pref("network.http.pacing.requests.enabled", false);
 user_pref("network.dnsCacheExpiration", 3600);
 user_pref("network.ssl_tokens_cache_capacity", 10240);
 
-// Speculative Loading
+// Prefetching
 user_pref("network.dns.disablePrefetch", true);
 user_pref("network.dns.disablePrefetchFromHTTPS", true);
 user_pref("network.prefetch-next", false);
@@ -51,7 +52,7 @@ user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 user_pref("security.tls.enable_0rtt_data", false);
 
-// PDF Scripting
+// PDF
 user_pref("pdfjs.enableScripting", false);
 
 // Extensions
@@ -183,5 +184,11 @@ user_pref("network.dns.disableIPv6", true);
 user_pref("ui.key.menuAccessKeyFocuses", false);
 
 // Tab
-user_pref("browser.newtabpage.activity-stream.system.showWeather", true);
 user_pref("browser.tabs.closeWindowWithLastTab", false);
+user_pref("browser.tabs.hoverPreview.enabled", true);
+user_pref("browser.tabs.hoverPreview.showThumbnails", true);
+
+// New Tab
+user_pref("browser.newtabpage.activity-stream.system.showWeather", true);
+user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
