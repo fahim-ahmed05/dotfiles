@@ -105,7 +105,7 @@ class Firefox(Base):
 
     def find_database(self, path):
         """Find database in path"""
-        release_folder = Path(path).glob('*.default-release').__next__()
+        release_folder = Path(path).glob('*.Personal').__next__()
         return Path(path, release_folder, 'places.sqlite')
 
     def history(self, limit=10):
