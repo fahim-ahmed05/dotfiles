@@ -1,8 +1,8 @@
 // DOH
 user_pref("network.trr.mode", 3);
-user_pref("network.trr.uri", "https://dns.adguard-dns.com/dns-query");
-user_pref("network.trr.custom_uri", "https://dns.adguard-dns.com/dns-query");
-user_pref("network.trr.bootstrapAddress", "94.140.14.14");
+user_pref("network.trr.uri", "https://base.dns.mullvad.net/dns-query");
+user_pref("network.trr.custom_uri", "https://base.dns.mullvad.net/dns-query");
+user_pref("network.trr.bootstrapAddress", "194.242.2.4");
 
 // IPv6
 user_pref("network.dns.disableIPv6", true);
@@ -37,9 +37,6 @@ user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
 user_pref("general.smoothScroll.currentVelocityWeighting", "1");
 user_pref("general.smoothScroll.stopDecelerationWeighting", "1");
 user_pref("mousewheel.default.delta_multiplier_y", 300);
-
-// Copy Behaviour
-user_pref("layout.word_select.eat_space_to_next_word", false);
 
 // Website Permission
 user_pref("permissions.default.desktop-notification", 2);
