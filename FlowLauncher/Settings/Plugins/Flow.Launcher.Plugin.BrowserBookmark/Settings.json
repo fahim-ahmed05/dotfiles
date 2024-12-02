@@ -6,9 +6,9 @@
   "LoadEdgeBookmark": true,
   "CustomChromiumBrowsers": [
     {
-      "Name": "Zen",
-      "DataDirectoryPath": "C:\\Users\\Fahim\\AppData\\Roaming\\zen\\Profiles\\wkbzac09.Personal",
-      "BrowserType": 1
+      "Name": "Brave Nightly",
+      "DataDirectoryPath": "C:\\Users\\Fahim\\AppData\\Local\\BraveSoftware\\Brave-Browser-Nightly\\User Data",
+      "BrowserType": 0
     }
   ]
 }
