@@ -49,11 +49,14 @@
 
     // Listen for the shortcut keys
     window.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.key === ',') {
+        if (e.altKey && e.key === '1') {
             currentSpeed = 1;
             setSpeed();
-        } else if (e.ctrlKey && e.key === '.') {
+        } else if (e.altKey && e.key === '2') {
             currentSpeed = 2;
+            setSpeed();
+        } else if (e.altKey && e.key === '3') {
+            currentSpeed = 3;
             setSpeed();
         }
     });
