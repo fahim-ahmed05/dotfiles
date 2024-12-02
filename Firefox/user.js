@@ -7,17 +7,6 @@ user_pref("network.trr.bootstrapAddress", "94.140.14.14");
 // IPv6
 user_pref("network.dns.disableIPv6", true);
 
-// Font Rendering
-user_pref("gfx.webrender.quality.force-subpixel-aa-where-possible", true);
-user_pref("gfx.font_rendering.cleartype_params.rendering_mode", 5);
-user_pref("gfx.font_rendering.cleartype_params.cleartype_level", 100);
-user_pref("gfx.font_rendering.cleartype_params.gamma", 1750);
-user_pref("gfx.font_rendering.cleartype_params.enhanced_contrast", 100);
-user_pref("gfx.font_rendering.cleartype_params.pixel_structure", 1);
-user_pref("dom.text_fragments.enabled", true);
-user_pref("gfx.font_rendering.cleartype_params.force_gdi_classic_for_families", "");
-user_pref("gfx.font_rendering.directwrite.use_gdi_table_loading", false);
-
 // Bookmark Bar
 user_pref("browser.tabs.loadBookmarksInBackground", true);
 
