@@ -9,7 +9,7 @@
         "invert": 0,
         "saturate": 100,
         "sepia": 0,
-        "applyvideofilters": true,
+        "applyvideofilters": false,
         "backgroundcolor": "#000000",
         "backgroundopacity": 85,
         "blackbars": false,
