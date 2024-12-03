@@ -62,12 +62,12 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 3. Enhancher for YouTube [Firefox](https://addons.mozilla.org/en-US/firefox/addon/enhancer-for-youtube/) [Chrome](https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle) [Edge](https://microsoftedge.microsoft.com/addons/detail/enhancer-for-youtube%E2%84%A2/dlgfaleeejmphhnemjgiaekdbonkagkd)
 4. IDM Integration Module [Firefox](https://addons.mozilla.org/en-US/firefox/addon/tonec-idm-integration-module/) [Chrome](https://chromewebstore.google.com/detail/idm-integration-module/ngpampappnmepgilojfohadhhmbhlaek) [Edge](https://microsoftedge.microsoft.com/addons/detail/idm-integration-module/llbjbkhnmlidjebalopleeepgdfgcpec)
 5. Sponsorblock for YouTube [Firefox](https://addons.mozilla.org/en-US/firefox/addon/sponsorblock/) [Chrome](https://chromewebstore.google.com/detail/sponsorblock-for-youtube/mnjggcdmjocbbbhaepdhchncahnbgone) [Edge](https://microsoftedge.microsoft.com/addons/detail/sponsorblock-for-youtube-/mbmgnelfcpoecdepckhlhegpcehmpmji)
-6. uBlock Origin [Firefox](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) [Chrome](https://chromewebstore.google.com/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en) [Edge](https://microsoftedge.microsoft.com/addons/detail/ublock-origin/odfafepnkmbhccpbejgmiehpchacaeak)
+6. uBlock Origin [Firefox](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) [Chrome](https://chromewebstore.google.com/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) [Edge](https://microsoftedge.microsoft.com/addons/detail/ublock-origin/odfafepnkmbhccpbejgmiehpchacaeak)
 7. Violentmonkey [Firefox](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/) [Chrome](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) [Edge](https://microsoftedge.microsoft.com/addons/detail/violentmonkey/eeagobfjdenkkddmbclomhiblgggliao)
-8. Web Scrobbler [Firefox](https://addons.mozilla.org/en-US/firefox/addon/web-scrobbler/) [Chrome](https://chromewebstore.google.com/detail/web-scrobbler/hhinaapppaileiechjoiifaancjggfjm?hl=en) [Edge](https://microsoftedge.microsoft.com/addons/detail/web-scrobbler/obiekdelmkmlgnhddmmnpnfhngejbnnc)
+8. Web Scrobbler [Firefox](https://addons.mozilla.org/en-US/firefox/addon/web-scrobbler/) [Chrome](https://chromewebstore.google.com/detail/web-scrobbler/hhinaapppaileiechjoiifaancjggfjm) [Edge](https://microsoftedge.microsoft.com/addons/detail/web-scrobbler/obiekdelmkmlgnhddmmnpnfhngejbnnc)
 9. Firefox Multi-Account Containers [Firefox](https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/)
-10. Picture-in-Picture Extension [Chrome](https://chromewebstore.google.com/detail/picture-in-picture-extens/hkgfoiooedgoejojocmhlaklaeopbecg?hl=en)
-11. MAL-Sync [Firefox](https://addons.mozilla.org/en-US/firefox/addon/mal-sync/)
+10. Picture-in-Picture Extension [Chrome](https://chromewebstore.google.com/detail/picture-in-picture-extens/hkgfoiooedgoejojocmhlaklaeopbecg)
+11. MAL-Sync [Firefox](https://addons.mozilla.org/en-US/firefox/addon/mal-sync/) [Chrome](https://chromewebstore.google.com/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel)
 
 ###### Shortcut Keys
 - Bitwarden Password Manager
