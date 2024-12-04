@@ -1,6 +1,6 @@
 ! Title: Random Site Annoyances
 ! Description: Removes random annoying elements from websites
-! Version: 1.4.8
+! Version: 1.5.0
 ! Last modified: 2024-11-12 7:04 am
 ! Expires: 2 weeks (update frequency)
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
