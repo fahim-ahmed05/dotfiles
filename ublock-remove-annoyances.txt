@@ -6,30 +6,11 @@
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
 
-! messenger.com - Hide install desktop app button in the bottom left
-www.messenger.com##.x1lku1pv.x5ib6vp.x18d9i69.xc73u3c.xexx8yu.xt55aet.x1c4vz4f.xknmibj.x1q0g3np.xozqiw3.x6s0dn4.x1qughib.xeuugli.xs83m0k.x1r8uery.x78zum5.x1ja2u2z.x1n2onr6.x9f619
-
-! whatsapp.com
-web.whatsapp.com##.xyj1x25.x13fuv20.x178xt8z.x150wa6m.xh8yej3.xoz0ns6.x1ey2m1c.x10l6tqk.x1a8lsjc.xz9dl7a.x6s0dn4.x1q0g3np.x1qughib.x2lwn1j.xeuugli.x12fk4p8.x1oa3qoh.xozqiw3.x78zum5.x1g77sc7.xdl72j9.xs83m0k.x1c4vz4f
-
 ! raindrop.io - Hide upgrade banner in the sidebar
 app.raindrop.io##.upgrade-R9fx
 
-! spotify.com
-open.spotify.com##.encore-over-media-set.ksgXuD.ButtonInner-sc-14ud5tc-0
-
-! rumble.com
-rumble.com##.\!bottom-0.\!right-0.\!left-0.\!z-\[2022\].\!fixed.\!transition-all
-rumble.com##.mx-6.lg\:flex.hidden
-
-! x.com
-x.com##.r-ttdzmv.r-vacyoi.css-175oi2r > div.css-175oi2r > .r-1udh08x.r-1ifxtd0.r-rs99b7.r-1phboty.r-1867qdf.r-1kqtdi0.r-kemksi.css-175oi2r
-
-! kick.com
-##.lg\:flex-row.text-white.py-3.px-3\.5.rounded.gap-4.items-center.flex-col.w-full.flex.bg-shade-lower
-
-! trakt.tv
-trakt.tv###om1gYCfRiN-IGJj59JMAC-wrapper
+! reddit.com - Hide server error banner 
+www.reddit.com##alert-controller
 
 ! youtube.com - Hide the Posts Section
 www.youtube.com##ytd-browse[page-subtype="home"] ytd-rich-section-renderer:has(ytd-rich-item-renderer[is-post])
