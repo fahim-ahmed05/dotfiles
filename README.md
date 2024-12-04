@@ -18,7 +18,7 @@ Click on script name and select Install +Close.
 4. Copy and paste downloaded user.js file
 5. Click on restart normally button on About Profiles page.
 
-###### userChrome.css
+###### userChrome.css (Depricated)
 1. Download [userChrome.css](https://github.com/fahim-ahmed05/dotfiles/blob/main/Firefox/userChrome.css) file
 2. Put it inside profile_folder/chrome
 3. Restart the browser.
@@ -113,6 +113,11 @@ yt-dlp, spotdl
 | **Cloudflare** <br> *Block Malware* | `1.1.1.2`<br>`1.0.0.2`       | `2606:4700:4700::1112`<br>`2606:4700:4700::1002` | `security.cloudflare-dns.com`  | `https://security.cloudflare-dns.com/dns-query`   |
 | **Quad9** <br> *Block Malware*     | `9.9.9.9`<br>`149.112.112.112` | `2620:fe::fe`<br>`2620:fe::9`       | `dns.quad9.net`                | `https://dns.quad9.net/dns-query`                 |
 
+### AdBlock Filter Lists
+Random Site Annoyances
+```
+https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ublock-remove-annoyances.txt
+```
 
 ### Tweaks
 ###### Disable IDM Update Check:
