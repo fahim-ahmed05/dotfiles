@@ -10,7 +10,7 @@ Set-Alias rm Remove-ItemSafely -Option AllScope
 # Functions
 function rmdeskicons {
     Remove-ItemSafely "$HOME\Desktop\*.lnk", "C:\Users\Public\Desktop\*.lnk"
-    Write-Host "`nDesktop icons are moved to recycle bin." -ForegroundColor "Green"
+    Write-Host "`nDesktop icons have been moved to recycle bin." -ForegroundColor "Green"
 }
 
 # PowerShell
