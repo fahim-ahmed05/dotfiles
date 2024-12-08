@@ -7,6 +7,12 @@ oh-my-posh init pwsh --config 'C:\Users\Fahim\AppData\Local\Programs\oh-my-posh\
 # Alias
 Set-Alias rm Remove-ItemSafely -Option AllScope
 
+# Functions
+function rmdeskicons {
+    Remove-ItemSafely "$HOME\Desktop\*.lnk", "C:\Users\Public\Desktop\*.lnk"
+    Write-Host "`nDesktop icons are moved to recycle bin." -ForegroundColor "Green"
+}
+
 # PowerShell
 Set-PSReadLineOption -Colors @{
     Command   = 'Yellow'
@@ -21,71 +27,54 @@ function reloadterminal {
 
 # Winget
 function ws {
-    Write-Host "`n =====>> WinGet <<===== `n" -ForegroundColor "Cyan" 
+    Write-Host "`nWinGet packages`n" -ForegroundColor "Cyan" 
     winget search @args
 
-    Write-Host "`n =====>> Chocolatey <<===== `n" -ForegroundColor "Cyan"
+    Write-Host "`nChocolatey packages`n" -ForegroundColor "Cyan"
     choco search @args
     
-    Write-Host "`n =====>> Scoop <<===== `n" -ForegroundColor "Cyan"
+    Write-Host "`nScoop packages`n" -ForegroundColor "Cyan"
     scoop search @args
 }
 
 function wi {
     winget install @args --accept-package-agreements --accept-source-agreements
     Start-Sleep -Seconds 1.5
-    Remove-ItemSafely "$HOME\Desktop\*.lnk", "C:\Users\Public\Desktop\*.lnk"
-}
-
-function wul { 
-    Write-Host "`n =====>> WinGet <<===== `n" -ForegroundColor "Cyan"
-    winget upgrade --include-pinned
-
-    Write-Host "`n =====>> Scoop <<===== `n" -ForegroundColor "Cyan"
-	scoop status
-
-    Write-Host "`n =====>> Chocolatey <<===== `n" -ForegroundColor "Cyan"
-    choco outdated
-
-    Write-Host "`n =====>> MSYS2 <<===== `n" -ForegroundColor "Cyan"
-    & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$PWD' && pacman -Syup"
-
-    Write-Host "`n =====>> Windows <<===== `n" -ForegroundColor "Cyan"
-    gsudo Get-WindowsUpdate -Verbose
+    rmdeskicons
 }
 
 function wu {
-    Write-Host "`n =====>> WinGet <<===== `n" -ForegroundColor "Cyan"
+    Write-Host "`nUpdating WinGet packages...`n" -ForegroundColor "Cyan"
     winget upgrade --all --accept-package-agreements --accept-source-agreements
 
-    Write-Host "`n =====>> Scoop <<===== `n" -ForegroundColor "Cyan"
+    Write-Host "`nUpdating Scoop packages...`n" -ForegroundColor "Cyan"
     scoop update
 
-    Write-Host "`n =====>> Chocolatey <<===== `n" -ForegroundColor "Cyan"
+    Write-Host "`nUpdating Chocolatey packages...`n" -ForegroundColor "Cyan"
     gsudo choco upgrade all -y
 
-    Write-Host "`n =====>> Pip <<===== `n" -ForegroundColor "Cyan"
+    Write-Host "`nUpdating Pip binary...`n" -ForegroundColor "Cyan"
     python.exe -m pip install --upgrade pip
 
-    Write-Host "`n =====>> Pipx <<===== `n" -ForegroundColor "Cyan"
+    Write-Host "`nUpdating Pipx packages...`n" -ForegroundColor "Cyan"
     pipx upgrade-all
     
-    Write-Host "`n =====>> MSYS2 <<===== `n" -ForegroundColor "Cyan"
+    Write-Host "`nUpdating MSYS2 packages...`n" -ForegroundColor "Cyan"
     & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$PWD' && pacman -Syu --noconfirm && paccache -r"
 
-    Write-Host "`n =====>> Windows <<===== `n" -ForegroundColor "Cyan"
+    Write-Host "`nUpdating Windows system`n" -ForegroundColor "Cyan"
     gsudo Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -Verbose
 
-    Remove-ItemSafely "$HOME\Desktop\*.lnk", "C:\Users\Public\Desktop\*.lnk"
+    rmdeskicons
 }
 
 # Repair
-function Check-WindowsHealth {
+function checkwindowshealth {
     gsudo DISM /Online /Cleanup-Image /CheckHealth
     gsudo DISM /Online /Cleanup-Image /ScanHealth
 }
 
-function Repair-WindowsHealth {
+function repairwindowshealth {
     gsudo sfc /scannow
     gsudo DISM /Online /Cleanup-Image /RestoreHealth
 }
@@ -93,10 +82,10 @@ function Repair-WindowsHealth {
 # Network
 function flushdns {
     Clear-DnsClientCache
-    Write-Host "DNS has been flushed"
+    Write-Host "DNS cache has been removed." -ForegroundColor "Green"
 }
 
-function Get-PubIP { (Invoke-WebRequest http://ifconfig.me/ip).Content }
+function getpubip { (Invoke-WebRequest http://ifconfig.me/ip).Content }
 
 # File
 function touch { param($name) New-Item -ItemType "file" -Path . -Name $name }
