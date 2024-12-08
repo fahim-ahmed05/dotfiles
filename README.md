@@ -89,7 +89,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 
 ### Windows
 ###### Programs
-[Firefox](https://www.mozilla.org/en-US/firefox/new/), [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/), [Twinkle Tray](https://apps.microsoft.com/detail/9pljwwsv01lk), [Python](https://www.python.org/downloads/), [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm), [Git](https://git-scm.com/download/win), [Visual Studio Code](https://code.visualstudio.com/), [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases), [Brave](https://brave.com/), 7zip, Ente Auth, Notepad++, ProtonVPN, OnlyOffice, Everything, FileConverter, gSudo, SyncTrayzor, Gpg4win IDM, Stremio, qBittorrent, QuickLook, Bitwarden, Notion, Fastfetch, Flow Launcher, FFmpeg, OhMyPosh, SumatraPDF, Kdenlive, PowerToys
+[Brave Nightly](https://brave.com/download-nightly/), [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/), [Twinkle Tray](https://apps.microsoft.com/detail/9pljwwsv01lk), [Python](https://www.python.org/downloads/), [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm), [Git](https://git-scm.com/download/win), [Visual Studio Code](https://code.visualstudio.com/), [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases), [Brave](https://brave.com/), 7zip, Ente Auth, Notepad++, ProtonVPN, OnlyOffice, Everything, FileConverter, gSudo, SyncTrayzor, Gpg4win IDM, Stremio, qBittorrent, QuickLook, Bitwarden, Notion, Fastfetch, Flow Launcher, FFmpeg, OhMyPosh, SumatraPDF, Kdenlive, PowerToys, [Brave Beta](https://brave.com/download-beta/), [Firefox](https://www.mozilla.org/en-US/firefox/new/)
 
 ###### Pipx Packages
 yt-dlp, spotdl
