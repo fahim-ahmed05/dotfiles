@@ -21,13 +21,13 @@ function reloadterminal {
 
 # Winget
 function ws {
-    Write-Host "`nSearching WinGet database...`n" -ForegroundColor "Cyan" 
+    Write-Host "`n =====>> WinGet <<===== `n" -ForegroundColor "Cyan" 
     winget search @args
 
-    Write-Host "`nSearching Chocolatey database...`n" -ForegroundColor "Cyan"
+    Write-Host "`n =====>> Chocolatey <<===== `n" -ForegroundColor "Cyan"
     choco search @args
     
-    Write-Host "`nSearching Scoop database...`n" -ForegroundColor "Cyan"
+    Write-Host "`n =====>> Scoop <<===== `n" -ForegroundColor "Cyan"
     scoop search @args
 }
 
@@ -38,42 +38,42 @@ function wi {
 }
 
 function wul { 
-    Write-Host "`nChecking updates for WinGet packages...`n" -ForegroundColor "Cyan"
+    Write-Host "`n =====>> WinGet <<===== `n" -ForegroundColor "Cyan"
     winget upgrade --include-pinned
 
-    Write-Host "`nChecking updates for Scoop packages...`n" -ForegroundColor "Cyan"
+    Write-Host "`n =====>> Scoop <<===== `n" -ForegroundColor "Cyan"
 	scoop status
 
-    Write-Host "`nChecking updates for Chocolatey packages...`n" -ForegroundColor "Cyan"
+    Write-Host "`n =====>> Chocolatey <<===== `n" -ForegroundColor "Cyan"
     choco outdated
 
-    Write-Host "`nChecking updates for MSYS2 packages...`n" -ForegroundColor "Cyan"
+    Write-Host "`n =====>> MSYS2 <<===== `n" -ForegroundColor "Cyan"
     & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$PWD' && pacman -Syup"
 
-    Write-Host "`nChecking updates for Windows system...`n" -ForegroundColor "Cyan"
+    Write-Host "`n =====>> Windows <<===== `n" -ForegroundColor "Cyan"
     gsudo Get-WindowsUpdate -Verbose
 }
 
 function wu {
-    Write-Host "`nUpgrading WinGet packages...`n" -ForegroundColor "Cyan"
+    Write-Host "`n =====>> WinGet <<===== `n" -ForegroundColor "Cyan"
     winget upgrade --all --accept-package-agreements --accept-source-agreements
 
-    Write-Host "`nUpgrading Scoop packages...`n" -ForegroundColor "Cyan"
+    Write-Host "`n =====>> Scoop <<===== `n" -ForegroundColor "Cyan"
     scoop update
 
-    Write-Host "`nUpgrading Chocolatey packages...`n" -ForegroundColor "Cyan"
+    Write-Host "`n =====>> Chocolatey <<===== `n" -ForegroundColor "Cyan"
     gsudo choco upgrade all -y
 
-    Write-Host "`nUpgrading Pip binary...`n" -ForegroundColor "Cyan"
+    Write-Host "`n =====>> Pip <<===== `n" -ForegroundColor "Cyan"
     python.exe -m pip install --upgrade pip
 
-    Write-Host "`nUpgrading Pipx packages...`n" -ForegroundColor "Cyan"
+    Write-Host "`n =====>> Pipx <<===== `n" -ForegroundColor "Cyan"
     pipx upgrade-all
     
-    Write-Host "`nUpgrading MSYS2 packages...`n" -ForegroundColor "Cyan"
+    Write-Host "`n =====>> MSYS2 <<===== `n" -ForegroundColor "Cyan"
     & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$PWD' && pacman -Syu --noconfirm && paccache -r"
 
-    Write-Host "`nUpgrading Windows system...`n" -ForegroundColor "Cyan"
+    Write-Host "`n =====>> Windows <<===== `n" -ForegroundColor "Cyan"
     gsudo Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -Verbose
 
     Remove-ItemSafely "$HOME\Desktop\*.lnk", "C:\Users\Public\Desktop\*.lnk"
@@ -157,13 +157,4 @@ function ucr {
     } else {
         & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$currentDir' && exec bash"
     }
-}
-
-# Github
-function gs {
-    git status
-}
-
-function ga {
-    git add @args
 }
