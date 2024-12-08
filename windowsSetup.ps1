@@ -1,42 +1,42 @@
 # Generate Powershell Profile
-Write-Host "Generating Powershell profile..." -ForegroundColor "Cyan"
+Write-Host "`nGenerating Powershell profile...`n" -ForegroundColor "Cyan"
 New-Item -Path $profile -Type File -Force
 Write-Host "Done" -ForegroundColor "Green"
 
 # Update Winget Packages
-Write-Host "`nUpdating winget packages... " -ForegroundColor "Cyan"
+Write-Host "`nUpdating winget packages...`n" -ForegroundColor "Cyan"
 winget upgrade --all --accept-package-agreements --accept-source-agreements
 
 # Install Winget Packages
-Write-Host "Installing winget packages..." -ForegroundColor "Cyan"
-winget install Microsoft.PowerShell Mozilla.Firefox 7zip.7zip ente-io.auth-desktop Notepad++.Notepad++ Proton.ProtonVPN ONLYOFFICE.DesktopEditors voidtools.Everything AdrienAllard.FileConverter gerardog.gsudo SyncTrayzor.SyncTrayzor GnuPG.Gpg4win Tonec.InternetDownloadManager qBittorrent.qBittorrent QL-Win.QuickLook Bitwarden.Bitwarden Notion.Notion Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher Gyan.FFmpeg JanDeDobbeleer.OhMyPosh Stremio.Stremio SumatraPDF.SumatraPDF KDE.Kdenlive Microsoft.PowerToys HermannSchinagl.LinkShellExtension Schniz.fnm Telegram.TelegramDesktop PrestonN.FreeTube calibre.calibre PDFgear.PDFgear Brave.Brave --accept-package-agreements --accept-source-agreements
+Write-Host "Installing winget packages...`n" -ForegroundColor "Cyan"
+winget install Microsoft.PowerShell Brave.Brave.Nightly 7zip.7zip ente-io.auth-desktop Notepad++.Notepad++ Proton.ProtonVPN ONLYOFFICE.DesktopEditors voidtools.Everything AdrienAllard.FileConverter gerardog.gsudo SyncTrayzor.SyncTrayzor GnuPG.Gpg4win Tonec.InternetDownloadManager qBittorrent.qBittorrent QL-Win.QuickLook Bitwarden.Bitwarden Notion.Notion Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher Gyan.FFmpeg JanDeDobbeleer.OhMyPosh Stremio.Stremio SumatraPDF.SumatraPDF KDE.Kdenlive Microsoft.PowerToys HermannSchinagl.LinkShellExtension Schniz.fnm Telegram.TelegramDesktop PrestonN.FreeTube calibre.calibre PDFgear.PDFgear --accept-package-agreements --accept-source-agreements
 
 # Install Scoop Package Manager
-Write-Host "`nInstalling scoop..." -ForegroundColor "Cyan"
+Write-Host "`nInstalling scoop...`n" -ForegroundColor "Cyan"
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 
 # Install Nerd Fonts
-Write-Host "`nInstalling nerd fonts..." -ForegroundColor "Cyan"
+Write-Host "`nInstalling nerd fonts...`n" -ForegroundColor "Cyan"
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/FiraCode-NF nerd-fonts/CascadiaCode-NF nerd-fonts/JetBrainsMono-NF nerd-fonts/Meslo-NF nerd-fonts/SpaceMono-NF nerd-fonts/UbuntuSans-NF
 
 # Update Scoop Packages
-Write-Host "`nUpdating scoop packages..." -ForegroundColor "Cyan"
+Write-Host "`nUpdating scoop packages...`n" -ForegroundColor "Cyan"
 scoop update
 scoop update --all
 scoop status
 
 # Install Pipx
-Write-Host "`nInstalling pipx..." -ForegroundColor "Cyan"
+Write-Host "`nInstalling pipx...`n" -ForegroundColor "Cyan"
 scoop install pipx
 pipx ensurepath
 
 # Install Pipx Packages
-Write-Host "`nInstalling pipx packages..." -ForegroundColor "Cyan"
+Write-Host "`nInstalling pipx packages...`n" -ForegroundColor "Cyan"
 pipx install yt-dlp
 
 # Install NodeJS
-Write-Host "`nInstalling nodejs..." -ForegroundColor "Cyan"
+Write-Host "`nInstalling nodejs...`n" -ForegroundColor "Cyan"
 fnm env --use-on-cd | Out-String | Invoke-Expression
 fnm use --install-if-missing 20
 node -v
