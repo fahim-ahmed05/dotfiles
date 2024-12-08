@@ -10,7 +10,7 @@ Set-Alias rm Remove-ItemSafely -Option AllScope
 # Functions
 function rmdeskicons {
     Remove-ItemSafely "$HOME\Desktop\*.lnk", "C:\Users\Public\Desktop\*.lnk"
-    Write-Host "`nDesktop icons have been moved to recycle bin." -ForegroundColor "Green"
+    Write-Host "Desktop icons have been moved to recycle bin." -ForegroundColor "Green"
 }
 
 # PowerShell
@@ -65,6 +65,7 @@ function wu {
     Write-Host "`nUpdating Windows system`n" -ForegroundColor "Cyan"
     gsudo Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -Verbose
 
+    Write-Host "`n"
     rmdeskicons
 }
 
