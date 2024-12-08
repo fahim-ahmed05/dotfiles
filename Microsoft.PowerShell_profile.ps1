@@ -65,7 +65,6 @@ function wu {
     Write-Host "`nUpdating Windows system`n" -ForegroundColor "Cyan"
     gsudo Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -Verbose
 
-    Write-Host "`n"
     rmdeskicons
 }
 
