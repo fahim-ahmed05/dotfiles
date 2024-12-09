@@ -47,7 +47,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 3. If you have a profile then type `$profile` to know the profile path
 4. If you have a profile then goto the directory and open the profile file with a text editor
 5. If not to create a profile file type `New-Item -Path $profile -Type File -Force` 
-6. Open [my powershell profile file](https://github.com/fahim-ahmed05/dotfiles/blob/main/Microsoft.PowerShell_profile.ps1) and copy paste into yours the save the file and type `. $Profile` to reload the profile.
+6. Open [my powershell profile file](https://github.com/fahim-ahmed05/dotfiles/blob/main/PowerShell/Microsoft.PowerShell_profile.ps1) and copy paste into yours the save the file and type `. $Profile` to reload the profile.
 
 #### Note
 - Follow the chronology!! 
@@ -97,7 +97,7 @@ yt-dlp, spotdl
 ###### Setup Script
 - Manually install Python, Git
 - Install powershell packages
-- Now run the [script](https://github.com/fahim-ahmed05/dotfiles/blob/main/windowsSetup.ps1)
+- Now run the [script](https://github.com/fahim-ahmed05/dotfiles/blob/main/PowerShell/windowsSetup.ps1)
 
 ###### Cursors
 [Bibata](https://github.com/ful1e5/Bibata_Cursor), [Posy](http://www.michieldb.nl/other/cursors/)
