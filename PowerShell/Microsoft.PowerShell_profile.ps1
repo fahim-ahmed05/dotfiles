@@ -29,12 +29,6 @@ function reloadterminal {
 function ws {
     Write-Host "`nWinGet packages`n" -ForegroundColor "Cyan" 
     winget search @args
-
-    Write-Host "`nChocolatey packages`n" -ForegroundColor "Cyan"
-    choco search @args
-    
-    Write-Host "`nScoop packages`n" -ForegroundColor "Cyan"
-    scoop search @args
 }
 
 function wi {
@@ -47,36 +41,13 @@ function wu {
     Write-Host "`nUpdating WinGet packages...`n" -ForegroundColor "Cyan"
     winget upgrade --all --accept-package-agreements --accept-source-agreements
 
-    Write-Host "`nUpdating Scoop packages...`n" -ForegroundColor "Cyan"
-    scoop update
-
-    Write-Host "`nUpdating Chocolatey packages...`n" -ForegroundColor "Cyan"
-    gsudo choco upgrade all -y
-
     Write-Host "`nUpdating Pip binary...`n" -ForegroundColor "Cyan"
     python.exe -m pip install --upgrade pip
 
     Write-Host "`nUpdating Pipx packages...`n" -ForegroundColor "Cyan"
     pipx upgrade-all
-    
-    Write-Host "`nUpdating MSYS2 packages...`n" -ForegroundColor "Cyan"
-    & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$PWD' && pacman -Syu --noconfirm && paccache -r"
-
-    Write-Host "`nUpdating Windows system`n" -ForegroundColor "Cyan"
-    gsudo Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -Verbose
 
     rmdeskicons
-}
-
-# Repair
-function checkwindowshealth {
-    gsudo DISM /Online /Cleanup-Image /CheckHealth
-    gsudo DISM /Online /Cleanup-Image /ScanHealth
-}
-
-function repairwindowshealth {
-    gsudo sfc /scannow
-    gsudo DISM /Online /Cleanup-Image /RestoreHealth
 }
 
 # Network
@@ -118,32 +89,5 @@ function hb {
     }
     catch {
         Write-Error "Failed to upload the document. Error: $_"
-    }
-}
-
-# Node
-fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression
-
-# Scoop
-Invoke-Expression (&scoop-search --hook)
-
-# Chocolatey
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-  Import-Module "$ChocolateyProfile"
-}
-
-# MSYS2
-function ucr {
-    param (
-        [string]$Command = $null
-    )
-
-    $currentDir = Get-Location
-
-    if ($Command) {
-        & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$currentDir' && $Command"
-    } else {
-        & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$currentDir' && exec bash"
     }
 }
