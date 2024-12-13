@@ -11,7 +11,7 @@ Click on script name and select Install +Close.
 - If you face update issue then reinstall. 
 
 ### Firefox
-###### user.js
+###### user.js (Depricated)
 1. Download [user.js](https://github.com/fahim-ahmed05/dotfiles/blob/main/Firefox/user.js) file 
 2. Open About Profiles page. Url `about:profiles`
 3. Goto default profile's root directory
@@ -36,7 +36,7 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 3. [Z](https://www.powershellgallery.com/packages/z) `Install-Module -Name z -AllowClobber`
 
 ###### Prompt
-- Install Oh My Posh
+- Install [Oh My Posh](https://ohmyposh.dev/docs/installation/windows)
 ```
 winget install JanDeDobbeleer.OhMyPosh -s winget
 ```
@@ -47,7 +47,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 3. If you have a profile then type `$profile` to know the profile path
 4. If you have a profile then goto the directory and open the profile file with a text editor
 5. If not to create a profile file type `New-Item -Path $profile -Type File -Force` 
-6. Open [my powershell profile file](https://github.com/fahim-ahmed05/dotfiles/blob/main/PowerShell/Microsoft.PowerShell_profile.ps1) and copy paste into yours the save the file and type `. $Profile` to reload the profile.
+6. Open [my powershell profile file](https://github.com/fahim-ahmed05/dotfiles/blob/main/ShellScripts/Microsoft.PowerShell_profile.ps1) and copy paste into yours the save the file and type `. $Profile` to reload the profile.
 
 #### Note
 - Follow the chronology!! 
@@ -89,15 +89,15 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 
 ### Windows
 ###### Programs
-[Brave Nightly](https://brave.com/download-nightly/), [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/), [Twinkle Tray](https://apps.microsoft.com/detail/9pljwwsv01lk), [Python](https://www.python.org/downloads/), [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm), [Git](https://git-scm.com/download/win), [Visual Studio Code](https://code.visualstudio.com/), [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases), [Brave](https://brave.com/), 7zip, Ente Auth, Notepad++, ProtonVPN, OnlyOffice, Everything, FileConverter, gSudo, SyncTrayzor, Gpg4win IDM, Stremio, qBittorrent, QuickLook, Bitwarden, Notion, Fastfetch, Flow Launcher, FFmpeg, OhMyPosh, SumatraPDF, Kdenlive, PowerToys, [Brave Beta](https://brave.com/download-beta/), [Firefox](https://www.mozilla.org/en-US/firefox/new/)
+[Brave](https://brave.com/), [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/), [Twinkle Tray](https://apps.microsoft.com/detail/9pljwwsv01lk), [Python](https://www.python.org/downloads/), [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm), [Git](https://git-scm.com/download/win), [Visual Studio Code](https://code.visualstudio.com/), [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases), 7zip, Ente Auth, Notepad++, ProtonVPN, OnlyOffice, Everything, FileConverter, gSudo, SyncTrayzor, Gpg4win, IDM, Stremio, qBittorrent, QuickLook, Bitwarden, Notion, Fastfetch, Flow Launcher, FFmpeg, OhMyPosh, SumatraPDF, Kdenlive, PowerToys, [Firefox](https://www.mozilla.org/en-US/firefox/new/)
 
 ###### Pipx Packages
 yt-dlp, spotdl
 
-###### Setup Script
+###### Setup Script (Depricated)
 - Manually install Python, Git
 - Install powershell packages
-- Now run the [script](https://github.com/fahim-ahmed05/dotfiles/blob/main/PowerShell/windowsSetup.ps1)
+- Now run the script.
 
 ###### Cursors
 [Bibata](https://github.com/ful1e5/Bibata_Cursor), [Posy](http://www.michieldb.nl/other/cursors/)
