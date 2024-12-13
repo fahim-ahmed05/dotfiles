@@ -56,7 +56,7 @@ function flushdns {
     Write-Host "DNS cache has been removed." -ForegroundColor "Green"
 }
 
-function getpubip { (Invoke-WebRequest http://ifconfig.me/ip).Content }
+function pubip { (Invoke-WebRequest http://ifconfig.me/ip).Content }
 
 # File
 function touch { param($name) New-Item -ItemType "file" -Path . -Name $name }
