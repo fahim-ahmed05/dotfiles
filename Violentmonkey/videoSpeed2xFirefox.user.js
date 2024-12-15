@@ -20,36 +20,34 @@
 // @downloadURL  https://github.com/fahim-ahmed05/dotfiles/raw/main/Violentmonkey/videoSpeed2xFirefox.user.js
 // @updateURL    https://github.com/fahim-ahmed05/dotfiles/raw/main/Violentmonkey/videoSpeed2xFirefox.user.js
 // @grant        none
-// ==/UserScript
+// ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
 
     // Default speed
     let currentSpeed = 2;
 
+    // Function to set video speed
     function setSpeed() {
         const videos = document.querySelectorAll('video');
         videos.forEach(video => {
-            video.playbackRate = currentSpeed;
+            if (video.playbackRate !== currentSpeed) {
+                video.playbackRate = currentSpeed;
+            }
         });
     }
 
-    // Observe for changes
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.addedNodes.length || mutation.type === 'attributes') {
-                setSpeed();
-            }
-        });
-    });
+    // Observe for video elements being added
+    const observer = new MutationObserver(() => setSpeed());
 
-    observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+    observer.observe(document.body, { childList: true, subtree: true });
 
+    // Set the initial speed
     setSpeed();
 
-    // Listen for the shortcut keys
-    window.addEventListener('keydown', function(e) {
+    // Shortcut keys for toggling speed
+    window.addEventListener('keydown', function (e) {
         if (e.ctrlKey && e.key === ',') {
             currentSpeed = 1;
             setSpeed();
