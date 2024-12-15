@@ -1,7 +1,7 @@
 ! Title: Random Site Annoyances
 ! Description: Removes random annoying elements from websites
-! Version: 1.5.0
-! Last modified: 2024-11-12 7:04 am
+! Version: 1.6.0
+! Last modified: 2024-11-15 6:30 pm
 ! Expires: 2 weeks (update frequency)
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
@@ -11,15 +11,3 @@ app.raindrop.io##.upgrade-R9fx
 
 ! reddit.com - Hide server error banner 
 www.reddit.com##alert-controller
-
-! youtube.com - Hide the Posts Section
-www.youtube.com##ytd-browse[page-subtype="home"] ytd-rich-section-renderer:has(ytd-rich-item-renderer[is-post])
-
-! youtube.com - Hide Posts
-www.youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer[is-post]
-
-! youtube.com - Hide "1080p Premium" in the video quality menu
-youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
-
-! youtube.com - Hide Brand image in the player corner
-youtube.com##.ytp-button.branding-img-container
