@@ -17,8 +17,8 @@
 // @match        *://*.bitchute.com/*
 // @match        *://*.substack.com/*
 // @match        *://*.linkedin.com/*
-// @downloadURL  https://github.com/fahim-ahmed05/dotfiles/raw/main/videoSpeed2x.user.js
-// @updateURL    https://github.com/fahim-ahmed05/dotfiles/raw/main/videoSpeed2x.user.js
+// @downloadURL  https://github.com/fahim-ahmed05/dotfiles/raw/main/Violentmonkey/videoSpeed2xFirefox.user.js
+// @updateURL    https://github.com/fahim-ahmed05/dotfiles/raw/main/Violentmonkey/videoSpeed2xFirefox.user.js
 // @grant        none
 // ==/UserScript
 
