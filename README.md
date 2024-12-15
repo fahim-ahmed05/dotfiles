@@ -3,7 +3,7 @@ I use these daily! 👀
 
 ### Violentmonkey
 Click on script name and select Install +Close.
-1. Video Speed 2x [Firefox](https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/ContentFilters/videoSpeed2xFirefox.user.js) [Chrome](https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/ContentFilters/videoSpeed2xChrome.user.js)
+1. Video Speed 2x [Firefox](https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/Violentmonkey/videoSpeed2xFirefox.user.js) [Chrome](https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/Violentmonkey/videoSpeed2xChrome.user.js)
 2. [Return YouTube Dislike](https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js)
 
 #### Note
