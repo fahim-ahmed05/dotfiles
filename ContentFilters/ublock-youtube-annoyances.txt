@@ -1,7 +1,7 @@
-! Title: Random Site Annoyances
-! Description: Removes random annoying elements from websites
-! Version: 1.0.0
-! Last modified: 2024-11-15 6:34 pm
+! Title: YouTube Annoyances
+! Description: Removes annoying elements from youtube
+! Version: 1.0.1
+! Last modified: 2024-11-15 6:37 pm
 ! Expires: 2 weeks (update frequency)
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
