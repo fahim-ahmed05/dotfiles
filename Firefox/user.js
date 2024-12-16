@@ -2,16 +2,13 @@
 user_pref("network.trr.mode", 3);
 user_pref("network.trr.uri", "https://dns.adguard-dns.com/dns-query");
 user_pref("network.trr.custom_uri", "https://dns.adguard-dns.com/dns-query");
-user_pref("network.trr.bootstrapAddress", "94.140.14.14");
+user_pref("network.trr.bootstrapAddress", "94.140.15.15");
 
 // IPv6
 user_pref("network.dns.disableIPv6", true);
 
 // Bookmark Bar
 user_pref("browser.tabs.loadBookmarksInBackground", true);
-
-// Full Screen
-user_pref("full-screen-api.allow-trusted-requests-only", false);
 
 // Smooth Scrolling
 user_pref("apz.overscroll.enabled", true);
