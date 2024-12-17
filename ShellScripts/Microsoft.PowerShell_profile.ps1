@@ -6,6 +6,7 @@ oh-my-posh init pwsh --config 'C:\Users\Fahim\AppData\Local\Programs\oh-my-posh\
 
 # Alias
 Set-Alias rm Remove-ItemSafely -Option AllScope
+Set-Alias sudo gsudo -Option AllScope
 
 # Functions
 function rmdeskicons {
