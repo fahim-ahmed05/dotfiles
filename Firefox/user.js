@@ -2,7 +2,7 @@
 user_pref("network.trr.mode", 3);
 user_pref("network.trr.uri", "https://dns.adguard-dns.com/dns-query");
 user_pref("network.trr.custom_uri", "https://dns.adguard-dns.com/dns-query");
-user_pref("network.trr.bootstrapAddress", "94.140.15.15");
+user_pref("network.trr.bootstrapAddress", "94.140.14.14");
 
 // IPv6
 user_pref("network.dns.disableIPv6", true);
