@@ -41,12 +41,6 @@ function wu {
     Write-Host "`nUpdating WinGet packages...`n" -ForegroundColor "Cyan"
     winget upgrade --all --accept-package-agreements --accept-source-agreements
 
-    Write-Host "`nUpdating Pip binary...`n" -ForegroundColor "Cyan"
-    python.exe -m pip install --upgrade pip
-
-    Write-Host "`nUpdating Pipx packages...`n" -ForegroundColor "Cyan"
-    pipx upgrade-all
-
     rmdeskicons
 }
 
