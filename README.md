@@ -31,7 +31,7 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 ```
 
 ###### Packages
-1. [Recycle](https://www.powershellgallery.com/packages/Recycle) `Install-Module -Name Recycle`
+1. [Recycle](https://www.powershellgallery.com/packages/Recycle) `Install-Module -Name Recycle -RequiredVersion 1.5.0`
 2. [Terminal Icons](https://github.com/devblackops/Terminal-Icons) `Install-Module -Name Terminal-Icons -Repository PSGallery`
 3. [Z](https://www.powershellgallery.com/packages/z) `Install-Module -Name z -AllowClobber`
 
