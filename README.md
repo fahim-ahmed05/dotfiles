@@ -126,7 +126,7 @@ https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/Content
 - Double click on `LstCheck` & change the year value to `99`.
 
 ### Wallpapers
-[Unsplash](https://unsplash.com/collections/flfrGRQpfgU/wallpapers), [Google Photos](https://photos.app.goo.gl/KBUxAoErDPASNR182), [GitHub](https://github.com/fahim-ahmed05/dotfiles/tree/main/Wallpapers)
+[Unsplash](https://unsplash.com/collections/flfrGRQpfgU/wallpapers), [Google Photos](https://photos.app.goo.gl/KBUxAoErDPASNR182), [GitHub](https://github.com/fahim-ahmed05/dotfiles/tree/main/Wallpapers), [Basic Apple Guy](https://basicappleguy.com/basicappleblog/tag/Wallpaper)
 
 ### Credits
 - https://github.com/yokoffing/Betterfox
