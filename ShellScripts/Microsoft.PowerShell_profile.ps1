@@ -28,21 +28,15 @@ function reloadterminal {
 
 # Winget
 function ws {
-    Write-Host "`nWinGet packages`n" -ForegroundColor "Cyan" 
-    winget search @args
+    winget search @args 
 }
 
 function wi {
-    winget install @args --accept-package-agreements --accept-source-agreements
-    Start-Sleep -Seconds 1.5
-    rmdeskicons
+    winget install @args --accept-package-agreements --accept-source-agreements 
 }
 
 function wu {
-    Write-Host "`nUpdating WinGet packages...`n" -ForegroundColor "Cyan"
-    winget upgrade --all --accept-package-agreements --accept-source-agreements
-
-    rmdeskicons
+    winget upgrade --all --accept-package-agreements --accept-source-agreements 
 }
 
 # Network
