@@ -8,50 +8,50 @@ I use these daily! 👀
 | [Video Speed 2x](https://github.com/fahim-ahmed05/dotfiles/blob/main/Violentmonkey/videoSpeed2x.user.js) | Adjusts video playback speed to 2x.        | [Install](https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/Violentmonkey/videoSpeed2x.user.js) |
 | [Return YouTube Dislike](https://returnyoutubedislike.com/) | Restores YouTube dislike counts.            | [Install](https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js) |
 
-### Firefox
-###### user.js (Depricated)
-1. Download [user.js](https://github.com/fahim-ahmed05/dotfiles/blob/main/Firefox/user.js) file 
-2. Open About Profiles page. Url `about:profiles`
-3. Goto default profile's root directory
-4. Copy and paste downloaded user.js file
-5. Click on restart normally button on About Profiles page.
-
-###### userChrome.css (Depricated)
-1. Download [userChrome.css](https://github.com/fahim-ahmed05/dotfiles/blob/main/Firefox/userChrome.css) file
-2. Put it inside profile_folder/chrome
-3. Restart the browser.
-
 ### Powershell
-###### Execution Policy
-- Change to unrestricted
-```
+###### Change Execution Policy
+```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 ```
 
-###### Packages
-1. [Recycle](https://www.powershellgallery.com/packages/Recycle) `Install-Module -Name Recycle -RequiredVersion 1.5.0`
-2. [Terminal Icons](https://github.com/devblackops/Terminal-Icons) `Install-Module -Name Terminal-Icons -Repository PSGallery`
-3. [Z](https://www.powershellgallery.com/packages/z) `Install-Module -Name z -AllowClobber`
-
-###### Prompt
-- Install [Oh My Posh](https://ohmyposh.dev/docs/installation/windows)
-```
-winget install JanDeDobbeleer.OhMyPosh -s winget
+###### Update [PSReadLine](https://github.com/PowerShell/PSReadLine#installation)
+Execute with admin privilege
+```powershell
+Install-Module -Name PowerShellGet -Force
+Exit
+Install-Module PSReadLine -AllowPrerelease -Force
 ```
 
-###### Profile
-1. Open powershell/terminal
-2. Type `test-path $profile` to check if you have a profile or not
-3. If you have a profile then type `$profile` to know the profile path
-4. If you have a profile then goto the directory and open the profile file with a text editor
-5. If not to create a profile file type `New-Item -Path $profile -Type File -Force` 
-6. Open [my powershell profile file](https://github.com/fahim-ahmed05/dotfiles/blob/main/ShellScripts/Microsoft.PowerShell_profile.ps1) and copy paste into yours the save the file and type `. $Profile` to reload the profile.
+###### Install [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4#install-powershell-using-winget-recommended)
+```powershell
+winget install --id Microsoft.PowerShell --source winget
+```
 
-#### Note
-- Follow the chronology!! 
-- Update [PSReadLine](https://github.com/PowerShell/PSReadLine), if using powershell 5.
-- Change Windows Terminal's font to a nerd font.
-- Execute `oh-my-posh disable notice`
+###### Install Packages
+Install with admin privilege
+| Package Name                       | Description/Link                                                                                      | Installation Command                                                   |
+|------------------------------------|------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| [Recycle](https://www.powershellgallery.com/packages/Recycle)       | A PowerShell module for managing the Recycle Bin.                                                   | `Install-Module -Name Recycle -RequiredVersion 1.5.0`                  |
+| [Terminal Icons](https://github.com/devblackops/Terminal-Icons)     | Adds file and folder icons to PowerShell.                                                           | `Install-Module -Name Terminal-Icons -Repository PSGallery`            |
+| [Z](https://www.powershellgallery.com/packages/z)                   | Directory jumping based on frequency and recent access.                                              | `Install-Module -Name z -AllowClobber`                                 |
+
+
+###### Install Prompt
+
+[Oh My Posh](https://ohmyposh.dev/docs/installation/windows)
+```powershell
+winget install JanDeDobbeleer.OhMyPosh -s winget && oh-my-posh disable notice
+```
+
+###### Create Profile
+
+```powershell
+if (Test-Path $profile) { "Profile exists at: $profile" } else { "Profile does not exist. Creating..."; New-Item -Path $profile -Type File -Force; "Profile created at: $profile" }
+```
+Paths
+- ``"C:\Users\Fahim\Documents\PowerShell\Microsoft.PowerShell_profile.ps1``
+- ``Documents\PowerShell\Microsoft.VSCode_profile.ps1``
+- ``Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1``
 
 ### Browser Extensions
 
