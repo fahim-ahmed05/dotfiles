@@ -9,11 +9,6 @@ Click on the script name to learn more and select "Install" to add it to Violent
 | [Video Speed 2x](https://github.com/fahim-ahmed05/dotfiles/blob/main/Violentmonkey/videoSpeed2x.user.js) | Adjusts video playback speed to 2x.        | [Install](https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/Violentmonkey/videoSpeed2x.user.js) |
 | [Return YouTube Dislike](https://returnyoutubedislike.com/) | Restores YouTube dislike counts.            | [Install](https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js) |
 
-
-#### Note
-- Install page might take 1-2 sec to appear. So, wait after clicking.
-- If you face update issue then reinstall. 
-
 ### Firefox
 ###### user.js (Depricated)
 1. Download [user.js](https://github.com/fahim-ahmed05/dotfiles/blob/main/Firefox/user.js) file 
