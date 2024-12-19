@@ -69,17 +69,8 @@ Profile paths:
 
 
 ### Windows
-#### Install Programs
+#### Programs
 [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/), [Twinkle Tray](https://apps.microsoft.com/detail/9pljwwsv01lk), [Python](https://www.python.org/downloads/), [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm), [Git](https://git-scm.com/download/win), [Visual Studio Code](https://code.visualstudio.com/), [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases)
-
-```powershell
-winget install 7zip.7zip ente-io.auth-desktop HermannSchinagl.LinkShellExtension Notepad++.Notepad++ ONLYOFFICE.DesktopEditors Proton.ProtonVPN Cloudflare.Warp voidtools.Everything gerardog.gsudo Brave.Brave Tonec.InternetDownloadManager PrestonN.FreeTube Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher Gyan.FFmpeg Stremio.Stremio SumatraPDF.SumatraPDF Microsoft.PowerToys QL-Win.QuickLook AdrienAllard.FileConverter SyncTrayzor.SyncTrayzor qBittorrent.qBittorrent.Qt6 --source winget --accept-package-agreements --accept-source-agreements
-```
-
-#### Install Pipx Packages
-```powershell
-pipx install yt-dlp spotdl
-```
 
 #### Cursors
 [Bibata](https://github.com/ful1e5/Bibata_Cursor), [Posy](http://www.michieldb.nl/other/cursors/)
