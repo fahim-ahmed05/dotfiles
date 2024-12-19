@@ -95,8 +95,8 @@ yt-dlp, spotdl
 | **Cloudflare** <br> *Block Malware* | `1.1.1.2`<br>`1.0.0.2`       | `2606:4700:4700::1112`<br>`2606:4700:4700::1002` | `security.cloudflare-dns.com`  | `https://security.cloudflare-dns.com/dns-query`   |
 | **Quad9** <br> *Block Malware*     | `9.9.9.9`<br>`149.112.112.112` | `2620:fe::fe`<br>`2620:fe::9`       | `dns.quad9.net`                | `https://dns.quad9.net/dns-query`                 |
 
-### Content Filter Lists
-[Random Site Annoyances](https://github.com/fahim-ahmed05/dotfiles/blob/main/ContentFilters/ublock-remove-annoyances.txt), [YouTube Annoyances](https://github.com/fahim-ahmed05/dotfiles/blob/main/ContentFilters/ublock-youtube-annoyances.txt)
+### [Content Filters](https://github.com/fahim-ahmed05/dotfiles/tree/main/ContentFilters)
+
 ```
 https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ContentFilters/ublock-remove-annoyances.txt
 https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ContentFilters/ublock-youtube-annoyances.txt
