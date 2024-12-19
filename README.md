@@ -27,7 +27,7 @@ Install-Module PSReadLine -AllowPrerelease -Force
 winget install --id Microsoft.PowerShell --source winget
 ```
 
-#### Install Packages with admin privilege
+#### Install [PS packages](https://www.powershellgallery.com/) with admin privilege
 | Package Name                       | Description                                                                                      | Installation Command                                                   |
 |------------------------------------|------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
 | [Recycle](https://www.powershellgallery.com/packages/Recycle)       | A PowerShell module for managing the Recycle Bin.                                                   | `Install-Module -Name Recycle -RequiredVersion 1.5.0`                  |
@@ -35,9 +35,8 @@ winget install --id Microsoft.PowerShell --source winget
 | [Z](https://www.powershellgallery.com/packages/z)                   | Directory jumping based on frequency and recent access.                                              | `Install-Module -Name z -AllowClobber`                                 |
 
 
-#### Install Prompt
+#### Install [Oh My Posh](https://ohmyposh.dev/docs/installation/windows)
 
-[Oh My Posh](https://ohmyposh.dev/docs/installation/windows)
 ```powershell
 winget install JanDeDobbeleer.OhMyPosh -s winget && oh-my-posh disable notice
 ```
@@ -70,16 +69,17 @@ Profile paths:
 
 
 ### Windows
-#### Programs
-[Brave](https://brave.com/), [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/), [Twinkle Tray](https://apps.microsoft.com/detail/9pljwwsv01lk), [Python](https://www.python.org/downloads/), [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm), [Git](https://git-scm.com/download/win), [Visual Studio Code](https://code.visualstudio.com/), [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases), 7zip, Ente Auth, Notepad++, ProtonVPN, OnlyOffice, Everything, FileConverter, gSudo, SyncTrayzor, Gpg4win, IDM, Stremio, qBittorrent, QuickLook, Bitwarden, Notion, Fastfetch, Flow Launcher, FFmpeg, OhMyPosh, SumatraPDF, Kdenlive, PowerToys, [Firefox](https://www.mozilla.org/en-US/firefox/new/)
+#### Install Programs
+[Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/), [Twinkle Tray](https://apps.microsoft.com/detail/9pljwwsv01lk), [Python](https://www.python.org/downloads/), [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm), [Git](https://git-scm.com/download/win), [Visual Studio Code](https://code.visualstudio.com/), [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases)
 
-#### Pipx Packages
-yt-dlp, spotdl
+```powershell
+winget install 7zip.7zip ente-io.auth-desktop HermannSchinagl.LinkShellExtension Notepad++.Notepad++ ONLYOFFICE.DesktopEditors Proton.ProtonVPN Cloudflare.Warp voidtools.Everything gerardog.gsudo Brave.Brave Tonec.InternetDownloadManager PrestonN.FreeTube Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher Gyan.FFmpeg Stremio.Stremio SumatraPDF.SumatraPDF Microsoft.PowerToys QL-Win.QuickLook AdrienAllard.FileConverter SyncTrayzor.SyncTrayzor qBittorrent.qBittorrent.Qt6 --source winget --accept-package-agreements --accept-source-agreements
+```
 
-#### Setup Script (Depricated)
-- Manually install Python, Git
-- Install powershell packages
-- Now run the script.
+#### Install Pipx Packages
+```powershell
+pipx install yt-dlp spotdl
+```
 
 #### Cursors
 [Bibata](https://github.com/ful1e5/Bibata_Cursor), [Posy](http://www.michieldb.nl/other/cursors/)
