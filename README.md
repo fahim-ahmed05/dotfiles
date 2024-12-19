@@ -1,4 +1,5 @@
 # My dotfiles
+
 I use these daily! 👀
 
 ### Violentmonkey
@@ -9,12 +10,15 @@ I use these daily! 👀
 | [Return YouTube Dislike](https://returnyoutubedislike.com/) | Restores YouTube dislike counts.            | [Install](https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js) |
 
 ### Powershell
+
 #### Change Execution Policy
+
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 ```
 
 #### Update [PSReadLine](https://github.com/PowerShell/PSReadLine#installation) with admin privilege
+
 ```powershell
 Install-Module -Name PowerShellGet -Force
 Exit
@@ -23,11 +27,13 @@ Install-Module PSReadLine -AllowPrerelease -Force
 ```
 
 #### Install [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4#install-powershell-using-winget-recommended)
+
 ```powershell
 winget install --id Microsoft.PowerShell --source winget
 ```
 
 #### Install [PS packages](https://www.powershellgallery.com/) with admin privilege
+
 | Package Name                       | Description                                                                                      | Installation Command                                                   |
 |------------------------------------|------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
 | [Recycle](https://www.powershellgallery.com/packages/Recycle)       | A PowerShell module for managing the Recycle Bin.                                                   | `Install-Module -Name Recycle -RequiredVersion 1.5.0`                  |
@@ -69,25 +75,33 @@ Profile paths:
 
 
 ### Windows
+
 #### Programs
+
 [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/), [Twinkle Tray](https://apps.microsoft.com/detail/9pljwwsv01lk), [Python](https://www.python.org/downloads/), [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm), [Git](https://git-scm.com/download/win), [Visual Studio Code](https://code.visualstudio.com/), [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases)
 
 #### [Setup Script](https://github.com/fahim-ahmed05/dotfiles/blob/main/ShellScripts/WindowsSetup.ps1)
+
 ```powershell
 iwr "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ShellScripts/WindowsSetup.ps1" | iex
 ```
+
 #### Activate Windows ([Massgrave](https://github.com/massgravel/Microsoft-Activation-Scripts))
+
 ```powershell
 irm https://get.activated.win | iex
 ```
 
 #### Cursors
+
 [Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor), [Posy's Cursor (Default + Extras)](http://www.michieldb.nl/other/cursors/)
 
 #### Fonts
+
 [Inter](https://rsms.me/inter/download/), [CascadiaCode-NF, JetBrainsMono-NF, UbuntuSans-NF](https://github.com/ryanoasis/nerd-fonts/releases), [SolaimanLipi, AdorshoLipi](https://www.omicronlab.com/bangla-fonts.html), [Ekushey Lal Salu Normal](https://ekushey.org/fonts/)
 
 ### DNS
+
 | **Provider**   | **IPv4**                     | **IPv6**                             | **DOT**                        | **DOH**                                           |
 |----------------|------------------------------|--------------------------------------|--------------------------------|---------------------------------------------------|
 | **Adguard** <br> *Block Ads & Malware*  | `94.140.14.14`<br>`94.140.15.15` | `2a10:50c0::ad1:ff`<br>`2a10:50c0::ad2:ff` | `dns.adguard-dns.com`          | `https://dns.adguard-dns.com/dns-query`           |
@@ -102,15 +116,12 @@ https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/Content
 https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ContentFilters/ublock-youtube-annoyances.txt
 ```
 
-### Tweaks
-#### Disable IDM Update Check:
-- Open regedit & goto `Computer\HKEY_CURRENT_USER\Software\DownloadManager`
-- Double click on `LstCheck` & change the year value to `99`.
-
 ### Wallpapers
+
 [Unsplash](https://unsplash.com/collections/flfrGRQpfgU/wallpapers), [Google Photos](https://photos.app.goo.gl/KBUxAoErDPASNR182), [GitHub](https://github.com/fahim-ahmed05/dotfiles/tree/main/Wallpapers), [Basic Apple Guy](https://basicappleguy.com/basicappleblog/tag/Wallpaper)
 
 ### Credits
+
 - https://github.com/yokoffing/Betterfox
 - https://github.com/ChrisTitusTech/powershell-profile
 - https://www.reddit.com/r/uBlockOrigin/wiki/solutions/youtube/
