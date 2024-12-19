@@ -18,6 +18,7 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 ```powershell
 Install-Module -Name PowerShellGet -Force
 Exit
+
 Install-Module PSReadLine -AllowPrerelease -Force
 ```
 
