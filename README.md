@@ -3,7 +3,7 @@ I use these daily! 👀
 
 ### Violentmonkey
 
-| Script Name                     | Description                                    | Install Link                                                                 |
+| Script Name                     | Description                                    |                                                                  |
 |---------------------------------|------------------------------------------------|------------------------------------------------------------------------------|
 | [Video Speed 2x](https://github.com/fahim-ahmed05/dotfiles/blob/main/Violentmonkey/videoSpeed2x.user.js) | Adjusts video playback speed to 2x.        | [Install](https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/Violentmonkey/videoSpeed2x.user.js) |
 | [Return YouTube Dislike](https://returnyoutubedislike.com/) | Restores YouTube dislike counts.            | [Install](https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js) |
@@ -28,7 +28,7 @@ winget install --id Microsoft.PowerShell --source winget
 ```
 
 #### Install Packages with admin privilege
-| Package Name                       | Description/Link                                                                                      | Installation Command                                                   |
+| Package Name                       | Description                                                                                      | Installation Command                                                   |
 |------------------------------------|------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
 | [Recycle](https://www.powershellgallery.com/packages/Recycle)       | A PowerShell module for managing the Recycle Bin.                                                   | `Install-Module -Name Recycle -RequiredVersion 1.5.0`                  |
 | [Terminal Icons](https://github.com/devblackops/Terminal-Icons)     | Adds file and folder icons to PowerShell.                                                           | `Install-Module -Name Terminal-Icons -Repository PSGallery`            |
@@ -54,7 +54,7 @@ Profile paths:
 
 ### Browser Extensions
 
-| Extension                     | Firefox                                                                                      | Chrome                                                                                           | Edge                                                                                             | Shortcut Keys                                                                                         |
+| Extension                     | Firefox                                                                                      | Chrome                                                                                           | Edge                                                                                             | Shortcut                                                                                         |
 |-------------------------------|----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
 | **Bitwarden Password Manager** | [Install](https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/)       | [Install](https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb) | [Install](https://microsoftedge.microsoft.com/addons/detail/bitwarden-password-manage/jbkfoedolllekgbhcbcoahefnbanhhlh) | Open vault popup: `Ctrl + Shift + Y`<br> Open vault in sidebar: `Alt + Shift + Y`<br> Autofill the last used login: `Ctrl + Shift + L`<br> Generate and copy a new random password: `Ctrl + Shift + 9` |
 | **Dark Reader**               | [Install](https://addons.mozilla.org/en-US/firefox/addon/darkreader/)                       | [Install](https://chromewebstore.google.com/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh) | [Install](https://microsoftedge.microsoft.com/addons/detail/dark-reader/ifoakfbpdcdoeenechcleahebpibofpc) | Activate menu popup: `Alt + Shift + A`<br> Toggle current site: `Alt + Shift + D`                                                   |
