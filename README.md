@@ -1,10 +1,14 @@
 # My dotfiles
 I use these daily! 👀
 
-### Violentmonkey
-Click on script name and select Install +Close.
-1. Video Speed 2x [Firefox](https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/Violentmonkey/videoSpeed2xFirefox.user.js) [Chrome](https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/Violentmonkey/videoSpeed2xChrome.user.js)
-2. [Return YouTube Dislike](https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js)
+### Violentmonkey Scripts
+Click on the script name to learn more and select "Install" to add it to Violentmonkey.
+
+| Script Name                     | Description                                    | Install Link                                                                 |
+|---------------------------------|------------------------------------------------|------------------------------------------------------------------------------|
+| [Video Speed 2x](https://github.com/fahim-ahmed05/dotfiles/blob/main/Violentmonkey/videoSpeed2x.user.js) | Adjusts video playback speed to 2x.        | [Install](https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/Violentmonkey/videoSpeed2x.user.js) |
+| [Return YouTube Dislike](https://returnyoutubedislike.com/) | Restores YouTube dislike counts.            | [Install](https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js) |
+
 
 #### Note
 - Install page might take 1-2 sec to appear. So, wait after clicking.
