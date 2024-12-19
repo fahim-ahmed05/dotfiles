@@ -1,8 +1,7 @@
 # My dotfiles
 I use these daily! 👀
 
-### Violentmonkey Scripts
-Click on the script name to learn more and select "Install" to add it to Violentmonkey.
+### Violentmonkey
 
 | Script Name                     | Description                                    | Install Link                                                                 |
 |---------------------------------|------------------------------------------------|------------------------------------------------------------------------------|
