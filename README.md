@@ -9,26 +9,24 @@ I use these daily! 👀
 | [Return YouTube Dislike](https://returnyoutubedislike.com/) | Restores YouTube dislike counts.            | [Install](https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js) |
 
 ### Powershell
-###### Change Execution Policy
+#### Change Execution Policy
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 ```
 
-###### Update [PSReadLine](https://github.com/PowerShell/PSReadLine#installation)
-Execute with admin privilege
+#### Update [PSReadLine](https://github.com/PowerShell/PSReadLine#installation) with admin privilege
 ```powershell
 Install-Module -Name PowerShellGet -Force
 Exit
 Install-Module PSReadLine -AllowPrerelease -Force
 ```
 
-###### Install [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4#install-powershell-using-winget-recommended)
+#### Install [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4#install-powershell-using-winget-recommended)
 ```powershell
 winget install --id Microsoft.PowerShell --source winget
 ```
 
-###### Install Packages
-Install with admin privilege
+#### Install Packages with admin privilege
 | Package Name                       | Description/Link                                                                                      | Installation Command                                                   |
 |------------------------------------|------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
 | [Recycle](https://www.powershellgallery.com/packages/Recycle)       | A PowerShell module for managing the Recycle Bin.                                                   | `Install-Module -Name Recycle -RequiredVersion 1.5.0`                  |
@@ -36,19 +34,19 @@ Install with admin privilege
 | [Z](https://www.powershellgallery.com/packages/z)                   | Directory jumping based on frequency and recent access.                                              | `Install-Module -Name z -AllowClobber`                                 |
 
 
-###### Install Prompt
+#### Install Prompt
 
 [Oh My Posh](https://ohmyposh.dev/docs/installation/windows)
 ```powershell
 winget install JanDeDobbeleer.OhMyPosh -s winget && oh-my-posh disable notice
 ```
 
-###### Create Profile
+#### Create Profile
 
 ```powershell
 if (Test-Path $profile) { "Profile exists at: $profile" } else { "Profile does not exist. Creating..."; New-Item -Path $profile -Type File -Force; "Profile created at: $profile" }
 ```
-Paths
+Profile paths:
 - ``"C:\Users\Fahim\Documents\PowerShell\Microsoft.PowerShell_profile.ps1``
 - ``Documents\PowerShell\Microsoft.VSCode_profile.ps1``
 - ``Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1``
@@ -71,21 +69,21 @@ Paths
 
 
 ### Windows
-###### Programs
+#### Programs
 [Brave](https://brave.com/), [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/), [Twinkle Tray](https://apps.microsoft.com/detail/9pljwwsv01lk), [Python](https://www.python.org/downloads/), [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm), [Git](https://git-scm.com/download/win), [Visual Studio Code](https://code.visualstudio.com/), [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases), 7zip, Ente Auth, Notepad++, ProtonVPN, OnlyOffice, Everything, FileConverter, gSudo, SyncTrayzor, Gpg4win, IDM, Stremio, qBittorrent, QuickLook, Bitwarden, Notion, Fastfetch, Flow Launcher, FFmpeg, OhMyPosh, SumatraPDF, Kdenlive, PowerToys, [Firefox](https://www.mozilla.org/en-US/firefox/new/)
 
-###### Pipx Packages
+#### Pipx Packages
 yt-dlp, spotdl
 
-###### Setup Script (Depricated)
+#### Setup Script (Depricated)
 - Manually install Python, Git
 - Install powershell packages
 - Now run the script.
 
-###### Cursors
+#### Cursors
 [Bibata](https://github.com/ful1e5/Bibata_Cursor), [Posy](http://www.michieldb.nl/other/cursors/)
 
-###### Fonts
+#### Fonts
 [Inter](https://rsms.me/inter/download/), [FiraCode-NF, CascadiaCode-NF, JetBrainsMono-NF, Meslo-NF, SpaceMono-NF, UbuntuSans-NF](https://github.com/ryanoasis/nerd-fonts/releases), [SolaimanLipi, AdorshoLipi](https://www.omicronlab.com/bangla-fonts.html), [Ekushey Lal Salu Normal](https://ekushey.org/fonts/)
 
 ### DNS
@@ -104,7 +102,7 @@ https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/Content
 ```
 
 ### Tweaks
-###### Disable IDM Update Check:
+#### Disable IDM Update Check:
 - Open regedit & goto `Computer\HKEY_CURRENT_USER\Software\DownloadManager`
 - Double click on `LstCheck` & change the year value to `99`.
 
