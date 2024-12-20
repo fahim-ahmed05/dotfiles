@@ -6,7 +6,7 @@ I use these daily! 👀
 
 | Script Name                     | Description                                    |                                                                  |
 |---------------------------------|------------------------------------------------|------------------------------------------------------------------------------|
-| [Video Speed 2x](https://github.com/fahim-ahmed05/dotfiles/blob/main/Violentmonkey/videoSpeedControl.user.js) | Adjusts video playback speed to 2x.        | [Install](https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/Violentmonkey/videoSpeedControl.user.js) |
+| [video Speed Control](https://github.com/fahim-ahmed05/dotfiles/blob/main/Violentmonkey/videoSpeedControl.user.js) | Adjusts video playback speed to 2x.        | [Install](https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/Violentmonkey/videoSpeedControl.user.js) |
 | [Return YouTube Dislike](https://returnyoutubedislike.com/) | Restores YouTube dislike counts.            | [Install](https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js) |
 
 ### Powershell
