@@ -3,12 +3,14 @@ Write-Host "`nWindows Setup script started..." -ForegroundColor Yellow
 # Ensure PowerShell profile exists
 if (Test-Path $profile) {
     Write-Host "Profile exists at: $profile" -ForegroundColor Cyan
-} else {
+}
+else {
     Write-Host "Profile does not exist. Creating..." -ForegroundColor Yellow
     try {
         New-Item -Path $profile -Type File -Force | Out-Null
         Write-Host "Profile created at: $profile" -ForegroundColor Green
-    } catch {
+    }
+    catch {
         Write-Host "Failed to create profile at: $profile" -ForegroundColor Red
     }
 }
@@ -25,7 +27,8 @@ foreach ($app in $msstoreApps) {
     try {
         winget install $app --source msstore --accept-package-agreements --accept-source-agreements
         Write-Host "Installed $app successfully." -ForegroundColor Green
-    } catch {
+    }
+    catch {
         Write-Host "Failed to install $app." -ForegroundColor Red
     }
 }
@@ -37,6 +40,7 @@ $wingetPackages = @(
     "7zip.7zip",
     "ente-io.auth-desktop",
     "HermannSchinagl.LinkShellExtension",
+    "Zen-Team.Zen-Browser.Optimized",
     "Microsoft.PowerToys"
 )
 
@@ -44,7 +48,8 @@ foreach ($package in $wingetPackages) {
     try {
         winget install $package --source winget --accept-package-agreements --accept-source-agreements
         Write-Host "Installed $package successfully." -ForegroundColor Green
-    } catch {
+    }
+    catch {
         Write-Host "Failed to install $package." -ForegroundColor Red
     }
 }
@@ -55,7 +60,8 @@ Write-Host "`nWinget installations complete!" -ForegroundColor Cyan
 try {
     oh-my-posh disable notice
     Write-Host "Oh My Posh startup notice disabled." -ForegroundColor Green
-} catch {
+}
+catch {
     Write-Host "Failed to disable Oh My Posh startup notice." -ForegroundColor Red
 }
 
@@ -64,7 +70,8 @@ Write-Host "`nSetting up Scoop..." -ForegroundColor Green
 try {
     Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
     Write-Host "Scoop installed successfully." -ForegroundColor Green
-} catch {
+}
+catch {
     Write-Host "Failed to install Scoop." -ForegroundColor Red
 }
 
@@ -74,7 +81,8 @@ try {
     scoop install pipx
     pipx ensurepath
     Write-Host "pipx installed and added to PATH successfully." -ForegroundColor Green
-} catch {
+}
+catch {
     Write-Host "Failed to install pipx or add it to PATH." -ForegroundColor Red
 }
 
@@ -89,7 +97,8 @@ foreach ($package in $pipxPackages) {
     try {
         pipx install $package
         Write-Host "Installed $package successfully." -ForegroundColor Green
-    } catch {
+    }
+    catch {
         Write-Host "Failed to install $package." -ForegroundColor Red
     }
 }
@@ -101,7 +110,8 @@ try {
     scoop install nerd-fonts/JetBrainsMono-NF
     scoop install nerd-fonts/CascadiaMono-NF
     Write-Host "Nerd Fonts installed successfully." -ForegroundColor Green
-} catch {
+}
+catch {
     Write-Host "Failed to install Nerd Fonts." -ForegroundColor Red
 }
 
