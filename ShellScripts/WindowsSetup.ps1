@@ -36,7 +36,8 @@ $wingetPackages = @(
     "JanDeDobbeleer.OhMyPosh",
     "7zip.7zip",
     "ente-io.auth-desktop",
-    "HermannSchinagl.LinkShellExtension"
+    "HermannSchinagl.LinkShellExtension",
+    "Microsoft.PowerToys"
 )
 
 foreach ($package in $wingetPackages) {
