@@ -1,7 +1,7 @@
 ! Title: Random Site Annoyances
 ! Description: Removes random annoying elements from websites
-! Version: 1.6.3
-! Last modified: 2024-12-26 5:47 pm
+! Version: 1.6.8
+! Last modified: 2024-12-26 5:54 pm
 ! Expires: 2 weeks (update frequency)
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
@@ -14,4 +14,8 @@ www.reddit.com##alert-controller
 
 ! trakt.tv - Hide banner ad from dashboard & profile
 trakt.tv###om1gYCfRiN-IGJj59JMAC-wrapper
+
+! chatgpt.com - Hide upgrade banner in the sidebar & notice below text box
+chatgpt.com##.min-h-4
+chatgpt.com##.px-2.m-0.rounded-lg.screen-arch\:py-1\.5.screen-arch\:px-2.hover\:bg-token-sidebar-surface-secondary.items-center.radix-disabled\:opacity-50.radix-disabled\:pointer-events-none.focus\:ring-0.cursor-pointer.text-sm.p-2\.5.gap-2.flex.group
 
