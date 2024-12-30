@@ -1,7 +1,7 @@
 ! Title: YouTube Annoyances
 ! Description: Removes annoying elements from youtube
-! Version: 1.0.1
-! Last modified: 2024-11-15 6:37 pm
+! Version: 1.2.0
+! Last modified: 2024-12-30 1:05 pm
 ! Expires: 2 weeks (update frequency)
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
@@ -40,4 +40,7 @@ www.youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer[is-post]
 youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
 ! YT Video - Hide Brand image in the player corner
 youtube.com##.ytp-button.branding-img-container
+
+! YT Search - keep only videos (no shorts), channels and playlists
+youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,ytd-channel-renderer,ytd-playlist-renderer,yt-lockup-view-model,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
 
