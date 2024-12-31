@@ -111,10 +111,11 @@ irm https://get.activated.win | iex
 
 ### [Content Filters](https://github.com/fahim-ahmed05/dotfiles/tree/main/ContentFilters)
 
-```
-https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ContentFilters/ublock-remove-annoyances.txt
-https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ContentFilters/ublock-youtube-annoyances.txt
-```
+| **Name**                          | **Description**                            | **URL**                                                             |
+|-----------------------------------|--------------------------------------------|---------------------------------------------------------------------|
+| [uBlock Remove Annoyances](https://github.com/fahim-ahmed05/dotfiles/blob/main/ContentFilters/ublock-remove-annoyances.txt) | A filter list for removing common annoyances on websites. | `https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ContentFilters/ublock-remove-annoyances.txt` |
+| [uBlock YouTube Annoyances](https://github.com/fahim-ahmed05/dotfiles/blob/main/ContentFilters/ublock-youtube-annoyances.txt) | A filter list targeting YouTube-specific annoyances. | `https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ContentFilters/ublock-youtube-annoyances.txt` |
+| [Hagezi Multi PRO++](https://github.com/hagezi/dns-blocklists?tab=readme-ov-file#proplus) | A comprehensive adblock list by Hagezi. | `https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.plus.txt` |
 
 ### Wallpapers
 
