@@ -1,7 +1,7 @@
 ! Title: YouTube Annoyances
 ! Description: Removes annoying elements from youtube
-! Version: 1.2.0
-! Last modified: 2024-12-30 1:05 pm
+! Version: 1.5.0
+! Last modified: 2025-01-01 1:10 pm
 ! Expires: 2 weeks (update frequency)
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
@@ -43,4 +43,13 @@ youtube.com##.ytp-button.branding-img-container
 
 ! YT Search - keep only videos (no shorts), channels and playlists
 youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,ytd-channel-renderer,ytd-playlist-renderer,yt-lockup-view-model,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
+
+! PocketTube - Hide deck button in the sidebar
+www.youtube.com##.ysm-deck-open.ytd-guide-collapsible-section-entry-renderer.style-scope
+
+! PocketTube - Hide container move buttons from sidebar
+www.youtube.com##.on.ysm-btn-list-move-container
+
+! YT Sidebar - Hide other youtube sites from sidebar
+www.youtube.com##ytd-guide-section-renderer.ytd-guide-renderer.style-scope:nth-of-type(4)
 
