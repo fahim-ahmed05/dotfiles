@@ -1,7 +1,7 @@
 ! Title: YouTube Annoyances
 ! Description: Removes annoying elements from youtube
 ! Version: 1.8.0
-! Last modified: 2025-01-02 1:04 pm
+! Last modified: 2025-01-02 11:02 pm
 ! Expires: 2 weeks (update frequency)
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
@@ -47,11 +47,14 @@ youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-r
 ! PocketTube - Hide deck button in the sidebar
 www.youtube.com##.ysm-deck-open.ytd-guide-collapsible-section-entry-renderer.style-scope
 
-! PocketTube - Hide container move buttons from sidebar
+! PocketTube - Hide container move buttons
 www.youtube.com##.on.ysm-btn-list-move-container
 
-! YT Sidebar - Hide other youtube sites from sidebar
+! YT Sidebar - Hide other youtube sites
 www.youtube.com##ytd-guide-section-renderer.ytd-guide-renderer.style-scope:nth-of-type(4)
 
 ! YT Homepage - Hide breaking news section
 www.youtube.com##ytd-rich-section-renderer:has-text(Breaking news)
+
+! YT Homepage - Hide explore more topics box
+www.youtube.com##ytd-rich-section-renderer:has-text(Explore more topics)
