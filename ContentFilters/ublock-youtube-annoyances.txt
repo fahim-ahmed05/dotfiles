@@ -1,7 +1,7 @@
 ! Title: YouTube Annoyances
 ! Description: Removes annoying elements from youtube
 ! Version: 1.5.0
-! Last modified: 2025-01-01 1:10 pm
+! Last modified: 2025-01-02 1:00 pm
 ! Expires: 2 weeks (update frequency)
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
@@ -53,3 +53,5 @@ www.youtube.com##.on.ysm-btn-list-move-container
 ! YT Sidebar - Hide other youtube sites from sidebar
 www.youtube.com##ytd-guide-section-renderer.ytd-guide-renderer.style-scope:nth-of-type(4)
 
+! YT Homepage - Hide breaking news section
+###content > .ytd-rich-section-renderer.style-scope
