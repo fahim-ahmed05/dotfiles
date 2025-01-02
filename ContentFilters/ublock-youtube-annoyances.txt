@@ -1,7 +1,7 @@
 ! Title: YouTube Annoyances
 ! Description: Removes annoying elements from youtube
 ! Version: 1.8.0
-! Last modified: 2025-01-02 1:00 pm
+! Last modified: 2025-01-02 1:04 pm
 ! Expires: 2 weeks (update frequency)
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
