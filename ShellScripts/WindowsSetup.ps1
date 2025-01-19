@@ -36,12 +36,28 @@ foreach ($app in $msstoreApps) {
 # Install other packages via winget
 Write-Host "`nInstalling other applications via winget..." -ForegroundColor Green
 $wingetPackages = @(
-    "JanDeDobbeleer.OhMyPosh",
-    "7zip.7zip",
-    "ente-io.auth-desktop",
-    "HermannSchinagl.LinkShellExtension",
-    "Zen-Team.Zen-Browser.Optimized",
-    "Microsoft.PowerToys"
+    "JanDeDobbeleer.OhMyPosh", # Oh My Posh
+    "7zip.7zip", # 7-Zip
+    "ente-io.auth-desktop", # Ente Auth Desktop
+    "HermannSchinagl.LinkShellExtension", # Link Shell Extension
+    "Microsoft.PowerToys", # PowerToys
+    "Notepad++.Notepad++", # Notepad++
+    "Proton.ProtonVPN", # ProtonVPN
+    "gerardog.gsudo", # gsudo
+    "Cloudflare.Warp", # Cloudflare WARP
+    "voidtools.Everything", # Everything
+    "SyncTrayzor.SyncTrayzor", # SyncTrayzor
+    "Brave.Brave", # Brave Browser
+    "ONLYOFFICE.DesktopEditors", # ONLYOFFICE Desktop Editors
+    "Tonec.InternetDownloadManager", # Internet Download Manager
+#    "CodecGuide.K-LiteCodecPack.Standard", # K-Lite Codec Pack Standard
+    "qBittorrent.qBittorrent", # qBittorrent
+    "Fastfetch-cli.Fastfetch", # Fastfetch
+    "Flow-Launcher.Flow-Launcher", # Flow Launcher
+    "Google.PlatformTools", # Google Platform Tools
+    "Gyan.FFmpeg", # FFmpeg
+#    "Microsoft.VisualStudioCode" # Visual Studio Code
+    "SumatraPDF.SumatraPDF" # SumatraPDF
 )
 
 foreach ($package in $wingetPackages) {
