@@ -37,6 +37,7 @@ foreach ($app in $msstoreApps) {
 Write-Host "`nInstalling other applications via winget..." -ForegroundColor Green
 $wingetPackages = @(
     "JanDeDobbeleer.OhMyPosh", # Oh My Posh
+    "Microsoft.PowerShell", # PowerShell
     "7zip.7zip", # 7-Zip
     "ente-io.auth-desktop", # Ente Auth Desktop
     "HermannSchinagl.LinkShellExtension", # Link Shell Extension
@@ -129,6 +130,19 @@ try {
 }
 catch {
     Write-Host "Failed to install Nerd Fonts." -ForegroundColor Red
+}
+
+# Install Powershell modules
+Write-Host "`nInstalling PowerShell modules..." -ForegroundColor Green
+try {
+    Install-Module -Name PowerShellGet -Force # PowerShellGet
+    Install-Module PSReadLine -AllowPrerelease -Force # PSReadLine
+    Install-Module -Name Recycle -RequiredVersion 1.5.0 -Force # Recycle
+    Install-Module -Name Terminal-Icons -Repository PSGallery -Force # Terminal-Icons
+    Install-Module -Name z -AllowClobber -Force # z
+}
+catch {
+    Write-Host "Failed to install PowerShell modules." -ForegroundColor Red
 }
 
 Write-Host "`nWindows Setup script completed successfully!" -ForegroundColor Yellow
