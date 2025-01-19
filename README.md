@@ -105,8 +105,6 @@ irm https://get.activated.win | iex
 | **Provider**   | **IPv4**                     | **IPv6**                             | **DOT**                        | **DOH**                                           |
 |----------------|------------------------------|--------------------------------------|--------------------------------|---------------------------------------------------|
 | **Adguard** <br> *Block Ads & Malware*  | `94.140.14.14`<br>`94.140.15.15` | `2a10:50c0::ad1:ff`<br>`2a10:50c0::ad2:ff` | `dns.adguard-dns.com`          | `https://dns.adguard-dns.com/dns-query`           |
-| **Mullvad** <br> *Block Ads & Malware*   | `194.242.2.4`                            | `2a07:e340::4`                                    | `base.dns.mullvad.net`         | `https://base.dns.mullvad.net/dns-query`          |
-| **Cloudflare** <br> *Block Malware* | `1.1.1.2`<br>`1.0.0.2`       | `2606:4700:4700::1112`<br>`2606:4700:4700::1002` | `security.cloudflare-dns.com`  | `https://security.cloudflare-dns.com/dns-query`   |
 | **Quad9** <br> *Block Malware*     | `9.9.9.9`<br>`149.112.112.112` | `2620:fe::fe`<br>`2620:fe::9`       | `dns.quad9.net`                | `https://dns.quad9.net/dns-query`                 |
 
 ### [Content Filters](https://github.com/fahim-ahmed05/dotfiles/tree/main/ContentFilters)
