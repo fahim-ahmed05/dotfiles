@@ -26,17 +26,32 @@ function reloadterminal {
     exit & wt
 }
 
+function reloadprofile { 
+    . $PROFILE
+}
+
 # Winget
 function ws {
     winget search @args 
 }
 
 function wi {
-    winget install @args --accept-package-agreements --accept-source-agreements 
+    winget install @args --accept-package-agreements --accept-source-agreements
 }
 
 function wu {
-    winget upgrade --all --accept-package-agreements --accept-source-agreements 
+    Write-Host "Winget" -ForegroundColor "Cyan"
+    winget upgrade --all --accept-package-agreements --accept-source-agreements
+    
+    Write-Host "`nScoop" -ForegroundColor "Cyan"
+    scoop update
+
+    Write-Host "`nPip" -ForegroundColor "Cyan"
+    pip install --upgrade pip
+
+
+    Write-Host "`nPipx" -ForegroundColor "Cyan"
+    pipx upgrade-all 
 }
 
 # Network
