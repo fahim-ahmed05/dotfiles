@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         Video Speed Control
+// @name         Video Speed Control with Blocklist and Default Speed
 // @namespace    Violentmonkey Scripts
 // @homepage     https://github.com/fahim-ahmed05/dotfiles
-// @version      1.9
-// @description  Control video speed (1x to 3x) with keyboard shortcuts on Meta sites, X, Rumble, TikTok, etc.
+// @version      2.3
+// @description  Control video speed (1x to 5x) with keyboard shortcuts on specified sites, with support for blocklists and default speed.
 // @author       Fahim Ahmed
 // @match        *://*.facebook.com/*
 // @match        *://*.messenger.com/*
@@ -26,15 +26,20 @@
     'use strict';
 
     // Default speed and limits
-    let currentSpeed = 2; // Default speed
-    const minSpeed = 1;   // Minimum allowed speed
-    const maxSpeed = 3;   // Maximum allowed speed
+    let currentSpeed = 2; // Default playback speed
+    const minSpeed = 1;   // Minimum speed
+    const maxSpeed = 5;   // Maximum speed
 
     // URLs using setInterval or MutationObserver
     const useSetInterval = [
-        'facebook.com/reel/'
+        'facebook.com/reel/',
     ];
     const useMutationObserver = [
+    ];
+
+    // Blocklist: URLs where the script will not apply
+    const blocklist = [
+        'https://x.com/i/broadcasts/'
     ];
 
     // Function to set the playback speed for a video
@@ -67,7 +72,7 @@
                 case '1': // Alt+1: Reset to 1x speed
                     currentSpeed = 1;
                     break;
-                case '2': // Alt+2: Reset to 2x speed
+                case '2': // Alt+2: Reset to 2x speed (default)
                     currentSpeed = 2;
                     break;
                 case '3': // Alt+3: Decrease speed
@@ -86,6 +91,11 @@
     // Helper to check if the current URL matches specific patterns
     function matchesURL(patterns) {
         return patterns.some(pattern => window.location.href.includes(pattern));
+    }
+
+    // Skip execution if the current URL matches the blocklist
+    if (matchesURL(blocklist)) {
+        return; // Exit the script
     }
 
     // Determine which method to use
