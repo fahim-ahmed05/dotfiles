@@ -2,8 +2,8 @@
 // @name         Video Speed Control
 // @namespace    Violentmonkey Scripts
 // @homepage     https://github.com/fahim-ahmed05/dotfiles
-// @version      1.7
-// @description  Control video speed (1x to 5x) with keyboard shortcuts on Meta sites, X, Rumble, TikTok, etc.
+// @version      1.9
+// @description  Control video speed (1x to 3x) with keyboard shortcuts on Meta sites, X, Rumble, TikTok, etc.
 // @author       Fahim Ahmed
 // @match        *://*.facebook.com/*
 // @match        *://*.messenger.com/*
@@ -26,27 +26,30 @@
     'use strict';
 
     // Default speed and limits
-    let currentSpeed = 2;
-    const minSpeed = 1;
-    const maxSpeed = 3;
+    let currentSpeed = 2; // Default speed
+    const minSpeed = 1;   // Minimum allowed speed
+    const maxSpeed = 3;   // Maximum allowed speed
 
-    // Function to set video speed
+    // URLs using setInterval or MutationObserver
+    const useSetInterval = [
+        'facebook.com/reel/'
+    ];
+    const useMutationObserver = [
+    ];
+
+    // Function to set the playback speed for a video
     function setSpeed(video) {
         if (video && video.playbackRate !== currentSpeed) {
             video.playbackRate = currentSpeed;
         }
     }
 
-    // Function to apply speed to video
-    function applySpeedToVideo() {
-        const videos = document.querySelectorAll('video');
-        videos.forEach(video => setSpeed(video));
+    // Function to apply the current speed to all video elements
+    function applySpeedToVideos() {
+        document.querySelectorAll('video').forEach(setSpeed);
     }
 
-    // Re-apply speed periodically (in case of dynamic content)
-    setInterval(() => applySpeedToVideo(), 2000);
-
-    // Apply speed when video starts playing
+    // Listen for new videos starting to play and apply speed
     document.body.addEventListener(
         'play',
         (e) => {
@@ -57,23 +60,50 @@
         true
     );
 
-    // Set initial speed
-    applySpeedToVideo();
-
-    // Shortcut keys for adjusting speed
-    window.addEventListener('keydown', function (e) {
-        if (e.altKey && e.key === '3') {
-            currentSpeed = Math.max(currentSpeed - 0.25, minSpeed);
-            applySpeedToVideo();
-        } else if (e.altKey && e.key === '4') {
-            currentSpeed = Math.min(currentSpeed + 0.25, maxSpeed);
-            applySpeedToVideo();
-        } else if (e.altKey && e.key === '1') {
-            currentSpeed = 1;
-            applySpeedToVideo();
-        } else if (e.altKey && e.key === '2') {
-            currentSpeed = 2;
-            applySpeedToVideo();
+    // Adjust speed with keyboard shortcuts
+    window.addEventListener('keydown', (e) => {
+        if (e.altKey) {
+            switch (e.key) {
+                case '1': // Alt+1: Reset to 1x speed
+                    currentSpeed = 1;
+                    break;
+                case '2': // Alt+2: Reset to 2x speed
+                    currentSpeed = 2;
+                    break;
+                case '3': // Alt+3: Decrease speed
+                    currentSpeed = Math.max(currentSpeed - 0.25, minSpeed);
+                    break;
+                case '4': // Alt+4: Increase speed
+                    currentSpeed = Math.min(currentSpeed + 0.25, maxSpeed);
+                    break;
+                default:
+                    return; // Exit if the key is not recognized
+            }
+            applySpeedToVideos();
         }
     });
+
+    // Helper to check if the current URL matches specific patterns
+    function matchesURL(patterns) {
+        return patterns.some(pattern => window.location.href.includes(pattern));
+    }
+
+    // Determine which method to use
+    if (matchesURL(useSetInterval)) {
+        // Use setInterval for specified URLs
+        setInterval(applySpeedToVideos, 2000);
+    } else if (matchesURL(useMutationObserver)) {
+        // Use MutationObserver for specified URLs
+        const observer = new MutationObserver(() => {
+            applySpeedToVideos();
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    // Apply the initial speed
+    applySpeedToVideos();
 })();
