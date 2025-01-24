@@ -51,7 +51,9 @@ function wu {
 
 
     Write-Host "`nPipx" -ForegroundColor "Cyan"
-    pipx upgrade-all 
+    pipx upgrade-all
+
+    rmdeskicons
 }
 
 # Network
