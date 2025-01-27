@@ -47,7 +47,7 @@ function wu {
     scoop update
 
     Write-Host "`nPip" -ForegroundColor "Cyan"
-    pip install --upgrade pip
+    python.exe -m pip install --upgrade pip
 
 
     Write-Host "`nPipx" -ForegroundColor "Cyan"
