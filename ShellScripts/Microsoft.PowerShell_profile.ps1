@@ -99,22 +99,16 @@ function hb {
 }
 
 # UCRT64
-function ucrt {
+function ucr {
     param (
-        [Parameter(ValueFromRemainingArguments = $true)]
-        [string[]]$Command
+        [string]$Command = $null
     )
 
-    # Use the current directory as the working directory
     $currentDir = Get-Location
 
     if ($Command) {
-        # If commands are passed, run them directly
-        & ucrt64.exe -c ($Command -join ' ') --login
+        & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$currentDir' && $Command"
     } else {
-        # If no commands, drop into the UCRT64 interactive shell
-        Push-Location $currentDir
-        & ucrt64.exe --login
-        Pop-Location
+        & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$currentDir' && exec bash"
     }
 }
