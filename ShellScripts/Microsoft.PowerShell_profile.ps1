@@ -37,6 +37,8 @@ function ws {
 
 function wi {
     winget install @args --accept-package-agreements --accept-source-agreements
+    Start-Sleep -Seconds 1.5
+    rmdeskicons
 }
 
 function wu {
