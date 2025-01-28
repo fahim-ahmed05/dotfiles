@@ -53,6 +53,9 @@ function wu {
     Write-Host "`nPipx" -ForegroundColor "Cyan"
     pipx upgrade-all
 
+    Write-Host "`nUCRT64" -ForegroundColor "Cyan"
+    & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$PWD' && pacman -Syu --noconfirm && paccache -r"
+
     rmdeskicons
 }
 
