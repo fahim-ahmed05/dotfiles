@@ -43,17 +43,17 @@ function wu {
     Write-Host "Winget" -ForegroundColor "Cyan"
     winget upgrade --all --accept-package-agreements --accept-source-agreements
     
-    Write-Host "`nScoop" -ForegroundColor "Cyan"
+    Write-Host "Scoop" -ForegroundColor "Cyan"
     scoop update
 
-    Write-Host "`nPip" -ForegroundColor "Cyan"
+    Write-Host "Pip" -ForegroundColor "Cyan"
     python.exe -m pip install --upgrade pip
 
 
-    Write-Host "`nPipx" -ForegroundColor "Cyan"
+    Write-Host "Pipx" -ForegroundColor "Cyan"
     pipx upgrade-all
 
-    Write-Host "`nUCRT64" -ForegroundColor "Cyan"
+    Write-Host "UCRT64" -ForegroundColor "Cyan"
     & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$PWD' && pacman -Syu --noconfirm && paccache -r"
 
     rmdeskicons
