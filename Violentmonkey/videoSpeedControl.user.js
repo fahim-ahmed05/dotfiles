@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         Video Speed Control with Blocklist and Default Speed
+// @name         Video Speed Control
 // @namespace    Violentmonkey Scripts
 // @homepage     https://github.com/fahim-ahmed05/dotfiles
-// @version      2.3
-// @description  Control video speed (1x to 5x) with keyboard shortcuts on specified sites, with support for blocklists and default speed.
+// @version      2.5
+// @description  Control video speed (1x to 5x) with keyboard shortcuts.
 // @author       Fahim Ahmed
 // @match        *://*.facebook.com/*
 // @match        *://*.messenger.com/*
@@ -26,35 +26,49 @@
     'use strict';
 
     // Default speed and limits
-    let currentSpeed = 2; // Default playback speed
-    const minSpeed = 1;   // Minimum speed
-    const maxSpeed = 5;   // Maximum speed
+    let currentSpeed = 2;
+    const minSpeed = 1;
+    const maxSpeed = 5;
 
-    // URLs using setInterval or MutationObserver
-    const useSetInterval = [
-        'facebook.com/reel/',
-    ];
-    const useMutationObserver = [
-    ];
-
-    // Blocklist: URLs where the script will not apply
-    const blocklist = [
-        'https://x.com/i/broadcasts/'
-    ];
-
-    // Function to set the playback speed for a video
+    // Function to set video speed
     function setSpeed(video) {
         if (video && video.playbackRate !== currentSpeed) {
             video.playbackRate = currentSpeed;
         }
     }
 
-    // Function to apply the current speed to all video elements
-    function applySpeedToVideos() {
-        document.querySelectorAll('video').forEach(setSpeed);
+    // Function to apply speed to all videos
+    function applySpeedToAllVideos() {
+        const videos = document.querySelectorAll('video');
+        videos.forEach(video => setSpeed(video));
     }
 
-    // Listen for new videos starting to play and apply speed
+    // Detect browser
+    const isFirefox = navigator.userAgent.includes('Firefox');
+
+    // Define shortcuts based on browser
+    const shortcuts = isFirefox
+        ? {
+              decrease: { key: ',', modifier: 'altKey' },
+              increase: { key: '.', modifier: 'altKey' },
+              toggle1x: { key: ',', modifier: 'ctrlKey' },
+              toggle2x: { key: '.', modifier: 'ctrlKey' }
+          }
+        : {
+              decrease: { key: '3', modifier: 'altKey' },
+              increase: { key: '4', modifier: 'altKey' },
+              toggle1x: { key: '1', modifier: 'altKey' },
+              toggle2x: { key: '2', modifier: 'altKey' }
+          };
+
+    // Observe for video elements being added
+    const observer = new MutationObserver(() => applySpeedToAllVideos());
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Re-apply speed periodically (in case of dynamic content)
+    setInterval(() => applySpeedToAllVideos(), 2000);
+
+    // Apply speed when video starts playing
     document.body.addEventListener(
         'play',
         (e) => {
@@ -65,55 +79,27 @@
         true
     );
 
-    // Adjust speed with keyboard shortcuts
-    window.addEventListener('keydown', (e) => {
-        if (e.altKey) {
-            switch (e.key) {
-                case '1': // Alt+1: Reset to 1x speed
-                    currentSpeed = 1;
-                    break;
-                case '2': // Alt+2: Reset to 2x speed (default)
-                    currentSpeed = 2;
-                    break;
-                case '3': // Alt+3: Decrease speed
-                    currentSpeed = Math.max(currentSpeed - 0.25, minSpeed);
-                    break;
-                case '4': // Alt+4: Increase speed
-                    currentSpeed = Math.min(currentSpeed + 0.25, maxSpeed);
-                    break;
-                default:
-                    return; // Exit if the key is not recognized
-            }
-            applySpeedToVideos();
+    // Set initial speed
+    applySpeedToAllVideos();
+
+    // Shortcut keys for adjusting speed
+    window.addEventListener('keydown', function (e) {
+        if (e[shortcuts.decrease.modifier] && e.key === shortcuts.decrease.key) {
+            currentSpeed = Math.max(currentSpeed - 0.25, minSpeed);
+            applySpeedToAllVideos();
+            console.log(`Speed decreased to: ${currentSpeed.toFixed(2)}x`);
+        } else if (e[shortcuts.increase.modifier] && e.key === shortcuts.increase.key) {
+            currentSpeed = Math.min(currentSpeed + 0.25, maxSpeed);
+            applySpeedToAllVideos();
+            console.log(`Speed increased to: ${currentSpeed.toFixed(2)}x`);
+        } else if (e[shortcuts.toggle1x.modifier] && e.key === shortcuts.toggle1x.key) {
+            currentSpeed = 1;
+            applySpeedToAllVideos();
+            console.log('Speed set to: 1x');
+        } else if (e[shortcuts.toggle2x.modifier] && e.key === shortcuts.toggle2x.key) {
+            currentSpeed = 2;
+            applySpeedToAllVideos();
+            console.log('Speed set to: 2x');
         }
     });
-
-    // Helper to check if the current URL matches specific patterns
-    function matchesURL(patterns) {
-        return patterns.some(pattern => window.location.href.includes(pattern));
-    }
-
-    // Skip execution if the current URL matches the blocklist
-    if (matchesURL(blocklist)) {
-        return; // Exit the script
-    }
-
-    // Determine which method to use
-    if (matchesURL(useSetInterval)) {
-        // Use setInterval for specified URLs
-        setInterval(applySpeedToVideos, 2000);
-    } else if (matchesURL(useMutationObserver)) {
-        // Use MutationObserver for specified URLs
-        const observer = new MutationObserver(() => {
-            applySpeedToVideos();
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-    }
-
-    // Apply the initial speed
-    applySpeedToVideos();
 })();
