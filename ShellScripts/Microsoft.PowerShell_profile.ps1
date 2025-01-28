@@ -99,7 +99,7 @@ function hb {
 }
 
 # UCRT64
-function ucr {
+function ucrt {
     param (
         [string]$Command = $null
     )
