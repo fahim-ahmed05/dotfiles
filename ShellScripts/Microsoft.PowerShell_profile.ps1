@@ -97,3 +97,24 @@ function hb {
         Write-Error "Failed to upload the document. Error: $_"
     }
 }
+
+# UCRT64
+function ucrt {
+    param (
+        [Parameter(ValueFromRemainingArguments = $true)]
+        [string[]]$Command
+    )
+
+    # Use the current directory as the working directory
+    $currentDir = Get-Location
+
+    if ($Command) {
+        # If commands are passed, run them directly
+        & ucrt64.exe -c ($Command -join ' ') --login
+    } else {
+        # If no commands, drop into the UCRT64 interactive shell
+        Push-Location $currentDir
+        & ucrt64.exe --login
+        Pop-Location
+    }
+}
