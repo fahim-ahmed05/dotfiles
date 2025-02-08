@@ -71,7 +71,7 @@ Profile paths:
 | **Web Scrobbler** | [Install](https://addons.mozilla.org/en-US/firefox/addon/web-scrobbler/) | [Install](https://chromewebstore.google.com/detail/web-scrobbler/hhinaapppaileiechjoiifaancjggfjm) | [Install](https://microsoftedge.microsoft.com/addons/detail/web-scrobbler/obiekdelmkmlgnhddmmnpnfhngejbnnc) | N/A |
 | **Firefox Multi-Account Containers** | [Install](https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/) | N/A | N/A | N/A |
 | **Picture-in-Picture Extension** | N/A | [Install](https://chromewebstore.google.com/detail/picture-in-picture-extens/hkgfoiooedgoejojocmhlaklaeopbecg) | N/A | **Activate:** `Alt + P` |
-| **MAL-Sync** | [Install](https://addons.mozilla.org/en-US/firefox/addon/mal-sync/) | [Install](https://chromewebstore.google.com/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel) | N/A | **Toolbar:** `Alt + M` |
+| **MAL-Sync** | [Install](https://addons.mozilla.org/en-US/firefox/addon/mal-sync/) | [Install](https://chromewebstore.google.com/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel) | N/A | **Menu popup:** `Alt + M` |
 | **Floccus Bookmark Sync** | [Install](https://addons.mozilla.org/en-US/firefox/addon/floccus/) | [Install](https://chromewebstore.google.com/detail/floccus-bookmarks-sync/fnaicdffflnofjppbagibeoednhnbjhg) | [Install](https://microsoftedge.microsoft.com/addons/detail/gjkddcofhiifldbllobcamllmanombji) | N/A |
 | **Snowflake** | [Install](https://addons.mozilla.org/en-US/firefox/addon/torproject-snowflake/) | [Install](https://chromewebstore.google.com/detail/snowflake/mafpmfcccpbjnhfhjnllmmalhifmlcie) | N/A | N/A |
 | **Google Dictionary** | N/A | [Install](https://chromewebstore.google.com/detail/google-dictionary-by-goog/mgijmajocgfcbeboacabfgobmjgjcoja) | N/A | N/A |
