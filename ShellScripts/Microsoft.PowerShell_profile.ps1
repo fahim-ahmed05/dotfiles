@@ -51,7 +51,6 @@ function wu {
     Write-Host "Pip" -ForegroundColor "Cyan"
     python.exe -m pip install --upgrade pip
 
-
     Write-Host "Pipx" -ForegroundColor "Cyan"
     pipx upgrade-all
 
@@ -59,7 +58,8 @@ function wu {
     & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$PWD' && pacman -Syu --noconfirm && paccache -r"
 
     Write-Host "Ubuntu" -ForegroundColor "Cyan"
-    wsl sudo apt update && sudo apt upgrade -y
+    wsl sudo apt update
+    wsl sudo apt upgrade -y
 
     Write-Host "WSL" -ForegroundColor "Cyan"
     wsl.exe --shutdown
@@ -120,7 +120,8 @@ function ucrt {
 
     if ($Command) {
         & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$currentDir' && $Command"
-    } else {
+    }
+    else {
         & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$currentDir' && exec bash"
     }
 }
