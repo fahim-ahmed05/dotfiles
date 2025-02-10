@@ -1,0 +1,10 @@
+{
+	"theme": "auto",
+	"save_on_focus_lost": true,
+	"word_wrap": true,
+	"font_face": "Fira Code",
+	"font_options": ["directwrite", "subpixel_antialias", "dwrite_cleartype_natural", "dlig", "ss01"],
+	"hardware_acceleration": "opengl",
+	"caret_style": "phase",
+	"overlay_scroll_bars": "enabled"
+}
