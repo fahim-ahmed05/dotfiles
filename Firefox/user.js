@@ -1,4 +1,4 @@
-// DOH
+// DNS Over Https
 user_pref("network.trr.mode", 3);
 user_pref("network.trr.uri", "https://dns.adguard-dns.com/dns-query");
 user_pref("network.trr.custom_uri", "https://dns.adguard-dns.com/dns-query");
@@ -27,3 +27,6 @@ user_pref("mousewheel.default.delta_multiplier_y", 300);
 // Website Permission
 user_pref("permissions.default.desktop-notification", 2);
 user_pref("permissions.default.geo", 2);
+
+// Enable Tab Hover Preview
+user_pref(browser.tabs.hoverPreview.enabled, true);
