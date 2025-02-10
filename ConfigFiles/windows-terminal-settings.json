@@ -1,0 +1,77 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": [
+        { "command": { "action": "copy", "singleLine": false }, "id": "User.copy" },
+        { "command": "paste", "id": "User.paste" },
+        { "command": "find", "id": "User.find" },
+        { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "id": "User.splitPane" }
+    ],
+    "copyFormatting": "none",
+    "copyOnSelect": false,
+    "defaultProfile": "PowerShell",
+    "keybindings": [
+        { "id": "User.copy", "keys": "ctrl+c" },
+        { "id": "User.find", "keys": "ctrl+shift+f" },
+        { "id": "User.paste", "keys": "ctrl+v" },
+        { "id": "User.splitPane", "keys": "alt+shift+d" }
+    ],
+    "newTabMenu": [ { "type": "remainingProfiles" } ],
+    "profiles": {
+        "defaults": {
+            "bellStyle": "window",
+            "colorScheme": { "light": "Campbell" },
+            "suppressApplicationTitle": true
+        },
+        "list": [
+            {
+                "commandline": "powershell -NoLogo",
+                "font": { "face": "CaskaydiaMono Nerd Font" },
+                "name": "Windows PowerShell"
+            },
+            {
+                "colorScheme": "Tango Dark",
+                "commandline": "cmd.exe",
+                "name": "Command Prompt"
+            },
+            {
+                "colorScheme": { "light": "Dark+" },
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
+            },
+            {
+                "name": "Git Bash",
+                "source": "Git"
+            },
+            {
+                "colorScheme": "One Half Dark",
+                "commandline": "pwsh -NoLogo",
+                "font": { "face": "CaskaydiaMono Nerd Font" },
+                "name": "PowerShell"
+            },
+            {
+                "font": { "face": "UbuntuMono Nerd Font" },
+                "name": "Ubuntu",
+                "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
+            },
+            {
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "commandline": "%MSYS2_PATH%/msys2_shell.cmd -defterm -here -no-start -ucrt64",
+                "icon": "%MSYS2_PATH%/ucrt64.ico",
+                "name": "UCRT64 / MSYS2",
+                "startingDirectory": "%USERPROFILE%"
+            }
+        ]
+    },
+    "schemes": [],
+    "theme": "system",
+    "themes": [],
+    "useAcrylicInTabRow": true
+}
