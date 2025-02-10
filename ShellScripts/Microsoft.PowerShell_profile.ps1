@@ -60,6 +60,7 @@ function wu {
     Write-Host "Ubuntu" -ForegroundColor "Cyan"
     wsl sudo apt update
     wsl sudo apt upgrade -y
+    wsl sudo apt autoremove -y
 
     Write-Host "WSL" -ForegroundColor "Cyan"
     wsl.exe --shutdown
