@@ -126,6 +126,7 @@ try {
     scoop bucket add nerd-fonts
     scoop install nerd-fonts/JetBrainsMono-NF
     scoop install nerd-fonts/CascadiaMono-NF
+    scoop install nerd-fonts/FiraMono-NF
     Write-Host "Nerd Fonts installed successfully." -ForegroundColor Green
 }
 catch {
