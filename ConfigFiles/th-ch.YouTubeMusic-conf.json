@@ -32,7 +32,7 @@
 	},
 	"plugins": {
 		"notifications": {
-			"enabled": true,
+			"enabled": false,
 			"unpauseNotification": false,
 			"urgency": "normal",
 			"interactive": true,
