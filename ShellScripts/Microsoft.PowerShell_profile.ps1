@@ -55,7 +55,7 @@ function wu {
     pipx upgrade-all
 
     Write-Host "UCRT64" -ForegroundColor "Cyan"
-    & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$PWD' && pacman -Syu --noconfirm && paccache -r"
+    ucrt "pacman -Syu --noconfirm && paccache -r"
 
     Write-Host "Ubuntu" -ForegroundColor "Cyan"
     wsl sudo apt update
