@@ -75,6 +75,7 @@ Profile paths:
 | **Floccus Bookmark Sync** | [Install](https://addons.mozilla.org/en-US/firefox/addon/floccus/) | [Install](https://chromewebstore.google.com/detail/floccus-bookmarks-sync/fnaicdffflnofjppbagibeoednhnbjhg) | [Install](https://microsoftedge.microsoft.com/addons/detail/gjkddcofhiifldbllobcamllmanombji) | N/A |
 | **Snowflake** | [Install](https://addons.mozilla.org/en-US/firefox/addon/torproject-snowflake/) | [Install](https://chromewebstore.google.com/detail/snowflake/mafpmfcccpbjnhfhjnllmmalhifmlcie) | N/A | N/A |
 | **Google Dictionary** | N/A | [Install](https://chromewebstore.google.com/detail/google-dictionary-by-goog/mgijmajocgfcbeboacabfgobmjgjcoja) | N/A | N/A |
+| **Proton VPN** | [Install](https://addons.mozilla.org/en-US/firefox/addon/proton-vpn-firefox-extension/) | [Install](https://chromewebstore.google.com/detail/proton-vpn-fast-secure/jplgfhpmjnbigmhklmmbgecoobifkmpa) | N/A | N/A |
 
 ### Windows
 
