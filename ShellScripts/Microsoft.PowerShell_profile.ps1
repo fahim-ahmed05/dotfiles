@@ -42,27 +42,27 @@ function wi {
 }
 
 function wu {
-    Write-Host "Winget" -ForegroundColor "Cyan"
+    Write-Host "Updating winget packages..." -ForegroundColor "Cyan"
     winget upgrade --all --accept-package-agreements --accept-source-agreements
     
-    Write-Host "Scoop" -ForegroundColor "Cyan"
+    Write-Host "Updating scoop packages..." -ForegroundColor "Cyan"
     scoop update
 
-    Write-Host "Pip" -ForegroundColor "Cyan"
+    Write-Host "Updating pip binary..." -ForegroundColor "Cyan"
     python.exe -m pip install --upgrade pip
 
-    Write-Host "Pipx" -ForegroundColor "Cyan"
+    Write-Host "Updating pipx packages..." -ForegroundColor "Cyan"
     pipx upgrade-all
 
-    Write-Host "UCRT64" -ForegroundColor "Cyan"
+    Write-Host "Updating msys2 packages..." -ForegroundColor "Cyan"
     ucrt "pacman -Syu --noconfirm && paccache -r"
 
-    Write-Host "Ubuntu" -ForegroundColor "Cyan"
+    Write-Host "Updating apt packages..." -ForegroundColor "Cyan"
     wsl sudo apt update
     wsl sudo apt upgrade -y
     wsl sudo apt autoremove -y
 
-    Write-Host "WSL" -ForegroundColor "Cyan"
+    Write-Host "Updating wsl binary..." -ForegroundColor "Cyan"
     wsl.exe --shutdown
     wsl --update
 
