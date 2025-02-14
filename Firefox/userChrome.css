@@ -1,0 +1,4 @@
+/* ---- Remove Activity Dot ---- */
+:root {
+    --attention-dot-color: rgba(0, 0, 0, 0) !important;
+}
