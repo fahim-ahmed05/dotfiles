@@ -10,6 +10,7 @@
     "editor.scrollbar.horizontal": "hidden",
     "editor.scrollbar.vertical": "hidden",
     "editor.overviewRulerBorder": false,
+    "editor.hideCursorInOverviewRuler": true,
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.smoothScrolling": true,
     "editor.cursorBlinking": "phase",
