@@ -127,3 +127,13 @@ function ucrt {
         & "C:\msys64\usr\bin\bash.exe" --login -c "export MSYSTEM=UCRT64 && cd '$currentDir' && exec bash"
     }
 }
+
+#Sync Music
+function sync-music {
+    $currentDir = Get-Location
+    Write-Host "Syncing music..." -ForegroundColor "Cyan"
+    Set-Location "$HOME\Music\Songs"
+    spotdl.exe 
+    Write-Host "Music has been synced." -ForegroundColor "Cyan"
+    Set-Location $currentDir
+}
