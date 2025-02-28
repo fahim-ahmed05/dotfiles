@@ -133,7 +133,7 @@ function sync-music {
     $currentDir = Get-Location
     Write-Host "Syncing music..." -ForegroundColor "Cyan"
     Set-Location "$HOME\Music\Songs"
-    spotdl.exe 
+    spotdl.exe $env:MUSIC_PLAYLIST_URL
     Write-Host "Music has been synced." -ForegroundColor "Cyan"
     Set-Location $currentDir
 }
