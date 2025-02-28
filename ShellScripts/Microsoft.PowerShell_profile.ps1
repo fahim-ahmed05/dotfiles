@@ -66,6 +66,7 @@ function wu {
     wsl.exe --shutdown
     wsl --update
 
+    Write-Host "Done updating." -ForegroundColor "Green"
     rmdeskicons
 }
 
