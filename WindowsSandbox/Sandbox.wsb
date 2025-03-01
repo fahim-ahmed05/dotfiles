@@ -14,7 +14,7 @@
 	</MappedFolders>
 
 	<LogonCommand>
-		<Command>powershell -executionpolicy Bypass -command "start powershell {-file C:\Users\WDAGUtilityAccount\Desktop\WinsbSharedFolder\SandboxStartup.ps1}"</Command>
+		<Command>powershell -executionpolicy Bypass -command "start powershell {-file C:\Users\WDAGUtilityAccount\Desktop\WinsbSharedFolder\SandboxFiles\SandboxStartup.ps1}"</Command>
 	</LogonCommand>
 
 </Configuration>
