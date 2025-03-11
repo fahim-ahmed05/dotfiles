@@ -10,8 +10,21 @@ Set-Alias sudo gsudo -Option AllScope
 
 # Functions
 function rmdeskicons {
-    Remove-ItemSafely "$HOME\Desktop\*.lnk", "C:\Users\Public\Desktop\*.lnk"
-    Write-Host "Desktop icons have been moved to recycle bin." -ForegroundColor "Green"
+    $desktopPaths = @(
+        "$Home\Desktop",
+        "C:\Users\Public\Desktop"
+    )
+
+    foreach ($path in $desktopPaths) {
+        $lnkFiles = Get-ChildItem -Path $path -Filter "*.lnk" -ErrorAction SilentlyContinue
+        if ($lnkFiles) {
+            Remove-ItemSafely $lnkFiles.FullName
+            Write-Host "$($lnkFiles.Count) shortcut(s) removed from: $path"
+        }
+        else {
+            Write-Host "No shortcuts found in: $path"
+        }
+    }
 }
 
 # PowerShell
