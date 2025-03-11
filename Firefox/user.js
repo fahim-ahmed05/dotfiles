@@ -41,9 +41,6 @@ user_pref("network.trr.uri", "https://dns.adguard-dns.com/dns-query");
 user_pref("network.trr.custom_uri", "https://dns.adguard-dns.com/dns-query");
 user_pref("network.trr.bootstrapAddress", "94.140.14.14");
 
-// BOOKMARKS BAR
-user_pref("browser.tabs.loadBookmarksInBackground", true);
-
 // SMOOTH SCROLLING
 user_pref("apz.overscroll.enabled", true);
 user_pref("general.smoothScroll", true);
@@ -117,3 +114,7 @@ user_pref("full-screen-api.warning.timeout", 0);
 // URL BAR 
 user_pref("browser.urlbar.suggest.calculator", true);
 user_pref("browser.urlbar.unitConversion.enabled", true);
+
+// TABS
+user_pref("browser.tabs.closeWindowWithLastTab", false);
+user_pref("browser.tabs.loadBookmarksInBackground", true);
