@@ -24,6 +24,7 @@ user_pref("network.http.pacing.requests.enabled", false);
 user_pref("network.dnsCacheExpiration", 3600);
 user_pref("network.ssl_tokens_cache_capacity", 10240);
 user_pref("network.dns.disableIPv6", true);
+user_pref("dom.security.https_only_mode", true);
 
 // SPECULATIVE LOADING 
 user_pref("network.dns.disablePrefetch", true);
@@ -31,9 +32,6 @@ user_pref("network.dns.disablePrefetchFromHTTPS", true);
 user_pref("network.prefetch-next", false);
 user_pref("network.predictor.enabled", false);
 user_pref("network.predictor.enable-prefetch", false);
-
-// EXPERIMENTAL 
-user_pref("layout.css.grid-template-masonry-value.enabled", true);
 
 // DNS OVER HTTPS
 user_pref("network.trr.mode", 3);
@@ -61,47 +59,11 @@ user_pref("permissions.default.desktop-notification", 2);
 user_pref("permissions.default.geo", 2);
 
 // TAB PREVIEW ON HOVER
-user_pref(browser.tabs.hoverPreview.enabled, true);
-
-// TELEMETRY 
-user_pref("datareporting.policy.dataSubmissionEnabled", false);
-user_pref("datareporting.healthreport.uploadEnabled", false);
-user_pref("toolkit.telemetry.unified", false);
-user_pref("toolkit.telemetry.enabled", false);
-user_pref("toolkit.telemetry.server", "data:,");
-user_pref("toolkit.telemetry.archive.enabled", false);
-user_pref("toolkit.telemetry.newProfilePing.enabled", false);
-user_pref("toolkit.telemetry.shutdownPingSender.enabled", false);
-user_pref("toolkit.telemetry.updatePing.enabled", false);
-user_pref("toolkit.telemetry.bhrPing.enabled", false);
-user_pref("toolkit.telemetry.firstShutdownPing.enabled", false);
-user_pref("toolkit.telemetry.coverage.opt-out", true);
-user_pref("toolkit.coverage.opt-out", true);
-user_pref("toolkit.coverage.endpoint.base", "");
-
-// EXPERIMENTS 
-user_pref("app.shield.optoutstudies.enabled", false);
-user_pref("app.normandy.enabled", false);
-user_pref("app.normandy.api_url", "");
-
-// CRASH REPORTS 
-user_pref("breakpad.reportURL", "");
-user_pref("browser.tabs.crashReporting.sendReport", false);
-
-// DETECTION 
-user_pref("captivedetect.canonicalURL", "");
-user_pref("network.captive-portal-service.enabled", false);
-user_pref("network.connectivity-service.enabled", false);
+user_pref("browser.tabs.hoverPreview.enabled", true);
 
 // MOZILLA UI 
-user_pref("browser.privatebrowsing.vpnpromourl", "");
-user_pref("extensions.getAddons.showPane", false);
-user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
-user_pref("browser.discovery.enabled", false);
-user_pref("browser.shell.checkDefaultBrowser", false)
-user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.aboutConfig.showWarning", false);
-user_pref("browser.aboutwelcome.enabled", false);
+user_pref("browser.preferences.experimental.hidden", false);
 
 // THEME ADJUSTMENTS 
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
@@ -118,3 +80,17 @@ user_pref("browser.urlbar.unitConversion.enabled", true);
 // TABS
 user_pref("browser.tabs.closeWindowWithLastTab", false);
 user_pref("browser.tabs.loadBookmarksInBackground", true);
+
+// BROWSING HISTORY
+user_pref("privacy.history.custom", true);
+user_pref("places.history.enabled", true);
+user_pref("browser.formfill.enable", false);
+
+// ENHANCED TRACKING PROTECTION
+user_pref("browser.contentblocking.category", "custom");
+user_pref("network.cookie.cookieBehavior", 1);
+user_pref("privacy.trackingprotection.enabled", true);
+user_pref("privacy.trackingprotection.pbmode.enabled", true);
+user_pref("privacy.trackingprotection.cryptomining.enabled", true);
+user_pref("privacy.trackingprotection.fingerprinting.enabled", true);
+user_pref("privacy.antitracking.fingerprinting.enforced", true);
