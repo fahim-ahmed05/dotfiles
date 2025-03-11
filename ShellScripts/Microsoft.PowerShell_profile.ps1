@@ -27,6 +27,33 @@ function rmdeskicons {
     }
 }
 
+function cleandloads {
+    $downloadsPath = "$Home\Downloads"
+    $excludeFolders = @("qBittorrent")
+
+    if (Test-Path $downloadsPath) {
+        $items = Get-ChildItem -Path $downloadsPath
+
+        foreach ($item in $items) {
+            if ($item.PSIsContainer -and $excludeFolders -contains $item.Name) {
+                continue
+            }
+
+            try {
+                Remove-ItemSafely $item.FullName
+                Write-Host "Deleted: $($item.FullName)"
+            }
+            catch {
+                Write-Host "Failed to delete: $($item.FullName)"
+            }
+        }
+    }
+    else {
+        Write-Host "Downloads folder does not exist."
+    }
+}
+
+
 # PowerShell
 Set-PSReadLineOption -Colors @{
     Command   = 'Yellow'
