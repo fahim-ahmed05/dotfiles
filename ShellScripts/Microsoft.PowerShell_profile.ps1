@@ -23,7 +23,8 @@ Set-PSReadLineOption -Colors @{
 
 # Terminal
 function reloadterminal { 
-    exit & wt
+    $currentDir = Get-Location
+    exit & wt -d $currentDir
 }
 
 function reloadprofile { 
