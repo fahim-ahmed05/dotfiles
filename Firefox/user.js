@@ -16,13 +16,18 @@ user_pref("media.cache_resume_threshold", 3600);
 // IMAGE CACHE 
 user_pref("image.mem.decode_bytes_at_a_time", 32768);
 
+// DNS CACHE
+user_pref("network.dnsCacheEntries", 1000);
+user_pref("network.dnsCacheExpiration", 3600);
+
 // NETWORK 
 user_pref("network.http.max-connections", 1800);
 user_pref("network.http.max-persistent-connections-per-server", 10);
 user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5);
 user_pref("network.http.pacing.requests.enabled", false);
-user_pref("network.dnsCacheExpiration", 3600);
 user_pref("network.ssl_tokens_cache_capacity", 10240);
+
+// SECURITY
 user_pref("network.dns.disableIPv6", true);
 user_pref("dom.security.https_only_mode", true);
 
@@ -57,9 +62,7 @@ user_pref("mousewheel.default.delta_multiplier_y", 300);
 user_pref("permissions.default.xr", 2);
 user_pref("permissions.default.desktop-notification", 2);
 user_pref("permissions.default.geo", 2);
-
-// TAB PREVIEW ON HOVER
-user_pref("browser.tabs.hoverPreview.enabled", true);
+user_pref("media.autoplay.default", 0);
 
 // MOZILLA UI 
 user_pref("browser.aboutConfig.showWarning", false);
@@ -77,16 +80,18 @@ user_pref("full-screen-api.warning.timeout", 0);
 user_pref("browser.urlbar.suggest.calculator", true);
 user_pref("browser.urlbar.unitConversion.enabled", true);
 
-// TABS
+// TAB BEHAVIOR
 user_pref("browser.tabs.closeWindowWithLastTab", false);
 user_pref("browser.tabs.loadBookmarksInBackground", true);
+user_pref("browser.tabs.hoverPreview.enabled", true);
+user_pref("browser.ctrlTab.sortByRecentlyUsed", true);
 
 // BROWSING HISTORY
 user_pref("privacy.history.custom", true);
 user_pref("places.history.enabled", true);
 user_pref("browser.formfill.enable", false);
 
-// ENHANCED TRACKING PROTECTION
+// TRACKING PROTECTION
 user_pref("browser.contentblocking.category", "custom");
 user_pref("network.cookie.cookieBehavior", 1);
 user_pref("privacy.trackingprotection.enabled", true);
@@ -94,3 +99,12 @@ user_pref("privacy.trackingprotection.pbmode.enabled", true);
 user_pref("privacy.trackingprotection.cryptomining.enabled", true);
 user_pref("privacy.trackingprotection.fingerprinting.enabled", true);
 user_pref("privacy.antitracking.fingerprinting.enforced", true);
+
+// DOWNLOADS
+user_pref("browser.download.manager.addToRecentDocs", false);
+user_pref("browser.download.alwaysOpenPanel", false);
+user_pref("browser.download.always_ask_before_handling_new_types", false);
+
+// ACCESSIBILITY
+user_pref("layout.word_select.eat_space_to_next_word", false);
+user_pref("ui.key.menuAccessKeyFocuses", false);
