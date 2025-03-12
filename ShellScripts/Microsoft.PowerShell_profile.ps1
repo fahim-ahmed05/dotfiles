@@ -92,10 +92,6 @@ function rt {
     exit & wt -d $currentDir
 }
 
-function reloadProfile { 
-    . $PROFILE
-}
-
 # Winget
 function ws {
     winget search @args 
