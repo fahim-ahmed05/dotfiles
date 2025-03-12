@@ -3,7 +3,7 @@
     display: none !important;
 }
 
-/* Hide notification dot on tabs */
+/* Hide activity dot on tabs */
 :root {
   --attention-dot-color: transparent !important;
 }
