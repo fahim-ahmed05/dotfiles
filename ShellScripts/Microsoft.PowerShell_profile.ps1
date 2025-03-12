@@ -85,7 +85,7 @@ Set-PSReadLineOption -Colors @{
 }
 
 # Terminal
-function reloadterminal { 
+function rt { 
     $currentDir = Get-Location
     exit & wt -d $currentDir
 }
