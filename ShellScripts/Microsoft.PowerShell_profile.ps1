@@ -46,15 +46,15 @@ function cleandloads {
 
             try {
                 Remove-ItemSafely $item.FullName
-                Write-Host "Deleted: $($item.FullName)"
+                Write-Host "Deleted: $($item.FullName)" -ForegroundColor Yellow
             }
             catch {
-                Write-Host "Failed to delete: $($item.FullName)"
+                Write-Host "Failed to delete: $($item.FullName)" -ForegroundColor Red
             }
         }
     }
     else {
-        Write-Host "Downloads folder does not exist."
+        Write-Host "Downloads folder does not exist." -ForegroundColor Red
     }
 }
 
