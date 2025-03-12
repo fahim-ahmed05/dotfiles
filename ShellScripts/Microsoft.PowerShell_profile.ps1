@@ -147,7 +147,16 @@ function flushdns {
 function pubip { (Invoke-WebRequest http://ifconfig.me/ip).Content }
 
 # File
-function touch { param($name) New-Item -ItemType "file" -Path . -Name $name }
+function touch {
+    param($name)
+    if (Test-Path $name) {
+        (Get-Item $name).LastWriteTime = Get-Date
+    }
+    else {
+        New-Item -ItemType "file" -Path . -Name $name
+    }
+}
+
 function mkcd { param($dir) mkdir $dir -Force; Set-Location $dir }
 
 # HasteBin
