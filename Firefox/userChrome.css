@@ -1,0 +1,9 @@
+/* Hide close button on vertical tabs */
+.tab-close-button {
+    display: none !important;
+}
+
+/* Hide notification dot on tabs */
+:root {
+  --attention-dot-color: transparent !important;
+}
