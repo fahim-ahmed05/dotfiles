@@ -9,6 +9,11 @@ Set-Alias rm Remove-ItemSafely -Option AllScope
 Set-Alias sudo gsudo -Option AllScope
 
 # Functions
+function ytdlp {
+    yt-dlp.exe --downloader aria2c @args
+    
+}
+
 function rmdeskicons {
     $desktopPaths = @(
         "$Home\Desktop",
