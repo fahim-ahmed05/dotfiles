@@ -14,7 +14,7 @@ function ytdlp {
 }
 
 # Functions
-function rmdeskicons {
+function rmDesktopIcons {
     $desktopPaths = @(
         "$Home\Desktop",
         "C:\Users\Public\Desktop"
@@ -37,7 +37,7 @@ function rmdeskicons {
     }
 }
 
-function cleandloads {
+function cleanDownloads {
     $downloadsPath = "$Home\Downloads"
     $excludeFolders = @("qBittorrent")
 
