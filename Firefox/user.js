@@ -67,6 +67,7 @@ user_pref("media.autoplay.default", 0);
 // MOZILLA UI 
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.preferences.experimental.hidden", false);
+user_pref("browser.preferences.moreFromMozilla", false);
 
 // THEME ADJUSTMENTS 
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
