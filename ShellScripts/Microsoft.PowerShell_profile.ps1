@@ -20,14 +20,14 @@ function rmdeskicons {
             $lnkFiles = Get-ChildItem -Path $path -Filter "*.lnk" -ErrorAction SilentlyContinue
             if ($lnkFiles) {
                 Remove-ItemSafely $lnkFiles.FullName
-                Write-Host "$($lnkFiles.Count) shortcut(s) removed from: $path"
+                Write-Host "$($lnkFiles.Count) shortcut(s) removed from: $path" -ForegroundColor Yellow
             }
             else {
-                Write-Host "No shortcuts found in: $path"
+                Write-Host "No shortcuts found in: $path" -ForegroundColor Green
             }
         }
         else {
-            Write-Host "The path does not exist: $path"
+            Write-Host "The path does not exist: $path" -ForegroundColor Red
         }
     }
 }
