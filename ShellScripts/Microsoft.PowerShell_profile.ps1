@@ -102,7 +102,7 @@ function ws {
 function wi {
     winget install @args --accept-package-agreements --accept-source-agreements
     Start-Sleep -Seconds 1.5
-    rmdeskicons
+    rmDesktopIcons
 }
 
 function wu {
@@ -131,7 +131,7 @@ function wu {
     wsl --update
 
     Write-Host "All updates completed." -ForegroundColor "Green"
-    rmdeskicons
+    rmDesktopIcons
 }
 
 # Network
