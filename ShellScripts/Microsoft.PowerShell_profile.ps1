@@ -63,7 +63,7 @@ function cleanDownloads {
     }
 }
 
-function cleanCache {
+function flushCache {
     Write-Host "Cleaning Windows Prefetch..." -ForegroundColor Yellow
     Remove-Item -Path "$env:SystemRoot\Prefetch\*" -Force -ErrorAction SilentlyContinue
 
@@ -73,7 +73,7 @@ function cleanCache {
     Write-Host "Cleaning User Temp..." -ForegroundColor Yellow
     Remove-Item -Path "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue
 
-    Write-Host "Cache Cleaned." -ForegroundColor Green
+    Write-Host "Cache has been removed." -ForegroundColor Green
 }
 
 
@@ -90,7 +90,7 @@ function rt {
     exit & wt -d $currentDir
 }
 
-function reloadprofile { 
+function reloadProfile { 
     . $PROFILE
 }
 
@@ -193,7 +193,7 @@ function ucrt {
 }
 
 #Sync Music
-function sync-music {
+function syncMusic {
     $currentDir = Get-Location
     Write-Host "Syncing music..." -ForegroundColor "Cyan"
     Set-Location "$HOME\Music\Songs"
