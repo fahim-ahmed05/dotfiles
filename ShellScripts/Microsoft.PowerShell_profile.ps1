@@ -79,6 +79,12 @@ function flushCache {
     Write-Host "Windows cache has been removed." -ForegroundColor Green
 }
 
+function unzip ($file) {
+    Write-Output("Extracting", $file, "to", $pwd)
+    $fullFile = Get-ChildItem -Path $pwd -Filter $file | ForEach-Object { $_.FullName }
+    Expand-Archive -Path $fullFile -DestinationPath $pwd
+}
+
 # PowerShell
 Set-PSReadLineOption -Colors @{
     Command   = 'Yellow'
