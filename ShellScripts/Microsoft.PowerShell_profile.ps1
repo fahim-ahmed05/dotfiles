@@ -64,18 +64,20 @@ function cleanDownloads {
 }
 
 function flushCache {
-    Write-Host "Cleaning Windows Prefetch..." -ForegroundColor Yellow
-    Remove-Item -Path "$env:SystemRoot\Prefetch\*" -Force -ErrorAction SilentlyContinue
+    Write-Host "Removing Windows cache..." -ForegroundColor Yellow
+    
+    if (Test-Path "$env:SystemRoot\Prefetch") {
+        Remove-Item -Path "$env:SystemRoot\Prefetch\*" -Force -ErrorAction SilentlyContinue
+    }
+    if (Test-Path "$env:SystemRoot\Temp") {
+        Remove-Item -Path "$env:SystemRoot\Temp\*" -Recurse -Force -ErrorAction SilentlyContinue
+    }
+    if (Test-Path "$env:TEMP") {
+        Remove-Item -Path "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue
+    }
 
-    Write-Host "Cleaning Windows Temp..." -ForegroundColor Yellow
-    Remove-Item -Path "$env:SystemRoot\Temp\*" -Recurse -Force -ErrorAction SilentlyContinue
-
-    Write-Host "Cleaning User Temp..." -ForegroundColor Yellow
-    Remove-Item -Path "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue
-
-    Write-Host "Cache has been removed." -ForegroundColor Green
+    Write-Host "Windows cache has been removed." -ForegroundColor Green
 }
-
 
 # PowerShell
 Set-PSReadLineOption -Colors @{
