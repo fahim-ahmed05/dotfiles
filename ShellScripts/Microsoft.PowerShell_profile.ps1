@@ -5,7 +5,6 @@ Import-Module -Name Terminal-Icons
 oh-my-posh init pwsh --config 'C:\Users\Fahim\AppData\Local\Programs\oh-my-posh\themes\robbyrussell.omp.json' | Invoke-Expression
 
 # Alias
-Set-Alias rm Remove-ItemSafely -Option AllScope
 Set-Alias sudo gsudo -Option AllScope
 
 # Functions
