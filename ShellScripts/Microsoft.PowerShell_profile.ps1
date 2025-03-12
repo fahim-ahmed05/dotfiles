@@ -8,12 +8,12 @@ oh-my-posh init pwsh --config 'C:\Users\Fahim\AppData\Local\Programs\oh-my-posh\
 Set-Alias rm Remove-ItemSafely -Option AllScope
 Set-Alias sudo gsudo -Option AllScope
 
-# Functions
 function ytdlp {
     yt-dlp.exe --downloader aria2c @args
     
 }
 
+# Functions
 function rmdeskicons {
     $desktopPaths = @(
         "$Home\Desktop",
@@ -61,6 +61,19 @@ function cleandloads {
     else {
         Write-Host "Downloads folder does not exist." -ForegroundColor Red
     }
+}
+
+function cleanCache {
+    Write-Host "Cleaning Windows Prefetch..." -ForegroundColor Yellow
+    Remove-Item -Path "$env:SystemRoot\Prefetch\*" -Force -ErrorAction SilentlyContinue
+
+    Write-Host "Cleaning Windows Temp..." -ForegroundColor Yellow
+    Remove-Item -Path "$env:SystemRoot\Temp\*" -Recurse -Force -ErrorAction SilentlyContinue
+
+    Write-Host "Cleaning User Temp..." -ForegroundColor Yellow
+    Remove-Item -Path "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue
+
+    Write-Host "Cache Cleaned." -ForegroundColor Green
 }
 
 
