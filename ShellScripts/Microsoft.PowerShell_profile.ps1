@@ -157,7 +157,13 @@ function touch {
     }
 }
 
-function mkcd { param($dir) mkdir $dir -Force; Set-Location $dir }
+function mkcd {
+    param($dir)
+    if (-Not (Test-Path -Path $dir -PathType Container)) {
+        New-Item -ItemType Directory -Path $dir -Force
+    }
+    Set-Location $dir
+}
 
 # HasteBin
 function hb {
