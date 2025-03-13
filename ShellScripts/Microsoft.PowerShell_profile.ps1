@@ -85,7 +85,7 @@ function unzip ($file) {
     Expand-Archive -Path $fullFile -DestinationPath $pwd
 }
 
-# PowerShell
+# PSReadLine
 $PSReadLineOptions = @{
     EditMode = 'Windows'
     HistoryNoDuplicates = $true
@@ -114,6 +114,9 @@ Set-PSReadLineOption -AddToHistoryHandler {
     $hasSensitive = $sensitive | Where-Object { $line -match $_ }
     return ($null -eq $hasSensitive)
 }
+
+Set-PSReadLineOption -PredictionSource HistoryAndPlugin
+Set-PSReadLineOption -MaximumHistoryCount 10000
 
 # Terminal
 function rt { 
