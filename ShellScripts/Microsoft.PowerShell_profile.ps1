@@ -118,7 +118,7 @@ Set-PSReadLineOption -AddToHistoryHandler {
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -MaximumHistoryCount 10000
 
-# Terminal
+# Windows Terminal
 function rt { 
     $currentDir = Get-Location
     exit & wt -d $currentDir
