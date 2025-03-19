@@ -71,6 +71,8 @@ user_pref("browser.preferences.moreFromMozilla", false);
 
 // THEME ADJUSTMENTS 
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+user_pref("widget.windows.mica", true);
+user_pref("widget.windows.mica.popups", true);
 
 // FULLSCREEN NOTICE 
 user_pref("full-screen-api.transition-duration.enter", "0 0");
