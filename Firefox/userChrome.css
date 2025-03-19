@@ -18,4 +18,5 @@ moz-button[extensionId="jid0-adyhmvsP91nUO8pRv0Mn2VKeB84@jetpack"] {
   display: none !important;
 }
 
+/* Make new tab background transparent */
 :root { --tabpanel-background-color: #00000000 !important; }
