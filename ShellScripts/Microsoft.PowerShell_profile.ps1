@@ -241,7 +241,7 @@ function ucrt {
 function syncMusic {
     $currentDir = Get-Location
     Write-Host "Syncing music..." -ForegroundColor "Cyan"
-    Set-Location "$HOME\Music\Songs"
+    Set-Location "$HOME\Music\YouTube Music"
     spotdl.exe $env:MUSIC_PLAYLIST_URL
     Write-Host "Music has been synced." -ForegroundColor "Cyan"
     Set-Location $currentDir
