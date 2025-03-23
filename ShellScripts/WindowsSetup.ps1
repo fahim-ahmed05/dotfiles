@@ -7,28 +7,23 @@ $installPipX = $true
 $installPipxPackages = $true
 $installNerdFonts = $true
 $installPsModules = $true
+$removeDesktopIcons = $true
 
 Write-Host "Windows Setup script started..." -ForegroundColor Yellow
 
 # Ensure PowerShell profile exists
 if ($createPowerShellProfile) {
-    $profilePath1 = "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" # Windows PowerShell
-    $profilePath2 = "$env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"        # PowerShell 7
-    $profilePath3 = "$env:USERPROFILE\Documents\Powershell\Microsoft.VSCode_profile.ps1"            # Visual Studio Code
+    $profilePaths = @(
+        "$Home\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1", # Windows PowerShell
+        "$Home\Documents\PowerShell\Microsoft.PowerShell_profile.ps1",        # PowerShell 7
+        "$Home\Documents\PowerShell\Microsoft.VSCode_profile.ps1"             # Visual Studio Code
+    )
 
-    if (!(Test-Path $profilePath1)) {
-        New-Item -Path $profilePath1 -ItemType File -Force
-        Write-Host "Windows PowerShell profile created." -ForegroundColor Green
-    }
-
-    if (!(Test-Path $profilePath2)) {
-        New-Item -Path $profilePath2 -ItemType File -Force
-        Write-Host "PowerShell 7 profile created." -ForegroundColor Green
-    }
-
-    if (!(Test-Path $profilePath3)) {
-        New-Item -Path $profilePath3 -ItemType File -Force
-        Write-Host "Visual Studio Code profile created." -ForegroundColor Green
+    foreach ($profilePath in $profilePaths) {
+        if (!(Test-Path $profilePath)) {
+            New-Item -Path $profilePath -ItemType File -Force
+            Write-Host "$profilePath created." -ForegroundColor Green
+        }
     }
 }
 
@@ -147,6 +142,24 @@ if ($installPsModules) {
     gsudo "Install-Module -Name Recycle -RequiredVersion 1.5.0 -Force"       # Recycle
     gsudo "Install-Module -Name Terminal-Icons -Repository PSGallery -Force" # Terminal-Icons
     gsudo "Install-Module -Name z -AllowClobber -Force"                      # z
+}
+
+# Remove desktop icons
+if($removeDesktopIcons) {
+    $desktopPaths = @(
+        "$Home\Desktop",
+        "C:\Users\Public\Desktop"
+    )
+
+    foreach ($path in $desktopPaths) {
+        if (Test-Path $path) {
+            $lnkFiles = Get-ChildItem -Path $path -Filter "*.lnk" -ErrorAction SilentlyContinue
+            if ($lnkFiles) {
+                Remove-ItemSafely $lnkFiles.FullName
+            }
+        }
+    }
+    Write-Host "Desktop icons have been removed." -ForegroundColor Green
 }
 
 Write-Host "Windows Setup script completed successfully!" -ForegroundColor Green
