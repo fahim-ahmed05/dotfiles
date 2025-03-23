@@ -25,16 +25,10 @@ function rmDesktopIcons {
             $lnkFiles = Get-ChildItem -Path $path -Filter "*.lnk" -ErrorAction SilentlyContinue
             if ($lnkFiles) {
                 Remove-ItemSafely $lnkFiles.FullName
-                Write-Host "$($lnkFiles.Count) shortcut(s) removed from: $path" -ForegroundColor Yellow
             }
-            else {
-                Write-Host "No shortcuts found in: $path" -ForegroundColor Green
-            }
-        }
-        else {
-            Write-Host "The path does not exist: $path" -ForegroundColor Red
         }
     }
+    Write-Host "Desktop icons have been removed." -ForegroundColor Green
 }
 
 function cleanDownloads {
@@ -87,24 +81,24 @@ function unzip ($file) {
 
 # PSReadLine
 $PSReadLineOptions = @{
-    EditMode = 'Windows'
-    HistoryNoDuplicates = $true
+    EditMode                      = 'Windows'
+    HistoryNoDuplicates           = $true
     HistorySearchCursorMovesToEnd = $true
-    Colors = @{
-        Command = '#87CEEB'  # SkyBlue
+    Colors                        = @{
+        Command   = '#87CEEB'  # SkyBlue
         Parameter = '#98FB98'  # PaleGreen
-        Operator = '#FFB6C1'  # LightPink
-        Variable = '#DDA0DD'  # Plum
-        String = '#FFDAB9'  # PeachPuff
-        Number = '#B0E0E6'  # PowderBlue
-        Type = '#F0E68C'  # Khaki
-        Comment = '#D3D3D3'  # LightGray
-        Keyword = '#8367c7'  # Violet
-        Error = '#FF6347'  # Red
+        Operator  = '#FFB6C1'  # LightPink
+        Variable  = '#DDA0DD'  # Plum
+        String    = '#FFDAB9'  # PeachPuff
+        Number    = '#B0E0E6'  # PowderBlue
+        Type      = '#F0E68C'  # Khaki
+        Comment   = '#D3D3D3'  # LightGray
+        Keyword   = '#8367c7'  # Violet
+        Error     = '#FF6347'  # Red
     }
-    PredictionSource = 'History'
-    PredictionViewStyle = 'ListView'
-    BellStyle = 'None'
+    PredictionSource              = 'History'
+    PredictionViewStyle           = 'ListView'
+    BellStyle                     = 'None'
 }
 Set-PSReadLineOption @PSReadLineOptions
 
