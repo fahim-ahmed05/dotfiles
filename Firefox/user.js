@@ -84,7 +84,7 @@ user_pref("browser.urlbar.suggest.calculator", true);
 user_pref("browser.urlbar.unitConversion.enabled", true);
 
 // TAB BEHAVIOR
-user_pref("browser.tabs.closeWindowWithLastTab", false);
+user_pref("browser.tabs.closeWindowWithLastTab", true);
 user_pref("browser.tabs.loadBookmarksInBackground", true);
 user_pref("browser.tabs.hoverPreview.enabled", true);
 user_pref("browser.ctrlTab.sortByRecentlyUsed", true);
