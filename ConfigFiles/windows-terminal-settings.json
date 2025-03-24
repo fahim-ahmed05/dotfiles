@@ -54,7 +54,7 @@
     ],
     "profiles": {
         "defaults": {
-            "bellStyle": "window",
+            "bellStyle": "none",
             "colorScheme": {
                 "light": "Campbell"
             },
