@@ -164,7 +164,7 @@ if ($installNerdFonts) {
 # Install Powershell modules
 if ($installPsModules) {
     Write-Host "Installing PowerShell modules..." -ForegroundColor Cyan
-    Start-Process powershell -ArgumentList "-Command Install-PackageProvider -Name NuGet -Force" -Verb RunAs
+    Start-Process powershell -ArgumentList "-Command Install-PackageProvider -Name NuGet -Force" -Verb RunAs -Wait
 
     $psModules = @(
         "PowerShellGet",
@@ -175,7 +175,7 @@ if ($installPsModules) {
     )
 
     foreach ($module in $psModules) {
-        Start-Process powershell -ArgumentList "-Command Install-Module -Name $module -Force" -Verb RunAs
+        Start-Process powershell -ArgumentList "-Command Install-Module -Name $module -Force" -Verb RunAs -Wait
     }
 }
 
