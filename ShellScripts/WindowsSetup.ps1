@@ -22,7 +22,6 @@ if ($createPowerShellProfile) {
     foreach ($profilePath in $profilePaths) {
         if (!(Test-Path $profilePath)) {
             New-Item -Path $profilePath -ItemType File -Force
-            Write-Host "$profilePath created." -ForegroundColor Green
         }
     }
 }
@@ -31,9 +30,9 @@ if ($createPowerShellProfile) {
 if ($installMicrosoftStoreApps) {
     Write-Host "Installing Microsoft Store apps..." -ForegroundColor Cyan
     $msstoreApps = @(
-        "9PLJWWSV01LK", # Twinkle Tray
+        #"9PLJWWSV01LK", # Twinkle Tray
         "9nbdxk71nk08", # WhatsApp Beta
-        "9P4CLT2RJ1RS", # MusicBee
+        #"9P4CLT2RJ1RS", # MusicBee
         "9pfd136m8457", # FluentWeather
         "9pm860492szd", # Microsoft PC Manager
         "9nblggh5r558", # Microsoft To Do
