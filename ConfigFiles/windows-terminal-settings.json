@@ -149,6 +149,16 @@
                 "hidden": true,
                 "source": "Windows.Terminal.Azure",
                 "name": "Azure Cloud Shell"
+            },
+            {
+                "cursorShape": "bar",
+                "font": {
+                    "face": "UbuntuMono Nerd Font"
+                },
+                "guid": "{b9b69fbe-ea04-5754-ba89-dd27dd73fc16}",
+                "hidden": true,
+                "name": "Ubuntu",
+                "source": "Microsoft.WSL"
             }
         ]
     },
