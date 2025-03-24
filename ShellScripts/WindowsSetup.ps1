@@ -1,6 +1,6 @@
 $createPowerShellProfile = $true
-$installMicrosoftStoreApps = $true
 $configureWinget = $true
+$installMicrosoftStoreApps = $true
 $installOtherPackages = $true
 $disableOmpStartupNotice = $true
 $setupScoop = $true
@@ -24,24 +24,6 @@ if ($createPowerShellProfile) {
         if (!(Test-Path $profilePath)) {
             New-Item -Path $profilePath -ItemType File -Force
         }
-    }
-}
-
-# Install Microsoft Store apps via winget
-if ($installMicrosoftStoreApps) {
-    Write-Host "Installing Microsoft Store apps via winget..." -ForegroundColor Cyan
-    $msstoreApps = @(
-        #"9PLJWWSV01LK", # Twinkle Tray
-        "9nbdxk71nk08", # WhatsApp Beta
-        #"9P4CLT2RJ1RS", # MusicBee
-        "9pfd136m8457", # FluentWeather
-        "9pm860492szd", # Microsoft PC Manager
-        "9nblggh5r558", # Microsoft To Do
-        "9nctdw2w1bh8"  # Raw Image Extension
-    )
-
-    foreach ($app in $msstoreApps) {
-        winget install $app --source msstore --accept-package-agreements --accept-source-agreements
     }
 }
 
@@ -71,6 +53,24 @@ if ($configureWinget) {
     Set-Content -Path $wingetSettingsPath -Value $wingetSettings
 
     Write-Host "Winget configuration done." -ForegroundColor Green
+}
+
+# Install Microsoft Store apps via winget
+if ($installMicrosoftStoreApps) {
+    Write-Host "Installing Microsoft Store apps via winget..." -ForegroundColor Cyan
+    $msstoreApps = @(
+        #"9PLJWWSV01LK", # Twinkle Tray
+        "9nbdxk71nk08", # WhatsApp Beta
+        #"9P4CLT2RJ1RS", # MusicBee
+        "9pfd136m8457", # FluentWeather
+        "9pm860492szd", # Microsoft PC Manager
+        "9nblggh5r558", # Microsoft To Do
+        "9nctdw2w1bh8"  # Raw Image Extension
+    )
+
+    foreach ($app in $msstoreApps) {
+        winget install $app --source msstore --accept-package-agreements --accept-source-agreements
+    }
 }
 
 # Install apps via winget
