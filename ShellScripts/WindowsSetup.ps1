@@ -4,7 +4,7 @@ $installMicrosoftStoreApps = $true
 $installOtherPackages = $true
 $disableOmpStartupNotice = $true
 $setupScoop = $true
-$installPipX = $true
+$setupPipX = $true
 $installPipxPackages = $true
 $installNerdFonts = $true
 $installPsModules = $true
@@ -132,7 +132,7 @@ if ($setupScoop) {
 }
 
 # Install pipx and add to path
-if ($installPipX) {
+if ($setupPipX) {
     Write-Host "Setting up pipx..." -ForegroundColor Cyan
     scoop install pipx
     pipx ensurepath
