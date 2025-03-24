@@ -1,5 +1,6 @@
 $createPowerShellProfile = $true
 $installMicrosoftStoreApps = $true
+$configureWinget = $true
 $installOtherPackages = $true
 $disableOmpStartupNotice = $true
 $setupScoop = $true
@@ -42,6 +43,35 @@ if ($installMicrosoftStoreApps) {
     foreach ($app in $msstoreApps) {
         winget install $app --source msstore --accept-package-agreements --accept-source-agreements
     }
+}
+
+# Configure winget
+if ($configureWinget) {
+    $wingetSettingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json"
+    if (-Not (Test-Path $wingetSettingsPath)) {
+        New-Item -Path $wingetSettingsPath -ItemType File -Force
+    }
+
+    $wingetSettings = @"
+{
+    "`$schema": "https://aka.ms/winget-settings.schema.json",
+    // For documentation on these settings, see: https://aka.ms/winget-settings
+    "network": {
+        "downloader": "wininet",
+        "doProgressTimeoutInSeconds": 10
+    },
+    "telemetry": {
+        "disable": true
+    },
+    "uninstallBehavior": {
+        "purgePortablePackage": true
+    }
+}
+"@
+
+    Set-Content -Path $wingetSettingsPath -Value $wingetSettings
+
+    Write-Host "Winget configuration done." -ForegroundColor Green
 }
 
 # Install apps via winget
