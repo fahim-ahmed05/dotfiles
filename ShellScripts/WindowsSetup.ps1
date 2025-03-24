@@ -133,7 +133,7 @@ if ($setupScoop) {
 
 # Install pipx and add to path
 if ($installPipX) {
-    Write-Host "Installing pipx..." -ForegroundColor Cyan
+    Write-Host "Setting up pipx..." -ForegroundColor Cyan
     scoop install pipx
     pipx ensurepath
 }
@@ -164,6 +164,7 @@ if ($installNerdFonts) {
 # Install Powershell modules
 if ($installPsModules) {
     Write-Host "Installing PowerShell modules..." -ForegroundColor Cyan
+    Start-Process powershell -ArgumentList "-Command Install-PackageProvider -Name NuGet -Force" -Verb RunAs
 
     $psModules = @(
         "PowerShellGet",
