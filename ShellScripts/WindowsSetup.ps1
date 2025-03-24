@@ -28,7 +28,7 @@ if ($createPowerShellProfile) {
 
 # Install Microsoft Store apps via winget
 if ($installMicrosoftStoreApps) {
-    Write-Host "Installing Microsoft Store apps..." -ForegroundColor Cyan
+    Write-Host "Installing Microsoft Store apps via winget..." -ForegroundColor Cyan
     $msstoreApps = @(
         #"9PLJWWSV01LK", # Twinkle Tray
         "9nbdxk71nk08", # WhatsApp Beta
@@ -44,9 +44,9 @@ if ($installMicrosoftStoreApps) {
     }
 }
 
-# Install other packages via winget
+# Install apps via winget
 if ($installOtherPackages) {
-    Write-Host "`nInstalling other applications via winget..." -ForegroundColor Cyan
+    Write-Host "Installing apps via winget..." -ForegroundColor Cyan
     $wingetPackages = @(
         "JanDeDobbeleer.OhMyPosh",              # Oh My Posh
         "Microsoft.PowerShell",                 # PowerShell
@@ -111,7 +111,7 @@ if ($installPipX) {
 
 # Install yt-dlp and spotdl with pipx
 if ($installPipxPackages) {
-    Write-Host "`nInstalling packages via pipx..." -ForegroundColor Cyan
+    Write-Host "Installing python packages via pipx..." -ForegroundColor Cyan
     $pipxPackages = @(
         "yt-dlp",
         "spotdl"
@@ -124,7 +124,7 @@ if ($installPipxPackages) {
 
 # Install Nerd Fonts
 if ($installNerdFonts) {
-    Write-Host "`nInstalling Nerd Fonts..." -ForegroundColor Cyan
+    Write-Host "Installing Nerd Fonts via scoop..." -ForegroundColor Cyan
     scoop bucket add nerd-fonts
     scoop install nerd-fonts/JetBrainsMono-NF
     scoop install nerd-fonts/CascadiaMono-NF
@@ -134,7 +134,7 @@ if ($installNerdFonts) {
 
 # Install Powershell modules
 if ($installPsModules) {
-    Write-Host "`nInstalling PowerShell modules..." -ForegroundColor Cyan
+    Write-Host "Installing PowerShell modules..." -ForegroundColor Cyan
 
     gsudo "Install-Module -Name PowerShellGet -Force"                        # PowerShellGet
     gsudo "Install-Module PSReadLine -AllowPrerelease -Force"                # PSReadLine
