@@ -57,7 +57,6 @@ if ($configureWinget) {
     "`$schema": "https://aka.ms/winget-settings.schema.json",
     // For documentation on these settings, see: https://aka.ms/winget-settings
     "network": {
-        "downloader": "wininet",
         "doProgressTimeoutInSeconds": 10
     },
     "telemetry": {
