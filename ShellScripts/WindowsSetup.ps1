@@ -136,11 +136,17 @@ if ($installNerdFonts) {
 if ($installPsModules) {
     Write-Host "Installing PowerShell modules..." -ForegroundColor Cyan
 
-    Start-Process powershell -ArgumentList "gsudo 'Install-Module -Name PowerShellGet -Force'" -Verb RunAs
-    Start-Process powershell -ArgumentList "gsudo 'Install-Module PSReadLine -AllowPrerelease -Force'" -Verb RunAs
-    Start-Process powershell -ArgumentList "gsudo 'Install-Module -Name Recycle -RequiredVersion 1.5.0 -Force'" -Verb RunAs
-    Start-Process powershell -ArgumentList "gsudo 'Install-Module -Name Terminal-Icons -Repository PSGallery -Force'" -Verb RunAs
-    Start-Process powershell -ArgumentList "gsudo 'Install-Module -Name z -AllowClobber -Force'" -Verb RunAs
+    $psModules = @(
+        "PowerShellGet",
+        "PSReadLine -AllowPrerelease",
+        "Recycle -RequiredVersion 1.5.0",
+        "Terminal-Icons -Repository PSGallery",
+        "z -AllowClobber"
+    )
+
+    foreach ($module in $psModules) {
+        Start-Process powershell -ArgumentList "-Command Install-Module -Name $module -Force" -Verb RunAs
+    }
 }
 
 # Remove desktop icons
