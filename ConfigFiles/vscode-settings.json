@@ -2,7 +2,7 @@
     "workbench.startupEditor": "none",
     "workbench.tips.enabled": false,
     "workbench.list.smoothScrolling": true,
-    "editor.fontFamily": "JetBrainsMono Nerd Font, Consolas, 'Courier New', monospace",
+    "editor.fontFamily": "'JetBrainsMono Nerd Font', Consolas, 'Courier New', monospace",
     "editor.fontLigatures": true,
     "editor.minimap.enabled": false,
     "editor.renderWhitespace": "none",
@@ -27,7 +27,8 @@
     "powershell.integratedConsole.showOnStartup": false,
     "powershell.integratedConsole.suppressStartupBanner": true,
     "git.confirmSync": false,
-    "update.mode": "manual",
+    "update.mode": "start",
     "update.showReleaseNotes": false,
-    "git.openRepositoryInParentFolders": "always"
+    "git.openRepositoryInParentFolders": "always",
+    "editor.wordWrap": "on"
 }
