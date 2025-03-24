@@ -5,10 +5,10 @@
 	},
 	"window-maximized": false,
 	"window-position": {
-		"x": 228,
-		"y": 54
+		"x": 230,
+		"y": 64
 	},
-	"url": "https://music.youtube.com/",
+	"url": "",
 	"options": {
 		"tray": false,
 		"appVisible": true,
@@ -28,7 +28,9 @@
 		"startingPage": "",
 		"overrideUserAgent": false,
 		"usePodcastParticipantAsArtist": false,
-		"themes": []
+		"themes": [
+			""
+		]
 	},
 	"plugins": {
 		"notifications": {
@@ -52,6 +54,7 @@
 			"globalShortcuts": {}
 		},
 		"discord": {
+			"playOnYouTubeMusic": true,
 			"listenAlong": true
 		},
 		"ambient-mode": {
@@ -73,23 +76,6 @@
 		"lyrics-genius": {
 			"enabled": true,
 			"romanizedLyrics": true
-		},
-		"picture-in-picture": {
-			"enabled": false,
-			"alwaysOnTop": true,
-			"savePosition": true,
-			"saveSize": false,
-			"hotkey": "P",
-			"pip-position": [
-				10,
-				10
-			],
-			"pip-size": [
-				450,
-				275
-			],
-			"isInPiP": false,
-			"useNativePiP": true
 		},
 		"sponsorblock": {
 			"enabled": true
@@ -131,8 +117,8 @@
 			"enabled": true
 		},
 		"captions-selector": {
-			"enabled": false,
-			"disableCaptions": false,
+			"enabled": true,
+			"disableCaptions": true,
 			"autoload": true,
 			"lastCaptionsCode": "en"
 		},
@@ -141,7 +127,7 @@
 		},
 		"downloader": {
 			"enabled": true,
-			"downloadFolder": "C:\\Users\\Fahim\\Music\\YouTube Music",
+			"downloadFolder": "",
 			"downloadOnFinish": {
 				"enabled": false,
 				"seconds": 20,
@@ -160,6 +146,12 @@
 		},
 		"in-app-menu": {
 			"enabled": true
+		},
+		"crossfade": {
+			"enabled": false
+		},
+		"equalizer": {
+			"enabled": false
 		}
 	},
 	"__internal__": {
