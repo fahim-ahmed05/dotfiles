@@ -9,6 +9,7 @@ $installPipxPackages = $true
 $installNerdFonts = $true
 $installPsModules = $true
 $removeDesktopIcons = $true
+$configureGit = $true
 
 Write-Host "Windows Setup script started..." -ForegroundColor Yellow
 
@@ -52,7 +53,7 @@ if ($configureWinget) {
 
     Set-Content -Path $wingetSettingsPath -Value $wingetSettings
 
-    Write-Host "Winget configuration done." -ForegroundColor Green
+    Write-Host "Winget configuration has been successfully set up!" -ForegroundColor Green
 }
 
 # Install Microsoft Store apps via winget
@@ -195,6 +196,49 @@ if($removeDesktopIcons) {
         }
     }
     Write-Host "Desktop icons have been removed." -ForegroundColor Green
+}
+
+# Configure Git
+if($configureGit){
+if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+    Write-Host "Git is not installed. Please install Git first." -ForegroundColor Red
+    exit
+}
+
+$sshFolder = "$Home\.ssh"
+$sshConfigPath = "$sshFolder\config"
+$url = "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ConfigFiles/ssh-config"
+
+if (!(Test-Path $sshFolder)) {
+    Write-Host "Creating .ssh directory..." -ForegroundColor Yellow
+    New-Item -ItemType Directory -Path $sshFolder -Force
+}
+
+if(!(Test-Path $sshConfigPath)){
+    Write-Host "Downloading ssh-config file..." -ForegroundColor Yellow
+    Invoke-WebRequest -Uri $url -OutFile $sshConfigPath
+}
+
+Write-Host "Setting up Git configuration..." -ForegroundColor Cyan
+$gitConfigs = @{
+    "user.name" = "Fahim Ahmed"
+    "user.email" = "fahim.ahmed05@outlook.com"
+    "user.signingkey" = "C:\Users\Fahim\.ssh\github_sign"
+    "gpg.format" = "ssh"
+    "commit.gpgsign" = "true"
+    "tag.gpgsign" = "true"
+    "alias.st" = "status"
+    "alias.co" = "checkout"
+    "alias.br" = "branch"
+    "alias.cm" = "commit -m"
+}
+
+foreach ($key in $gitConfigs.Keys) {
+    git config --global $key $gitConfigs[$key]
+    Write-Host "Set $key to $($gitConfigs[$key])" -ForegroundColor Yellow
+}
+
+Write-Host "Git configuration has been successfully set up!" -ForegroundColor Green
 }
 
 Write-Host "Windows Setup script completed successfully!" -ForegroundColor Green
