@@ -131,6 +131,7 @@ function wi {
 
 function wu {
     Write-Host "Updating winget packages..." -ForegroundColor "Cyan"
+    winget source update
     winget upgrade --all --accept-package-agreements --accept-source-agreements
     
     Write-Host "Updating scoop packages..." -ForegroundColor "Cyan"
