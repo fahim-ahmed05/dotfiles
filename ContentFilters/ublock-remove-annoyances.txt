@@ -1,7 +1,7 @@
 ! Title: Random Site Annoyances
 ! Description: Removes random annoying elements from websites
-! Version: 1.7.8
-! Last modified: 2024-1-6 2:30 am
+! Version: 1.7.9
+! Last modified: 2025-3-28 3:14 am
 ! Expires: 2 weeks (update frequency)
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
@@ -14,3 +14,6 @@ www.reddit.com##alert-controller
 
 ! trakt.tv - Hide banner ad from dashboard & profile
 trakt.tv###om1gYCfRiN-IGJj59JMAC-wrapper
+
+! x.com - Hide not verified banner on profile
+x.com##.css-175oi2r.r-dnmrzs.r-nsbfu8
