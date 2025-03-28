@@ -89,8 +89,7 @@ if ($installOtherPackages) {
         "gerardog.gsudo",                       # gsudo
         "Cloudflare.Warp",                      # Cloudflare WARP
         "voidtools.Everything",                 # Everything
-        #"SyncTrayzor.SyncTrayzor",             # SyncTrayzor
-        #"Brave.Brave",                         # Brave Browser
+        "Brave.Brave",                          # Brave Browser
         "ONLYOFFICE.DesktopEditors",            # ONLYOFFICE Desktop Editors
         "Tonec.InternetDownloadManager",        # Internet Download Manager
         #"CodecGuide.K-LiteCodecPack.Standard", # K-Lite Codec Pack Standard
@@ -102,9 +101,9 @@ if ($installOtherPackages) {
         #"Microsoft.VisualStudioCode",          # Visual Studio Code
         "SumatraPDF.SumatraPDF",                # SumatraPDF
         "aria2.aria2",                          # aria2
-        "Stremio.Stremio",                      # Stremio Beta
+        "Stremio.Stremio",                      # Stremio
         #"KDE.Kdenlive",                        # Kdenlive
-        #"OpenWhisperSystems.Signal.Beta",      # Signal Beta
+        "OpenWhisperSystems.Signal",            # Signal Beta
         "PrestonN.FreeTube",                    # FreeTube
         "th-ch.YouTubeMusic",                   # YouTube Music
         "QL-Win.QuickLook",                     # QuickLook
