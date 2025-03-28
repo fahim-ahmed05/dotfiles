@@ -102,7 +102,7 @@ if ($installOtherPackages) {
         #"Microsoft.VisualStudioCode",          # Visual Studio Code
         "SumatraPDF.SumatraPDF",                # SumatraPDF
         "aria2.aria2",                          # aria2
-        "Stremio.Stremio.Beta",                 # Stremio Beta
+        "Stremio.Stremio",                      # Stremio Beta
         #"KDE.Kdenlive",                        # Kdenlive
         #"OpenWhisperSystems.Signal.Beta",      # Signal Beta
         "PrestonN.FreeTube",                    # FreeTube
