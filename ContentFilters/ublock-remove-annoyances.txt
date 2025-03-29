@@ -1,7 +1,7 @@
 ! Title: Random Site Annoyances
 ! Description: Removes random annoying elements from websites
-! Version: 1.7.9
-! Last modified: 2025-3-28 3:14 am
+! Version: 1.8.0
+! Last modified: 2025-3-29 12:35 pm
 ! Expires: 2 weeks (update frequency)
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
@@ -17,3 +17,10 @@ trakt.tv###om1gYCfRiN-IGJj59JMAC-wrapper
 
 ! x.com - Hide not verified banner on profile
 x.com##.css-175oi2r.r-dnmrzs.r-nsbfu8
+
+! x.com - Hide get blue badge banner from right sidebar
+x.com##.css-175oi2r.r-1habvwh.r-1ssbvtb.r-1mmae3n.r-3pj75a
+
+! x.com - Hide a line on right sidebar
+x.com##div.css-175oi2r.r-kemksi.r-1kqtdi0.r-1867qdf.r-1phboty.r-rs99b7.r-1ifxtd0.r-1udh08x:nth-of-type(3)
+x.com##.css-175oi2r.r-vacyoi.r-ttdzmv > div.css-175oi2r:nth-of-type(3) > .css-175oi2r.r-kemksi.r-1kqtdi0.r-1867qdf.r-1phboty.r-rs99b7.r-1ifxtd0.r-1udh08x
