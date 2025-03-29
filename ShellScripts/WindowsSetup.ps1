@@ -78,6 +78,8 @@ if ($installMicrosoftStoreApps) {
 if ($installOtherPackages) {
     Write-Host "Installing apps via winget..." -ForegroundColor Cyan
     $wingetPackages = @(
+        "junegunn.fzf",                         # fzf
+        "ajeetdsouza.zoxide",                   # Zoxide
         "JanDeDobbeleer.OhMyPosh",              # Oh My Posh
         "Microsoft.PowerShell",                 # PowerShell
         "7zip.7zip",                            # 7-Zip
@@ -171,7 +173,7 @@ if ($installPsModules) {
         "PSReadLine -AllowPrerelease",
         "Recycle -RequiredVersion 1.5.0",
         "Terminal-Icons -Repository PSGallery",
-        "z -AllowClobber"
+        #"z -AllowClobber"
     )
 
     foreach ($module in $psModules) {
