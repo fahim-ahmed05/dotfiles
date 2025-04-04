@@ -87,7 +87,7 @@ user_pref("browser.urlbar.unitConversion.enabled", true);
 user_pref("browser.tabs.closeWindowWithLastTab", true);
 user_pref("browser.tabs.loadBookmarksInBackground", true);
 user_pref("browser.tabs.hoverPreview.enabled", true);
-user_pref("browser.ctrlTab.sortByRecentlyUsed", true);
+user_pref("browser.ctrlTab.sortByRecentlyUsed", false);
 
 // BROWSING HISTORY
 user_pref("privacy.history.custom", true);
