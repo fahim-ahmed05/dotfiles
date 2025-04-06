@@ -173,7 +173,7 @@ if ($installPsModules) {
         "PowerShellGet",
         "PSReadLine -AllowPrerelease",
         "Recycle -RequiredVersion 1.5.0",
-        "Terminal-Icons -Repository PSGallery",
+        "Terminal-Icons -Repository PSGallery"
         #"z -AllowClobber"
     )
 
