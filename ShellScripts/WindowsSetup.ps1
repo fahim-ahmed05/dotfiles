@@ -52,6 +52,7 @@ if ($configureWinget) {
 "@
 
     Set-Content -Path $wingetSettingsPath -Value $wingetSettings
+    winget source update
 
     Write-Host "Winget configuration has been successfully set up!" -ForegroundColor Green
 }
