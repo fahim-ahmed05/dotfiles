@@ -120,6 +120,7 @@ function rt {
 
 # Winget
 function ws {
+    winget source update
     winget search @args 
 }
 
