@@ -61,7 +61,7 @@ function flushCache {
     Write-Host "Removing Windows cache..." -ForegroundColor Yellow
     
     if (Test-Path "$env:SystemRoot\Prefetch") {
-        Remove-Item -Path "$env:SystemRoot\Prefetch\*" -Force -ErrorAction SilentlyContinue
+        Remove-Item -Path "$env:SystemRoot\Prefetch\*" -Force -Recurse -ErrorAction SilentlyContinue
     }
     if (Test-Path "$env:SystemRoot\Temp") {
         Remove-Item -Path "$env:SystemRoot\Temp\*" -Recurse -Force -ErrorAction SilentlyContinue
