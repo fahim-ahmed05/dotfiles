@@ -161,7 +161,7 @@ function wu {
 }
 
 # Network
-function flushdns {
+function flushDNS {
     Clear-DnsClientCache
     Write-Host "DNS cache has been removed." -ForegroundColor "Green"
 }
