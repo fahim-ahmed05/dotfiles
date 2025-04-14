@@ -19,7 +19,6 @@ foreach ($folder in $folders) {
 
     # Compress the folder's contents into a zip
     & "$sevenZipPath" a -tzip "$zipPath" "$folderPath\*" | Out-Null
-
     Write-Host ("Zipped: {0}" -f $zipName) -ForegroundColor Green
 
     # Delete the original folder after successful compression
