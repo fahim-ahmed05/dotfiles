@@ -112,3 +112,4 @@ user_pref("browser.download.always_ask_before_handling_new_types", false);
 user_pref("browser.urlbar.update2.engineAliasRefresh", true);
 user_pref("layout.word_select.eat_space_to_next_word", false);
 user_pref("ui.key.menuAccessKeyFocuses", false);
+user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled", true);
