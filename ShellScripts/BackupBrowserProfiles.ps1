@@ -1,5 +1,5 @@
 # Close any running instances of Firefox, Brave, and Flow.Launcher
-Write-Host "💀 Closing any running instances of Firefox, Brave, and Flow.Launcher..."
+Write-Host "💀 Closing any running instances of Firefox, Brave, and Flow Launcher..."
 Stop-Process -Name "firefox","brave", "Flow Launcher" -Force -ErrorAction SilentlyContinue
 Write-Host "✅ Done."
 
