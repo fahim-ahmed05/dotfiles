@@ -122,6 +122,8 @@ user_pref("browser.tabs.loadBookmarksInBackground", true);
 user_pref("browser.tabs.hoverPreview.enabled", true);
 user_pref("browser.ctrlTab.sortByRecentlyUsed", false);
 user_pref("browser.tabs.groups.smart.userEnabled", false);
+user_pref("browser.newtabpage.activity-stream.newtabWallpapers.customWallpaper.enabled", true);
+user_pref("browser.newtabpage.activity-stream.system.showWeather", true);
 
 // BROWSING HISTORY
 user_pref("privacy.history.custom", true);
