@@ -90,31 +90,31 @@ if ($installOtherPackages) {
         "Microsoft.PowerToys",                  # PowerToys
         "Notepad++.Notepad++",                  # Notepad++
         "Proton.ProtonVPN",                     # ProtonVPN
-        "gerardog.gsudo",                       # gsudo
+#       "gerardog.gsudo",                       # gsudo
         "Cloudflare.Warp",                      # Cloudflare WARP
         "voidtools.Everything",                 # Everything
         "Brave.Brave",                          # Brave Browser
         "ONLYOFFICE.DesktopEditors",            # ONLYOFFICE Desktop Editors
         "Tonec.InternetDownloadManager",        # Internet Download Manager
-        #"CodecGuide.K-LiteCodecPack.Standard", # K-Lite Codec Pack Standard
+#       "CodecGuide.K-LiteCodecPack.Standard",  # K-Lite Codec Pack Standard
         "qBittorrent.qBittorrent",              # qBittorrent
         "Fastfetch-cli.Fastfetch",              # Fastfetch
         "Flow-Launcher.Flow-Launcher",          # Flow Launcher
-        #"Google.PlatformTools",                # Google Platform Tools
+#       "Google.PlatformTools",                 # Google Platform Tools
         "Gyan.FFmpeg",                          # FFmpeg
-        #"Microsoft.VisualStudioCode",          # Visual Studio Code
+#       "Microsoft.VisualStudioCode",           # Visual Studio Code
         "SumatraPDF.SumatraPDF",                # SumatraPDF
         "aria2.aria2",                          # aria2
         "Stremio.Stremio",                      # Stremio
-        #"KDE.Kdenlive",                        # Kdenlive
+#       "KDE.Kdenlive",                         # Kdenlive
         "OpenWhisperSystems.Signal",            # Signal Beta
         "PrestonN.FreeTube",                    # FreeTube
         "th-ch.YouTubeMusic",                   # YouTube Music
         "QL-Win.QuickLook",                     # QuickLook
         "calibre.calibre",                      # Calibre
-        #"Session.Session",                     # Session
+#       "Session.Session",                      # Session
         "AdrienAllard.FileConverter",           # File Converter
-        #"BlueStack.BlueStacks",                # BlueStacks
+#       "BlueStack.BlueStacks",                 # BlueStacks
         "PeterPawlowski.foobar2000"             # foobar2000
     )
 
@@ -171,11 +171,11 @@ if ($installPsModules) {
     Start-Process powershell -ArgumentList "-Command Install-PackageProvider -Name NuGet -Force" -Verb RunAs -Wait
 
     $psModules = @(
-        "PowerShellGet",
-        "PSReadLine -AllowPrerelease",
-        "Recycle -RequiredVersion 1.5.0",
-        "Terminal-Icons -Repository PSGallery"
-        #"z -AllowClobber"
+        "PowerShellGet",                        # Required for Install-Module
+        "PSReadLine -AllowPrerelease",          # Required for PSReadLine
+        "Recycle -RequiredVersion 1.5.0",       # Required for Recycle
+        "Terminal-Icons -Repository PSGallery"  # Required for Terminal-Icons
+        "z -AllowClobber"                       # Required for z
     )
 
     foreach ($module in $psModules) {
