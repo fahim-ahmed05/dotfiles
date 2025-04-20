@@ -89,6 +89,8 @@ user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.preferences.experimental.hidden", false);
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.aboutwelcome.enabled", false);
+user_pref("startup.homepage_welcome_url", "");
+user_pref("startup.homepage_welcome_url.additional", "");
 user_pref("browser.profiles.enabled", true);
 user_pref("browser.firefox-view.feature-tour", "{\"screen\":\"\",\"complete\":true}");
 
@@ -116,7 +118,7 @@ user_pref("browser.urlbar.quicksuggest.enabled", false);
 user_pref("browser.urlbar.groupLabels.enabled", false);
 user_pref("network.IDN_show_punycode", true);
 user_pref("browser.urlbar.trending.featureGate", false);
-user_pref("browser.urlbar.scotchBonnet.enableOverride", false);
+user_pref("browser.urlbar.scotchBonnet.enableOverride", true);
 
 // TAB BEHAVIOR
 user_pref("browser.tabs.closeWindowWithLastTab", true);
