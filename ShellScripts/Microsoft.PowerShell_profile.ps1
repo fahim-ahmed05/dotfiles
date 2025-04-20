@@ -6,7 +6,6 @@ oh-my-posh init pwsh --config 'C:\Users\Fahim\AppData\Local\Programs\oh-my-posh\
 
 # Alias
 Set-Alias rm Remove-ItemSafely -Option AllScope
-Set-Alias sudo gsudo -Option AllScope
 
 function ytdlp {
     yt-dlp.exe --downloader aria2c @args
@@ -242,22 +241,6 @@ function syncMusic {
     spotdl.exe $env:MUSIC_PLAYLIST_URL
     Write-Host "Music has been synced." -ForegroundColor "Cyan"
     Set-Location $currentDir
-}
-
-# Sudo
-function gsudo {
-    param(
-        [string]$Command
-    )
-
-    $currentDir = Get-Location
-    
-    if ([string]::IsNullOrWhiteSpace($Command)) {
-        Start-Process "wt.exe" -ArgumentList "-d $currentDir" -Verb RunAs
-    }
-    else {
-        Start-Process "wt.exe" -ArgumentList @("-d $currentDir", "-p PowerShell", "pwsh -NoExit -Command $Command") -Verb RunAs
-    }
 }
 
 # SU
