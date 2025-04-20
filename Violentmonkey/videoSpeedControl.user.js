@@ -2,7 +2,7 @@
 // @name         Video Speed Control
 // @namespace    Violentmonkey Scripts
 // @homepage     https://github.com/fahim-ahmed05/dotfiles
-// @version      2.5
+// @version      2.6
 // @description  Control video speed (1x to 5x) with keyboard shortcuts.
 // @author       Fahim Ahmed
 // @match        *://*.facebook.com/*
@@ -17,6 +17,7 @@
 // @match        *://*.bitchute.com/*
 // @match        *://*.substack.com/*
 // @match        *://*.linkedin.com/*
+// @match        *://*.preservetube.com/*
 // @downloadURL  https://github.com/fahim-ahmed05/dotfiles/raw/main/Violentmonkey/videoSpeedControl.user.js
 // @updateURL    https://github.com/fahim-ahmed05/dotfiles/raw/main/Violentmonkey/videoSpeedControl.user.js
 // @grant        none
