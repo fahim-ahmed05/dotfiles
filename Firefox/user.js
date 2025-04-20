@@ -90,6 +90,7 @@ user_pref("browser.preferences.experimental.hidden", false);
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.aboutwelcome.enabled", false);
 user_pref("browser.profiles.enabled", true);
+user_pref("browser.firefox-view.feature-tour", "{\"screen\":\"\",\"complete\":true}");
 
 // THEME ADJUSTMENTS 
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
@@ -115,6 +116,7 @@ user_pref("browser.urlbar.quicksuggest.enabled", false);
 user_pref("browser.urlbar.groupLabels.enabled", false);
 user_pref("network.IDN_show_punycode", true);
 user_pref("browser.urlbar.trending.featureGate", false);
+user_pref("browser.urlbar.scotchBonnet.enableOverride", false);
 
 // TAB BEHAVIOR
 user_pref("browser.tabs.closeWindowWithLastTab", true);
@@ -144,8 +146,9 @@ user_pref("privacy.globalprivacycontrol.enabled", true);
 // OCSP & CERTS 
 user_pref("security.OCSP.enabled", 0);
 user_pref("security.pki.crlite_mode", 2);
+user_pref("security.cert_pinning.enforcement_level", 2);
 
-/** DISK AVOIDANCE ***/
+// DISK AVOIDANCE
 user_pref("browser.sessionstore.interval", 60000);
 
 // SSL & TLS
@@ -178,6 +181,7 @@ user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 
 // EXTENSIONS
 user_pref("extensions.enabledScopes", 5);
+user_pref("extensions.postDownloadThirdPartyPrompt", false);
 
 // CONTAINERS
 user_pref("privacy.userContext.ui.enabled", true);
@@ -213,6 +217,12 @@ user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("captivedetect.canonicalURL", "");
 user_pref("network.captive-portal-service.enabled", false);
 user_pref("network.connectivity-service.enabled", false);
+
+// FONT RENDERING
+user_pref("gfx.font_rendering.cleartype_params.rendering_mode", 5);
+user_pref("gfx.font_rendering.cleartype_params.cleartype_level", 100);
+user_pref("gfx.font_rendering.directwrite.use_gdi_table_loading", false);
+user_pref("gfx.font_rendering.cleartype_params.enhanced_contrast", 50);
 
 // EXPERIMENTAL
 user_pref("layout.css.grid-template-masonry-value.enabled", true);
