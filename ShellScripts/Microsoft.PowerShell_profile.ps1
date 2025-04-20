@@ -119,41 +119,66 @@ function rt {
 
 # Winget
 function ws {
+    $name = $args -join ' '
     winget source update
-    winget search $args 
+    winget search $name 
 }
 
 function wi {
-    winget install $args --accept-package-agreements --accept-source-agreements
+    winget install @args --accept-package-agreements --accept-source-agreements
     Start-Sleep -Seconds 1.5
     rmDesktopIcons
 }
 
 function wu {
     Write-Host "Updating winget packages..." -ForegroundColor "Cyan"
-    winget source update
-    winget upgrade --all --accept-package-agreements --accept-source-agreements
+    try { winget source update } catch { Write-Host "winget source update failed." -ForegroundColor Red }
+    try { winget upgrade --all --accept-package-agreements --accept-source-agreements } catch { Write-Host "winget upgrade failed." -ForegroundColor Red }
     
     Write-Host "Updating scoop packages..." -ForegroundColor "Cyan"
-    scoop update
+    if (Get-Command scoop -ErrorAction SilentlyContinue) {
+        try { scoop update } catch { Write-Host "scoop update failed." -ForegroundColor Red }
+    } else {
+        Write-Host "scoop not found." -ForegroundColor Yellow
+    }
 
     Write-Host "Updating pip binary..." -ForegroundColor "Cyan"
-    python.exe -m pip install --upgrade pip
+    if (Get-Command python.exe -ErrorAction SilentlyContinue) {
+        try { python.exe -m pip install --upgrade pip } catch { Write-Host "pip upgrade failed." -ForegroundColor Red }
+    } else {
+        Write-Host "python.exe not found." -ForegroundColor Yellow
+    }
 
     Write-Host "Updating pipx packages..." -ForegroundColor "Cyan"
-    pipx upgrade-all
+    if (Get-Command pipx -ErrorAction SilentlyContinue) {
+        try { pipx upgrade-all } catch { Write-Host "pipx upgrade-all failed." -ForegroundColor Red }
+    } else {
+        Write-Host "pipx not found." -ForegroundColor Yellow
+    }
 
     Write-Host "Updating msys2 packages..." -ForegroundColor "Cyan"
-    ucrt "pacman -Syu --noconfirm && paccache -r"
+    if (Get-Command ucrt -ErrorAction SilentlyContinue) {
+        try { ucrt "pacman -Syu --noconfirm && paccache -r" } catch { Write-Host "msys2 update failed." -ForegroundColor Red }
+    } else {
+        Write-Host "ucrt function not found." -ForegroundColor Yellow
+    }
 
     Write-Host "Updating apt packages..." -ForegroundColor "Cyan"
-    wsl sudo apt update
-    wsl sudo apt upgrade -y
-    wsl sudo apt autoremove -y
+    if (Get-Command wsl -ErrorAction SilentlyContinue) {
+        try { wsl sudo apt update } catch { Write-Host "apt update failed." -ForegroundColor Red }
+        try { wsl sudo apt upgrade -y } catch { Write-Host "apt upgrade failed." -ForegroundColor Red }
+        try { wsl sudo apt autoremove -y } catch { Write-Host "apt autoremove failed." -ForegroundColor Red }
+    } else {
+        Write-Host "wsl not found." -ForegroundColor Yellow
+    }
 
     Write-Host "Updating wsl binary..." -ForegroundColor "Cyan"
-    wsl.exe --shutdown
-    wsl --update
+    if (Get-Command wsl.exe -ErrorAction SilentlyContinue) {
+        try { wsl.exe --shutdown } catch { Write-Host "wsl.exe --shutdown failed." -ForegroundColor Red }
+        try { wsl --update } catch { Write-Host "wsl --update failed." -ForegroundColor Red }
+    } else {
+        Write-Host "wsl.exe not found." -ForegroundColor Yellow
+    }
 
     Write-Host "All updates completed." -ForegroundColor "Green"
     rmDesktopIcons
@@ -184,11 +209,18 @@ function touch {
 }
 
 function mkcd {
-    param($dir)
-    if (-Not (Test-Path -Path $dir -PathType Container)) {
-        New-Item -ItemType Directory -Path $dir -Force
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$dir
+    )
+    if (-not [string]::IsNullOrWhiteSpace($dir)) {
+        if (-Not (Test-Path -Path $dir -PathType Container)) {
+            New-Item -ItemType Directory -Path $dir -Force | Out-Null
+        }
+        Set-Location $dir
+    } else {
+        Write-Host "ERROR: Directory name is required." -ForegroundColor Red
     }
-    Set-Location $dir
 }
 
 # HasteBin
@@ -241,8 +273,20 @@ function ucrt {
 function syncMusic {
     $currentDir = Get-Location
     $musicFolder = [Environment]::GetFolderPath("MyMusic")
+    $ytMusicFolder = Join-Path $musicFolder "YouTube Music"
+
+    if (-not (Test-Path $ytMusicFolder)) {
+        Write-Host "ERROR: '$ytMusicFolder' does not exist." -ForegroundColor Red
+        return
+    }
+
+    if (-not $env:MUSIC_PLAYLIST_URL) {
+        Write-Host "ERROR: MUSIC_PLAYLIST_URL environment variable is not set." -ForegroundColor Red
+        return
+    }
+
     Write-Host "Syncing music..." -ForegroundColor "Cyan"
-    Set-Location "$musicFolder\YouTube Music"
+    Set-Location $ytMusicFolder
     spotdl.exe $env:MUSIC_PLAYLIST_URL
     Write-Host "Music has been synced." -ForegroundColor "Cyan"
     Set-Location $currentDir
@@ -252,11 +296,11 @@ function syncMusic {
 function su {
     $currentDir = Get-Location
     if ($args.Count -gt 0) {
-        $argList = $args -join ' '
-        Start-Process wt -Verb runAs -ArgumentList "-d $currentDir -p PowerShell pwsh -NoExit -Command $argList"
+        $command = $args -join ' '
+        Start-Process wt -Verb runAs -ArgumentList @("-d", "$currentDir", "-p", "PowerShell", "pwsh", "-NoExit", "-Command", "$command")
     }
     else {
-        Start-Process wt -Verb runAs -ArgumentList "-d $currentDir"
+        Start-Process wt -Verb runAs -ArgumentList @("-d", "$currentDir")
     }
 }
 
