@@ -169,12 +169,17 @@ function pubip { (Invoke-WebRequest http://ifconfig.me/ip).Content }
 
 # File
 function touch {
-    param($name)
-    if (Test-Path $name) {
-        (Get-Item $name).LastWriteTime = Get-Date
-    }
-    else {
-        New-Item -ItemType "file" -Path . -Name $name
+    param(
+        [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true)]
+        [string[]]$names
+    )
+    foreach ($name in $names) {
+        if (Test-Path $name) {
+            (Get-Item $name).LastWriteTime = Get-Date
+        }
+        else {
+            New-Item -ItemType "file" -Path . -Name $name | Out-Null
+        }
     }
 }
 
@@ -243,7 +248,7 @@ function syncMusic {
     Set-Location $currentDir
 }
 
-# SU
+# su
 function su {
     $currentDir = Get-Location
     if ($args.Count -gt 0) {
@@ -252,5 +257,78 @@ function su {
     }
     else {
         Start-Process wt -Verb runAs -ArgumentList "-d $currentDir"
+    }
+}
+
+# Trash
+function trash {
+    param(
+        [Parameter(ValueFromRemainingArguments = $true)]
+        [string[]]$path
+    )
+
+    if (-not $path -or $path.Count -eq 0) {
+        Write-Host "ERROR: No path specified." -ForegroundColor Red
+        return
+    }
+
+    foreach ($p in $path) {
+        if ($p -eq '*') {
+            # Handle wildcard to delete all files in the current directory
+            $currentDir = Get-Location
+            $items = Get-ChildItem -Path $currentDir -File -Force
+
+            foreach ($item in $items) {
+                $fullPath = $item.FullName
+                $shell = New-Object -ComObject 'Shell.Application'
+                $shellItem = $shell.NameSpace($item.DirectoryName).ParseName($item.Name)
+
+                if ($shellItem) {
+                    $shellItem.InvokeVerb('delete')
+                } else {
+                    Write-Host "ERROR: $fullPath does not exist." -ForegroundColor Red
+                }
+            }
+        } else {
+            # Handle single file or directory
+            try {
+                $resolved = Resolve-Path -Path $p -ErrorAction Stop
+                $fullPath = $resolved.Path
+            } catch {
+                Write-Host "ERROR: $p does not exist." -ForegroundColor Red
+                continue
+            }
+
+            if (Test-Path $fullPath) {
+                $item = Get-Item $fullPath
+
+                if ($item.PSIsContainer) {
+                    # Handle directory
+                    if ($item.Parent) {
+                        $parentPath = $item.Parent.FullName
+                    } else {
+                        $parentPath = $item.FullName
+                    }
+                } else {
+                    # Handle file
+                    $parentPath = $item.DirectoryName
+                }
+
+                if (Test-Path $parentPath) {
+                    $shell = New-Object -ComObject 'Shell.Application'
+                    $shellItem = $shell.NameSpace($parentPath).ParseName($item.Name)
+
+                    if ($shellItem) {
+                        $shellItem.InvokeVerb('delete')
+                    } else {
+                        Write-Host "ERROR: $fullPath does not exist." -ForegroundColor Red
+                    }
+                } else {
+                    Write-Host "ERROR: $parentPath does not exist." -ForegroundColor Red
+                }
+            } else {
+                Write-Host "ERROR: $fullPath does not exist." -ForegroundColor Red
+            }
+        }
     }
 }
