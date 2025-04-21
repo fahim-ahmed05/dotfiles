@@ -1,12 +1,38 @@
 {
     "__INFO__": "https://mozilla.github.io/policy-templates/",
     "policies": {
+        "OverrideFirstRunPage": "",
+        "OverridePostUpdatePage": "",
+        "HardwareAcceleration": true,
+        "DisplayMenuBar": "never",
         "DisableFirefoxStudies": true,
         "DisableTelemetry": true,
         "DisableFeedbackCommands": true,
         "DontCheckDefaultBrowser": true,
         "NoDefaultBookmarks": true,
         "DefaultDownloadDirectory": "${home}\\Downloads\\Firefox",
+        "UserMessaging": {
+            "ExtensionRecommendations": false,
+            "FeatureRecommendations": false,
+            "UrlbarInterventions": false,
+            "SkipOnboarding": false,
+            "MoreFromMozilla": false,
+            "FirefoxLabs": true,
+            "Locked": true
+        },
+        "FirefoxHome": {
+            "Search": false,
+            "SponsoredTopSites": false,
+            "Highlights": false,
+            "Pocket": false,
+            "SponsoredPocket": false,
+            "Snippets": true,
+            "Locked": true
+        },
+        "FirefoxSuggest": {
+            "SponsoredSuggestions": false,
+            "Locked": true
+        },
         "SearchEngines": {
             "Default": "Google Web",
             "Add": [
