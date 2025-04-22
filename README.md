@@ -59,8 +59,8 @@ Profile paths:
 
 ### Browser Extensions
 
-| Extension | Firefox | Chrome | Edge | Shortcut |
-|-----------|---------|--------|------|----------|
+|   Extension  |   Firefox   |    Chrome  |   Edge   |   Shortcut  |
+| :----------- | :---------: | :--------: | :------: | :---------- |
 | **Bitwarden Password Manager** | [Install](https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/) | [Install](https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb) | [Install](https://microsoftedge.microsoft.com/addons/detail/bitwarden-password-manage/jbkfoedolllekgbhcbcoahefnbanhhlh) | **Open vault popup:** `Ctrl + Shift + Y`<br> **Open vault in sidebar:** `Alt + Shift + Y`<br> **Autofill last used login:** `Ctrl + Shift + L`<br> **Generate & copy new password:** `Ctrl + Shift + 9` |
 | **Dark Reader** | [Install](https://addons.mozilla.org/en-US/firefox/addon/darkreader/) | [Install](https://chromewebstore.google.com/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh) | [Install](https://microsoftedge.microsoft.com/addons/detail/dark-reader/ifoakfbpdcdoeenechcleahebpibofpc) | **Menu popup:** `Alt + Shift + A`<br> **Toggle current site:** `Alt + Shift + D` |
 | **Enhancer for YouTube** | [Install](https://addons.mozilla.org/en-US/firefox/addon/enhancer-for-youtube/) | [Install](https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle) | [Install](https://microsoftedge.microsoft.com/addons/detail/enhancer-for-youtube%E2%84%A2/dlgfaleeejmphhnemjgiaekdbonkagkd) | **Decrease playback speed:** `Alt + ,`<br> **Increase playback speed:** `Alt + .`<br> **Set default playback speed:** `Ctrl + .`<br> **Reset to normal speed:** `Ctrl + ,` |
