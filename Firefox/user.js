@@ -125,7 +125,6 @@ user_pref("browser.tabs.closeWindowWithLastTab", true);
 user_pref("browser.tabs.loadBookmarksInBackground", true);
 user_pref("browser.tabs.hoverPreview.enabled", true);
 user_pref("browser.ctrlTab.sortByRecentlyUsed", false);
-user_pref("browser.tabs.groups.smart.userEnabled", false);
 user_pref("browser.newtabpage.activity-stream.newtabWallpapers.customWallpaper.enabled", true);
 user_pref("browser.newtabpage.activity-stream.system.showWeather", true);
 
@@ -152,6 +151,7 @@ user_pref("security.cert_pinning.enforcement_level", 2);
 
 // DISK AVOIDANCE
 user_pref("browser.sessionstore.interval", 60000);
+user_pref("browser.helperApps.deleteTempFileOnExit", true);
 
 // SSL & TLS
 user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
@@ -169,6 +169,7 @@ user_pref("browser.download.start_downloads_in_tmp_dir", true);
 user_pref("browser.urlbar.update2.engineAliasRefresh", true);
 user_pref("layout.word_select.eat_space_to_next_word", false);
 user_pref("browser.bookmarks.openInTabClosesMenu", false);
+user_pref("dom.disable_window_move_resize", true);
 user_pref("ui.key.menuAccessKeyFocuses", false);
 user_pref("findbar.highlightAll", true);
 
@@ -228,3 +229,8 @@ user_pref("gfx.font_rendering.cleartype_params.enhanced_contrast", 50);
 
 // EXPERIMENTAL
 user_pref("layout.css.grid-template-masonry-value.enabled", true);
+
+// AI
+user_pref("browser.tabs.groups.smart.userEnabled", false);
+user_pref("browser.contentanalysis.enabled", false)
+user_pref("browser.contentanalysis.default_result", 0);
