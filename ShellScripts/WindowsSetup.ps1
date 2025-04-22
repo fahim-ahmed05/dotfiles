@@ -225,7 +225,7 @@ if(!(Test-Path $sshConfigPath)){
 Write-Host "Setting up Git configuration..." -ForegroundColor Cyan
 $gitConfigs = @{
     "user.name" = "Fahim Ahmed"
-    "user.email" = "fahim.ahmed05@outlook.com"
+    "user.email" = "fahim.ahmed1453@gmail.com"
     "user.signingkey" = "C:\Users\Fahim\.ssh\github_sign"
     "gpg.format" = "ssh"
     "commit.gpgsign" = "true"
