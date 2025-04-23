@@ -30,6 +30,27 @@ function rmDesktopIcons {
     Write-Host "Desktop icons have been removed." -ForegroundColor Green
 }
 
+function cleanDesktop {
+    $desktopPath = "$Home\Desktop"
+
+    if (Test-Path $desktopPath) {
+        $items = Get-ChildItem -Path $desktopPath
+
+        foreach ($item in $items) {
+            try {
+                Remove-ItemSafely $item.FullName
+                Write-Host "Deleted: $($item.Name)" -ForegroundColor Yellow
+            }
+            catch {
+                Write-Host "Failed to delete: $($item.Name)" -ForegroundColor Red
+            }
+        }
+    }
+    else {
+        Write-Host "Desktop folder does not exist." -ForegroundColor Red
+    }
+}
+
 function cleanDownloads {
     $downloadsPath = "$Home\Downloads"
     $excludeFolders = @("qBittorrent")
@@ -138,28 +159,32 @@ function wu {
     Write-Host "Updating scoop packages..." -ForegroundColor "Cyan"
     if (Get-Command scoop -ErrorAction SilentlyContinue) {
         try { scoop update } catch { Write-Host "scoop update failed." -ForegroundColor Red }
-    } else {
+    }
+    else {
         Write-Host "scoop not found." -ForegroundColor Yellow
     }
 
     Write-Host "Updating pip binary..." -ForegroundColor "Cyan"
     if (Get-Command python.exe -ErrorAction SilentlyContinue) {
         try { python.exe -m pip install --upgrade pip } catch { Write-Host "pip upgrade failed." -ForegroundColor Red }
-    } else {
+    }
+    else {
         Write-Host "python.exe not found." -ForegroundColor Yellow
     }
 
     Write-Host "Updating pipx packages..." -ForegroundColor "Cyan"
     if (Get-Command pipx -ErrorAction SilentlyContinue) {
         try { pipx upgrade-all } catch { Write-Host "pipx upgrade-all failed." -ForegroundColor Red }
-    } else {
+    }
+    else {
         Write-Host "pipx not found." -ForegroundColor Yellow
     }
 
     Write-Host "Updating msys2 packages..." -ForegroundColor "Cyan"
     if (Get-Command ucrt -ErrorAction SilentlyContinue) {
         try { ucrt "pacman -Syu --noconfirm && paccache -r" } catch { Write-Host "msys2 update failed." -ForegroundColor Red }
-    } else {
+    }
+    else {
         Write-Host "ucrt function not found." -ForegroundColor Yellow
     }
 
@@ -168,7 +193,8 @@ function wu {
         try { wsl sudo apt update } catch { Write-Host "apt update failed." -ForegroundColor Red }
         try { wsl sudo apt upgrade -y } catch { Write-Host "apt upgrade failed." -ForegroundColor Red }
         try { wsl sudo apt autoremove -y } catch { Write-Host "apt autoremove failed." -ForegroundColor Red }
-    } else {
+    }
+    else {
         Write-Host "wsl not found." -ForegroundColor Yellow
     }
 
@@ -176,7 +202,8 @@ function wu {
     if (Get-Command wsl.exe -ErrorAction SilentlyContinue) {
         try { wsl.exe --shutdown } catch { Write-Host "wsl.exe --shutdown failed." -ForegroundColor Red }
         try { wsl --update } catch { Write-Host "wsl --update failed." -ForegroundColor Red }
-    } else {
+    }
+    else {
         Write-Host "wsl.exe not found." -ForegroundColor Yellow
     }
 
@@ -218,7 +245,8 @@ function mkcd {
             New-Item -ItemType Directory -Path $dir -Force | Out-Null
         }
         Set-Location $dir
-    } else {
+    }
+    else {
         Write-Host "ERROR: Directory name is required." -ForegroundColor Red
     }
 }
@@ -329,16 +357,19 @@ function trash {
 
                 if ($shellItem) {
                     $shellItem.InvokeVerb('delete')
-                } else {
+                }
+                else {
                     Write-Host "ERROR: $fullPath does not exist." -ForegroundColor Red
                 }
             }
-        } else {
+        }
+        else {
             # Handle single file or directory
             try {
                 $resolved = Resolve-Path -Path $p -ErrorAction Stop
                 $fullPath = $resolved.Path
-            } catch {
+            }
+            catch {
                 Write-Host "ERROR: $p does not exist." -ForegroundColor Red
                 continue
             }
@@ -350,10 +381,12 @@ function trash {
                     # Handle directory
                     if ($item.Parent) {
                         $parentPath = $item.Parent.FullName
-                    } else {
+                    }
+                    else {
                         $parentPath = $item.FullName
                     }
-                } else {
+                }
+                else {
                     # Handle file
                     $parentPath = $item.DirectoryName
                 }
@@ -364,13 +397,16 @@ function trash {
 
                     if ($shellItem) {
                         $shellItem.InvokeVerb('delete')
-                    } else {
+                    }
+                    else {
                         Write-Host "ERROR: $fullPath does not exist." -ForegroundColor Red
                     }
-                } else {
+                }
+                else {
                     Write-Host "ERROR: $parentPath does not exist." -ForegroundColor Red
                 }
-            } else {
+            }
+            else {
                 Write-Host "ERROR: $fullPath does not exist." -ForegroundColor Red
             }
         }
