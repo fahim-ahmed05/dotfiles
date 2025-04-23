@@ -78,29 +78,27 @@ Profile paths:
 | **Proton VPN** | [Install](https://addons.mozilla.org/en-US/firefox/addon/proton-vpn-firefox-extension/) | [Install](https://chromewebstore.google.com/detail/proton-vpn-fast-secure/jplgfhpmjnbigmhklmmbgecoobifkmpa) | N/A | N/A |
 | **Google Docs Offline** | N/A | [Install](https://chromewebstore.google.com/detail/google-docs-offline/ghbmnnjooekpmoecnnnilnnbdlolhkhi) | N/A | N/A |
 
-### Windows
-
-#### Programs
+### Programs
 
 [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/), [Twinkle Tray](https://apps.microsoft.com/detail/9pljwwsv01lk), [Python](https://www.python.org/downloads/), [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm), [Git](https://git-scm.com/download/win), [Visual Studio Code](https://code.visualstudio.com/), [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases), [Winaero Tweaker](https://winaero.com/download-winaero-tweaker/), [Firefox Nightly](https://www.mozilla.org/en-US/firefox/channel/desktop/)
 
-#### [Setup Script](https://github.com/fahim-ahmed05/dotfiles/blob/main/ShellScripts/WindowsSetup.ps1)
+### [Setup Script](https://github.com/fahim-ahmed05/dotfiles/blob/main/ShellScripts/WindowsSetup.ps1)
 
 ```powershell
 iwr "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ShellScripts/WindowsSetup.ps1" | iex
 ```
 
-#### Activate Windows ([Massgrave](https://github.com/massgravel/Microsoft-Activation-Scripts))
+### Activate Windows ([Massgrave](https://github.com/massgravel/Microsoft-Activation-Scripts))
 
 ```powershell
 irm https://get.activated.win | iex
 ```
 
-#### Cursors
+### Cursors
 
 [Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor), [Posy's Cursor (Default + Extras)](http://www.michieldb.nl/other/cursors/)
 
-#### Fonts
+### Fonts
 
 [Inter](https://rsms.me/inter/download/), [CascadiaCode-NF, JetBrainsMono-NF, UbuntuSans-NF](https://github.com/ryanoasis/nerd-fonts/releases), [SolaimanLipi, AdorshoLipi](https://www.omicronlab.com/bangla-fonts.html), [Ekushey Lal Salu Normal](https://ekushey.org/fonts/)
 
@@ -117,7 +115,8 @@ irm https://get.activated.win | iex
 |-----------------------------------|--------------------------------------------|---------------------------------------------------------------------|
 | [uBlock Remove Annoyances](https://github.com/fahim-ahmed05/dotfiles/blob/main/ContentFilters/ublock-remove-annoyances.txt) | A filter list for removing common annoyances on websites. | `https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ContentFilters/ublock-remove-annoyances.txt` |
 | [uBlock YouTube Annoyances](https://github.com/fahim-ahmed05/dotfiles/blob/main/ContentFilters/ublock-youtube-annoyances.txt) | A filter list targeting YouTube-specific annoyances. | `https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ContentFilters/ublock-youtube-annoyances.txt` |
-| [Hagezi Multi PRO++](https://github.com/hagezi/dns-blocklists?tab=readme-ov-file#proplus) | A comprehensive adblock list by Hagezi. | `https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.plus.txt` |
+
+**Other Filters:** [Hagezi](https://github.com/hagezi/dns-blocklists)
 
 ### Wallpapers
 
