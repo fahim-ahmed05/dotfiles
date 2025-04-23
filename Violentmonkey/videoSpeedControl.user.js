@@ -72,17 +72,17 @@
 
     const shortcuts = isFirefox
         ? {
-              decrease: { key: ',', modifier: 'altKey' },
-              increase: { key: '.', modifier: 'altKey' },
-              toggle1x: { key: ',', modifier: 'ctrlKey' },
-              toggle2x: { key: '.', modifier: 'ctrlKey' }
-          }
+            decrease: { key: ',', modifier: 'altKey' },
+            increase: { key: '.', modifier: 'altKey' },
+            toggle1x: { key: ',', modifier: 'ctrlKey' },
+            toggle2x: { key: '.', modifier: 'ctrlKey' }
+        }
         : {
-              decrease: { key: '3', modifier: 'altKey' },
-              increase: { key: '4', modifier: 'altKey' },
-              toggle1x: { key: '1', modifier: 'altKey' },
-              toggle2x: { key: '2', modifier: 'altKey' }
-          };
+            decrease: { key: '3', modifier: 'altKey' },
+            increase: { key: '4', modifier: 'altKey' },
+            toggle1x: { key: '1', modifier: 'altKey' },
+            toggle2x: { key: '2', modifier: 'altKey' }
+        };
 
     const observer = new MutationObserver(() => applySpeedToAllVideos());
     observer.observe(document.body, { childList: true, subtree: true });
