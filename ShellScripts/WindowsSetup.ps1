@@ -175,7 +175,7 @@ if ($installPsModules) {
         "PSReadLine -AllowPrerelease",          # Required for PSReadLine
         "Recycle -RequiredVersion 1.5.0",       # Required for Recycle
         "Terminal-Icons -Repository PSGallery"  # Required for Terminal-Icons
-        "z -AllowClobber"                       # Required for z
+#       "z -AllowClobber"                       # Required for z
     )
 
     foreach ($module in $psModules) {
