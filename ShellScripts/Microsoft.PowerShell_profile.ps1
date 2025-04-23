@@ -94,9 +94,18 @@ function flushCache {
 }
 
 function unzip ($file) {
-    Write-Output("Extracting", $file, "to", $pwd)
+    $sevenZip = "C:\Program Files\7-Zip\7z.exe"
+    if (-not (Test-Path $sevenZip)) {
+        Write-Host "ERROR: 7-Zip not found at $sevenZip" -ForegroundColor Red
+        return
+    }
     $fullFile = Get-ChildItem -Path $pwd -Filter $file | ForEach-Object { $_.FullName }
-    Expand-Archive -Path $fullFile -DestinationPath $pwd
+    if (-not $fullFile) {
+        Write-Host "ERROR: File '$file' not found in $pwd" -ForegroundColor Red
+        return
+    }
+    Write-Host "Extracting $file to $pwd" -ForegroundColor Cyan
+    & "$sevenZip" x "$fullFile" -o"$pwd" -y | Out-Null
 }
 
 # PSReadLine
