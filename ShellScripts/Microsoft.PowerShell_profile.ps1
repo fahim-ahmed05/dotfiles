@@ -65,10 +65,10 @@ function cleanDownloads {
 
             try {
                 Remove-ItemSafely $item.FullName
-                Write-Host "Deleted: $($item.FullName)" -ForegroundColor Yellow
+                Write-Host "Deleted: $($item.Name)" -ForegroundColor Yellow
             }
             catch {
-                Write-Host "Failed to delete: $($item.FullName)" -ForegroundColor Red
+                Write-Host "Failed to delete: $($item.Name)" -ForegroundColor Red
             }
         }
     }
