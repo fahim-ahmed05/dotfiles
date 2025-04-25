@@ -152,6 +152,26 @@
 		},
 		"equalizer": {
 			"enabled": false
+		},
+		"unobtrusive-player": {
+			"enabled": true
+		},
+		"picture-in-picture": {
+			"enabled": true,
+			"alwaysOnTop": true,
+			"savePosition": true,
+			"saveSize": false,
+			"hotkey": "P",
+			"pip-position": [
+				10,
+				10
+			],
+			"pip-size": [
+				450,
+				275
+			],
+			"isInPiP": false,
+			"useNativePiP": true
 		}
 	},
 	"__internal__": {
