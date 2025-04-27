@@ -40,8 +40,6 @@ function rmDesktopIcons {
             Write-Host "Not found: $path." -ForegroundColor Red
         }
     }
-
-    Write-Host "Desktop icons removed." -ForegroundColor Green
 }
 
 function cleanDesktop {
