@@ -9,3 +9,9 @@
     -webkit-backdrop-filter: blur(20px) saturate(150%) brightness(1.1) contrast(1.2) !important;
     border: none !important;
 }
+
+
+:root {
+    --attention-dot-color: transparent !important;
+}
+
