@@ -20,19 +20,34 @@ function rmDesktopIcons {
         "C:\Users\Public\Desktop"
     )
 
+    Write-Host "Removing desktop icons..." -ForegroundColor Cyan
+
     foreach ($path in $desktopPaths) {
         if (Test-Path $path) {
-            $lnkFiles = Get-ChildItem -Path $path -Filter "*.lnk" -ErrorAction SilentlyContinue
-            if ($lnkFiles) {
-                Remove-ItemSafely $lnkFiles.FullName
+            $icons = Get-ChildItem -Path $path -Filter "*.lnk" -ErrorAction SilentlyContinue
+            
+            foreach ($icon in $icons) {
+                try {
+                    Remove-ItemSafely $icon.FullName
+                    Write-Host "Deleted: $($icon.Name)" -ForegroundColor Yellow
+                }
+                catch {
+                    Write-Host "Failed to delete: $($icon.Name)" -ForegroundColor Red
+                }
             }
         }
+        else {
+            Write-Host "Not found: $path." -ForegroundColor Red
+        }
     }
-    Write-Host "Desktop icons have been removed." -ForegroundColor Green
+
+    Write-Host "Desktop icons removed." -ForegroundColor Green
 }
 
 function cleanDesktop {
     $desktopPath = "$Home\Desktop"
+
+    Write-Host "Cleaning desktop..." -ForegroundColor Cyan
 
     if (Test-Path $desktopPath) {
         $items = Get-ChildItem -Path $desktopPath
@@ -50,11 +65,15 @@ function cleanDesktop {
     else {
         Write-Host "Desktop folder does not exist." -ForegroundColor Red
     }
+    
+    Write-Host "Desktop cleaned." -ForegroundColor Green
 }
 
 function cleanDownloads {
     $downloadsPath = "$Home\Downloads"
     $excludeFolders = @("qBittorrent")
+
+    Write-Host "Cleaning downloads..." -ForegroundColor Cyan
 
     if (Test-Path $downloadsPath) {
         $items = Get-ChildItem -Path $downloadsPath
@@ -76,6 +95,8 @@ function cleanDownloads {
     else {
         Write-Host "Downloads folder does not exist." -ForegroundColor Red
     }
+
+    Write-Host "Downloads cleaned." -ForegroundColor Green
 }
 
 function flushCache {
