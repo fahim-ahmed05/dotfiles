@@ -1,7 +1,7 @@
 ! Title: YouTube Annoyances
 ! Description: Removes annoying elements from youtube
-! Version: 2.2.0
-! Last modified: 2025-01-06 2:25 am
+! Version: 2.3.0
+! Last modified: 2025-04-28 10:26 am
 ! Expires: 2 weeks (update frequency)
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
@@ -35,3 +35,12 @@ youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-r
 youtube.com##.ytp-button.branding-img-container
 ! YT Video Player - Hide "1080p Premium" in the video quality menu
 youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
+
+! YT Homepage - Changing the amount of videos per row
+youtube.com##ytd-rich-grid-renderer:style(--ytd-rich-grid-items-per-row: 6 !important;)
+youtube.com##ytd-rich-grid-renderer:style(--ytd-rich-grid-posts-per-row: 6 !important;)
+! YT Homepage - Using full page width for video grids
+youtube.com##ytd-two-column-browse-results-renderer.grid-6-columns:style(width: 100% !important;)
+youtube.com##ytd-two-column-browse-results-renderer.grid:not(.grid-disabled):style(max-width: 100% !important;)
+! YT Homepage - Removing the gap in the 2nd row
+youtube.com##ytd-rich-grid-renderer:style(--ytd-rich-grid-gutter-margin: 0px !important;)
