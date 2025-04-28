@@ -1,49 +1,37 @@
 ! Title: YouTube Annoyances
-! Description: Removes annoying elements from YouTube
-! Version: 2.3.2
-! Last modified: 2025-04-28
+! Description: Removes annoying elements from youtube
+! Version: 2.2.0
+! Last modified: 2025-01-06
 ! Expires: 2 weeks
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
 
-! === Shorts Removal ===
+! YT Homepage and Subscriptions (Grid View) - Hide the Shorts section
 youtube.com##[is-shorts]
+! YT Menu - Hide the Shorts button
 www.youtube.com###guide [title="Shorts"], .ytd-mini-guide-entry-renderer[title="Shorts"]
+! YT Search - Hide Shorts
 www.youtube.com##ytd-search ytd-video-renderer:has([overlay-style="SHORTS"])
+! YT Search, Channels, Subscriptions (List View) and Sidebar/Below Player Recommendations - Hide the Shorts sections
 www.youtube.com##ytd-reel-shelf-renderer
-www.youtube.com##ytd-browse[page-subtype="subscriptions"] :is(ytd-grid-video-renderer, ytd-video-renderer, ytd-rich-item-renderer):has([overlay-style="SHORTS"])
+! YT Subscriptions - Hide Shorts - Grid View
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-grid-video-renderer:has([overlay-style="SHORTS"])
+! YT Subscriptions - Hide Shorts - List View
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-video-renderer:has([overlay-style="SHORTS"])
+! YT Subscriptions - New Layout - Hide Shorts
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has([overlay-style="SHORTS"])
+! YT Sidebar - Hide Shorts
 www.youtube.com###related ytd-compact-video-renderer:has([overlay-style="SHORTS"])
 
-! === Posts Removal ===
-www.youtube.com##ytd-browse[page-subtype="home"] :is(ytd-rich-section-renderer:has(ytd-rich-item-renderer[is-post]), ytd-rich-item-renderer[is-post])
+! YT Homepage - Hide the Posts Section
+www.youtube.com##ytd-browse[page-subtype="home"] ytd-rich-section-renderer:has(ytd-rich-item-renderer[is-post])
+! YT Homepage - Hide Posts
+www.youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer[is-post]
 
-! === Search Results Cleanup ===
-youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(
-  :not(ytd-video-renderer, ytd-channel-renderer, ytd-playlist-renderer, yt-lockup-view-model, yt-showing-results-for-renderer, [icon-name="promo-full-height:EMPTY_SEARCH"]),
-  ytd-video-renderer:has([aria-label="Shorts"])
-), ytd-secondary-search-container-renderer
+! YT Search - keep only videos (no shorts), channels and playlists
+youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,ytd-channel-renderer,ytd-playlist-renderer,yt-lockup-view-model,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
 
-! === Video Player Cleanup ===
+! YT Video Player - Hide brand image in the corner
 youtube.com##.ytp-button.branding-img-container
+! YT Video Player - Hide "1080p Premium" in the video quality menu
 youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
-
-! === Homepage Layout ===
-youtube.com##ytd-rich-grid-renderer:style(--ytd-rich-grid-items-per-row:6!important; --ytd-rich-grid-posts-per-row:6!important; --ytd-rich-grid-gutter-margin:0!important; --ytd-rich-grid-row-margin:24px!important;)
-youtube.com##ytd-two-column-browse-results-renderer.grid-6-columns:style(width:100%!important;)
-youtube.com##ytd-two-column-browse-results-renderer.grid:not(.grid-disabled):style(max-width:100%!important;)
-youtube.com###contents.ytd-rich-grid-renderer:style(--ytd-rich-grid-item-margin:11px!important; padding-top:12px!important; width:calc(100%-10px)!important;)
-youtube.com##ytd-shelf-renderer.ytd-rich-section-renderer .grid-subheader:style(margin-top:0!important;)
-youtube.com##ytd-feed-filter-chip-bar-renderer.ytd-rich-grid-renderer:style(margin-bottom:4px!important;)
-youtube.com##chip-bar-view-model.ytd-rich-grid-renderer.chip-bar:style(padding-bottom:12px!important;)
-
-! === Item Layout Tweaks ===
-youtube.com###avatar-container:not([hidden]).ytd-rich-grid-media:style(margin-right:-36px!important; margin-top:8px!important;)
-youtube.com###avatar-container:not([hidden])+#meta>h3.ytd-rich-grid-media:style(padding-left:42px!important;)
-youtube.com##h3.ytd-rich-grid-media:style(margin:8px 0 0 0!important;)
-youtube.com###meta.ytd-rich-grid-media:style(margin-bottom:-4px!important;)
-youtube.com##ytd-video-meta-block.grid.ytd-rich-grid-media:style(margin-right:-24px!important;)
-youtube.com##ytd-video-meta-block.ytd-rich-grid-media:style(margin-top:4px!important;)
-
-! === Font Size and Alignment ===
-youtube.com###video-title.ytd-rich-grid-media:style(font-size:1.5rem!important; line-height:1.8rem!important; align-content:center!important; height:3.6rem!important;)
-youtube.com##span.inline-metadata-item.ytd-video-meta-block:style(font-size:1.24rem!important;)
