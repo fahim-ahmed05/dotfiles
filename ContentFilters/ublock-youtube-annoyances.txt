@@ -1,6 +1,6 @@
 ! Title: YouTube Annoyances
 ! Description: Removes annoying elements from YouTube
-! Version: 2.3.1
+! Version: 2.3.2
 ! Last modified: 2025-04-28
 ! Expires: 2 weeks
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
@@ -47,7 +47,3 @@ youtube.com##ytd-video-meta-block.ytd-rich-grid-media:style(margin-top:4px!impor
 ! === Font Size and Alignment ===
 youtube.com###video-title.ytd-rich-grid-media:style(font-size:1.5rem!important; line-height:1.8rem!important; align-content:center!important; height:3.6rem!important;)
 youtube.com##span.inline-metadata-item.ytd-video-meta-block:style(font-size:1.24rem!important;)
-
-! === Shorts/Posts full removal ===
-youtube.com##ytd-rich-section-renderer:has(> * > [is-shorts])
-youtube.com##ytd-rich-section-renderer:has(> * > * > * > #contents-container > * > :first-child[is-post])
