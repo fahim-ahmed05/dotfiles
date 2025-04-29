@@ -172,6 +172,9 @@
 			],
 			"isInPiP": false,
 			"useNativePiP": true
+		},
+		"skip-silences": {
+			"enabled": true
 		}
 	},
 	"__internal__": {
