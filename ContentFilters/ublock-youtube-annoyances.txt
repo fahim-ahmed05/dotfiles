@@ -2,7 +2,6 @@
 ! Description: Removes annoying elements from youtube
 ! Version: 2.2.0
 ! Last modified: 2025-01-06
-! Expires: 2 weeks
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
 
