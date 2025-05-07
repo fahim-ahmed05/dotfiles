@@ -8,6 +8,9 @@ www.youtube.com##ytd-rich-item-renderer > div > ytd-rich-grid-media > div:nth-of
 
 ! Remove the Posts Section
 www.youtube.com##ytd-browse[page-subtype="home"] ytd-rich-section-renderer:has(ytd-rich-item-renderer[is-post])
+
 ! Remove Posts
 www.youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer[is-post]
 
+! Remove members only videos
+www.youtube.com##ytd-rich-item-renderer.ytd-rich-grid-renderer:has(.badge-style-type-members-only)
