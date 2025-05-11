@@ -1,4 +1,4 @@
-// DNS
+// DOH & IPV6
 user_pref("network.trr.mode", 3);
 user_pref("network.trr.uri", "https://dns.adguard-dns.com/dns-query");
 user_pref("network.trr.custom_uri", "https://dns.adguard-dns.com/dns-query");
@@ -90,7 +90,6 @@ user_pref("toolkit.coverage.opt-out", true);
 user_pref("toolkit.coverage.endpoint.base", "");
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
-
 
 // DOWNLOADS
 user_pref("browser.download.manager.addToRecentDocs", false);
