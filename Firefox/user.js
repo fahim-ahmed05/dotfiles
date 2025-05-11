@@ -26,7 +26,7 @@ user_pref("permissions.default.geo", 2);
 user_pref("permissions.default.camera", 2);
 user_pref("permissions.default.microphone", 2);
 user_pref("permissions.manager.defaultsUrl", "");
-user_pref("media.autoplay.default", 1);
+user_pref("media.autoplay.default", 2);
 
 // THEME ADJUSTMENTS 
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
@@ -47,7 +47,6 @@ user_pref("browser.formfill.enable", false);
 
 // ACCESSIBILITY
 user_pref("browser.urlbar.update2.engineAliasRefresh", true);
-user_pref("dom.disable_window_move_resize", true);
 user_pref("layout.word_select.eat_space_to_next_word", false);
 user_pref("browser.bookmarks.openInTabClosesMenu", false);
 user_pref("ui.key.menuAccessKeyFocuses", false);
@@ -122,3 +121,6 @@ user_pref("browser.firefox-view.feature-tour", "{\"screen\":\"\",\"complete\":tr
 user_pref("browser.download.open_pdf_attachments_inline", false);
 user_pref("pdfjs.enableScripting", false);
 
+// SECURITY
+user_pref("dom.security.https_only_mode", true);
+user_pref("dom.disable_window_move_resize", true);
