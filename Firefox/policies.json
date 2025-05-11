@@ -1,5 +1,6 @@
 {
     "__INFO__": "https://mozilla.github.io/policy-templates/",
+    "__PATH__": "${install_dir}\\distribution\\policies.json",
     "policies": {
         "OverrideFirstRunPage": "",
         "OverridePostUpdatePage": "",
