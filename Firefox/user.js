@@ -52,6 +52,7 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 user_pref("browser.bookmarks.openInTabClosesMenu", false);
 user_pref("ui.key.menuAccessKeyFocuses", false);
 user_pref("findbar.highlightAll", true);
+user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
 
 // PICTURE-IN-PICTURE
 user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled", true);
