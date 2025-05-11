@@ -26,7 +26,7 @@ user_pref("permissions.default.geo", 2);
 user_pref("permissions.default.camera", 2);
 user_pref("permissions.default.microphone", 2);
 user_pref("permissions.manager.defaultsUrl", "");
-user_pref("media.autoplay.default", 2);
+user_pref("media.autoplay.default", 5);
 
 // THEME ADJUSTMENTS 
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
