@@ -46,6 +46,7 @@ user_pref("places.history.enabled", true);
 user_pref("browser.formfill.enable", false);
 
 // ACCESSIBILITY
+user_pref("browser.urlbar.update2.engineAliasRefresh", true);
 user_pref("dom.disable_window_move_resize", true);
 user_pref("layout.word_select.eat_space_to_next_word", false);
 user_pref("browser.bookmarks.openInTabClosesMenu", false);
