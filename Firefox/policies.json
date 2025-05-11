@@ -11,7 +11,6 @@
         "DisableFeedbackCommands": true,
         "DontCheckDefaultBrowser": true,
         "NoDefaultBookmarks": true,
-        "DefaultDownloadDirectory": "${home}\\Downloads\\Firefox",
         "UserMessaging": {
             "ExtensionRecommendations": false,
             "FeatureRecommendations": false,
