@@ -98,7 +98,6 @@ user_pref("browser.download.always_ask_before_handling_new_types", false);
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 user_pref("browser.download.start_downloads_in_tmp_dir", true);
 
-
 // MOZILLA UI
 user_pref("browser.uitour.enabled", false);
 user_pref("browser.privatebrowsing.vpnpromourl", "");
@@ -115,7 +114,6 @@ user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.aboutwelcome.enabled", false);
 user_pref("startup.homepage_welcome_url", "");
 user_pref("startup.homepage_welcome_url.additional", "");
-user_pref("browser.profiles.enabled", true);
 user_pref("browser.firefox-view.feature-tour", "{\"screen\":\"\",\"complete\":true}");
 
 // PDF
