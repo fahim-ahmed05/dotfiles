@@ -31,3 +31,7 @@ user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.ena
 
 // POCKET
 user_pref("extensions.pocket.enabled", true);
+
+// ZEN UI
+user_pref("browser.shell.checkDefaultBrowser", false);
+
