@@ -29,3 +29,5 @@ user_pref("browser.formfill.enable", false);
 // PICTURE-IN-PICTURE
 user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled", true);
 
+// POCKET
+user_pref("extensions.pocket.enabled", true);
