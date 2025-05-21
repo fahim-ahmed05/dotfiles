@@ -2,3 +2,10 @@
     --attention-dot-color: transparent !important;
 }
 
+#vertical-spacer {
+  display: none;
+}
+
+#tabbrowser-tabs[orient=vertical]:not([expanded]) .tabbrowser-tab:hover .tab-close-button {
+display: none !important;
+}
