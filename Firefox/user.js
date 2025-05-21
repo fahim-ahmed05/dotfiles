@@ -30,6 +30,7 @@ user_pref("media.autoplay.default", 5);
 
 // THEME ADJUSTMENTS 
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+user_pref("widget.windows.mica", true)
 
 // FULLSCREEN NOTICE 
 user_pref("full-screen-api.transition-duration.enter", "0 0");
@@ -39,6 +40,7 @@ user_pref("full-screen-api.warning.timeout", 0);
 // TAB BEHAVIOR
 user_pref("browser.tabs.loadBookmarksInBackground", true);
 user_pref("browser.tabs.hoverPreview.enabled", true);
+user_pref("browser.tabs.closeWindowWithLastTab", false);
 
 // BROWSING HISTORY
 user_pref("privacy.history.custom", true);
