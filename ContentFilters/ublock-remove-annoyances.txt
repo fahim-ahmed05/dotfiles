@@ -1,19 +1,13 @@
 ! Title: Random Site Annoyances
 ! Description: Removes random annoying elements from websites
-! Version: 1.8.0
-! Last modified: 2025-3-29 12:35 pm
+! Version: 25.5.22
+! Last modified: 2025-5-22
 ! Expires: 2 weeks (update frequency)
 ! Homepage: https://github.com/fahim-ahmed05/dotfiles
 ! License: https://github.com/fahim-ahmed05/dotfiles/blob/main/LICENSE
 
 ! raindrop.io - Hide upgrade banner in the sidebar
 app.raindrop.io##.upgrade-R9fx
-
-! reddit.com - Hide server error banner 
-www.reddit.com##alert-controller
-
-! trakt.tv - Hide banner ad from dashboard & profile
-trakt.tv###om1gYCfRiN-IGJj59JMAC-wrapper
 
 ! x.com - Hide not verified banner on profile
 x.com##.css-175oi2r.r-dnmrzs.r-nsbfu8
