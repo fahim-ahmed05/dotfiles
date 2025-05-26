@@ -18,3 +18,7 @@ x.com##.css-175oi2r.r-1habvwh.r-1ssbvtb.r-1mmae3n.r-3pj75a
 ! x.com - Hide a line on right sidebar
 x.com##div.css-175oi2r.r-kemksi.r-1kqtdi0.r-1867qdf.r-1phboty.r-rs99b7.r-1ifxtd0.r-1udh08x:nth-of-type(3)
 x.com##.css-175oi2r.r-vacyoi.r-ttdzmv > div.css-175oi2r:nth-of-type(3) > .css-175oi2r.r-kemksi.r-1kqtdi0.r-1867qdf.r-1phboty.r-rs99b7.r-1ifxtd0.r-1udh08x
+
+! reddit.com - Hide "We had a server error..." banner
+www.reddit.com##alert-controller
+
