@@ -34,4 +34,5 @@ user_pref("extensions.pocket.enabled", true);
 
 // ZEN UI
 user_pref("browser.shell.checkDefaultBrowser", false);
+user_pref("zen.watermark.enabled", false)
 
