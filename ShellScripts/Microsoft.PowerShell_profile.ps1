@@ -5,12 +5,10 @@ Import-Module -Name Terminal-Icons
 oh-my-posh init pwsh --config 'C:\Users\Fahim\AppData\Local\Programs\oh-my-posh\themes\robbyrussell.omp.json' | Invoke-Expression
 
 # Alias
-Set-Alias rm Remove-ItemSafely -Option AllScope
-Set-Alias vi nvim.exe
+# Set-Alias rm Remove-ItemSafely -Option AllScope
 
 function ytdlp {
     yt-dlp.exe --downloader aria2c @args
-    
 }
 
 # Functions
@@ -28,7 +26,7 @@ function rmDesktopIcons {
             
             foreach ($icon in $icons) {
                 try {
-                    Remove-ItemSafely $icon.FullName
+                    bin $icon.FullName
                     Write-Host "Deleted: $($icon.Name)" -ForegroundColor Yellow
                 }
                 catch {
@@ -52,7 +50,7 @@ function cleanDesktop {
 
         foreach ($item in $items) {
             try {
-                Remove-ItemSafely $item.FullName
+                bin $item.FullName
                 Write-Host "Deleted: $($item.Name)" -ForegroundColor Yellow
             }
             catch {
@@ -82,7 +80,7 @@ function cleanDownloads {
             }
 
             try {
-                Remove-ItemSafely $item.FullName
+                bin $item.FullName
                 Write-Host "Deleted: $($item.Name)" -ForegroundColor Yellow
             }
             catch {
@@ -169,9 +167,7 @@ function rt {
 
 # Winget
 function ws {
-    $name = $args -join ' '
-    winget source update
-    winget search $name 
+    winget search @args
 }
 
 function wi {
@@ -362,83 +358,55 @@ function su {
 }
 
 # Trash
-function trash {
-    param(
-        [Parameter(ValueFromRemainingArguments = $true)]
-        [string[]]$path
+function bin {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string[]]$Path
     )
 
-    if (-not $path -or $path.Count -eq 0) {
-        Write-Host "ERROR: No path specified." -ForegroundColor Red
-        return
+    $trashDir = "C:\Users\Fahim\Trash"
+
+    if (-not (Test-Path $trashDir)) {
+        New-Item -Path $trashDir -ItemType Directory | Out-Null
     }
 
-    foreach ($p in $path) {
-        if ($p -eq '*') {
-            # Handle wildcard to delete all files in the current directory
-            $currentDir = Get-Location
-            $items = Get-ChildItem -Path $currentDir -File -Force
-
-            foreach ($item in $items) {
-                $fullPath = $item.FullName
-                $shell = New-Object -ComObject 'Shell.Application'
-                $shellItem = $shell.NameSpace($item.DirectoryName).ParseName($item.Name)
-
-                if ($shellItem) {
-                    $shellItem.InvokeVerb('delete')
-                }
-                else {
-                    Write-Host "ERROR: $fullPath does not exist." -ForegroundColor Red
-                }
-            }
-        }
-        else {
-            # Handle single file or directory
+    foreach ($pattern in $Path) {
+        $items = Get-Item -Path $pattern -ErrorAction SilentlyContinue
+        foreach ($item in $items) {
             try {
-                $resolved = Resolve-Path -Path $p -ErrorAction Stop
-                $fullPath = $resolved.Path
+                $name = Split-Path -Path $item.FullName -Leaf
+                $destination = Join-Path -Path $trashDir -ChildPath $name
+
+                # Ensure unique filename if needed
+                if (Test-Path $destination) {
+                    $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
+                    $destination = Join-Path -Path $trashDir -ChildPath "$timestamp`_$name"
+                }
+
+                Move-Item -Path $item.FullName -Destination $destination -Force
+                Write-Host "Moved to Trash: $($item.FullName) -> $destination" -ForegroundColor Yellow
             }
             catch {
-                Write-Host "ERROR: $p does not exist." -ForegroundColor Red
-                continue
-            }
-
-            if (Test-Path $fullPath) {
-                $item = Get-Item $fullPath
-
-                if ($item.PSIsContainer) {
-                    # Handle directory
-                    if ($item.Parent) {
-                        $parentPath = $item.Parent.FullName
-                    }
-                    else {
-                        $parentPath = $item.FullName
-                    }
-                }
-                else {
-                    # Handle file
-                    $parentPath = $item.DirectoryName
-                }
-
-                if (Test-Path $parentPath) {
-                    $shell = New-Object -ComObject 'Shell.Application'
-                    $shellItem = $shell.NameSpace($parentPath).ParseName($item.Name)
-
-                    if ($shellItem) {
-                        $shellItem.InvokeVerb('delete')
-                    }
-                    else {
-                        Write-Host "ERROR: $fullPath does not exist." -ForegroundColor Red
-                    }
-                }
-                else {
-                    Write-Host "ERROR: $parentPath does not exist." -ForegroundColor Red
-                }
-            }
-            else {
-                Write-Host "ERROR: $fullPath does not exist." -ForegroundColor Red
+                Write-Host "Failed to move: $($item.FullName)" -ForegroundColor Red
             }
         }
+    }
+}
+
+function emptyBin {
+    $trashDir = "C:\Users\Fahim\Trash"
+
+    if (Test-Path $trashDir) {
+        try {
+            Get-ChildItem -Path $trashDir -Recurse -Force | Remove-Item -Force -Recurse
+            Write-Host "Trash emptied." -ForegroundColor Green
+        }
+        catch {
+            Write-Host "Failed to empty trash: $_" -ForegroundColor Red
+        }
+    }
+    else {
+        Write-Host "Trash folder does not exist: $trashDir" -ForegroundColor Red
     }
 }
 
