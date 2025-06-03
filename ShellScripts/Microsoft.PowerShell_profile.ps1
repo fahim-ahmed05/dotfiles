@@ -18,8 +18,6 @@ function rmDesktopIcons {
         "C:\Users\Public\Desktop"
     )
 
-    Write-Host "Removing desktop icons..." -ForegroundColor Cyan
-
     foreach ($path in $desktopPaths) {
         if (Test-Path $path) {
             $icons = Get-ChildItem -Path $path -Filter "*.lnk" -ErrorAction SilentlyContinue
@@ -27,7 +25,6 @@ function rmDesktopIcons {
             foreach ($icon in $icons) {
                 try {
                     bin $icon.FullName
-                    Write-Host "Deleted: $($icon.Name)" -ForegroundColor Yellow
                 }
                 catch {
                     Write-Host "Failed to delete: $($icon.Name)" -ForegroundColor Red
@@ -160,9 +157,11 @@ Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -MaximumHistoryCount 10000
 
 # Windows Terminal
-function rt { 
-    $currentDir = Get-Location
-    exit & wt -d $currentDir
+function rt {
+    $currentDir = (Get-Location).Path
+    # Launch wt with current profile ID and current directory
+    wt --profile $env:WT_PROFILE_ID -d $currentDir
+    exit
 }
 
 # Winget
@@ -384,7 +383,7 @@ function bin {
                 }
 
                 Move-Item -Path $item.FullName -Destination $destination -Force
-                Write-Host "Moved to Trash: $($item.FullName) -> $destination" -ForegroundColor Yellow
+                Write-Host "Moved to Trash: $($item.Name)" -ForegroundColor Yellow
             }
             catch {
                 Write-Host "Failed to move: $($item.FullName)" -ForegroundColor Red
