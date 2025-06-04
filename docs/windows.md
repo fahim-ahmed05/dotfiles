@@ -40,6 +40,7 @@ winget install eza-community.eza junegunn.fzf ajeetdsouza.zoxide JanDeDobbeleer.
 #### Install [Scoop](https://scoop.sh/)
 ``` PowerShell
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+scoop install scoop-search
 ```
 
 #### Install [Chocolatey](https://chocolatey.org/install)
