@@ -80,7 +80,6 @@ function mkcd {
     }
 }
 
-# su
 function su { 
     Start-Process wt -Verb RunAs -ArgumentList @(
         "--profile", $env:WT_PROFILE_ID,
@@ -156,7 +155,6 @@ function wu {
     }
 }
 
-# yt-dlp with aria2c downloader
 function ytdlp {
     yt-dlp.exe --downloader aria2c @args
 }
