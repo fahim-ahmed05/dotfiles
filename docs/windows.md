@@ -22,10 +22,29 @@ irm https://get.activated.win | iex
 - [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases)
 - [Winaero Tweaker](https://winaerotweaker.com/)
 
+#### Update Winget
+``` PowerShell
+winget upgrade winget
+```
+or
+``` PowerShell
+Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -ForceApplicationShutdown
+```
+
 #### Winget Packages
 
 ``` PowerShell
 winget install eza-community.eza junegunn.fzf ajeetdsouza.zoxide JanDeDobbeleer.OhMyPosh Microsoft.PowerShell 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter PeterPawlowski.foobar2000 th-ch.YouTubeMusic
+```
+
+#### Install [Scoop](https://scoop.sh/)
+``` PowerShell
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+```
+
+#### Install [Chocolatey](https://chocolatey.org/install)
+``` PowerShell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
 ### Cursors
