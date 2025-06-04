@@ -1,0 +1,14 @@
+{
+	"theme": "auto",
+	"scroll_speed": 0.5,
+	"hide_new_tab_button": true,
+	"hide_tab_scrolling_buttons": true,
+	"save_on_focus_lost": true,
+	"word_wrap": true,
+	"font_face": "FiraMono Nerd Font",
+	"font_size": 12,
+	"font_options": ["directwrite", "subpixel_antialias", "dwrite_cleartype_natural", "dlig", "ss01"],
+	"hardware_acceleration": "opengl",
+	"caret_style": "phase",
+	"overlay_scroll_bars": "enabled"
+}
