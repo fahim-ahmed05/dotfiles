@@ -1,40 +1,61 @@
-Write-Host "🛠️ Starting backup script for Firefox and Brave profiles..."
+<#
+.SYNOPSIS
+Backs up browser and launcher profiles using 7-Zip, with shutdown, restart, and cleanup logic.
 
-# Check if Brave, Firefox, and Flow Launcher are running
-$isBraveRunning = Get-Process -Name "brave" -ErrorAction SilentlyContinue
-$isFirefoxRunning = Get-Process -Name "firefox" -ErrorAction SilentlyContinue
-$isFlowLauncherRunning = Get-Process -Name "Flow.Launcher" -ErrorAction SilentlyContinue
+.DESCRIPTION
+Uses a config array to define apps. Only apps with profile paths are backed up.
+All defined apps will be closed and restarted if running.
 
-# Close any running instances of Firefox, Brave, and Flow.Launcher
-Write-Host "💀 Closing any running instances of Firefox, Brave, and Flow Launcher..."
-if ($isBraveRunning) {
-    Stop-Process -Name "brave" -Force -ErrorAction SilentlyContinue 
-    Write-Host "✅ Brave closed." 
+.INPUTS
+Run from PowerShell:
+  .\Backup-Profiles.ps1
+
+.EXAMPLE
+[PSCustomObject]@{
+    Name        = "AppName"
+    ProcessName = "processname"
+    ProfilePath = "full\path\to\profile"
+    Executable  = "full\path\to\executable.exe"
+    Arguments   = "optional arguments"
 }
-else { Write-Host "🤖 Brave not running." }
+#>
 
-if ($isFirefoxRunning) {
-    Stop-Process -Name "firefox" -Force -ErrorAction SilentlyContinue 
-    Write-Host "✅ Firefox closed." 
-}
-else { Write-Host "🤖 Firefox not running." }
+Write-Host "🛠️ Starting backup script for browser profiles..."
 
-if ($isFlowLauncherRunning) {
-    Stop-Process -Name "Flow.Launcher" -Force -ErrorAction SilentlyContinue 
-    Write-Host "✅ Flow Launcher closed." 
-}
-else { Write-Host "🤖 Flow Launcher not running." }
+# Apps to backup: Name, process, profile path, executable, optional args
+$apps = @(
+    [PSCustomObject]@{
+        Name        = "Brave"
+        ProcessName = "brave"
+        ProfilePath = "$env:LOCALAPPDATA\BraveSoftware\Brave-Browser\User Data"
+        Executable  = "C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+        Arguments   = "--profile-directory=`"Default`""
+    },
+    [PSCustomObject]@{
+        Name        = "Firefox"
+        ProcessName = "firefox"
+        ProfilePath = "$env:APPDATA\Mozilla\Firefox\Profiles"
+        Executable  = "C:\Program Files\Firefox Nightly\firefox.exe"
+        Arguments   = ""
+    },
+    [PSCustomObject]@{
+        Name        = "Flow Launcher"
+        ProcessName = "Flow.Launcher"
+        ProfilePath = $null  # No backup needed
+        Executable  = Join-Path (
+                            (Get-ChildItem "$env:LOCALAPPDATA\FlowLauncher" -Directory |
+            Where-Object { $_.Name -like "app-*" } |
+            Sort-Object Name |
+            Select-Object -Last 1).FullName
+        ) "Flow.Launcher.exe"
+        Arguments   = ""
+    }
+)
 
-# Folder Paths
-$backupRoot = "$env:USERPROFILE\Backups\BrowserProfiles"
-$firefoxProfile = "$env:APPDATA\Mozilla\Firefox\Profiles"
-$braveProfile = "$env:LOCALAPPDATA\BraveSoftware\Brave-Browser\User Data"
-
-# Program Paths
+# Paths & settings
+$backupRoot = Join-Path $env:USERPROFILE "Backups\BrowserProfiles"
 $sevenZipPath = "C:\Program Files\7-Zip\7z.exe"
-$bravePath = "C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
-$firefoxPath = "C:\Program Files\Firefox Nightly\firefox.exe"
-$flowLauncherPath = Join-Path ((Get-ChildItem -Path "$env:LOCALAPPDATA\FlowLauncher" -Directory | Where-Object { $_.Name -like "app-*" } | Sort-Object Name | Select-Object -Last 1).FullName) "Flow.Launcher.exe"
+$timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
 
 # Create backup folder if missing
 if (-not (Test-Path -Path $backupRoot)) {
@@ -42,32 +63,61 @@ if (-not (Test-Path -Path $backupRoot)) {
     Write-Host "📁 Created backup folder: $backupRoot."
 }
 
-# Timestamp
-$timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
+foreach ($app in $apps) {
+    $name = $app.Name
+    $process = $app.ProcessName
+    $profilePath = $app.ProfilePath
+    $exe = $app.Executable
+    $appArgs = $app.Arguments
 
-# Backup Firefox Profiles folder
-if (Test-Path $firefoxProfile) {
-    $firefoxBackup = "$backupRoot\FirefoxProfiles_$timestamp.7z"
-    Write-Host "⌛ Backing up Firefox Profiles folder..."
-    Start-Process -FilePath $sevenZipPath -ArgumentList "a", "`"$firefoxBackup`"", "`"$firefoxProfile\*`"" -Wait
-    Write-Host "✅ Firefox Profiles folder backup completed."
-}
-else {
-    Write-Warning "⚠️ Firefox Profiles folder not found!"
+    # Check if running and stop
+    $isRunning = Get-Process -Name $process -ErrorAction SilentlyContinue
+    if ($isRunning) {
+        Write-Host "💀 Closing $name..."
+        Stop-Process -Name $process -Force -ErrorAction SilentlyContinue
+        Write-Host "✅ $name closed."
+    }
+    else {
+        Write-Host "🤖 $name not running."
+    }
+
+    # Backup profiles if profile path is set
+    if ($null -ne $profilePath -and $profilePath -ne "") {
+        if (Test-Path $profilePath) {
+            $backupFile = Join-Path $backupRoot ("${name.Replace(' ', '')}_$timestamp.7z")
+            Write-Host "⌛ Backing up $name profile..."
+
+            $zipArgs = @(
+                'a'
+                $backupFile
+                "$profilePath\*"
+            )
+            Start-Process -FilePath $sevenZipPath -ArgumentList $zipArgs -Wait
+
+            Write-Host "✅ $name profile backup completed."
+        }
+        else {
+            Write-Warning "⚠️ $name profile path not found: $profilePath"
+        }
+    }
+    else {
+        Write-Warning "⚠️ No profile path defined for $name — skipping backup."
+    }
+
+    # Restart app if it was previously running
+    if ($isRunning) {
+        if (Test-Path $exe) {
+            Write-Host "🔁 Restarting $name..."
+            Start-Process -FilePath $exe -ArgumentList $appArgs
+            Write-Host "✅ $name restarted."
+        }
+        else {
+            Write-Warning "⚠️ Could not restart $name — executable not found."
+        }
+    }
 }
 
-# Backup Brave User Data folder
-if (Test-Path $braveProfile) {
-    $braveBackup = "$backupRoot\BraveUserData_$timestamp.7z"
-    Write-Host "⌛ Backing up Brave User Data folder..."
-    Start-Process -FilePath $sevenZipPath -ArgumentList "a", "`"$braveBackup`"", "`"$braveProfile\*`"" -Verb RunAs -Wait
-    Write-Host "✅ Brave User Data folder backup completed."
-}
-else {
-    Write-Warning "⚠️ Brave User Data folder not found!"
-}
-
-# Delete backups older than 30 days
+# Cleanup backups older than 30 days
 $oldBackups = Get-ChildItem -Path $backupRoot -Filter *.7z | Where-Object {
     $_.LastWriteTime -lt (Get-Date).AddDays(-30)
 }
@@ -78,25 +128,6 @@ if ($oldBackups.Count -gt 0) {
 }
 else {
     Write-Host "🤖 No backups older than 30 days found to delete."
-}
-
-# Backup folder location
-Write-Host "📂 Backup folder: $backupRoot."
-
-# Restart applications if they were running
-if ($isFlowLauncherRunning) {
-    Start-Process -FilePath $flowLauncherPath 
-    Write-Host "✅ Flow Launcher restarted." 
-}
-
-if ($isBraveRunning) {
-    Start-Process -FilePath $bravePath -ArgumentList "--profile-directory=`"Default`"" 
-    Write-Host "✅ Brave restarted." 
-}
-
-if ($isFirefoxRunning) {
-    Start-Process -FilePath $firefoxPath 
-    Write-Host "✅ Firefox restarted." 
 }
 
 Write-Host "😀 Script completed successfully!"
