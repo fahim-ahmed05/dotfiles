@@ -34,7 +34,7 @@ Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/d
 #### Winget Packages
 
 ``` PowerShell
-winget install eza-community.eza junegunn.fzf ajeetdsouza.zoxide JanDeDobbeleer.OhMyPosh Microsoft.PowerShell 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter PeterPawlowski.foobar2000 th-ch.YouTubeMusic
+winget install 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter PeterPawlowski.foobar2000 th-ch.YouTubeMusic
 ```
 
 #### Install [Scoop](https://scoop.sh/)
