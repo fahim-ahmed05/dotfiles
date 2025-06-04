@@ -1,10 +1,10 @@
-$installMicrosoftStoreApps = $false
-$installOtherPackages = $false
-$disableOmpStartupNotice = $false
-$setupScoop = $false
-$setupPipX = $false
-$installPipxPackages = $false
-$installNerdFonts = $false
+$installMicrosoftStoreApps = $true
+$installOtherPackages = $true
+$disableOmpStartupNotice = $true
+$setupScoop = $true
+$setupPipX = $true
+$installPipxPackages = $true
+$installNerdFonts = $true
 $removeDesktopIcons = $true
 
 Write-Host "Windows Setup script started..." -ForegroundColor Yellow
