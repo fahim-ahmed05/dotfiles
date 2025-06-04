@@ -22,7 +22,7 @@ Profile paths:
 - VSCode PowerShell Extension: ``Documents\PowerShell\Microsoft.VSCode_profile.ps1``
 - Windows PowerShell: ``Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1``
 
-## `uzip` - [Unzip files using 7-Zip](https://github.com/fahim-ahmed05/dotfiles/blob/main/powershell/CustomFunctions.ps1)
+## `uzip` - [Unzip files using 7-Zip](https://github.com/fahim-ahmed05/dotfiles/blob/main/powershell/functions/CustomFunctions.ps1)
 
 ```PowerShell
 # Extract a specific archive to a folder named after the archive
