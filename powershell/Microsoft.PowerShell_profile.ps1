@@ -1,15 +1,3 @@
-# Scoop Search
-Invoke-Expression (&scoop-search --hook)
-
-# zoxide initialization for PowerShell
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
-
-# See https://ch0.co/tab-completion for details.
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-  Import-Module "$ChocolateyProfile"
-}
-
 # Aliases
 Set-Alias -Name ls -Value eza
 
@@ -322,3 +310,14 @@ function flushDNS {
     Write-Host "✅ DNS cache removed." -ForegroundColor Green
 }
 
+# Scoop Search
+Invoke-Expression (&scoop-search --hook)
+
+# See https://ch0.co/tab-completion for details.
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+  Import-Module "$ChocolateyProfile"
+}
+
+# zoxide
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
