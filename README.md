@@ -7,6 +7,7 @@ I use these daily! 👀
 - [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md)
 - [Powershell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md)
 - [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md)
+- [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md)
 
 ### Wallpapers
 
