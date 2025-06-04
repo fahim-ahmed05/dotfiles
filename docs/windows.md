@@ -22,6 +22,12 @@ irm https://get.activated.win | iex
 - [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases)
 - [Winaero Tweaker](https://winaerotweaker.com/)
 
+#### Winget Packages
+
+``` PowerShell
+winget install eza-community.eza junegunn.fzf ajeetdsouza.zoxide JanDeDobbeleer.OhMyPosh Microsoft.PowerShell 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter PeterPawlowski.foobar2000 th-ch.YouTubeMusic
+```
+
 ### Cursors
 
 [Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor), [Posy's Cursor (Default + Extras)](http://www.michieldb.nl/other/cursors/)
