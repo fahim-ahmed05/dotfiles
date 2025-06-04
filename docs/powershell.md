@@ -6,10 +6,11 @@
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 ```
 
-#### Install [Oh My Posh](https://ohmyposh.dev/docs/installation/windows)
+#### Install PowerShell Packages
 
 ```powershell
-winget install JanDeDobbeleer.OhMyPosh -s winget && wt oh-my-posh disable notice
+winget install eza-community.eza junegunn.fzf ajeetdsouza.zoxide JanDeDobbeleer.OhMyPosh Microsoft.PowerShell 
+oh-my-posh disable notice
 ```
 
 #### Create Profile
