@@ -34,9 +34,16 @@
 
 ### [Content Filters](https://github.com/fahim-ahmed05/dotfiles/tree/main/ContentFilters)
 
-| **Name**                          | **Description**                            | **URL**                                                             |
-|-----------------------------------|--------------------------------------------|---------------------------------------------------------------------|
-| [uBlock Remove Annoyances](https://github.com/fahim-ahmed05/dotfiles/blob/main/ContentFilters/ublock-remove-annoyances.txt) | A filter list for removing common annoyances on websites. | `https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ContentFilters/ublock-remove-annoyances.txt` |
-| [uBlock YouTube Annoyances](https://github.com/fahim-ahmed05/dotfiles/blob/main/ContentFilters/ublock-youtube-annoyances.txt) | A filter list targeting YouTube-specific annoyances. | `https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ContentFilters/ublock-youtube-annoyances.txt` |
+#### [uBlock Remove Annoyances](https://github.com/fahim-ahmed05/ublock-content-filters/blob/main/misc-annoyances)
+
+```
+https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/misc-annoyances
+```
+
+#### [uBlock YouTube Annoyances](https://github.com/fahim-ahmed05/ublock-content-filters/blob/main/fix-youtube.txt)
+
+```
+https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/fix-youtube.txt
+```
 
 **Other Filters:** [Hagezi](https://github.com/hagezi/dns-blocklists)
