@@ -1,44 +1,34 @@
 {
-    "autoSkipOnMusicVideosUpdate": true,
+    "showZoomToFillError2": false,
     "isVip": false,
-    "chapterCategoryAdded": true,
+    "autoSkipOnMusicVideosUpdate": true,
+    "hideVideoPlayerControls": true,
+    "autoSkipOnMusicVideos": true,
+    "showUpsells": false,
+    "upvoteKeybind": {
+        "key": "g",
+        "shift": true
+    },
+    "categoryPillUpdate": true,
+    "showDonationLink": false,
+    "hideInfoButtonPlayerControls": true,
+    "minutesSaved": 0,
     "invidiousInstances": [
         "www.youtubekids.com",
-        "anontube.lvkaszus.pl",
-        "inv.citw.lgbt",
-        "inv.in.projectsegfau.lt",
+        "inv.nadeko.net",
         "inv.tux.pizza",
-        "inv.zzls.xyz",
-        "invidious.asir.dev",
-        "invidious.drgns.space",
-        "invidious.fdn.fr",
-        "invidious.flokinet.to",
-        "invidious.io.lol",
-        "invidious.lunar.icu",
+        "invidious.adminforge.de",
+        "invidious.jing.rocks",
         "invidious.nerdvpn.de",
-        "invidious.no-logs.com",
         "invidious.perennialte.ch",
-        "invidious.privacydev.net",
-        "invidious.private.coffee",
-        "invidious.projectsegfau.lt",
-        "invidious.protokolla.fi",
-        "invidious.slipfox.xyz",
-        "iv.datura.network",
+        "invidious.privacyredirect.com",
+        "invidious.reallyaweso.me",
+        "invidious.yourdevice.ch",
         "iv.ggtyler.dev",
-        "iv.melmac.space",
         "iv.nboeck.de",
-        "onion.tube",
-        "vid.priv.au",
-        "vid.puffyan.us",
         "yewtu.be",
-        "yt.artemislena.eu",
-        "yt.cdaut.de",
-        "yt.drgnz.club",
-        "yt.oelrichsgarcia.de",
         "invidious.snopyta.org"
     ],
-    "categoryPillUpdate": true,
-    "showZoomToFillError2": false,
     "categorySelections": [
         {
             "name": "sponsor",
@@ -85,101 +75,8 @@
             "option": 2
         }
     ],
-    "autoSkipOnMusicVideos": true,
-    "hideInfoButtonPlayerControls": true,
+    "chapterCategoryAdded": true,
     "cleanPopup": true,
-    "showNewFeaturePopups": false,
-    "showDonationLink": false,
-    "showUpsells": false,
-    "hideVideoPlayerControls": true,
-    "defaultCategory": "chooseACategory",
-    "renderSegmentsAsChapters": false,
-    "forceChannelCheck": false,
-    "sponsorTimesContributed": 0,
-    "submissionCountSinceCategories": 0,
-    "showTimeWithSkips": true,
-    "disableSkipping": false,
-    "muteSegments": true,
-    "fullVideoSegments": true,
-    "fullVideoLabelsOnThumbnails": true,
-    "manualSkipOnFullVideo": false,
-    "trackViewCount": true,
-    "trackViewCountInPrivate": true,
-    "trackDownvotes": true,
-    "trackDownvotesInPrivate": false,
-    "dontShowNotice": false,
-    "noticeVisibilityMode": 3,
-    "hideDeleteButtonPlayerControls": false,
-    "hideUploadButtonPlayerControls": false,
-    "hideSkipButtonPlayerControls": false,
-    "hideDiscordLaunches": 0,
-    "hideDiscordLink": false,
-    "supportInvidious": false,
-    "serverAddress": "https://sponsor.ajay.app",
-    "minDuration": 0,
-    "skipNoticeDuration": "5",
-    "audioNotificationOnSkip": false,
-    "checkForUnlistedVideos": false,
-    "testingServer": false,
-    "refetchWhenNotFound": true,
-    "ytInfoPermissionGranted": false,
-    "allowExpirements": true,
-    "showPopupDonationCount": 0,
-    "donateClicked": 0,
-    "autoHideInfoButton": true,
-    "scrollToEditTimeUpdate": false,
-    "showChapterInfoMessage": true,
-    "darkMode": true,
-    "showCategoryGuidelines": true,
-    "showCategoryWithoutPermission": false,
-    "showSegmentNameInChapterBar": true,
-    "useVirtualTime": true,
-    "showSegmentFailedToFetchWarning": true,
-    "allowScrollingToEdit": true,
-    "deArrowInstalled": false,
-    "showDeArrowPromotion": true,
-    "showDeArrowInSettings": true,
-    "shownDeArrowPromotion": false,
-    "categoryPillColors": {},
-    "skipKeybind": {
-        "key": "Enter"
-    },
-    "skipToHighlightKeybind": {
-        "key": "Enter",
-        "ctrl": true
-    },
-    "startSponsorKeybind": {
-        "key": ";"
-    },
-    "submitKeybind": {
-        "key": "'"
-    },
-    "actuallySubmitKeybind": {
-        "key": "'",
-        "ctrl": true
-    },
-    "previewKeybind": {
-        "key": ";",
-        "ctrl": true
-    },
-    "nextChapterKeybind": {
-        "key": "ArrowRight",
-        "ctrl": true
-    },
-    "previousChapterKeybind": {
-        "key": "ArrowLeft",
-        "ctrl": true
-    },
-    "closeSkipNoticeKeybind": {
-        "key": "Backspace"
-    },
-    "payments": {
-        "licenseKey": null,
-        "lastCheck": 0,
-        "lastFreeCheck": 0,
-        "freeAccess": false,
-        "chaptersAllowed": false
-    },
     "colorPalette": {
         "red": "#780303",
         "white": "#ffffff",
@@ -265,7 +162,109 @@
         "preview-filler": {
             "color": "#2E0066",
             "opacity": "0.7"
+        },
+        "chapter": {
+            "color": "#fff",
+            "opacity": "0"
         }
+    },
+    "skipNonMusicOnlyOnYoutubeMusic": false,
+    "payments": {
+        "licenseKey": null,
+        "lastCheck": 0,
+        "lastFreeCheck": 0,
+        "freeAccess": false,
+        "chaptersAllowed": false
+    },
+    "showNewFeaturePopups": false,
+    "skipCount": 0,
+    "userID": "",
+    "defaultCategory": "chooseACategory",
+    "renderSegmentsAsChapters": false,
+    "whitelistedChannels": [],
+    "forceChannelCheck": false,
+    "sponsorTimesContributed": 0,
+    "submissionCountSinceCategories": 0,
+    "showTimeWithSkips": true,
+    "disableSkipping": false,
+    "muteSegments": true,
+    "fullVideoSegments": true,
+    "fullVideoLabelsOnThumbnails": true,
+    "manualSkipOnFullVideo": false,
+    "trackViewCount": true,
+    "trackViewCountInPrivate": true,
+    "trackDownvotes": true,
+    "trackDownvotesInPrivate": false,
+    "dontShowNotice": false,
+    "showUpcomingNotice": false,
+    "noticeVisibilityMode": 3,
+    "hideDeleteButtonPlayerControls": false,
+    "hideUploadButtonPlayerControls": false,
+    "hideSkipButtonPlayerControls": false,
+    "hideDiscordLaunches": 0,
+    "hideDiscordLink": false,
+    "supportInvidious": false,
+    "serverAddress": "https://sponsor.ajay.app",
+    "minDuration": 0,
+    "skipNoticeDuration": 4,
+    "audioNotificationOnSkip": false,
+    "checkForUnlistedVideos": false,
+    "testingServer": false,
+    "ytInfoPermissionGranted": false,
+    "allowExpirements": true,
+    "showPopupDonationCount": 0,
+    "donateClicked": 0,
+    "autoHideInfoButton": true,
+    "scrollToEditTimeUpdate": false,
+    "showChapterInfoMessage": true,
+    "darkMode": true,
+    "showCategoryGuidelines": true,
+    "showCategoryWithoutPermission": false,
+    "showSegmentNameInChapterBar": true,
+    "showAutogeneratedChapters": true,
+    "useVirtualTime": true,
+    "showSegmentFailedToFetchWarning": true,
+    "allowScrollingToEdit": true,
+    "deArrowInstalled": false,
+    "showDeArrowPromotion": false,
+    "showDeArrowInSettings": false,
+    "shownDeArrowPromotion": false,
+    "categoryPillColors": {},
+    "skipKeybind": {
+        "key": "Enter"
+    },
+    "skipToHighlightKeybind": {
+        "key": "Enter",
+        "ctrl": true
+    },
+    "startSponsorKeybind": {
+        "key": ";"
+    },
+    "submitKeybind": {
+        "key": "'"
+    },
+    "actuallySubmitKeybind": {
+        "key": "'",
+        "ctrl": true
+    },
+    "previewKeybind": {
+        "key": ";",
+        "ctrl": true
+    },
+    "nextChapterKeybind": {
+        "key": "ArrowRight",
+        "ctrl": true
+    },
+    "previousChapterKeybind": {
+        "key": "ArrowLeft",
+        "ctrl": true
+    },
+    "closeSkipNoticeKeybind": {
+        "key": "Backspace"
+    },
+    "downvoteKeybind": {
+        "key": "h",
+        "shift": true
     },
     "permissions": {
         "sponsor": true,

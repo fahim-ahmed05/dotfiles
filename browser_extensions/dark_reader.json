@@ -27,9 +27,35 @@
     "presets": [],
     "customThemes": [
         {
+            "builtIn": true,
+            "theme": {
+                "mode": 1,
+                "brightness": 100,
+                "contrast": 100,
+                "grayscale": 0,
+                "sepia": 0,
+                "useFont": false,
+                "fontFamily": "Segoe UI",
+                "textStroke": 0,
+                "engine": "cssFilter",
+                "stylesheet": "",
+                "darkSchemeBackgroundColor": "#181a1b",
+                "darkSchemeTextColor": "#e8e6e3",
+                "lightSchemeBackgroundColor": "#dcdad7",
+                "lightSchemeTextColor": "#181a1b",
+                "scrollbarColor": "",
+                "selectionColor": "auto",
+                "styleSystemControls": false,
+                "lightColorScheme": "Default",
+                "darkColorScheme": "Default",
+                "immediateModify": false
+            },
             "url": [
                 "*.officeapps.live.com"
-            ],
+            ]
+        },
+        {
+            "builtIn": true,
             "theme": {
                 "mode": 1,
                 "brightness": 100,
@@ -39,7 +65,7 @@
                 "useFont": false,
                 "fontFamily": "Segoe UI",
                 "textStroke": 0,
-                "engine": "svgFilter",
+                "engine": "cssFilter",
                 "stylesheet": "",
                 "darkSchemeBackgroundColor": "#181a1b",
                 "darkSchemeTextColor": "#e8e6e3",
@@ -52,12 +78,12 @@
                 "darkColorScheme": "Default",
                 "immediateModify": false
             },
-            "builtIn": true
-        },
-        {
             "url": [
                 "*.sharepoint.com"
-            ],
+            ]
+        },
+        {
+            "builtIn": true,
             "theme": {
                 "mode": 1,
                 "brightness": 100,
@@ -67,7 +93,7 @@
                 "useFont": false,
                 "fontFamily": "Segoe UI",
                 "textStroke": 0,
-                "engine": "svgFilter",
+                "engine": "cssFilter",
                 "stylesheet": "",
                 "darkSchemeBackgroundColor": "#181a1b",
                 "darkSchemeTextColor": "#e8e6e3",
@@ -80,40 +106,12 @@
                 "darkColorScheme": "Default",
                 "immediateModify": false
             },
-            "builtIn": true
-        },
-        {
             "url": [
                 "docs.google.com"
-            ],
-            "theme": {
-                "mode": 1,
-                "brightness": 100,
-                "contrast": 100,
-                "grayscale": 0,
-                "sepia": 0,
-                "useFont": false,
-                "fontFamily": "Segoe UI",
-                "textStroke": 0,
-                "engine": "svgFilter",
-                "stylesheet": "",
-                "darkSchemeBackgroundColor": "#181a1b",
-                "darkSchemeTextColor": "#e8e6e3",
-                "lightSchemeBackgroundColor": "#dcdad7",
-                "lightSchemeTextColor": "#181a1b",
-                "scrollbarColor": "",
-                "selectionColor": "auto",
-                "styleSystemControls": false,
-                "lightColorScheme": "Default",
-                "darkColorScheme": "Default",
-                "immediateModify": false
-            },
-            "builtIn": true
+            ]
         },
         {
-            "url": [
-                "onedrive.live.com"
-            ],
+            "builtIn": true,
             "theme": {
                 "mode": 1,
                 "brightness": 100,
@@ -123,7 +121,7 @@
                 "useFont": false,
                 "fontFamily": "Segoe UI",
                 "textStroke": 0,
-                "engine": "svgFilter",
+                "engine": "cssFilter",
                 "stylesheet": "",
                 "darkSchemeBackgroundColor": "#181a1b",
                 "darkSchemeTextColor": "#e8e6e3",
@@ -136,7 +134,9 @@
                 "darkColorScheme": "Default",
                 "immediateModify": false
             },
-            "builtIn": true
+            "url": [
+                "onedrive.live.com"
+            ]
         }
     ],
     "enabledByDefault": true,
@@ -146,11 +146,14 @@
     "syncSettings": true,
     "syncSitesFixes": false,
     "automation": {
+        "behavior": "OnOff",
         "enabled": false,
-        "mode": "",
-        "behavior": "OnOff"
+        "mode": ""
     },
-    "time": {},
+    "time": {
+        "activation": "",
+        "deactivation": ""
+    },
     "location": {},
     "previewNewDesign": true,
     "previewNewestDesign": false,
@@ -158,5 +161,11 @@
     "enableForProtectedPages": false,
     "enableContextMenus": false,
     "detectDarkTheme": false,
-    "installation": {}
+    "installation": {
+        "date": "",
+        "reason": "",
+        "version": ""
+    },
+    "displayedNews": [],
+    "readNews": []
 }
