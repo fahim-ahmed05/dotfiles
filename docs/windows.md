@@ -17,7 +17,8 @@ irm https://get.activated.win | iex
 - [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/) 
 - [Python](https://www.python.org/downloads/)
 - [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm)
-- [Git](https://git-scm.com/download/win), [Visual Studio Code](https://code.visualstudio.com/)
+- [Git](https://git-scm.com/download/win)
+- [Visual Studio Code](https://code.visualstudio.com/)
 - [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases)
 - [Winaero Tweaker](https://winaero.com/download-winaero-tweaker/)
 
