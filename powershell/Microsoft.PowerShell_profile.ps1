@@ -7,6 +7,9 @@ $functionsRoot = "C:\Users\Fahim\GitHub\dotfiles\powershell\functions"
 . "$functionsRoot\PackageManagement.ps1"
 . "$functionsRoot\CleanupTools.ps1"
 
+# Aliases
+Set-Alias -Name ls -Value eza -Force
+
 # Prompt
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\robbyrussell.omp.json" | Invoke-Expression
 

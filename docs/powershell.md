@@ -22,6 +22,19 @@ Profile paths:
 - VSCode PowerShell Extension: ``Documents\PowerShell\Microsoft.VSCode_profile.ps1``
 - Windows PowerShell: ``Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1``
 
+#### Install [Scoop](https://scoop.sh/)
+```PowerShell
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+```
+
+#### Install [Nerd Fonts](https://www.nerdfonts.com/)
+```PowerShell
+    scoop bucket add nerd-fonts
+    scoop install nerd-fonts/JetBrainsMono-NF
+    scoop install nerd-fonts/CascadiaMono-NF
+    scoop install nerd-fonts/UbuntuMono-NF
+```
+
 ## `unzip` - [Unzip files using 7-Zip](https://github.com/fahim-ahmed05/dotfiles/blob/main/powershell/functions/CustomFunctions.ps1)
 
 ```PowerShell
