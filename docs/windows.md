@@ -47,6 +47,12 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
+#### Install [Pipx](https://github.com/pypa/pipx)
+``` PowerShell
+scoop install pipx
+pipx ensurepath
+```
+
 ### Cursors
 
 [Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor), [Posy's Cursor (Default + Extras)](http://www.michieldb.nl/other/cursors/)
