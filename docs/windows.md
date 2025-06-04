@@ -20,7 +20,7 @@ irm https://get.activated.win | iex
 - [Git](https://git-scm.com/download/win)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases)
-- [Winaero Tweaker](https://winaero.com/download-winaero-tweaker/)
+- [Winaero Tweaker](https://winaerotweaker.com/download/)
 
 ### Cursors
 
