@@ -1,11 +1,5 @@
-# Module
-Import-Module -Name Terminal-Icons
-
 # Prompt
 oh-my-posh init pwsh --config 'C:\Users\Fahim\AppData\Local\Programs\oh-my-posh\themes\robbyrussell.omp.json' | Invoke-Expression
-
-# Alias
-# Set-Alias rm Remove-ItemSafely -Option AllScope
 
 function ytdlp {
     yt-dlp.exe --downloader aria2c @args
