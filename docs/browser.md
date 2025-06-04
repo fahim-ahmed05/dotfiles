@@ -32,7 +32,7 @@
 | **Proton VPN** | [Install](https://addons.mozilla.org/en-US/firefox/addon/proton-vpn-firefox-extension/) | [Install](https://chromewebstore.google.com/detail/proton-vpn-fast-secure/jplgfhpmjnbigmhklmmbgecoobifkmpa) | N/A | N/A |
 | **Google Docs Offline** | N/A | [Install](https://chromewebstore.google.com/detail/google-docs-offline/ghbmnnjooekpmoecnnnilnnbdlolhkhi) | N/A | N/A |
 
-### [Content Filters](https://github.com/fahim-ahmed05/dotfiles/tree/main/ContentFilters)
+### [Content Filters](https://github.com/fahim-ahmed05/ublock-content-filters)
 
 #### [uBlock Remove Annoyances](https://github.com/fahim-ahmed05/ublock-content-filters/blob/main/misc-annoyances)
 
