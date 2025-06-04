@@ -1,9 +1,3 @@
-# Custom Fucntions and Aliases
-$functionsRoot = "C:\Users\Fahim\GitHub\dotfiles\powershell\functions"
-
-. "$functionsRoot\CustomFunctions.ps1"
-. "$functionsRoot\CleanupTools.ps1"
-
 # Scoop Search
 Invoke-Expression (&scoop-search --hook)
 
