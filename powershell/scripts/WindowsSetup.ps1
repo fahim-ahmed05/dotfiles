@@ -9,6 +9,23 @@ $removeDesktopIcons = $true
 
 Write-Host "Windows Setup script started..." -ForegroundColor Yellow
 
+# update winget
+write-host "Updating winget..." -ForegroundColor Cyan
+if (Get-Command winget -ErrorAction SilentlyContinue) {
+    try {
+        winget --version
+        Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -ForceApplicationShutdown
+        winget source update
+    }
+    catch {
+        Write-Host "❌ Winget upgrade failed." -ForegroundColor Red
+    }
+}
+else {
+    Write-Host "⚠️ Winget not installed." -ForegroundColor Yellow
+}
+winget --version
+
 # Install Microsoft Store apps via winget
 if ($installMicrosoftStoreApps) {
     Write-Host "Installing Microsoft Store apps via winget..." -ForegroundColor Cyan
@@ -32,6 +49,7 @@ if ($installMicrosoftStoreApps) {
 if ($installOtherPackages) {
     Write-Host "Installing apps via winget..." -ForegroundColor Cyan
     $wingetPackages = @(
+        "eza-community.eza",                    # eza  
         "junegunn.fzf",                         # fzf
         "ajeetdsouza.zoxide",                   # Zoxide
         "JanDeDobbeleer.OhMyPosh",              # Oh My Posh
