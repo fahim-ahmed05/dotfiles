@@ -9,12 +9,16 @@ $removeDesktopIcons = $true
 
 Write-Host "Windows Setup script started..." -ForegroundColor Yellow
 
-# update winget
+# Update winget
 write-host "Updating winget..." -ForegroundColor Cyan
 if (Get-Command winget -ErrorAction SilentlyContinue) {
     try {
+        Write-Host "Current winget version:" -ForegroundColor Yellow
         winget --version
-        Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -ForceApplicationShutdown
+        Start-Process powershell -ArgumentList '-Command', 'Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -ForceApplicationShutdown' -Wait
+        winget upgrade winget --accept-package-agreements --accept-source-agreements
+        Write-Host "Winget version after update:" -ForegroundColor Cyan
+        winget --version
         winget source update
     }
     catch {
@@ -23,8 +27,9 @@ if (Get-Command winget -ErrorAction SilentlyContinue) {
 }
 else {
     Write-Host "⚠️ Winget not installed." -ForegroundColor Yellow
+    $installMicrosoftStoreApps = $false
+    $installOtherPackages = $false
 }
-winget --version
 
 # Install Microsoft Store apps via winget
 if ($installMicrosoftStoreApps) {
@@ -94,7 +99,7 @@ if ($installOtherPackages) {
 
 # Disable Oh My Posh startup notice
 if ($disableOmpStartupNotice) {
-    wt --profile $env:WT_PROFILE_ID oh-my-posh disable notice
+    Start-Process powershell -ArgumentList '-Command', 'oh-my-posh disable notice' -NoNewWindow -Wait
     Write-Host "Oh My Posh startup notice disabled." -ForegroundColor Green
 }
 
@@ -108,7 +113,7 @@ if ($setupScoop) {
 if ($setupPipX) {
     Write-Host "Setting up pipx..." -ForegroundColor Cyan
     scoop install pipx
-    wt --profile $env:WT_PROFILE_ID pipx ensurepath
+    Start-Process powershell -ArgumentList '-Command', 'pipx ensurepath' -NoNewWindow -Wait
 }
 
 # Install yt-dlp and spotdl with pipx
