@@ -152,9 +152,7 @@ Set-PSReadLineOption -MaximumHistoryCount 10000
 
 # Windows Terminal
 function rt {
-    $currentDir = (Get-Location).Path
-    # Launch wt with current profile ID and current directory
-    wt --profile $env:WT_PROFILE_ID -d $currentDir
+    wt --profile $env:WT_PROFILE_ID -d (Get-Location).Path
     exit
 }
 
