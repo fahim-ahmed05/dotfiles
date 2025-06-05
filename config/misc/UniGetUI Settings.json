@@ -1,0 +1,23 @@
+{
+  "AlwaysElevate.json": "{\r\n  \u0022Chocolatey\u0022: true\r\n}",
+  "AskToDeleteNewDesktopShortcuts": "",
+  "DefaultVcpkgTriplet": "x64-windows",
+  "DeletableDesktopShortcuts.json": "{\r\n  \u0022C:\\\\Users\\\\Public\\\\Desktop\\\\UniGetUI.lnk\u0022: false\r\n}",
+  "DisableAutoCheckforUpdates": "",
+  "DisableAutoUpdateWingetUI": "",
+  "DisabledManagers.json": "{\r\n  \u0022Winget\u0022: false,\r\n  \u0022Scoop\u0022: false,\r\n  \u0022Chocolatey\u0022: false,\r\n  \u0022Npm\u0022: true,\r\n  \u0022Pip\u0022: true,\r\n  \u0022Cargo\u0022: true,\r\n  \u0022vcpkg\u0022: true,\r\n  \u0022.NET Tool\u0022: true,\r\n  \u0022PowerShell\u0022: true,\r\n  \u0022PowerShell7\u0022: false\r\n}",
+  "DisableInstantSearch.json": "{\r\n  \u0022Discover\u0022: false,\r\n  \u0022Updates\u0022: false,\r\n  \u0022Installed\u0022: false,\r\n  \u0022Bundles\u0022: false\r\n}",
+  "DisableSystemTray": "",
+  "DisableTelemetry": "",
+  "DoCacheAdminRightsForBatches": "",
+  "PackageListViewMode.json": "{\r\n  \u0022Discover\u0022: 0,\r\n  \u0022Updates\u0022: 0,\r\n  \u0022Installed\u0022: 0,\r\n  \u0022Bundles\u0022: 0\r\n}",
+  "PreferredTheme": "auto",
+  "RemoveAllDesktopShortcuts": "",
+  "ShownTelemetryBanner": "",
+  "SidepanelWidths.json": "{\r\n  \u0022Discover\u0022: 250,\r\n  \u0022Installed\u0022: 250,\r\n  \u0022Bundles\u0022: 250,\r\n  \u0022Updates\u0022: 250\r\n}",
+  "StartupPage": "updates",
+  "TransferredOldSettings": "",
+  "TransferredOldSettingsv2": "",
+  "UseSystemChocolatey": "",
+  "WindowGeometry": "130,130,1440,753,0"
+}
