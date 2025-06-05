@@ -35,6 +35,7 @@ Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/d
 ```
 
 #### Winget Packages (Source: Microsoft Store)
+**ℹ️ 9PLJWWSV01LK = Twinkle Tray, 9N45NSM4TNBP = FluentFlyout**
 
 ```PowerShell
 winget install 9PLJWWSV01LK 9N45NSM4TNBP XPFFTQ032PTPHF 9PFD136M8457 --source msstore --accept-package-agreements --accept-source-agreements
