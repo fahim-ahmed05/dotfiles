@@ -54,6 +54,7 @@
 			"globalShortcuts": {}
 		},
 		"discord": {
+			"enabled": false,
 			"playOnYouTubeMusic": true,
 			"listenAlong": true
 		},
