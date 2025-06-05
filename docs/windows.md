@@ -66,6 +66,7 @@ scoop install pipx
 pipx ensurepath
 ```
 #### Pipx Packages
+⚠️ **Python required**
 ``` PowerShell
 pipx install yt-dlp spotdl
 ```
