@@ -43,7 +43,7 @@
     "simple_tui": false,
     "fetch_albums": false,
     "id3_separator": "/",
-    "ytm_data": true,
+    "ytm_data": false,
     "add_unavailable": false,
     "generate_lrc": false,
     "force_update_metadata": false,
