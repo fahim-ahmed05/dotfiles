@@ -78,7 +78,3 @@ pipx install yt-dlp spotdl
 | [Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor) | [⬇️](https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Original-Ice-Windows.zip) |
 | [Posy's Cursor (Default + Extras)](https://www.michieldb.nl/other/cursors/) | ⛓️‍💥 |
 
-
-### Fonts
-
-[Inter](https://rsms.me/inter/download/), [CascadiaCode-NF, JetBrainsMono-NF, UbuntuSans-NF](https://github.com/ryanoasis/nerd-fonts/releases), [SolaimanLipi, AdorshoLipi](https://www.omicronlab.com/bangla-fonts.html), [Ekushey Lal Salu Normal](https://ekushey.org/fonts/)
