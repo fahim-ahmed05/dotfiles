@@ -63,6 +63,10 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 scoop install pipx
 pipx ensurepath
 ```
+#### Pipx Packages
+``` PowerShell
+pipx install yt-dlp spotdl
+```
 
 ### Cursors
 
