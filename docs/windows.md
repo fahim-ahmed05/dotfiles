@@ -37,13 +37,13 @@ Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/d
 #### Winget Packages (Source: Microsoft Store)
 
 ```PowerShell
-
+winget install 9PLJWWSV01LK 9N45NSM4TNBP XPFFTQ032PTPHF 9PFD136M8457 --source msstore --accept-package-agreements --accept-source-agreements
 ```
 
 #### Winget Packages (Source: Winget)
 
 ``` PowerShell
-winget install 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter PeterPawlowski.foobar2000 th-ch.YouTubeMusic
+winget install 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter PeterPawlowski.foobar2000 th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 #### Install [Scoop](https://scoop.sh/)
@@ -53,6 +53,7 @@ scoop install scoop-search
 ```
 
 #### Install [Chocolatey](https://chocolatey.org/install)
+**⚠️ Admin rights required**
 ``` PowerShell
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
