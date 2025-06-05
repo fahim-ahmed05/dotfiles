@@ -23,15 +23,24 @@ irm https://get.activated.win | iex
 - [Winaero Tweaker](https://winaerotweaker.com/)
 
 #### Update Winget
+
 ``` PowerShell
 winget upgrade winget
 ```
+
 or
+
 ``` PowerShell
 Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -ForceApplicationShutdown
 ```
 
-#### Winget Packages
+#### Winget Packages (Source: Microsoft Store)
+
+```PowerShell
+
+```
+
+#### Winget Packages (Source: Winget)
 
 ``` PowerShell
 winget install 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter PeterPawlowski.foobar2000 th-ch.YouTubeMusic

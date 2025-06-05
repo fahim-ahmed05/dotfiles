@@ -99,8 +99,8 @@ function wu {
         Write-Host "❌ Winget update failed." -ForegroundColor Red
     }
 
-    Write-Host "📦 Updating scoop packages..." -ForegroundColor Cyan
     if (Get-Command scoop -ErrorAction SilentlyContinue) {
+        Write-Host "📦 Updating scoop packages..." -ForegroundColor Cyan
         try {
             scoop update
             scoop cleanup *
@@ -113,8 +113,8 @@ function wu {
         Write-Host "⚠️ Scoop not installed." -ForegroundColor Yellow
     }
 
-    Write-Host "🐍 Updating pip..." -ForegroundColor Cyan
     if (Get-Command python.exe -ErrorAction SilentlyContinue) {
+        Write-Host "🐍 Updating pip..." -ForegroundColor Cyan
         try {
             python.exe -m pip install --upgrade pip
         }
@@ -126,8 +126,8 @@ function wu {
         Write-Host "⚠️ Python not installed." -ForegroundColor Yellow
     }
 
-    Write-Host "📦 Updating pipx packages..." -ForegroundColor Cyan
     if (Get-Command pipx -ErrorAction SilentlyContinue) {
+        Write-Host "📦 Updating pipx packages..." -ForegroundColor Cyan
         try {
             pipx upgrade-all
         }
@@ -137,6 +137,19 @@ function wu {
     }
     else {
         Write-Host "⚠️ pipx not installed." -ForegroundColor Yellow
+    }
+
+    if(Get-Command choco -ErrorAction SilentlyContinue) {
+        Write-Host "📦 Updating Chocolatey packages..." -ForegroundColor Cyan
+        try {
+            sudo choco upgrade all -y
+        }
+        catch {
+            Write-Host "❌ Chocolatey upgrade failed." -ForegroundColor Red
+        }
+    }
+    else {
+        Write-Host "⚠️ Chocolatey not installed." -ForegroundColor Yellow
     }
 
     if (Get-Command rmDesktopIcons -ErrorAction SilentlyContinue) {
