@@ -72,7 +72,11 @@ pipx install yt-dlp spotdl
 
 ### Cursors
 
-[Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor), [Posy's Cursor (Default + Extras)](http://www.michieldb.nl/other/cursors/)
+| Name | Link |
+| :-- | :-- |
+| [Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor) | [Download](https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Original-Ice-Windows.zip) |
+| [Posy's Cursor (Default + Extras)](https://www.michieldb.nl/other/cursors/) | |
+
 
 ### Fonts
 
