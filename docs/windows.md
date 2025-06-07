@@ -24,7 +24,7 @@ irm https://get.activated.win | iex
 
 #### Update Winget
 
-``` PowerShell
+```powershell
 winget upgrade winget
 ```
 
@@ -55,7 +55,7 @@ scoop install scoop-search
 
 #### Install [Chocolatey](https://chocolatey.org/install)
 ⚠️ **Administrative shell required**
-``` PowerShell
+```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
