@@ -16,7 +16,7 @@ wt oh-my-posh disable notice
 #### Create Profile
 
 ```powershell
-if (Test-Path $profile) { "Profile exists at: $profile" } else { "Profile does not exist. Creating..."; New-Item -Path $profile -Type File -Force; "Profile created at: $profile" }
+if (Test-Path $profile) { "Profile exists: $profile" } else { New-Item $profile -ItemType File -Force | Out-Null; "Created: $profile" }
 ```
 Profile paths:
 - PowerShell: ``~\Documents\PowerShell\Microsoft.PowerShell_profile.ps1``
@@ -25,7 +25,7 @@ Profile paths:
 
 #### Install [Nerd Fonts](https://www.nerdfonts.com/)
 ⚠️ **[Scoop](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md#install-scoop) & Git required**
-```PowerShell
+```powershell
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
 ```
