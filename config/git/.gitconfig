@@ -1,7 +1,7 @@
 [user]
 	name = Fahim Ahmed
 	email = fahim.ahmed1453@gmail.com
-	signingkey = C:/Users/Fahim/.ssh/github_sign_gigabyte.pub
+	signingkey = C:/Users/Fahim/.ssh/github_sign
 [gpg]
 	format = ssh
 [commit]
