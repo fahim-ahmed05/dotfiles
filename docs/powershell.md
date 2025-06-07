@@ -10,7 +10,7 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 
 ```powershell
 winget install eza-community.eza junegunn.fzf ajeetdsouza.zoxide JanDeDobbeleer.OhMyPosh Microsoft.PowerShell --source winget --accept-package-agreements --accept-source-agreements
-oh-my-posh disable notice
+wt oh-my-posh disable notice
 ```
 
 #### Create Profile
