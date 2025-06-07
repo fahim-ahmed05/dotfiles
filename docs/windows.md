@@ -3,7 +3,7 @@
 #### [Setup Script](https://github.com/fahim-ahmed05/dotfiles/blob/main/ShellScripts/WindowsSetup.ps1)
 
 ```powershell
-iwr "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ShellScripts/WindowsSetup.ps1" | iex
+iwr "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/powershell/scripts/WindowsSetup.ps1" | iex
 ```
 
 #### Activate Windows ([Massgrave](https://github.com/massgravel/Microsoft-Activation-Scripts))
