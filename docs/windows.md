@@ -30,25 +30,25 @@ winget upgrade winget
 
 or
 
-``` PowerShell
+```powershell
 Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -ForceApplicationShutdown
 ```
 
 #### Winget Packages (Source: Microsoft Store)
 ℹ️ _TwinkleTray FluentFlyout UniGetUI FluentWeather_
 
-```PowerShell
+```powershell
 winget install 9PLJWWSV01LK 9N45NSM4TNBP XPFFTQ032PTPHF 9PFD136M8457 --source msstore --accept-package-agreements --accept-source-agreements
 ```
 
 #### Winget Packages (Source: Winget)
 
-``` PowerShell
+```powershell
 winget install 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter PeterPawlowski.foobar2000 th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 #### Install [Scoop](https://scoop.sh/)
-``` PowerShell
+```powershell
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 scoop install scoop-search
 ```
@@ -61,13 +61,13 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 #### Install [Pipx](https://github.com/pypa/pipx)
 ⚠️ **Python required**
-``` PowerShell
+```powershell
 scoop install pipx
 pipx ensurepath
 ```
 #### Pipx Packages
 ⚠️ **Python required**
-``` PowerShell
+```powershell
 pipx install yt-dlp spotdl
 ```
 
