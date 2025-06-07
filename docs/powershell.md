@@ -26,7 +26,7 @@ Profile paths:
 #### Install [Nerd Fonts](https://www.nerdfonts.com/)
 ⚠️ **[Scoop](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md#install-scoop) & Git required**
 ```PowerShell
-    scoop bucket add nerd-fonts
-    scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
+scoop bucket add nerd-fonts
+scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
 ```
 
