@@ -63,7 +63,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 ⚠️ **Python required**
 ```powershell
 scoop install pipx
-wt pipx ensurepath
+pipx ensurepath
 ```
 #### Pipx Packages
 ⚠️ **Python required**
