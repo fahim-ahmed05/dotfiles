@@ -1,4 +1,4 @@
-# Path: C:\Users\Fahim\appdata\Roaming\yt-dlp\config
+# Path: %APPDATA%\yt-dlp\config
 
 # Use aria2c
 --external-downloader aria2c
