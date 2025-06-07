@@ -1,0 +1,8 @@
+# Path: C:\Users\Fahim\appdata\Roaming\yt-dlp\config
+
+# Use aria2c
+--external-downloader aria2c
+--external-downloader-args aria2c:"-x 16 -k 1M"
+
+# Download location
+-o D:/Users/Fahim/Downloads/yt-dlp/%(title)s.%(ext)s
