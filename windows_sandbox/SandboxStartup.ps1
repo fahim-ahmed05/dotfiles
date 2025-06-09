@@ -55,7 +55,6 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted -Force
 
 # Restart Explorer so changes take effect
 Stop-Process -Name explorer -Force
-Start-Process explorer.exe
 
 # Open an explorer window to the host-shared folder
 # Start-Process explorer.exe C:\Users\WDAGUtilityAccount\Desktop\WinsbSharedFolder
