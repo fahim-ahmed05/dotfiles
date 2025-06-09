@@ -1,8 +1,11 @@
-# Create a shortcut to LibreWolf on the desktop
+<# Create a shortcut to LibreWolf on the desktop
+
 $WshShell = New-Object -ComObject WScript.Shell
 $Shortcut = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\LibreWolf.lnk")
 $Shortcut.TargetPath = "C:\Users\WDAGUtilityAccount\Desktop\WinsbSharedFolder\SandboxFiles\LibreWolf\LibreWolf-Portable.exe"
 $Shortcut.Save()
+
+#>
 
 # Enable Dark Mode for Apps
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name "AppsUseLightTheme" -Value 0
@@ -52,6 +55,7 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted -Force
 
 # Restart Explorer so changes take effect
 Stop-Process -Name explorer -Force
+Start-Process explorer.exe
 
 # Open an explorer window to the host-shared folder
 # Start-Process explorer.exe C:\Users\WDAGUtilityAccount\Desktop\WinsbSharedFolder
