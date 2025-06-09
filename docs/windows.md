@@ -1,18 +1,18 @@
 # Windows
 
-#### [Setup Script](https://github.com/fahim-ahmed05/dotfiles/blob/main/ShellScripts/WindowsSetup.ps1)
+### [Setup Script](https://github.com/fahim-ahmed05/dotfiles/blob/main/ShellScripts/WindowsSetup.ps1)
 
 ```powershell
 iwr "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/powershell/scripts/WindowsSetup.ps1" | iex
 ```
 
-#### Activate Windows ([Massgrave](https://github.com/massgravel/Microsoft-Activation-Scripts))
+### Activate Windows ([Massgrave](https://github.com/massgravel/Microsoft-Activation-Scripts))
 
 ```powershell
 irm https://get.activated.win | iex
 ```
 
-#### Programs
+### Programs
 
 - [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/) 
 - [Python](https://www.python.org/downloads/)
@@ -22,7 +22,7 @@ irm https://get.activated.win | iex
 - [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases)
 - [Winaero Tweaker](https://winaerotweaker.com/)
 
-#### Update Winget
+### Update Winget
 
 ```powershell
 winget upgrade winget
@@ -34,38 +34,38 @@ or
 Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -ForceApplicationShutdown
 ```
 
-#### Winget Packages (Source: Microsoft Store)
+### Winget Packages (Source: Microsoft Store)
 ℹ️ _TwinkleTray FluentFlyout UniGetUI FluentWeather_
 
 ```powershell
 winget install 9PLJWWSV01LK 9N45NSM4TNBP XPFFTQ032PTPHF 9PFD136M8457 --source msstore --accept-package-agreements --accept-source-agreements
 ```
 
-#### Winget Packages (Source: Winget)
+### Winget Packages (Source: Winget)
 
 ```powershell
 winget install 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter PeterPawlowski.foobar2000 th-ch.YouTubeMusic Gyan.FFmpeg --source winget --accept-package-agreements --accept-source-agreements
 ```
 
-#### Install [Scoop](https://scoop.sh/)
+### Install [Scoop](https://scoop.sh/)
 ```powershell
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 scoop install scoop-search
 ```
 
-#### Install [Chocolatey](https://chocolatey.org/install)
+### Install [Chocolatey](https://chocolatey.org/install)
 ⚠️ **Administrative shell required**
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
-#### Install [Pipx](https://github.com/pypa/pipx)
+### Install [Pipx](https://github.com/pypa/pipx)
 ⚠️ **Python required**
 ```powershell
 scoop install pipx
 pipx ensurepath
 ```
-#### Pipx Packages
+### Pipx Packages
 ⚠️ **Python required**
 ```powershell
 pipx install yt-dlp spotdl
