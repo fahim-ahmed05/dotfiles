@@ -19,9 +19,9 @@ oh-my-posh disable notice
 if (Test-Path $profile) { "Profile exists: $profile" } else { New-Item $profile -ItemType File -Force | Out-Null; "Created: $profile" }
 ```
 Profile paths:
-- PowerShell: ``~\Documents\PowerShell\Microsoft.PowerShell_profile.ps1``
-- VSCode PowerShell Extension: ``~\Documents\PowerShell\Microsoft.VSCode_profile.ps1``
-- Windows PowerShell: ``~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1``
+- PowerShell: `~\Documents\PowerShell\Microsoft.PowerShell_profile.ps1`
+- VSCode PowerShell Extension: `~\Documents\PowerShell\Microsoft.VSCode_profile.ps1`
+- Windows PowerShell: `~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1`
 
 #### Install [Nerd Fonts](https://www.nerdfonts.com/)
 ⚠️ **[Scoop](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md#install-scoop) & Git required**
