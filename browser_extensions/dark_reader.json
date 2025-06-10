@@ -151,8 +151,8 @@
         "mode": ""
     },
     "time": {
-        "activation": "",
-        "deactivation": ""
+        "activation": "18:00",
+        "deactivation": "9:00"
     },
     "location": {},
     "previewNewDesign": true,
