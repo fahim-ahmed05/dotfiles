@@ -203,15 +203,14 @@ function rmDesktopIcons {
 
     foreach ($path in $desktopPaths) {
         if (Test-Path $path) {
-            $icons = Get-ChildItem -Path $path -Filter "*.lnk" -ErrorAction SilentlyContinue
-            foreach ($icon in $icons) {
-                Remove-Item $icon.FullName -Force
-            }
+            Remove-Item -Path "$path\*.lnk" -Force -Recurse -ErrorAction SilentlyContinue
         }
         else {
             Write-Host "📂 Not found: $path" -ForegroundColor DarkGray
         }
     }
+
+    Write-Host "✅ Desktop icons removed." -ForegroundColor Green
 }
 
 function flushCache {
