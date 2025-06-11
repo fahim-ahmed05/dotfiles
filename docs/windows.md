@@ -78,3 +78,6 @@ pipx install yt-dlp spotdl
 | [Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor) | [⬇️](https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Original-Ice-Windows.zip) |
 | [Posy's Cursor (Default + Extras)](https://www.michieldb.nl/other/cursors/) | ⛓️‍💥 |
 
+---
+
+[Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) 

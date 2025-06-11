@@ -48,3 +48,7 @@ https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/head
 ```
 
 **Other Filters:** [Hagezi](https://github.com/hagezi/dns-blocklists)
+
+---
+
+[Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md)
