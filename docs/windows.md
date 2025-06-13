@@ -35,10 +35,10 @@ Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/d
 ```
 
 ### Winget Packages (Source: Microsoft Store)
-ℹ️ _TwinkleTray FluentFlyout UniGetUI FluentWeather_
+ℹ️ _WhatsApp TwinkleTray FluentFlyout UniGetUI FluentWeather_
 
 ```powershell
-winget install 9PLJWWSV01LK 9N45NSM4TNBP XPFFTQ032PTPHF 9PFD136M8457 --source msstore --accept-package-agreements --accept-source-agreements
+winget install 9NKSQGP7F2NH 9PLJWWSV01LK 9N45NSM4TNBP XPFFTQ032PTPHF 9PFD136M8457 --source msstore --accept-package-agreements --accept-source-agreements
 ```
 
 ### Winget Packages (Source: Winget)
