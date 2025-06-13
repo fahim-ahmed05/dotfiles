@@ -236,6 +236,13 @@ function flushDNS {
     Write-Host "✅ DNS cache removed." -ForegroundColor Green
 }
 
+function syncMusic {
+    $current = Get-Location
+    Set-Location "$HOME\Music\YouTube Music"
+    spotdl --sync "$HOME\.spotdl\music.sync.spotdl"
+    Set-Location $current
+}
+
 # Scoop Search
 Invoke-Expression (&scoop-search --hook)
 
