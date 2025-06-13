@@ -44,7 +44,7 @@ winget install 9PLJWWSV01LK 9N45NSM4TNBP XPFFTQ032PTPHF 9PFD136M8457 --source ms
 ### Winget Packages (Source: Winget)
 
 ```powershell
-winget install 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter PeterPawlowski.foobar2000 th-ch.YouTubeMusic Gyan.FFmpeg --source winget --accept-package-agreements --accept-source-agreements
+winget install 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter PeterPawlowski.foobar2000 th-ch.YouTubeMusic Gyan.FFmpeg eMClient.eMClient Microsoft.PowerToys ente-io.auth-desktop Proton.ProtonVPN ONLYOFFICE.DesktopEditors PrestonN.FreeTube calibre.calibre Cloudflare.Warp Tonec.InternetDownloadManager BlueStack.BlueStacks --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### Install [Scoop](https://scoop.sh/)
