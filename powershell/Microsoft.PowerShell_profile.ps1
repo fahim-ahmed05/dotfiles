@@ -239,7 +239,7 @@ function flushDNS {
 function syncMusic {
     $current = Get-Location
     Set-Location "$HOME\Music\YouTube Music"
-    spotdl --sync "$HOME\.spotdl\music.sync.spotdl"
+    spotdl sync "$HOME\.spotdl\music.sync.spotdl"
     Set-Location -Path $current
 }
 
