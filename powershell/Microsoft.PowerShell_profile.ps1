@@ -196,19 +196,8 @@ function hb {
 }
 
 function rmDesktopIcons {
-    $desktopPaths = @(
-        "$HOME\Desktop",
-        "C:\Users\Public\Desktop"
-    )
-
-    foreach ($path in $desktopPaths) {
-        if (Test-Path $path) {
-            Remove-Item -Path "$path\*.lnk" -Force -Recurse -ErrorAction SilentlyContinue
-        }
-        else {
-            Write-Host "📂 Not found: $path" -ForegroundColor DarkGray
-        }
-    }
+    Remove-Item -Path "$HOME\Desktop\*.lnk" -ErrorAction SilentlyContinue
+    Remove-Item -Path "C:\Users\Public\Desktop\*.lnk" -ErrorAction SilentlyContinue
 
     Write-Host "✅ Desktop icons removed." -ForegroundColor Green
 }
