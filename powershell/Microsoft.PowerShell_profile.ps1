@@ -134,7 +134,7 @@ function wi {
 }
 
 function wu {
-    Write-Host "📦 Updating winget packages..." -ForegroundColor Cyan
+    Write-Host "`n📦  Updating winget packages...`n" -ForegroundColor Cyan
     try {
         winget source update
         winget upgrade --all --accept-package-agreements --accept-source-agreements
@@ -144,7 +144,7 @@ function wu {
     }
 
     if (Get-Command scoop -ErrorAction SilentlyContinue) {
-        Write-Host "📦 Updating scoop packages..." -ForegroundColor Cyan
+        Write-Host "`n📦  Updating scoop packages...`n" -ForegroundColor Cyan
         try {
             scoop update
             scoop cleanup *
@@ -158,7 +158,7 @@ function wu {
     }
 
     if (Get-Command python.exe -ErrorAction SilentlyContinue) {
-        Write-Host "`n🐍 Updating pip..." -ForegroundColor Cyan
+        Write-Host "`n🐍  Updating pip...`n" -ForegroundColor Cyan
         try {
             python.exe -m pip install --upgrade pip
         }
@@ -171,7 +171,7 @@ function wu {
     }
 
     if (Get-Command pipx -ErrorAction SilentlyContinue) {
-        Write-Host "`n📦 Updating pipx packages..." -ForegroundColor Cyan
+        Write-Host "`n📦  Updating pipx packages...`n" -ForegroundColor Cyan
         try {
             pipx upgrade-all
         }
@@ -184,7 +184,7 @@ function wu {
     }
 
     if (Get-Command choco -ErrorAction SilentlyContinue) {
-        Write-Host "`n📦 Updating Chocolatey packages..." -ForegroundColor Cyan
+        Write-Host "`n📦  Updating Chocolatey packages...`n" -ForegroundColor Cyan
         try {
             sudo choco upgrade all -y
         }
@@ -242,6 +242,8 @@ function hb {
 function rmDesktopIcons {
     Remove-Item -Path "$HOME\Desktop\*.lnk" -ErrorAction SilentlyContinue
     Remove-Item -Path "C:\Users\Public\Desktop\*.lnk" -ErrorAction SilentlyContinue
+
+    Write-Host "`n✅  Desktop icons removed.`n" -ForegroundColor Green
 }
 
 function flushCache {
