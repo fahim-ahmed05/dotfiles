@@ -188,7 +188,7 @@ function hb {
         $hasteKey = $response.key
         $url = "http://bin.christitus.com/$hasteKey"
         Set-Clipboard $url
-        Write-Output $url
+        Write-Output "$url copied to clipboard."
     }
     catch {
         Write-Error "Failed to upload the document. Error: $_"
