@@ -5,7 +5,7 @@ Set-Alias -Name cd -Value z -Option AllScope
 # Prompt
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\robbyrussell.omp.json" | Invoke-Expression
 
-# PSReadLine
+# Enhanced PSReadLine Configuration
 $PSReadLineOptions = @{
     EditMode                      = 'Windows'
     HistoryNoDuplicates           = $true
@@ -28,6 +28,7 @@ $PSReadLineOptions = @{
 }
 Set-PSReadLineOption @PSReadLineOptions
 
+# Custom functions for PSReadLine
 Set-PSReadLineOption -AddToHistoryHandler {
     param($line)
     $sensitive = @('password', 'secret', 'token', 'apikey', 'connectionstring')
@@ -35,8 +36,35 @@ Set-PSReadLineOption -AddToHistoryHandler {
     return ($null -eq $hasSensitive)
 }
 
+# Improved prediction settings
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -MaximumHistoryCount 10000
+
+# Custom completion for common commands
+$scriptblock = {
+    param($wordToComplete, $commandAst, $cursorPosition)
+    $customCompletions = @{
+        'git'    = @('status', 'add', 'commit', 'push', 'pull', 'clone', 'checkout')
+        'winget' = @('search', 'install', 'show', 'list', 'pin', 'upgrade', 'uninstall', 'source', 'settings')
+    }
+    
+    $command = $commandAst.CommandElements[0].Value
+    if ($customCompletions.ContainsKey($command)) {
+        $customCompletions[$command] | Where-Object { $_ -like "$wordToComplete*" } | ForEach-Object {
+            [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+        }
+    }
+}
+Register-ArgumentCompleter -Native -CommandName git, winget -ScriptBlock $scriptblock
+
+$scriptblock = {
+    param($wordToComplete, $commandAst, $cursorPosition)
+    dotnet complete --position $cursorPosition $commandAst.ToString() |
+    ForEach-Object {
+        [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+    }
+}
+Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock $scriptblock
 
 function touch {
     param(
@@ -67,6 +95,22 @@ function mkcd {
     else {
         Write-Host "ERROR: Directory name is required." -ForegroundColor Red
     }
+}
+
+function ll {
+    param(
+        [Parameter(Mandatory = $false)]
+        [string]$path = (Get-Location).Path
+    )
+    eza -l -h --git --icons=always --time-style '+%d %h %I:%M %P' --color=always --group-directories-first $path
+}
+
+function la {
+    param(
+        [Parameter(Mandatory = $false)]
+        [string]$path = (Get-Location).Path
+    )
+    eza -la -h --git --icons=always --time-style '+%d %h %I:%M %P' --color=always --group-directories-first $path
 }
 
 function su { 
@@ -139,7 +183,7 @@ function wu {
         Write-Host "⚠️ pipx not installed." -ForegroundColor Yellow
     }
 
-    if(Get-Command choco -ErrorAction SilentlyContinue) {
+    if (Get-Command choco -ErrorAction SilentlyContinue) {
         Write-Host "📦 Updating Chocolatey packages..." -ForegroundColor Cyan
         try {
             sudo choco upgrade all -y
@@ -230,7 +274,7 @@ Invoke-Expression (&scoop-search --hook)
 # See https://ch0.co/tab-completion for details.
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
-  Import-Module "$ChocolateyProfile"
+    Import-Module "$ChocolateyProfile"
 }
 
 # zoxide
