@@ -158,7 +158,7 @@ function wu {
     }
 
     if (Get-Command python.exe -ErrorAction SilentlyContinue) {
-        Write-Host "🐍 Updating pip..." -ForegroundColor Cyan
+        Write-Host "`n🐍 Updating pip..." -ForegroundColor Cyan
         try {
             python.exe -m pip install --upgrade pip
         }
@@ -171,7 +171,7 @@ function wu {
     }
 
     if (Get-Command pipx -ErrorAction SilentlyContinue) {
-        Write-Host "📦 Updating pipx packages..." -ForegroundColor Cyan
+        Write-Host "`n📦 Updating pipx packages..." -ForegroundColor Cyan
         try {
             pipx upgrade-all
         }
@@ -184,7 +184,7 @@ function wu {
     }
 
     if (Get-Command choco -ErrorAction SilentlyContinue) {
-        Write-Host "📦 Updating Chocolatey packages..." -ForegroundColor Cyan
+        Write-Host "`n📦 Updating Chocolatey packages..." -ForegroundColor Cyan
         try {
             sudo choco upgrade all -y
         }
