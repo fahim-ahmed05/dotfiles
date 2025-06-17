@@ -206,7 +206,8 @@ function flushCache {
     $paths = @(
         "$env:SystemRoot\Prefetch",
         "$env:SystemRoot\Temp",
-        "$env:TEMP"
+        "$env:TEMP",
+        "$env:LOCALAPPDATA\Microsoft\Windows\INetCache"
     )
 
     foreach ($path in $paths) {
@@ -221,13 +222,6 @@ function flushCache {
 function flushDNS {
     Clear-DnsClientCache
     Write-Host "✅ DNS cache removed." -ForegroundColor Green
-}
-
-function syncMusic {
-    $current = Get-Location
-    Set-Location "$HOME\Music\YouTube Music"
-    spotdl sync "$HOME\.spotdl\music.sync.spotdl"
-    Set-Location -Path $current
 }
 
 # Scoop Search
