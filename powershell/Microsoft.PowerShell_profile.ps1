@@ -198,8 +198,6 @@ function hb {
 function rmDesktopIcons {
     Remove-Item -Path "$HOME\Desktop\*.lnk" -ErrorAction SilentlyContinue
     Remove-Item -Path "C:\Users\Public\Desktop\*.lnk" -ErrorAction SilentlyContinue
-
-    Write-Host "✅ Desktop icons removed." -ForegroundColor Green
 }
 
 function flushCache {
