@@ -276,11 +276,9 @@ function flushDNS {
 function Test-InternetConnection {
     try {
         Invoke-WebRequest -Uri "https://www.google.com" -UseBasicParsing -TimeoutSec 5 -ErrorAction Stop | Out-Null
-        Write-Host "`n🌐  Internet connection is available.`n" -ForegroundColor Green
         return $true
     }
     catch {
-        Write-Host "`n❌  Internet connection is not available.`n" -ForegroundColor Red
         return $false
     }
 }
