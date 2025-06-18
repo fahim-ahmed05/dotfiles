@@ -129,9 +129,7 @@ function wi {
     winget install @args --accept-package-agreements --accept-source-agreements
     Start-Sleep -Seconds 1.5
 
-    if (Get-Command rmDesktopIcons -ErrorAction SilentlyContinue) {
-        rmDesktopIcons
-    }
+    rmDesktopIcons
 }
 
 function wu {
