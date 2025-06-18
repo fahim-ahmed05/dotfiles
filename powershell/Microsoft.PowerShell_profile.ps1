@@ -120,6 +120,7 @@ function su {
     )
 }
 
+# Winget Commands
 function ws {
     winget search @args
 }
@@ -134,6 +135,10 @@ function wi {
 }
 
 function wu {
+    if (-not (Test-InternetConnection)) {
+        return
+    }
+
     Write-Host "`n📦  Updating winget packages...`n" -ForegroundColor Cyan
     try {
         winget source update
@@ -196,9 +201,7 @@ function wu {
         Write-Host "⚠️ Chocolatey not installed." -ForegroundColor Yellow
     }
 
-    if (Get-Command rmDesktopIcons -ErrorAction SilentlyContinue) {
-        rmDesktopIcons
-    }
+    rmDesktopIcons
 }
 
 function pubip { (Invoke-WebRequest http://ifconfig.me/ip).Content }
@@ -270,14 +273,32 @@ function flushDNS {
     Write-Host "✅ DNS cache removed." -ForegroundColor Green
 }
 
+function Test-InternetConnection {
+    try {
+        Invoke-WebRequest -Uri "https://www.google.com" -UseBasicParsing -TimeoutSec 5 -ErrorAction Stop | Out-Null
+        Write-Host "`n🌐  Internet connection is available.`n" -ForegroundColor Green
+        return $true
+    }
+    catch {
+        Write-Host "`n❌  Internet connection is not available.`n" -ForegroundColor Red
+        return $false
+    }
+}
+
 # Scoop Search
-Invoke-Expression (&scoop-search --hook)
+if ((Get-Command scoop -ErrorAction SilentlyContinue)) {
+    Invoke-Expression (&scoop-search --hook)
+}
 
 # See https://ch0.co/tab-completion for details.
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-    Import-Module "$ChocolateyProfile"
+if (Get-Command choco -ErrorAction SilentlyContinue) {
+    $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+    if (Test-Path($ChocolateyProfile)) {
+        Import-Module "$ChocolateyProfile"
+    }
 }
 
 # zoxide
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
+if (Get-Command zoxide -ErrorAction SilentlyContinue) { 
+    Invoke-Expression (& { (zoxide init powershell | Out-String) }) 
+}
