@@ -133,10 +133,6 @@ function wi {
 }
 
 function wu {
-    if (-not (Test-InternetConnection)) {
-        return
-    }
-
     Write-Host "`n📦  Updating winget packages...`n" -ForegroundColor Cyan
     try {
         winget source update
@@ -269,16 +265,6 @@ function flushCache {
 function flushDNS {
     Clear-DnsClientCache
     Write-Host "✅ DNS cache removed." -ForegroundColor Green
-}
-
-function Test-InternetConnection {
-    try {
-        Invoke-WebRequest -Uri "https://www.google.com" -UseBasicParsing -TimeoutSec 5 -ErrorAction Stop | Out-Null
-        return $true
-    }
-    catch {
-        return $false
-    }
 }
 
 # Scoop Search
