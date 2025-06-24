@@ -120,6 +120,10 @@ function su {
     )
 }
 
+function pwroff {
+    shutdown /s /f /t 0
+}
+
 # Winget Commands
 function ws {
     winget search @args
