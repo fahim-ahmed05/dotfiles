@@ -128,9 +128,16 @@ function reboot {
     shutdown /r /f /t 0
 }
 
+# Pipx
+function pi {
+    $packageName = $args[0]
+    pipx install $packageName
+}
+
 # Winget Commands
 function ws {
-    winget search @args
+    $query = $args -join ' '
+    winget search $query
 }
 
 function wi {
