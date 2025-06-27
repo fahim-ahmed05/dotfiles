@@ -130,8 +130,7 @@ function reboot {
 
 # Pipx
 function pi {
-    $packageName = $args[0]
-    pipx install $packageName
+    pipx install $args[0]
 }
 
 # Winget Commands
@@ -141,7 +140,7 @@ function ws {
 }
 
 function wi {
-    winget install @args --accept-package-agreements --accept-source-agreements
+    winget install $args[0] --accept-package-agreements --accept-source-agreements
     Start-Sleep -Seconds 1.5
 
     rmDesktopIcons
