@@ -133,9 +133,10 @@ function pi {
     pipx install $args[0]
 }
 
-# Winget Commands
+# Winget
 function ws {
     $query = $args -join ' '
+    Write-Host "`n🔍  Searching for '$query'...`n" -ForegroundColor Cyan
     winget search $query
 }
 
@@ -148,66 +149,22 @@ function wi {
 
 function wu {
     Write-Host "`n📦  Updating winget packages...`n" -ForegroundColor Cyan
-    try {
-        winget source update
-        winget upgrade --all --accept-package-agreements --accept-source-agreements
-    }
-    catch {
-        Write-Host "❌ Winget update failed." -ForegroundColor Red
-    }
+    winget source update
+    winget upgrade --all --accept-package-agreements --accept-source-agreements
+    winget upgrade winget
 
-    if (Get-Command scoop -ErrorAction SilentlyContinue) {
-        Write-Host "`n📦  Updating scoop packages...`n" -ForegroundColor Cyan
-        try {
-            scoop update
-            scoop cleanup *
-        }
-        catch {
-            Write-Host "❌ Scoop update or cleanup failed." -ForegroundColor Red
-        }
-    }
-    else {
-        Write-Host "⚠️ Scoop not installed." -ForegroundColor Yellow
-    }
+    Write-Host "`n📦  Updating scoop packages...`n" -ForegroundColor Cyan
+    scoop update
+    scoop cleanup *
 
-    if (Get-Command python.exe -ErrorAction SilentlyContinue) {
-        Write-Host "`n🐍  Updating pip...`n" -ForegroundColor Cyan
-        try {
-            python.exe -m pip install --upgrade pip
-        }
-        catch {
-            Write-Host "❌ pip upgrade failed." -ForegroundColor Red
-        }
-    }
-    else {
-        Write-Host "⚠️ Python not installed." -ForegroundColor Yellow
-    }
+    Write-Host "`n📦  Updating pip...`n" -ForegroundColor Cyan
+    python.exe -m pip install --upgrade pip
 
-    if (Get-Command pipx -ErrorAction SilentlyContinue) {
-        Write-Host "`n📦  Updating pipx packages...`n" -ForegroundColor Cyan
-        try {
-            pipx upgrade-all
-        }
-        catch {
-            Write-Host "❌ pipx upgrade failed." -ForegroundColor Red
-        }
-    }
-    else {
-        Write-Host "⚠️ pipx not installed." -ForegroundColor Yellow
-    }
+    Write-Host "`n📦  Updating pipx packages...`n" -ForegroundColor Cyan
+    pipx upgrade-all
 
-    if (Get-Command choco -ErrorAction SilentlyContinue) {
-        Write-Host "`n📦  Updating Chocolatey packages...`n" -ForegroundColor Cyan
-        try {
-            sudo choco upgrade all -y
-        }
-        catch {
-            Write-Host "❌ Chocolatey upgrade failed." -ForegroundColor Red
-        }
-    }
-    else {
-        Write-Host "⚠️ Chocolatey not installed." -ForegroundColor Yellow
-    }
+    Write-Host "`n📦  Updating Chocolatey packages...`n" -ForegroundColor Cyan
+    sudo choco upgrade all -y
 
     rmDesktopIcons
 }
