@@ -46,7 +46,6 @@ $scriptblock = {
     $customCompletions = @{
         'git'    = @('status', 'add', 'commit', 'push', 'pull', 'clone', 'checkout')
         'winget' = @('search', 'install', 'show', 'list', 'pin', 'upgrade', 'uninstall', 'source', 'settings')
-        'ii'     = @('~/Documents', '~/Downloads', '~/Desktop', '~/Pictures', '~/Videos', '~/Music', '~/AppData', '~/GitHub', '~/Programs')
     }
     
     $command = $commandAst.CommandElements[0].Value
