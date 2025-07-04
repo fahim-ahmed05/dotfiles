@@ -151,6 +151,8 @@ function wu {
     Write-Host "`n📦  Updating winget packages...`n" -ForegroundColor Cyan
     winget source update
     winget upgrade --all --accept-package-agreements --accept-source-agreements
+
+    Write-Host "`n📦  Updating winget...`n" -ForegroundColor Cyan
     winget upgrade winget
 
     Write-Host "`n📦  Updating scoop packages...`n" -ForegroundColor Cyan
@@ -162,9 +164,6 @@ function wu {
 
     Write-Host "`n📦  Updating pipx packages...`n" -ForegroundColor Cyan
     pipx upgrade-all
-
-    Write-Host "`n📦  Updating Chocolatey packages...`n" -ForegroundColor Cyan
-    sudo choco upgrade all -y
 
     rmDesktopIcons
 }
@@ -241,14 +240,6 @@ function flushDNS {
 # Scoop Search
 if ((Get-Command scoop -ErrorAction SilentlyContinue)) {
     Invoke-Expression (&scoop-search --hook)
-}
-
-# See https://ch0.co/tab-completion for details.
-if (Get-Command choco -ErrorAction SilentlyContinue) {
-    $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-    if (Test-Path($ChocolateyProfile)) {
-        Import-Module "$ChocolateyProfile"
-    }
 }
 
 # zoxide
