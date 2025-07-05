@@ -223,18 +223,19 @@ function flushCache {
     $paths = @(
         "$env:SystemRoot\Prefetch",
         "$env:SystemRoot\Temp",
-        "$env:TEMP",
+        $env:TEMP,
         "$env:LOCALAPPDATA\Microsoft\Windows\INetCache"
     )
 
     foreach ($path in $paths) {
         if (Test-Path $path) {
-            Remove-Item -Path "$path\*" -Force -Recurse -ErrorAction SilentlyContinue
+            Remove-Item "$path\*" -Force -Recurse -ErrorAction SilentlyContinue
         }
     }
 
     Write-Host "✅ Windows cache removed." -ForegroundColor Green
 }
+
 
 function flushDNS {
     Clear-DnsClientCache
