@@ -209,8 +209,21 @@ function hb {
 }
 
 function rmDesktopIcons {
-    Remove-Item -Path "$HOME\Desktop\*.lnk" -ErrorAction SilentlyContinue
-    Remove-Item -Path "C:\Users\Public\Desktop\*.lnk" -ErrorAction SilentlyContinue
+    $userDesktop = "$env:USERPROFILE\Desktop"
+    $publicDesktop = "C:\Users\Public\Desktop"
+
+    if (Test-Path $userDesktop) {
+        $userLinks = Get-ChildItem -Path "$userDesktop\*.lnk" -ErrorAction SilentlyContinue
+        if ($userLinks) {
+            Remove-Item -Path $userLinks.FullName -Force -ErrorAction SilentlyContinue
+        }
+    }
+    if (Test-Path $publicDesktop) {
+        $publicLinks = Get-ChildItem -Path "$publicDesktop\*.lnk" -ErrorAction SilentlyContinue
+        if ($publicLinks) {
+            Remove-Item -Path $publicLinks.FullName -Force -ErrorAction SilentlyContinue
+        }
+    }
 
     Write-Host "`n✅  Desktop icons removed.`n" -ForegroundColor Green
 }
