@@ -234,7 +234,6 @@ function flushCache {
     Write-Host "`n✅  Windows cache removed.`n" -ForegroundColor Green
 }
 
-
 function flushDNS {
     Clear-DnsClientCache
     Write-Host "`n✅  DNS cache removed.`n" -ForegroundColor Green
