@@ -218,8 +218,6 @@ function rmDesktopIcons {
 }
 
 function flushCache {
-    Write-Host "🧹 Removing Windows cache..." -ForegroundColor Yellow
-
     $paths = @(
         "$env:SystemRoot\Prefetch",
         "$env:SystemRoot\Temp",
@@ -233,13 +231,13 @@ function flushCache {
         }
     }
 
-    Write-Host "✅ Windows cache removed." -ForegroundColor Green
+    Write-Host "`n✅  Windows cache removed.`n" -ForegroundColor Green
 }
 
 
 function flushDNS {
     Clear-DnsClientCache
-    Write-Host "✅ DNS cache removed." -ForegroundColor Green
+    Write-Host "`n✅  DNS cache removed.`n" -ForegroundColor Green
 }
 
 # Scoop Search
