@@ -27,4 +27,4 @@ user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.ena
 // ZEN UI
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("zen.watermark.enabled", false)
-
+user_pref("zen.view.hide-window-controls", true);
