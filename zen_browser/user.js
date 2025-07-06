@@ -1,6 +1,7 @@
 // TAB BEHAVIOR
 user_pref("browser.tabs.loadBookmarksInBackground", true);
 user_pref("browser.tabs.hoverPreview.enabled", true);
+user_pref("browser.tabs.closeWindowWithLastTab", false);
 
 // WEBSITE PERMISSIONS
 user_pref("permissions.default.xr", 2);
