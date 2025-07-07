@@ -3,7 +3,7 @@ Set-Alias -Name ls -Value eza
 Set-Alias -Name cd -Value z -Option AllScope
 
 # Prompt
-oh-my-posh init pwsh --config "$env:USERPROFILE\GitHub\dotfiles\config\omp\gruvbox_mod.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:USERPROFILE\GitHub\dotfiles\config\omp\robbyrussell_gruvbox.omp.json" | Invoke-Expression
 
 # Enhanced PSReadLine Configuration
 $PSReadLineOptions = @{
@@ -11,16 +11,16 @@ $PSReadLineOptions = @{
     HistoryNoDuplicates           = $true
     HistorySearchCursorMovesToEnd = $true
     Colors                        = @{
-        Command   = '#89B482'  # SkyBlue
-        Parameter = '#98FB98'  # PaleGreen
-        Operator  = '#FFB6C1'  # LightPink
-        Variable  = '#DDA0DD'  # Plum
-        String    = '#FFDAB9'  # PeachPuff
-        Number    = '#B0E0E6'  # PowderBlue
-        Type      = '#F0E68C'  # Khaki
-        Comment   = '#D3D3D3'  # LightGray
-        Keyword   = '#8367c7'  # Violet
-        Error     = '#FF6347'  # Red
+        Command   = '#89b482'  # aqua
+        Parameter = '#a9b665'  # green
+        Operator  = '#e78a4e'  # orange
+        Variable  = '#d3869b'  # purple
+        String    = '#d8a657'  # yellow
+        Number    = '#83a598'  # blue
+        Type      = '#928374'  # gray
+        Comment   = '#a89984'  # taupe
+        Keyword   = '#d3869b'  # purple
+        Error     = '#ea6962'  # red
     }
     PredictionSource              = 'History'
     PredictionViewStyle           = 'ListView'
