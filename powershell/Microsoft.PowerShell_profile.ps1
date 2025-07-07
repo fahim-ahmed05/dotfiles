@@ -3,7 +3,7 @@ Set-Alias -Name ls -Value eza
 Set-Alias -Name cd -Value z -Option AllScope
 
 # Prompt
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\robbyrussell.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\gruvbox.omp.json" | Invoke-Expression
 
 # Enhanced PSReadLine Configuration
 $PSReadLineOptions = @{
@@ -11,7 +11,7 @@ $PSReadLineOptions = @{
     HistoryNoDuplicates           = $true
     HistorySearchCursorMovesToEnd = $true
     Colors                        = @{
-        Command   = '#87CEEB'  # SkyBlue
+        Command   = '#89B482'  # SkyBlue
         Parameter = '#98FB98'  # PaleGreen
         Operator  = '#FFB6C1'  # LightPink
         Variable  = '#DDA0DD'  # Plum
