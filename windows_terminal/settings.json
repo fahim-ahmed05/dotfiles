@@ -109,7 +109,7 @@
             "name": "Gruvbox Material Dark",
             "purple": "#D3869B",
             "red": "#EA6962",
-            "selectionBackground": "#FFFFFF",
+            "selectionBackground": "#928374",
             "white": "#D4BE98",
             "yellow": "#D8A657"
         }
