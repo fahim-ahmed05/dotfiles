@@ -209,11 +209,8 @@ function hb {
 }
 
 function rmDesktopIcons {
-    "$env:USERPROFILE\Desktop", "C:\Users\Public\Desktop" | ForEach-Object {
-        Get-ChildItem "$_\*.lnk" -ErrorAction SilentlyContinue | ForEach-Object {
-            Remove-Item $_.FullName -Force -ErrorAction SilentlyContinue
-        }
-    }
+    Remove-Item $env:USERPROFILE\Desktop\*.lnk
+    Remove-Item C:\Users\Public\Desktop\*.lnk 
     Write-Host "`n✅  Desktop icons removed.`n" -ForegroundColor Green
 }
 
