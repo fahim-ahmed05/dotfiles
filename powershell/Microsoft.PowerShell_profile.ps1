@@ -167,6 +167,10 @@ function wu {
     Write-Host "`n📦  Updating pipx packages...`n" -ForegroundColor Cyan
     pipx upgrade-all
 
+    Write-Host "`n📦  Updating spicetify packages...`n" -ForegroundColor Cyan
+    spicetify update
+    spicetify apply
+
     rmDesktopIcons
 }
 
