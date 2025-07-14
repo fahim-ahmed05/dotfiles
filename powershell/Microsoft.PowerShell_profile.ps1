@@ -169,7 +169,6 @@ function wu {
 
     Write-Host "`n📦  Updating spicetify...`n" -ForegroundColor Cyan
     spicetify update
-    spicetify apply
 
     rmDesktopIcons
 }
