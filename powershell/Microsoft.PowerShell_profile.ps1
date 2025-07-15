@@ -121,11 +121,21 @@ function su {
 }
 
 function pwroff {
-    shutdown /s /f /t 0
+    $answer = Read-Host "Are you sure you want to power off the computer? (y/n)"
+    if ($answer -eq "y") {
+        shutdown /s /f /t 0
+    } else {
+        Write-Host "Shutdown cancelled."
+    }
 }
 
 function reboot {
-    shutdown /r /f /t 0
+    $answer = Read-Host "Are you sure you want to reboot the computer? (y/n)"
+    if ($answer -eq "y") {
+        shutdown /r /f /t 0
+    } else {
+        Write-Host "Reboot cancelled."
+    }
 }
 
 # Pipx
