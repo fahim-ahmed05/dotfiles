@@ -12,7 +12,7 @@ $PSReadLineOptions = @{
     HistorySearchCursorMovesToEnd = $true
     Colors                        = @{
         Command   = '#87CEEB'  # SkyBlue
-        Parameter = '#98FB98'  # PaleGreen
+        Parameter = '#A7CB8B'  # PaleGreen
         Operator  = '#FFB6C1'  # LightPink
         Variable  = '#DDA0DD'  # Plum
         String    = '#FFDAB9'  # PeachPuff
@@ -20,7 +20,7 @@ $PSReadLineOptions = @{
         Type      = '#F0E68C'  # Khaki
         Comment   = '#D3D3D3'  # LightGray
         Keyword   = '#8367c7'  # Violet
-        Error     = '#FF6347'  # Red
+        Error     = '#E78287'  # LightRed
     }
     PredictionSource              = 'History'
     PredictionViewStyle           = 'ListView'
