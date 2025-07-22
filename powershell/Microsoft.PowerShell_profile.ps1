@@ -40,32 +40,6 @@ Set-PSReadLineOption -AddToHistoryHandler {
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -MaximumHistoryCount 10000
 
-# Custom completion for common commands
-$scriptblock = {
-    param($wordToComplete, $commandAst, $cursorPosition)
-    $customCompletions = @{
-        'git'    = @('status', 'add', 'commit', 'push', 'pull', 'clone', 'checkout')
-        'winget' = @('search', 'install', 'show', 'list', 'pin', 'upgrade', 'uninstall', 'source', 'settings')
-    }
-    
-    $command = $commandAst.CommandElements[0].Value
-    if ($customCompletions.ContainsKey($command)) {
-        $customCompletions[$command] | Where-Object { $_ -like "$wordToComplete*" } | ForEach-Object {
-            [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
-        }
-    }
-}
-Register-ArgumentCompleter -Native -CommandName git, winget -ScriptBlock $scriptblock
-
-$scriptblock = {
-    param($wordToComplete, $commandAst, $cursorPosition)
-    dotnet complete --position $cursorPosition $commandAst.ToString() |
-    ForEach-Object {
-        [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
-    }
-}
-Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock $scriptblock
-
 function touch {
     param(
         [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true)]
