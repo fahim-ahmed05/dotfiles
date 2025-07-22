@@ -55,8 +55,10 @@ $wingetPackages = @(
     # "Session.Session",                    # Session
     "AdrienAllard.FileConverter",           # File Converter
     # "BlueStack.BlueStacks",               # BlueStacks
-    "PeterPawlowski.foobar2000",            # foobar2000
-    "th-ch.YouTubeMusic"                    # YouTube Music
+    # "PeterPawlowski.foobar2000",          # foobar2000
+    # "th-ch.YouTubeMusic"                  # YouTube Music
+    "AIMP.AIMP",                            # AIMP
+    "eMClient.eMClient"                     # eM Client
 )
 
 # Install Microsoft Store apps
@@ -102,10 +104,10 @@ if (Get-Command python -ErrorAction SilentlyContinue) {
     scoop install pipx
     Start-Process powershell -ArgumentList '-Command', 'pipx ensurepath' -NoNewWindow -Wait
 
-    $pipxPackages = @("yt-dlp", "spotdl")
-    foreach ($package in $pipxPackages) {
-        pipx install $package
-    }
+#    $pipxPackages = @("yt-dlp", "spotdl")
+#    foreach ($package in $pipxPackages) {
+#        pipx install $package
+#    }
 } else {
     Write-Host "`n❌  Python is not installed. Skipping pipx setup." -ForegroundColor Yellow
 }
