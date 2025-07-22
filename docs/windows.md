@@ -44,7 +44,13 @@ winget install 9NKSQGP7F2NH 9PLJWWSV01LK 9N45NSM4TNBP XPFFTQ032PTPHF 9PFD136M845
 ### Winget Packages (Source: Winget)
 
 ```powershell
-winget install 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter PeterPawlowski.foobar2000 th-ch.YouTubeMusic Gyan.FFmpeg eMClient.eMClient Microsoft.PowerToys ente-io.auth-desktop Proton.ProtonVPN ONLYOFFICE.DesktopEditors PrestonN.FreeTube calibre.calibre Cloudflare.Warp Tonec.InternetDownloadManager BlueStack.BlueStacks --source winget --accept-package-agreements --accept-source-agreements
+winget install 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter PeterPawlowski.foobar2000 Gyan.FFmpeg eMClient.eMClient Microsoft.PowerToys ente-io.auth-desktop Proton.ProtonVPN ONLYOFFICE.DesktopEditors Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
+```
+
+### Optional Winget Packages (Source: Winget)
+
+```powershell
+winget install PeterPawlowski.foobar2000 PrestonN.FreeTube calibre.calibre BlueStack.BlueStacks th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### Install [Scoop](https://scoop.sh/)
