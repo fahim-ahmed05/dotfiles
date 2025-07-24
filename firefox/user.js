@@ -28,10 +28,6 @@ user_pref("permissions.default.microphone", 2);
 user_pref("permissions.manager.defaultsUrl", "");
 user_pref("media.autoplay.default", 5);
 
-// THEME ADJUSTMENTS 
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-user_pref("widget.windows.mica", true)
-
 // FULLSCREEN NOTICE 
 user_pref("full-screen-api.transition-duration.enter", "0 0");
 user_pref("full-screen-api.transition-duration.leave", "0 0");
@@ -63,6 +59,7 @@ user_pref("browser.newtabpage.activity-stream.default.sites", "");
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+user_pref("browser.newtabpage.activity-stream.system.showWeather", true);
 
 // CONTAINERS
 user_pref("privacy.userContext.ui.enabled", true);
