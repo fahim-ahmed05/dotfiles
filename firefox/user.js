@@ -55,7 +55,7 @@ user_pref("privacy.trackingprotection.fingerprinting.enabled", true);
 user_pref("privacy.trackingprotection.fingerprinting.probable.enabled", true);
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
-// SSL / TLS / CERTIFICATES
+// SSL/TLS & CERTIFICATES
 user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 user_pref("security.tls.enable_0rtt_data", false);
@@ -133,7 +133,7 @@ user_pref("full-screen-api.warning.timeout", 0);
 // CONTAINERS
 user_pref("privacy.userContext.ui.enabled", true);
 
-// NEW TAB / HOMEPAGE
+// NEW TAB & HOMEPAGE
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
