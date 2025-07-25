@@ -11,16 +11,16 @@ $PSReadLineOptions = @{
     HistoryNoDuplicates           = $true
     HistorySearchCursorMovesToEnd = $true
     Colors                        = @{
-        Command   = '#87CEEB'  # SkyBlue
-        Parameter = '#A7CB8B'  # PaleGreen
-        Operator  = '#FFB6C1'  # LightPink
-        Variable  = '#DDA0DD'  # Plum
-        String    = '#FFDAB9'  # PeachPuff
-        Number    = '#B0E0E6'  # PowderBlue
-        Type      = '#F0E68C'  # Khaki
-        Comment   = '#D3D3D3'  # LightGray
-        Keyword   = '#8367c7'  # Violet
-        Error     = '#E78287'  # LightRed
+        Command   = '#61afef'  # Blue
+        Parameter = '#98c379'  # Green
+        Operator  = '#56b6c2'  # Cyan
+        Variable  = '#c678dd'  # Purple
+        String    = '#e5c07b'  # Yellow
+        Number    = '#d19a66'  # Orange
+        Type      = '#abb2bf'  # Light-Gray
+        Comment   = '#5c6370'  # Gray
+        Keyword   = '#be5046'  # Red-Orange
+        Error     = '#e06c75'  # Red
     }
     PredictionSource              = 'History'
     PredictionViewStyle           = 'ListView'
@@ -98,7 +98,8 @@ function pwroff {
     $answer = Read-Host "Are you sure you want to power off the computer? (y/n)"
     if ($answer -eq "y") {
         shutdown /s /f /t 0
-    } else {
+    }
+    else {
         Write-Host "Shutdown cancelled."
     }
 }
@@ -107,7 +108,8 @@ function reboot {
     $answer = Read-Host "Are you sure you want to reboot the computer? (y/n)"
     if ($answer -eq "y") {
         shutdown /r /f /t 0
-    } else {
+    }
+    else {
         Write-Host "Reboot cancelled."
     }
 }
