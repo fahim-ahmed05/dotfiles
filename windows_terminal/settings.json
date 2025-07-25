@@ -32,6 +32,11 @@
         "defaults": 
         {
             "bellStyle": "none",
+            "colorScheme": "One Half Dark",
+            "font": 
+            {
+                "face": "CaskaydiaMono Nerd Font"
+            },
             "suppressApplicationTitle": true
         },
         "list": 
