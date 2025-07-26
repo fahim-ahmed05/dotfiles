@@ -17,9 +17,9 @@ $PSReadLineOptions = @{
         Variable  = '#c678dd'  # Purple
         String    = '#e5c07b'  # Yellow
         Number    = '#d19a66'  # Orange
-        Type      = '#abb2bf'  # Light-Gray
-        Comment   = '#5c6370'  # Gray
-        Keyword   = '#be5046'  # Red-Orange
+        Type      = '#7f91a8'  # Steel Blue
+        Comment   = '#837a86'  # Dusty Mauve
+        Keyword   = '#d16d9e'  # Pink
         Error     = '#e06c75'  # Red
     }
     PredictionSource              = 'History'
