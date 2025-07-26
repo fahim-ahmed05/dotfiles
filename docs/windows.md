@@ -75,13 +75,15 @@ scoop install scoop-search
 ```
 
 ### Install [Pipx](https://github.com/pypa/pipx)
-⚠️ **[Python](https://www.python.org/downloads/) required**
+| [Python](https://www.python.org/downloads/) required |
+|------------------------------------------------------|
 ```powershell
 scoop install pipx
 pipx ensurepath
 ```
 ### Pipx Packages
-⚠️ **[Python](https://www.python.org/downloads/) required**
+| [Python](https://www.python.org/downloads/) required |
+|------------------------------------------------------|
 ```powershell
 pipx install yt-dlp spotdl
 ```
