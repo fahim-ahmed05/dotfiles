@@ -1,6 +1,12 @@
+| [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md)|
+|------|------|------|------|
+
+---
+
 # Windows
 
 ### [Setup Script](https://github.com/fahim-ahmed05/dotfiles/blob/main/ShellScripts/WindowsSetup.ps1)
+
 
 ```powershell
 iwr "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/powershell/scripts/WindowsSetup.ps1" | iex
@@ -8,8 +14,15 @@ iwr "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/po
 
 ### Activate Windows ([Massgrave](https://github.com/massgravel/Microsoft-Activation-Scripts))
 
+
 ```powershell
-irm https://get.activated.win | iex
+irm "https://get.activated.win" | iex
+```
+
+### [Windows Utility](https://github.com/ChrisTitusTech/winutil)
+
+```powershell
+irm "https://christitus.com/win" | iex
 ```
 
 ### Programs
@@ -35,7 +48,9 @@ Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/d
 ```
 
 ### Winget Packages (Source: Microsoft Store)
-ℹ️ _WhatsApp TwinkleTray FluentFlyout UniGetUI FluentWeather_
+
+| WhatsApp | TwinkleTray | FluentFlyout | UniGetUI | FluentWeather|
+|----------|----------|----------|----------|----------|
 
 ```powershell
 winget install 9NKSQGP7F2NH 9PLJWWSV01LK 9N45NSM4TNBP XPFFTQ032PTPHF 9PFD136M8457 --source msstore --accept-package-agreements --accept-source-agreements
@@ -60,24 +75,25 @@ scoop install scoop-search
 ```
 
 ### Install [Pipx](https://github.com/pypa/pipx)
-⚠️ **Python required**
+⚠️ **[Python](https://www.python.org/downloads/) required**
 ```powershell
 scoop install pipx
 pipx ensurepath
 ```
 ### Pipx Packages
-⚠️ **Python required**
+⚠️ **[Python](https://www.python.org/downloads/) required**
 ```powershell
 pipx install yt-dlp spotdl
 ```
 
 ### Cursors
 
-| Name | Download |
-| :-- | :--: |
-| [Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor) | [⬇️](https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Original-Ice-Windows.zip) |
-| [Posy's Cursor (Default + Extras)](https://www.michieldb.nl/other/cursors/) | ⛓️‍💥 |
+| Name |       |
+|------|-------|
+| [Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor) | [Download](https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Original-Ice-Windows.zip) |
+| [Posy's Cursor (Default + Extras)](https://www.michieldb.nl/other/cursors/) | **N/A** |
 
 ---
 
-[Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) 
+| [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md)|
+|------|------|------|------|

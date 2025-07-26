@@ -11,10 +11,13 @@ I use these daily! 👀
 
 ### Wallpapers
 
-[Unsplash](https://unsplash.com/collections/flfrGRQpfgU/wallpapers), [Google Photos](https://photos.app.goo.gl/KBUxAoErDPASNR182), [GitHub](https://github.com/fahim-ahmed05/dotfiles/tree/main/Wallpapers), [Basic Apple Guy](https://basicappleguy.com/basicappleblog/tag/Wallpaper), [KDE](https://github.com/KDE/plasma-workspace-wallpapers)
+- [Unsplash](https://unsplash.com/collections/flfrGRQpfgU/wallpapers)
+- [Google Photos](https://photos.app.goo.gl/KBUxAoErDPASNR182)
+- [This Repository](https://github.com/fahim-ahmed05/dotfiles/tree/main/Wallpapers)
+- [Basic Apple Guy](https://basicappleguy.com/basicappleblog/tag/Wallpaper)
+- [KDE Defaults](https://github.com/KDE/plasma-workspace-wallpapers)
 
 ### Credits
 
 - https://github.com/yokoffing/Betterfox
 - https://github.com/ChrisTitusTech/powershell-profile
-- https://www.reddit.com/r/uBlockOrigin/wiki/solutions/youtube/
