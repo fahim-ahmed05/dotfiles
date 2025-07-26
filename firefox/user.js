@@ -111,7 +111,7 @@ user_pref("browser.tabs.crashReporting.sendReport", false);
 // =========================
 user_pref("browser.tabs.loadBookmarksInBackground", true);
 user_pref("browser.tabs.hoverPreview.enabled", true);
-user_pref("browser.tabs.closeWindowWithLastTab", false);
+user_pref("browser.tabs.closeWindowWithLastTab", true);
 user_pref("browser.formfill.enable", false);
 user_pref("places.history.enabled", true);
 user_pref("privacy.history.custom", true);
