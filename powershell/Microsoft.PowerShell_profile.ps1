@@ -87,7 +87,7 @@ function la {
     eza -la -h --git --icons=always --time-style '+%d %h %I:%M %P' --color=always --group-directories-first $path
 }
 
-function su { 
+function su {
     Start-Process wt -Verb RunAs -ArgumentList @(
         "--profile", $env:WT_PROFILE_ID,
         "-d", (Get-Location).Path
@@ -173,9 +173,9 @@ function hb {
         Write-Error "No file path specified."
         return
     }
-    
+
     $FilePath = $args[0]
-    
+
     if (Test-Path $FilePath) {
         $Content = Get-Content $FilePath -Raw
     }
@@ -183,7 +183,7 @@ function hb {
         Write-Error "File path does not exist."
         return
     }
-    
+
     $uri = "http://bin.christitus.com/documents"
     try {
         $response = Invoke-RestMethod -Uri $uri -Method Post -Body $Content -ErrorAction Stop
@@ -199,7 +199,7 @@ function hb {
 
 function rmDesktopIcons {
     Remove-Item $env:USERPROFILE\Desktop\*.lnk
-    Remove-Item C:\Users\Public\Desktop\*.lnk 
+    Remove-Item C:\Users\Public\Desktop\*.lnk
     Write-Host "`n✅  Desktop icons removed.`n" -ForegroundColor Green
 }
 
@@ -231,6 +231,6 @@ if ((Get-Command scoop -ErrorAction SilentlyContinue)) {
 }
 
 # zoxide
-if (Get-Command zoxide -ErrorAction SilentlyContinue) { 
-    Invoke-Expression (& { (zoxide init powershell | Out-String) }) 
+if (Get-Command zoxide -ErrorAction SilentlyContinue) {
+    Invoke-Expression (& { (zoxide init powershell | Out-String) })
 }
