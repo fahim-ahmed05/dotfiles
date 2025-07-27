@@ -226,3 +226,6 @@ user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.ena
 // =========================
 user_pref("widget.windows.mica", true);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+user_pref("svg.context-properties.content.enabled", true);
+user_pref("widget.non-native-theme.use-theme-accent", true);
+user_pref("browser.tabs.allow_transparent_browser", true);
