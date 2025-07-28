@@ -17,6 +17,7 @@
       "milliseconds": 1000
     }
   },
+  "soft_wrap": "editor_width",
   "base_keymap": "VSCode",
   "telemetry": {
     "diagnostics": false,
