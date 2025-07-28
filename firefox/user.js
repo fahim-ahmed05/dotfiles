@@ -229,9 +229,3 @@ user_pref(
   "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled",
   true,
 );
-
-// =========================
-// THEME & CUSTOMIZATION
-// =========================
-user_pref("widget.windows.mica", false);
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", false);
