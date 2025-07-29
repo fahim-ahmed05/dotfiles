@@ -203,7 +203,7 @@ QToolTip {
 }
 
 .power-menu-widget {
-    padding: 0 12px;
+    padding: 0 12px 0 8px;
 }
 
 .power-menu-widget .label {
@@ -264,20 +264,21 @@ QToolTip {
     color: var(--surface2);
     font-weight: 600;
 }
-.microphone-widget {
-    padding: 0 6px 0 6px;
-}
+
 .microphone-widget .icon {
     font-size: 18px;
-}
-.microphone-widget .icon {
     color: var(--mauve);
+    margin: 0px 2px 0 0;
+
 }
+
 .volume-widget .icon {
     font-size: 17px;
     color: var(--blue);
     margin: 0px 2px 0 0;
 }
+
+.microphone-widget,
 .weather-widget,
 .volume-widget,
 .wifi-widget,
@@ -285,11 +286,11 @@ QToolTip {
 .traffic-widget,
 .cpu-widget,
 .memory-widget {
-    padding: 0 6px;
+    padding: 0 6px 0 6px;
 }
 .weather-widget .icon {
     font-size: 18px;
-    margin: 0 2px 1px 0;
+    margin: 0 6px 1px 0;
     color: var(--yellow);
 }
 .media-widget {
@@ -360,22 +361,31 @@ QToolTip {
 }
 .notification-widget .icon.new-notification {
     color: var(--blue);
+    margin: 0px 4px 0 0;
 }
 
 .wifi-widget .icon {
     color: var(--mauve);
+    margin: 0px 2px 0 0;
+
 }
 
 .brightness-widget .icon {
+    font-size: 17px;
     color: var(--blue);
+    margin: 0px 4px 1px 0;
 }
 
 .cpu-widget .icon {
+    font-size: 16px;
     color: var(--peach);
+    margin: 0 6px 1px 0;
 }
 
 .memory-widget .icon {
+    font-size: 16px;
     color: var(--teal);
+    margin: 0px 6px 1px 0;
 }
 
 .traffic-menu {
@@ -717,4 +727,8 @@ QToolTip {
 }
 .microphone-menu {
     background-color:rgba(17, 17, 27, 0.4); 
+}
+
+.clock-widget {
+    padding: 0 0 0 6px;
 }

@@ -43,7 +43,7 @@ bars:
         "komorebi_workspaces",
         "komorebi_active_layout",
         "active_window",
-        "media",
+        "media"
       ]
       center: [
 
@@ -56,9 +56,9 @@ bars:
         "weather",
         "microphone",
         "volume",
-        "clock",
         "wifi",
         "notifications",
+        "clock",
         "power_menu"
         ]
 widgets:
