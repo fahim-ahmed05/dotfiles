@@ -11,10 +11,10 @@
   "border_implementation": "Windows",
   "border_style": "System",
   "border_colours": {
-    "single": "#56b6c2",
+    "single": "#c678dd",
     "stack": "#98c379",
     "floating": "#98c379",
-    "monocle": "#d16d9e",
+    "monocle": "#56b6c2",
     "unfocused": "#303030"
   },
   "mouse_follows_focus": false,
