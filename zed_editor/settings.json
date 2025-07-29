@@ -23,8 +23,8 @@
     "diagnostics": false,
     "metrics": false
   },
-  "ui_font_family": "Inter Variable Text",
-  "ui_font_size": 14,
+  "ui_font_family": "Inter",
+  "ui_font_size": 16,
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_features": {
     "calt": true
