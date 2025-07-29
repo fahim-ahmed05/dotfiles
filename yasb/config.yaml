@@ -80,8 +80,8 @@ widgets:
       label: "{title}"
       label_alt: "{artist} - {title}"
       max_field_size:
-        label: 36
-        label_alt: 36
+        label: 50
+        label_alt: 60
       show_thumbnail: false
       controls_only: false
       controls_left: true
@@ -103,7 +103,7 @@ widgets:
       label_no_window: ""
       label_icon: true
       label_icon_size: 14
-      max_length: 56
+      max_length: 70
       max_length_ellipsis: "..."
       monitor_exclusive: true
   clock:
