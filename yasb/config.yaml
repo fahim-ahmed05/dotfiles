@@ -43,6 +43,7 @@ bars:
         "komorebi_workspaces",
         "komorebi_active_layout",
         "active_window",
+        "media",
       ]
       center: [
 
@@ -51,7 +52,6 @@ bars:
         "traffic",
         "cpu",
         "memory",
-        "media",
         "brightness",
         "weather",
         "microphone",

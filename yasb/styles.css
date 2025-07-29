@@ -293,7 +293,7 @@ QToolTip {
     color: var(--yellow);
 }
 .media-widget {
-    padding: 0;
+    padding: 0 6px 0 6px;
     margin: 0;
     border-radius: 0;
 }
