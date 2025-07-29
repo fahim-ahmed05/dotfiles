@@ -3,10 +3,10 @@ This is default and very simple styles file for Yasb.
 For more information about configuration options, please visit the Wiki https://github.com/amnweb/yasb/wiki
 */
 :root {
-    --mauve: #cba6f7;
+    --mauve: #c678dd;
     --red: #f38ba8;
-    --yellow: #f9e2af;
-    --blue: #89b4fa;
+    --yellow: #e5c07b;
+    --blue: #61afef;
     --lavender: #b4befe;
     --teal: #94e2d5;
     --peach: #fab387;
@@ -42,9 +42,9 @@ QToolTip {
 .yasb-bar {
     padding: 0;
     margin: 0;
-    background-color: var(--crust);
+    background-color: rgba(40, 44, 52, 0.8);
     border-radius: 0px;
-    border: 0px solid #313244;
+    border: 0px solid var(--lavender);
 }
 /* Global context menu style */
 .context-menu,
@@ -142,7 +142,7 @@ QToolTip {
     background-color: transparent;
     margin: 3px 0 3px 0;
     border-radius: 12px;
-    border: 1px solid var(--surface0);
+    border: 0px solid var(--surface0);
 }
 .komorebi-workspaces .widget-container {
     border-top-left-radius: 6px;
@@ -286,7 +286,7 @@ QToolTip {
 .traffic-widget,
 .cpu-widget,
 .memory-widget {
-    padding: 0 6px 0 6px;
+    padding: 0 12px 0 6px;
 }
 
 .weather-widget .icon {
@@ -373,8 +373,8 @@ QToolTip {
 
 .brightness-widget .icon {
     font-size: 17px;
-    color: var(--blue);
-    margin: 0px 4px 1px 0;
+    color: var(--yellow);
+    margin: 0 0px 1px 0;
 }
 
 .cpu-widget .icon {
