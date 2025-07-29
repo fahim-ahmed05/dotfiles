@@ -268,14 +268,14 @@ QToolTip {
 .microphone-widget .icon {
     font-size: 18px;
     color: var(--mauve);
-    margin: 0px 2px 0 0;
+    margin: 0px -6px 0 0;
 
 }
 
 .volume-widget .icon {
     font-size: 17px;
     color: var(--blue);
-    margin: 0px 2px 0 0;
+    margin: 0px 0px 0 0;
 }
 
 .microphone-widget,
@@ -380,13 +380,13 @@ QToolTip {
 .cpu-widget .icon {
     font-size: 16px;
     color: var(--peach);
-    margin: 0 6px 1px 0;
+    margin: 0 7px 1px 0;
 }
 
 .memory-widget .icon {
     font-size: 16px;
     color: var(--teal);
-    margin: 0px 6px 1px 0;
+    margin: 0px 7px 1px 0;
 }
 
 .traffic-menu {
@@ -424,7 +424,6 @@ QToolTip {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
-/* Speed column styles */
 .traffic-menu .download-speed,
 .traffic-menu .upload-speed {
     background-color: transparent;

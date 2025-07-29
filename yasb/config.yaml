@@ -210,7 +210,7 @@ widgets:
   volume:
     type: "yasb.volume.VolumeWidget"
     options:
-      label: "<span>{icon}</span> {level}"
+      label: "<span>{icon} </span>{level}"
       label_alt: "{volume}"
       tooltip: false
       volume_icons:
@@ -226,7 +226,7 @@ widgets:
   microphone:
     type: "yasb.microphone.MicrophoneWidget"
     options:
-      label: "<span>{icon}</span> {level}"
+      label: "<span>{icon} </span>{level}"
       label_alt: "<span>{icon}</span> {level}"
       icons:
         normal: "\udb80\udf6c"
