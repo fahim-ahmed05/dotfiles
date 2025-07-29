@@ -56,8 +56,8 @@ bars:
         "weather",
         "microphone",
         "volume",
-        "wifi",
         "clock",
+        "wifi",
         "notifications",
         "power_menu"
         ]
