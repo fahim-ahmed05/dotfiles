@@ -102,7 +102,7 @@ widgets:
       label_icon_size: 14
       max_length: 56
       max_length_ellipsis: "..."
-      monitor_exclusive: true
+      monitor_exclusive: false
   clock:
     type: "yasb.clock.ClockWidget"
     options:
