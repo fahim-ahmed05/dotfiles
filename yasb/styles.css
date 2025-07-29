@@ -44,7 +44,7 @@ QToolTip {
     margin: 0;
     background-color: var(--crust);
     border-radius: 0px;
-    border: 1px solid #313244;
+    border: 0px solid #313244;
 }
 /* Global context menu style */
 .context-menu,
