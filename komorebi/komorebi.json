@@ -3,21 +3,21 @@
   "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
-  "default_workspace_padding": 3,
-  "default_container_padding": 3,
+  "default_workspace_padding": 2,
+  "default_container_padding": 2,
   "border": true,
   "border_width": 0,
   "border_offset": 0,
-  "border_implementation":"Windows",
-  "border_style":"System",
+  "border_implementation": "Windows",
+  "border_style": "System",
   "border_colours": {
-    "single": "#89b4fa",
-    "stack": "#00ff99",
-    "floating": "#00ff99",
-    "monocle": "#f38ba8",
+    "single": "#56b6c2",
+    "stack": "#98c379",
+    "floating": "#98c379",
+    "monocle": "#d16d9e",
     "unfocused": "#303030"
   },
-  "mouse_follows_focus": true,
+  "mouse_follows_focus": false,
   "theme": {
     "palette": "Base16",
     "name": "Ashes",
@@ -29,31 +29,31 @@
       "workspaces": [
         {
           "name": "I",
-          "layout": "BSP"
+          "layout": "Grid"
         },
         {
           "name": "II",
-          "layout": "BSP"
+          "layout": "Grid"
         },
         {
           "name": "III",
-          "layout": "BSP"
+          "layout": "Grid"
         },
         {
           "name": "IV",
-          "layout": "BSP"
+          "layout": "Grid"
         },
         {
           "name": "V",
-          "layout": "BSP"
+          "layout": "Grid"
         },
         {
           "name": "VI",
-          "layout": "BSP"
+          "layout": "Grid"
         },
         {
           "name": "VII",
-          "layout": "BSP"
+          "layout": "Grid"
         }
       ]
     }
