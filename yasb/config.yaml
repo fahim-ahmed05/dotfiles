@@ -80,8 +80,8 @@ widgets:
       label: "{title}"
       label_alt: "{artist} - {title}"
       max_field_size:
-        label: 24
-        label_alt: 24
+        label: 36
+        label_alt: 36
       show_thumbnail: false
       controls_only: false
       controls_left: true
