@@ -132,12 +132,12 @@ QToolTip {
 }
 .komorebi-active-layout .label {
     font-weight: 600;
-    padding: 2px 0 0 0;
+    padding: 2px 0 0 4px;
 }
 .apps-widget .widget-container,
 .komorebi-workspaces .widget-container,
 .komorebi-active-layout .widget-container {
-    background-color: var(--surface1);
+    background-color: transparent;
     margin: 3px 0 3px 0;
     border-radius: 12px;
     border: 1px solid var(--surface0);
@@ -201,7 +201,7 @@ QToolTip {
 }
 
 .power-menu-widget {
-    padding: 0 6px;
+    padding: 0 12px;
 }
 
 .power-menu-widget .label {
@@ -295,7 +295,7 @@ QToolTip {
 }
 .media-widget .label {
     color: #bac2db;
-    padding: 0px;
+    padding: 8px;
     padding-right: 6px;
     font-size: 12px;
 }
