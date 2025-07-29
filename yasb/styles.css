@@ -203,7 +203,7 @@ QToolTip {
 }
 
 .power-menu-widget {
-    padding: 0 12px 0 8px;
+    padding: 0 12px 0 6px;
 }
 
 .power-menu-widget .label {
@@ -288,11 +288,13 @@ QToolTip {
 .memory-widget {
     padding: 0 6px 0 6px;
 }
+
 .weather-widget .icon {
     font-size: 18px;
     margin: 0 6px 1px 0;
     color: var(--yellow);
 }
+
 .media-widget {
     padding: 0 6px 0 6px;
     margin: 0;
@@ -354,7 +356,7 @@ QToolTip {
     background-color: rgba(128, 130, 158, 0.3);
 }
 .notification-widget {
-    padding: 0 0px 0 4px;
+    padding: 0 6px 0 6px;
 }
 .notification-widget .icon {
     font-size: 14px;
@@ -367,7 +369,6 @@ QToolTip {
 .wifi-widget .icon {
     color: var(--mauve);
     margin: 0px 2px 0 0;
-
 }
 
 .brightness-widget .icon {
@@ -465,7 +466,6 @@ QToolTip {
     padding: 0 0 4px 0;
 }
 
-/* Section and data styles */
 .traffic-menu .section-title {
     font-size: 12px;
     font-weight: 600;
@@ -730,5 +730,5 @@ QToolTip {
 }
 
 .clock-widget {
-    padding: 0 0 0 6px;
+    padding: 0 6px 0 6px;
 }
