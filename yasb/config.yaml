@@ -39,40 +39,19 @@ bars:
       right: 0
     widgets:
       left: [
-#        "home",
-        "active_window",
+        "active_window"
       ]
       center: [
         "komorebi_active_layout",        
         "komorebi_workspaces",
         "microphone",
         "volume",
-        "brightness",                
+        "brightness"                
       ]
       right: [
-        "media",        
-#        "traffic",
-#        "cpu",
-#        "memory",
-#        "weather",
-#        "wifi",
-#        "notifications",
-#        "clock",
-#        "power_menu"
+        "media"
         ]
 widgets:
-  home:
-    type: "yasb.home.HomeWidget"
-    options:
-      label: "<span>\udb81\udf17</span>"
-      menu_list:
-      - { title: "User Home", path: "~" }
-      - { title: "Download", path: "~\\Downloads" }
-      - { title: "Documents", path: "~\\Documents" }
-      - { title: "Pictures", path: "~\\Pictures" }
-      system_menu: true
-      power_menu: true
-      blur: false
   media:
     type: "yasb.media.MediaWidget"
     options:
@@ -105,12 +84,6 @@ widgets:
       max_length: 70
       max_length_ellipsis: "..."
       monitor_exclusive: true
-  clock:
-    type: "yasb.clock.ClockWidget"
-    options:
-      label: "{%a, %d %b %I:%M:%S %p}"
-      label_alt: "{%A, %d %B %Y %H:%M}"
-      timezones: []
   komorebi_workspaces:
     type: "komorebi.workspaces.WorkspaceWidget"
     options:
@@ -165,47 +138,6 @@ widgets:
       callbacks:
         on_left: "next_layout"
         on_middle: "toggle_monocle"
-        on_right: "prev_layout"
-  weather:
-    type: "yasb.weather.WeatherWidget"
-    options:
-      label: "<span>{icon}</span> {temp}"
-      label_alt: "{location}: Min {min_temp}, Max {max_temp}, Humidity {humidity}"
-      api_key: env
-      update_interval: 600
-      hide_decimal: true
-      location: env
-      callbacks:
-        on_left: "toggle_card"
-      icons:
-        sunnyDay: "\ue30d"
-        clearNight: "\ue32b"
-        cloudyDay: "\ue312"
-        cloudyNight: "\ue311"
-        rainyDay: "\ue308"
-        rainyNight: "\ue333"
-        snowyIcyDay: "\ue30a"
-        snowyIcyNight: "\ue335"
-        blizzardDay: "\udb83\udf36"
-        blizzardNight: "\udb83\udf36"
-        foggyDay: "\ue303"
-        foggyNight: "\ue346"
-        thunderstormDay: "\ue30f"
-        thunderstormNight: "\ue338"
-        default: "\uebaa"
-      weather_card:
-        blur: True
-        round_corners: True
-        round_corners_type: "normal"
-        border_color: "System"
-        alignment: "right"
-        direction: "down"
-        icon_size: 64
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 3
-        offset: [ 1, 1 ]
   volume:
     type: "yasb.volume.VolumeWidget"
     options:
@@ -234,46 +166,6 @@ widgets:
         on_left: "toggle_mic_menu"
         on_middle: "exec cmd.exe /c start ms-settings:sound"
         on_right: "toggle_mute"
-  power_menu:
-    type: "yasb.power_menu.PowerMenuWidget"
-    options:
-      label: "\uf011"
-      uptime: True
-      blur: False
-      blur_background: True
-      animation_duration: 200
-      button_row: 5
-      buttons:
-        shutdown: ["\uf011", "Shut Down"]
-        restart: ["\uead2", "Restart"]
-        signout: ["\udb80\udf43", "Sign out"]
-        hibernate: ["\uf28e", "Hibernate"]
-        sleep: ["\u23fe", "Sleep"]
-        cancel: ["", "Cancel"]
-  apps:
-    type: "yasb.applications.ApplicationsWidget"
-    options:
-      container_padding:
-        top: 0
-        left: 8
-        bottom: 0
-        right: 8
-      label: "{data}"
-      app_list:
-        - { icon: "\uf422", launch: "search" }
-        - { icon: "\ueb03", launch: "cmd /c Taskmgr" }
-        - { icon: "\udb80\ude39",launch: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" }
-  notifications:
-    type: "yasb.notifications.NotificationsWidget"
-    options:
-      label: "<span>\uf476</span> {count}"
-      label_alt: "{count} notifications"
-      hide_empty: true
-      tooltip: false
-      callbacks:
-        on_left: "toggle_notification"
-        on_right: "do_nothing"
-        on_middle: "do_nothing"
   brightness:
     type: "yasb.brightness.BrightnessWidget"
     options:
@@ -303,48 +195,4 @@ widgets:
         direction: "down"
       callbacks:
           on_left: "toggle_brightness_menu"
-  wifi:
-    type: "yasb.wifi.WifiWidget"
-    options:
-      label: "<span>{wifi_icon} </span>{wifi_strength}%"
-      label_alt: "{wifi_name} {wifi_strength}%"
-      update_interval: 5000
-      callbacks:
-        on_left: "toggle_menu"
-        on_right: "exec cmd.exe /c start ms-settings:network"
-      ethernet_label: "<span>{wifi_icon}</span>"
-      ethernet_label_alt: "<span>{wifi_icon}</span>{ip_addr}"
-      ethernet_icon: "\ueba9"
-      get_exact_wifi_strength: false  # Optional. Will require location access permission if true.
-      wifi_icons: [
-        "\udb82\udd2e",  # Icon for 0% strength
-        "\udb82\udd1f",  # Icon for 1-24% strength
-        "\udb82\udd22",  # Icon for 25-49% strength
-        "\udb82\udd25",  # Icon for 50-74% strength
-        "\udb82\udd28"   # Icon for 75-100% strength
-      ]
-  traffic:
-    type: "yasb.traffic.TrafficWidget"
-    options:
-      label: "\ueab4 {download_speed}  \ueab7 {upload_speed}"
-      update_interval: 1000
-      hide_if_offline: true
-      speed_unit: "bytes"
-      callbacks:
-        on_left: "toggle_menu"
-  cpu:
-    type: "yasb.cpu.CpuWidget"
-    options:
-      label: "<span>\uf4bc </span>{info[percent][total]}%"
-    callbacks:
-      on_left: "toggle_label"
-  memory:
-    type: "yasb.memory.MemoryWidget"
-    options:
-      label: "<span>\uf4bc </span>{virtual_mem_percent}%"
-      label_alt: "<span>\uf4bc</span> VIRT: {virtual_mem_percent}% | SWAP: {swap_mem_percent}%"
-      update_interval: 5000
-      callbacks:
-        on_left: "toggle_label"
-        on_middle: "do_nothing"
-        on_right: "do_nothing"
+          

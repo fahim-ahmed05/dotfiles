@@ -3,8 +3,6 @@ This is default and very simple styles file for Yasb.
 For more information about configuration options, please visit the Wiki https://github.com/amnweb/yasb/wiki
 */
 :root {
-    --rosewater: #f5e0dc;
-    --flamingo: #f2cdcd;
     --pink: #f5c2e7;
     --mauve: #cba6f7;
     --red: #f38ba8;
@@ -12,9 +10,6 @@ For more information about configuration options, please visit the Wiki https://
     --blue: #89b4fa;
     --lavender: #b4befe;
     --green: #a6e3a1;
-    --teal: #94e2d5;
-    --sky: #89dceb;
-    --sapphire: #74c7ec;
     --peach: #fab387;
     --text: #cdd6f4;
     --subtext1: #bac2de;
@@ -142,7 +137,7 @@ QToolTip {
     font-weight: 600;
     padding: 2px 0 0 4px;
 }
-.apps-widget .widget-container,
+.widget-container,
 .komorebi-workspaces .widget-container,
 .komorebi-active-layout .widget-container {
     background-color: transparent;
@@ -196,109 +191,11 @@ QToolTip {
     margin: 0 4px;
     border-radius: 5px;
 }
-.apps-widget {
-    padding: 0 4px 0 2px;
-}
-.apps-widget .label {
-    font-size: 14px;
-    padding: 0 2px;
-    color: var(--subtext0);
-}
-.apps-widget .label:hover {
-    color: var(--text);
-}
-
-.power-menu-widget {
-    padding: 0 12px 1 6px;
-}
-
-.power-menu-widget .label {
-    color: #f38ba8;
-    font-size: 13px;
-}
-.power-menu-popup {
-    background-color: transparent
-}
-.power-menu-popup .button {
-    padding: 0;
-    width: 180px;
-    height: 230px;
-    border-radius: 8px;
-    background-color: var(--crust);
-    color: var(--text);
-    border-left: 4px solid rgba(58, 59, 83, 0);
-    border-right: 4px solid rgba(58, 59, 83, 0);
-    border-top: 4px solid rgba(58, 59, 83, 0);
-    border-bottom: 4px solid rgba(58, 59, 83, 0);
-    margin: 0px;
-}
-.power-menu-popup .button.hover {
-    background-color: var(--base);
-    border-left: 4px solid var(--base);
-    border-right: 4px solid var(--base);
-    border-top: 4px solid var(--base);
-    border-bottom: 4px solid var(--base);
-}
-
-.power-menu-popup .button .label {
-    margin-bottom: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--overlay2)
-}
-.power-menu-popup .button .icon {
-    font-size: 64px;
-    padding-top: 32px;
-    color: var(--surface2)
-}
-
-.power-menu-popup .button.cancel .icon {
-    padding: 0;
-    margin: 0;
-}
-.power-menu-popup .button.cancel .label {
-    color: var(--red);
-    margin: 0;
-}
-.power-menu-popup .button.cancel {
-    height: 32px;
-    border-radius: 4px;
-}
-.uptime {
-    font-size: 14px;
-    margin-bottom: 10px;
-    color: var(--surface2);
-    font-weight: 600;
-}
-
-.microphone-widget .icon {
-    font-size: 18px;
-    color: var(--mauve);
-    margin: 0px -6px 0 0;
-
-}
-
-.volume-widget .icon {
-    font-size: 17px;
-    color: var(--blue);
-    margin: 0px 0px 0 0;
-}
 
 .microphone-widget,
-.weather-widget,
 .volume-widget,
-.wifi-widget,
-.brightness-widget,
-.traffic-widget,
-.cpu-widget,
-.memory-widget {
+.brightness-widget {
     padding: 0 12px 0 6px;
-}
-
-.weather-widget .icon {
-    font-size: 18px;
-    margin: 0 6px 1px 0;
-    color: var(--yellow);
 }
 
 .media-widget {
@@ -333,49 +230,6 @@ QToolTip {
     background-color: rgba(0, 0, 0, 0);
     font-size: 20px;
 }
-.home-widget {
-    padding: 0 4px 0 12px;
-}
-.home-widget .icon {
-    color: var(--lavender);
-}
-.home-widget .icon:hover {
-    color: var(--text);
-}
-.home-menu {
-    background-color: var(--crust);
-    border-radius: 8px;
-}
-.home-menu .menu-item {
-    padding: 8px 48px 9px 16px;
-    font-size: 12px;
-    font-family: 'JetBrainsMono NF';
-    color: var(--text);
-    font-weight: 600;
-}
-.home-menu .menu-item:hover {
-    background-color: rgba(128, 130, 158, 0.15);
-    color: #fff;
-}
-.home-menu .separator {
-    max-height: 1px;
-    background-color: rgba(128, 130, 158, 0.3);
-}
-.notification-widget {
-    padding: 0 6px 0 6px;
-}
-.notification-widget .icon {
-    font-size: 14px;
-}
-.notification-widget .icon.new-notification {
-    color: var(--blue);
-    margin: 0px 4px 0 0;
-}
-
-.wifi-widget .icon {
-    color: var(--mauve);
-    margin: 0px 2px 0 0;
-}
 
 .brightness-widget .icon {
     font-size: 17px;
@@ -383,182 +237,11 @@ QToolTip {
     margin: 0 0px 1px 0;
 }
 
-.cpu-widget .icon {
-    font-size: 16px;
-    color: var(--peach);
-    margin: 0 7px 1px 0;
+.volume-widget .icon {
+    font-size: 17px;
+    color: var(--blue);
+    margin: 0px 0px 0 0;
 }
-
-.memory-widget .icon {
-    font-size: 16px;
-    color: var(--green);
-    margin: 0px 7px 1px 0;
-}
-
-.traffic-menu {
-    background-color: rgba(24, 25, 27, 0.85);
-    min-width: 280px;
-}
-.traffic-menu .header {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(24, 25, 27, 0.8);
-}
-.traffic-menu .header .title {
-    padding: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: 'JetBrainsMono NF';
-    color: #ffffff
-}
-.traffic-menu .header .reset-button {
-    font-size: 11px;
-    padding: 4px 8px;
-    margin-right: 8px;
-    font-family: 'JetBrainsMono NF';
-    border-radius: 4px;
-    font-weight: 600;
-    background-color: transparent;
-    border: none;
-}
-.traffic-menu .reset-button:hover {
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.traffic-menu .reset-button:pressed {
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-.traffic-menu .download-speed,
-.traffic-menu .upload-speed {
-    background-color: transparent;
-    padding: 4px 10px;
-    margin-right: 12px;
-    margin-left: 12px;
-    margin-top: 16px;
-    margin-bottom: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-.traffic-menu .download-speed {
-    margin-left: 12px;
-    margin-right: 12px;
-}
-.traffic-menu .speed-separator {
-    max-width: 1px;
-    background-color: rgba(255, 255, 255, 0.2);
-    margin: 32px 0 16px 0;
-}
-.traffic-menu .upload-speed-value,
-.traffic-menu .download-speed-value {
-    font-size: 24px;
-    font-weight: 900;
-    font-family: 'JetBrainsMono NF';
-    color: #bcc2c5;
-}
-.traffic-menu .upload-speed-unit,
-.traffic-menu .download-speed-unit {
-    font-size: 13px;
-    font-family: 'JetBrainsMono NF';
-    font-weight: 600;
-    padding-top: 4px;
-}
-.traffic-menu .upload-speed-placeholder,
-.traffic-menu .download-speed-placeholder {
-    color: #747474;
-    font-size: 11px;
-    font-family: 'JetBrainsMono NF';
-    padding: 0 0 4px 0;
-}
-
-.traffic-menu .section-title {
-    font-size: 12px;
-    font-weight: 600;
-    color: #7c8192;
-    margin-bottom: 4px;
-    font-family: 'JetBrainsMono NF';
-}
-.traffic-menu .session-section,
-.traffic-menu .today-section,
-.traffic-menu .alltime-section {
-    margin: 8px 8px 0 8px;
-    padding: 0 10px 10px 10px;
-    background-color: transparent;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-.traffic-menu .data-text {
-    font-size: 13px;
-    color: #afb5cc;
-    padding: 2px 0;
-    font-family: 'JetBrainsMono NF';
-
-}
-.traffic-menu .data-value {
-    font-weight: 600;
-    font-size: 13px;
-    font-family: 'JetBrainsMono NF';
-    padding: 2px 0;
-}
-
-/* Interface and Internet info styles */
-.traffic-menu .interface-info,
-.traffic-menu .internet-info {
-    font-size: 12px;
-    color: #6f7486;
-    padding: 8px 0;
-    font-family: 'JetBrainsMono NF';
-}
-.traffic-menu .internet-info {
-    background-color: rgba(68, 68, 68, 0.1);
-}
-.traffic-menu .internet-info.connected {
-    background-color: rgba(166, 227, 161, 0.096);
-    color: #a6e3a1;
-}
-.traffic-menu .internet-info.disconnected {
-    background-color: rgba(243, 139, 168, 0.1);
-    color: #f38ba8;
-}
-
-.calendar {
-    background-color: rgba(17, 17, 27, 0.4);
-}
-.calendar .calendar-table,
-.calendar .calendar-table::item {
-    background-color: rgba(17, 17, 27, 0);
-    color: rgba(162, 177, 196, 0.85);
-    font-family: 'JetBrainsMono NF', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    border: none;
-    outline: none;  
-}
-.calendar .calendar-table::item:selected {
-    color: rgb(255, 255, 255);
-}
-.calendar .day-label {
-    margin-top: 20px;
-}
-.calendar .day-label,
-.calendar .month-label,
-.calendar .date-label {
-    font-family: 'JetBrainsMono NF', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16px;
-    color: #fff;
-    font-weight: 700;
-    min-width: 180px;
-    max-width: 180px;
-}
-.calendar .month-label {
-    font-weight: normal;
-}
-.calendar .date-label {
-    font-size: 88px;
-    font-weight: 900;
-    color: rgb(255, 255, 255);
-    margin-top: -20px;
-}
-
 .volume-slider {
     border: none;
 }
@@ -580,160 +263,14 @@ QToolTip {
     background-color: rgba(255, 255, 255, 0.06);
 }
 
-.wifi-menu {
-    font-family: 'JetBrainsMono NF';
-    background-color: rgba(17, 17, 27, 0.4);
-    max-height: 350px;
-    min-height: 375px;
-    min-width: 375px;
+.microphone-widget .icon {
+    font-size: 18px;
+    color: var(--mauve);
+    margin: 0px -6px 0 0;
 }
-
-.wifi-menu .progress-bar {
-    max-height: 2px;
-}
-
-.wifi-menu .progress-bar::chunk {
-    background-color: #4cc2ff;
-}
-
-.wifi-menu .header {
-    font-family: 'JetBrainsMono NF';
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 2px;
-    padding: 12px;
-    background-color: rgba(17, 17, 27, 0.6);
-    color: white;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.wifi-menu .error-message {
-    font-family: 'JetBrainsMono NF';
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 2px;
-    padding: 12px;
-    background-color: red;
-    color: white;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.wifi-menu .wifi-list {
-    background-color: rgba(17, 17, 27, 0.8);
-    margin-right: 3px;
-}
-
-.wifi-menu .wifi-item {
-    min-height: 35px;
-    padding: 2px 12px;
-    margin: 2px 4px;
-}
-
-.wifi-menu .wifi-item:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 6px;
-}
-
-.wifi-menu .wifi-item[active=true] {
-    background-color: rgba(255, 255, 255, 0.15);
-    font-size: 14px;
-    border-radius: 6px;
-    min-height: 80px;
-}
-
-.wifi-menu .wifi-item .icon {
-    font-family: 'Segoe Fluent Icons';
-    font-size: 26px;
-    margin-right: 10px;
-}
-
-.wifi-menu .wifi-item .name {
-    font-family: 'JetBrainsMono NF';
-    font-size: 14px;
-    margin-right: 10px;
-}
-
-.wifi-menu .wifi-item .password {
-    font-family: 'JetBrainsMono NF';
-    background-color: transparent;
-    font-size: 14px;
-}
-
-.wifi-menu .wifi-item .status {
-    font-family: 'JetBrainsMono NF';
-    font-size: 14px;
-}
-
-.wifi-menu .wifi-item .strength {
-    font-family: 'JetBrainsMono NF';
-    font-size: 14px;
-}
-
-.wifi-menu .wifi-item .controls-container {
-    padding-top: 8px;
-}
-
-.wifi-menu .wifi-item .connect {
-    background-color: rgba(255, 255, 255, 0.15);
-    padding: 4px 30px;
-    border-radius: 4px;
-    border: none;
-    font-size: 14px;
-}
-
-.wifi-menu .wifi-item .connect:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.wifi-menu .wifi-item .connect:pressed {
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
-.wifi-menu .footer {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 12px;
-    margin-top: 2px;
-    color: #9399b2;
-    background-color: rgba(17, 17, 27, 0.6);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.wifi-menu .footer .settings-button {
-    font-family: 'JetBrainsMono NF';
-    background-color: transparent;
-    border: none;
-    padding: 0 2px;
-    min-width: 26px;
-    min-height: 26px;
-    color: #fff;
-}
-
-.wifi-menu .footer .refresh-icon {
-    font-family: 'Segoe Fluent Icons';
-    background-color: transparent;
-    border: none;
-    min-width: 26px;
-    min-height: 26px;
-    color: #fff;
-}
-
-.wifi-menu .footer .refresh-icon:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-}
-
-.weather-card {
-    background-color: rgba(17, 17, 27, 0.5);
-}
-
 .microphone-slider {
     border: none;
 }
 .microphone-menu {
     background-color:rgba(17, 17, 27, 0.4); 
-}
-
-.clock-widget {
-    padding: 0 6px 0 6px;
 }
