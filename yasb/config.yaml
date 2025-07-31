@@ -1,4 +1,4 @@
-# This is default and very simple configuration file for Yasb. 
+# This is default and very simple configuration file for Yasb.
 # For more information about configuration options, please visit the Wiki https://github.com/amnweb/yasb/wiki
 watch_stylesheet: true
 watch_config: true
@@ -38,19 +38,16 @@ bars:
       bottom: 0
       right: 0
     widgets:
-      left: [
-        "active_window"
-      ]
-      center: [
-        "komorebi_active_layout",        
-        "komorebi_workspaces",
-        "microphone",
-        "volume",
-        "brightness"                
-      ]
-      right: [
-        "media"
+      left: ["active_window"]
+      center:
+        [
+          "komorebi_active_layout",
+          "komorebi_workspaces",
+          "microphone",
+          "volume",
+          "brightness",
         ]
+      right: ["media"]
 widgets:
   media:
     type: "yasb.media.MediaWidget"
@@ -181,11 +178,11 @@ widgets:
       auto_light_night_end_time: "06:45"
       auto_light_day_level: 75
       brightness_icons: [
-        "\udb80\udcde",  # Icon for 0-25% brightness
-        "\udb80\udcdd",  # Icon for 26-50% brightness
-        "\udb80\udcdf",  # Icon for 51-75% brightness
-        "\udb80\udce0"   # Icon for 76-100% brightness
-      ]
+          "\udb80\udcde", # Icon for 0-25% brightness
+          "\udb80\udcdd", # Icon for 26-50% brightness
+          "\udb80\udcdf", # Icon for 51-75% brightness
+          "\udb80\udce0", # Icon for 76-100% brightness
+        ]
       brightness_menu:
         blur: true
         round_corners: true
@@ -194,5 +191,4 @@ widgets:
         alignment: "right"
         direction: "down"
       callbacks:
-          on_left: "toggle_brightness_menu"
-          
+        on_left: "toggle_brightness_menu"
