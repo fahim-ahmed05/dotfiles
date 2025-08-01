@@ -40,10 +40,10 @@ Komorebic(cmd) {
 
 ; Manipulate windows
 !t:: Komorebic("toggle-float")
-!f:: Komorebic("toggle-monocle")
+!+r:: Komorebic("toggle-monocle")
 
 ; Window manager options
-!+r:: Komorebic("retile")
+;!+r:: Komorebic("retile")
 !p:: Komorebic("toggle-pause")
 
 ; Layouts
