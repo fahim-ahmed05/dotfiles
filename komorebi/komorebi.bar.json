@@ -2,6 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.37/schema.bar.json",
   "monitor": 0,
   "font_family": "JetBrainsMono NF",
+  "height": 32,
   "theme": {
     "palette": "Base16",
     "name": "Ashes",
@@ -10,13 +11,6 @@
   "left_widgets": [
     {
       "Komorebi": {
-        "workspaces": {
-          "enable": true,
-          "hide_empty_workspaces": false
-        },
-        "layout": {
-          "enable": true
-        },
         "focused_window": {
           "enable": true,
           "show_icon": true
@@ -24,48 +18,23 @@
       }
     }
   ],
+  "center_widgets": [
+    {
+      "Komorebi": {
+        "workspaces": {
+          "enable": true,
+          "display":"AllIconsAndText",
+          "hide_empty_workspaces": false
+        },
+        "layout": {
+          "enable": true
+        }
+      }
+    }
+  ],
   "right_widgets": [
     {
-      "Update": {
-        "enable": true
-      }
-    },
-    {
       "Media": {
-        "enable": true
-      }
-    },
-    {
-      "Storage": {
-        "enable": true
-      }
-    },
-    {
-      "Memory": {
-        "enable": true
-      }
-    },
-    {
-      "Network": {
-        "enable": true,
-        "show_total_data_transmitted": false,
-        "show_network_activity": true
-      }
-    },
-    {
-      "Date": {
-        "enable": true,
-        "format": "DayDateMonthYear"
-      }
-    },
-    {
-      "Time": {
-        "enable": true,
-        "format": "TwelveHour"
-      }
-    },
-    {
-      "Battery": {
         "enable": true
       }
     }
