@@ -68,6 +68,11 @@
       "kind": "Title",
       "id": "Multisim",
       "matching_strategy": "Contains"
+    },
+    {
+      "kind": "Title",
+      "id": "Phone Link",
+      "matching_strategy": "Equals"
     }
   ]
 }
