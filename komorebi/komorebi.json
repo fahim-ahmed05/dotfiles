@@ -3,10 +3,7 @@
   "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
   "window_hiding_behaviour": "Cloak",
   "animation": {
-    "enabled": true,
-    "duration": 250,
-    "fps": 75,
-    "style": "Linear"
+    "enabled": false
   },
   "cross_monitor_move_behaviour": "Insert",
   "default_workspace_padding": 2,
