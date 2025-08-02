@@ -157,6 +157,7 @@ widgets:
     options:
       label: "<span>{icon} </span>{level}"
       label_alt: "<span>{icon}</span> {level}"
+      tooltip: false
       icons:
         normal: "\udb80\udf6c"
         muted: "\udb80\udf6d"
