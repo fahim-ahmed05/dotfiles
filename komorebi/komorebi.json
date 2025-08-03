@@ -64,11 +64,6 @@
   "ignore_rules": [
     {
       "kind": "Title",
-      "id": "Shutdown Computer",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Title",
       "id": "Multisim",
       "matching_strategy": "Contains"
     },
