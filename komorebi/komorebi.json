@@ -86,6 +86,11 @@
       "kind": "Title",
       "id": "Bulk Image Downloader",
       "matching_strategy": "Contains"
+    },
+    {
+      "kind": "Exe",
+      "id": "Flow.Launcher.exe",
+      "matching_strategy": "Equals"
     }
   ]
 }
