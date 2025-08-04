@@ -80,7 +80,7 @@ widgets:
       label_icon: true
       label_icon_size: 14
       max_length: 70
-      max_length_ellipsis: " ..."
+      max_length_ellipsis: "..."
       monitor_exclusive: true
   komorebi_workspaces:
     type: "komorebi.workspaces.WorkspaceWidget"
