@@ -63,28 +63,33 @@
   ],
   "ignore_rules": [
     {
-      "kind": "Title",
-      "id": "Multisim",
-      "matching_strategy": "Contains"
-    },
-    {
-      "kind": "Title",
-      "id": "Phone Link",
+      "kind": "Exe",
+      "id": "multisim",
       "matching_strategy": "Equals"
     },
     {
-      "kind": "Title",
-      "id": "qBittorrent",
-      "matching_strategy": "Contains"
-    },
-    {
-      "kind": "Title",
-      "id": "Bulk Image Downloader",
-      "matching_strategy": "Contains"
+      "kind": "Exe",
+      "id": "PhoneExperienceHost",
+      "matching_strategy": "Equals"
     },
     {
       "kind": "Exe",
-      "id": "Flow.Launcher.exe",
+      "id": "qbittorrent",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "BID",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "Flow.Launcher",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "FileConverter",
       "matching_strategy": "Equals"
     }
   ]
