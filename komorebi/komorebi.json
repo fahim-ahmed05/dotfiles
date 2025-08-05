@@ -68,8 +68,8 @@
       "matching_strategy": "Equals"
     },
     {
-      "kind": "Exe",
-      "id": "PhoneExperienceHost",
+      "kind": "Title",
+      "id": "Phone Link",
       "matching_strategy": "Equals"
     },
     {
