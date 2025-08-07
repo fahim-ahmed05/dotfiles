@@ -91,6 +91,16 @@
       "kind": "Exe",
       "id": "FileConverter",
       "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Title",
+      "id": "Sign in",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Title",
+      "id": "Account",
+      "matching_strategy": "Equals"
     }
   ]
 }
