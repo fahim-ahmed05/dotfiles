@@ -1,11 +1,8 @@
-<# Create a shortcut to LibreWolf on the desktop
-
+<# Create a shortcut of Ungoogled Chromium on the desktop #>
 $WshShell = New-Object -ComObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\LibreWolf.lnk")
-$Shortcut.TargetPath = "C:\Users\WDAGUtilityAccount\Desktop\WinsbSharedFolder\SandboxFiles\LibreWolf\LibreWolf-Portable.exe"
+$Shortcut = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\Chromium.lnk")
+$Shortcut.TargetPath = "C:\Users\WDAGUtilityAccount\Desktop\WinsbSharedFolder\SandboxFiles\UngoogledChromium\chrome.exe"
 $Shortcut.Save()
-
-#>
 
 # Enable Dark Mode for Apps
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name "AppsUseLightTheme" -Value 0
