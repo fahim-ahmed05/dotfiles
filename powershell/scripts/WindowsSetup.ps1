@@ -27,6 +27,7 @@ $wingetPackages = @(
     "JanDeDobbeleer.OhMyPosh",              # Oh My Posh
     "Microsoft.PowerShell",                 # PowerShell
     "7zip.7zip",                            # 7-Zip
+    "AutoHotkey.AutoHotkey",                # AutoHotkey
     # "ente-io.auth-desktop",               # Ente Auth Desktop
     "HermannSchinagl.LinkShellExtension",   # Link Shell Extension
     # "Microsoft.PowerToys",                # PowerToys
