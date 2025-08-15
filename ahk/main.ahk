@@ -3,5 +3,5 @@
 
 #Include search.ahk
 #Include desktop.ahk
+#Include shortcut.ahk
 
-!q::WinClose("A")
