@@ -136,6 +136,9 @@ function wi {
 function wu {
     Write-Host "`n📦  Updating winget sources...`n" -ForegroundColor Cyan
     winget source update
+    
+    Write-Host "`n📦  Updating oh my posh...`n" -ForegroundColor Cyan
+    winget upgrade JanDeDobbeleer.OhMyPosh --source winget --scope user --force
 
     Write-Host "`n📦  Updating winget packages...`n" -ForegroundColor Cyan
     winget upgrade --all --accept-package-agreements --accept-source-agreements
