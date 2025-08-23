@@ -13,7 +13,7 @@ I use these daily! 👀
 
 - [Unsplash](https://unsplash.com/collections/flfrGRQpfgU/wallpapers)
 - [Google Photos](https://photos.app.goo.gl/KBUxAoErDPASNR182)
-- [This Repository](https://github.com/fahim-ahmed05/dotfiles/tree/main/Wallpapers)
+- [This Repository](https://github.com/fahim-ahmed05/dotfiles/tree/main/wallpapers)
 - [Basic Apple Guy](https://basicappleguy.com/basicappleblog/tag/Wallpaper)
 - [KDE Defaults](https://github.com/KDE/plasma-workspace-wallpapers)
 
