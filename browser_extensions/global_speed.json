@@ -1,0 +1,507 @@
+{
+    "audioFx": {
+        "delay": 0,
+        "eq": {
+            "enabled": false,
+            "factor": 1,
+            "values": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        "pitch": 0,
+        "volume": 1
+    },
+    "backdropFx": {
+        "filters": [
+            {
+                "name": "sepia",
+                "value": 0
+            },
+            {
+                "name": "hueRotate",
+                "value": 0
+            },
+            {
+                "name": "grayscale",
+                "value": 0
+            },
+            {
+                "name": "contrast",
+                "value": 1
+            },
+            {
+                "name": "brightness",
+                "value": 1
+            },
+            {
+                "name": "saturate",
+                "value": 1
+            },
+            {
+                "name": "invert",
+                "value": 0
+            },
+            {
+                "name": "blur",
+                "value": 0
+            },
+            {
+                "name": "opacity",
+                "value": 1
+            }
+        ],
+        "transforms": [
+            {
+                "name": "scaleX",
+                "value": 1
+            },
+            {
+                "name": "scaleY",
+                "value": 1
+            },
+            {
+                "name": "translateX",
+                "value": 0
+            },
+            {
+                "name": "translateY",
+                "value": 0
+            },
+            {
+                "name": "rotateX",
+                "value": 0
+            },
+            {
+                "name": "rotateY",
+                "value": 0
+            },
+            {
+                "name": "rotateZ",
+                "value": 0
+            }
+        ]
+    },
+    "circleWidget": false,
+    "darkTheme": true,
+    "elementFx": {
+        "enabled": false,
+        "filters": [
+            {
+                "name": "sepia",
+                "value": 0
+            },
+            {
+                "name": "hueRotate",
+                "value": 0
+            },
+            {
+                "name": "grayscale",
+                "value": 0
+            },
+            {
+                "name": "contrast",
+                "value": 1
+            },
+            {
+                "name": "brightness",
+                "value": 1
+            },
+            {
+                "name": "saturate",
+                "value": 1
+            },
+            {
+                "name": "invert",
+                "value": 0
+            },
+            {
+                "name": "blur",
+                "value": 0
+            },
+            {
+                "name": "opacity",
+                "value": 1
+            }
+        ],
+        "transforms": [
+            {
+                "name": "scaleX",
+                "value": 1
+            },
+            {
+                "name": "scaleY",
+                "value": 1
+            },
+            {
+                "name": "translateX",
+                "value": 0
+            },
+            {
+                "name": "translateY",
+                "value": 0
+            },
+            {
+                "name": "rotateX",
+                "value": 0
+            },
+            {
+                "name": "rotateY",
+                "value": 0
+            },
+            {
+                "name": "rotateZ",
+                "value": 0
+            }
+        ]
+    },
+    "enabled": true,
+    "firstUse": 1751276082589,
+    "freshKeybinds": false,
+    "hideMediaView": false,
+    "indicatorInit": {
+        "rounding": 4,
+        "key": "6515005736",
+        "position": "TL",
+        "offset": 1
+    },
+    "initialContext": 1,
+    "keybinds": [
+        {
+            "adjustMode": 2,
+            "command": "speed",
+            "enabled": true,
+            "globalKey": "commandA",
+            "greedy": true,
+            "id": "3857921608",
+            "key": {
+                "altKey": true,
+                "code": "Comma",
+                "ctrlKey": false,
+                "metaKey": false,
+                "shiftKey": false
+            },
+            "label": "Decrease the playback speed by 0.25x",
+            "trigger": 0,
+            "valueNumber": -0.25,
+            "spacing": 0
+        },
+        {
+            "adjustMode": 2,
+            "command": "speed",
+            "enabled": true,
+            "globalKey": "commandB",
+            "greedy": true,
+            "id": "9729432451",
+            "key": {
+                "altKey": true,
+                "code": "Period",
+                "ctrlKey": false,
+                "metaKey": false,
+                "shiftKey": false
+            },
+            "label": "Increase the playback speed by 0.25x",
+            "trigger": 0,
+            "valueNumber": 0.25
+        },
+        {
+            "command": "speed",
+            "enabled": true,
+            "globalKey": "commandC",
+            "greedy": true,
+            "id": "9600139707",
+            "key": {
+                "altKey": false,
+                "code": "Comma",
+                "ctrlKey": true,
+                "metaKey": false,
+                "shiftKey": false
+            },
+            "label": "Set the playback speed to 1x",
+            "skipToggleSpeed": true,
+            "spacing": 0,
+            "trigger": 0,
+            "valueNumber": 1
+        },
+        {
+            "command": "speed",
+            "enabled": true,
+            "globalKey": "commandD",
+            "greedy": true,
+            "id": "8445655290",
+            "key": {
+                "altKey": false,
+                "code": "Period",
+                "ctrlKey": true,
+                "metaKey": false,
+                "shiftKey": false
+            },
+            "label": "Set the playback speed to 2.5x",
+            "skipToggleSpeed": true,
+            "spacing": 1,
+            "trigger": 0,
+            "valueNumber": 2.5
+        }
+    ],
+    "keybindsUrlCondition": {
+        "block": true,
+        "parts": [
+            {
+                "id": "8073311526",
+                "type": "STARTS_WITH",
+                "valueContains": "https://docs.google.com",
+                "valueRegex": "",
+                "valueStartsWith": "https://docs.google.com"
+            },
+            {
+                "id": "860232012",
+                "type": "STARTS_WITH",
+                "valueContains": "https://play.geforcenow.com",
+                "valueRegex": "",
+                "valueStartsWith": "https://play.geforcenow.com"
+            },
+            {
+                "id": "6969667186",
+                "type": "STARTS_WITH",
+                "valueContains": "https://meet.google.com",
+                "valueRegex": "",
+                "valueStartsWith": "https://meet.google.com"
+            },
+            {
+                "id": "1565494002",
+                "type": "STARTS_WITH",
+                "valueContains": "https://zoom.us",
+                "valueRegex": "",
+                "valueStartsWith": "https://zoom.us"
+            },
+            {
+                "id": "7921315577",
+                "type": "STARTS_WITH",
+                "valueContains": "teams.microsoft.com",
+                "valueRegex": "",
+                "valueStartsWith": "teams.microsoft.com"
+            },
+            {
+                "id": "1880658512",
+                "type": "STARTS_WITH",
+                "valueContains": "https://www.figma.com",
+                "valueRegex": "",
+                "valueStartsWith": "https://www.figma.com"
+            },
+            {
+                "id": "2848499695",
+                "type": "STARTS_WITH",
+                "valueContains": "https://docs.qq.com",
+                "valueRegex": "",
+                "valueStartsWith": "https://docs.qq.com"
+            }
+        ]
+    },
+    "lastSpeed": 2.5,
+    "latestViaShortcut": false,
+    "pinByDefault": true,
+    "rules": [
+        {
+            "id": "2254983282",
+            "enabled": true,
+            "type": "SPEED",
+            "overrideSpeed": 2.5,
+            "overrideJs": "// code here\n",
+            "condition": {
+                "parts": [
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "youtube.com",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "8565903641"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "x.com",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "5830379447"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "facebook.com",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "5556211155"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "rumble.com",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "734842911"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "tiktok.com",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "5832792924"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "patreon.com",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "7363506138"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "instagram.com",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "2839502484"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "threads.com",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "166192543"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "threads.net",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "3706580480"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "messenger.com",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "7900694469"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "whatsapp.com",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "2768369334"
+                    }
+                ]
+            },
+            "spacing": 0,
+            "label": "Force 2.5x speed on sites"
+        },
+        {
+            "condition": {
+                "block": false,
+                "parts": [
+                    {
+                        "id": "6615595159",
+                        "type": "CONTAINS",
+                        "valueContains": "twitch.tv",
+                        "valueRegex": "example\\.com",
+                        "valueStartsWith": "https://example.com"
+                    },
+                    {
+                        "id": "5862278925",
+                        "type": "CONTAINS",
+                        "valueContains": "kick.com",
+                        "valueRegex": "example\\.com",
+                        "valueStartsWith": "https://example.com"
+                    },
+                    {
+                        "id": "7405488317",
+                        "type": "CONTAINS",
+                        "valueContains": "music.youtube.com",
+                        "valueRegex": "example\\.com",
+                        "valueStartsWith": "https://example.com"
+                    },
+                    {
+                        "id": "6042004336",
+                        "type": "CONTAINS",
+                        "valueContains": "music.amazon.com",
+                        "valueRegex": "example\\.com",
+                        "valueStartsWith": "https://example.com"
+                    },
+                    {
+                        "id": "4935236301",
+                        "type": "CONTAINS",
+                        "valueContains": "open.spotify.com",
+                        "valueRegex": "example\\.com",
+                        "valueStartsWith": "https://example.com"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "dab.yeet.su",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "1603652105"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "cozy.tv",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "5242053482"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "animekai.to",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "2628063832"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "photos.google.com",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "5964922985"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "xprime.tv",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "4235866274"
+                    }
+                ]
+            },
+            "enabled": true,
+            "id": "4918760684",
+            "overrideJs": "// code here\n",
+            "overrideSpeed": 1,
+            "type": "SPEED",
+            "spacing": 0,
+            "label": "Force 1x speed on sites"
+        }
+    ],
+    "speed": 2.5,
+    "speedBigStep": 0.5,
+    "speedChangeCounter": 18,
+    "speedPresetRows": 3,
+    "speedPresets": [
+        1,
+        1.5,
+        1.75,
+        2,
+        2.5,
+        2.75,
+        3,
+        3.5,
+        3.75,
+        3.25,
+        3.5,
+        3.75
+    ],
+    "speedSmallStep": 0.25,
+    "version": 12
+}
