@@ -2,7 +2,7 @@
 #SingleInstance Force
 
 ; Close the active window with Alt+Q
-#q::WinClose("A")
+!q::WinClose("A")
 
 ; Minimize the active window with Alt+M
 !m::WinMinimize("A")
