@@ -70,6 +70,8 @@ user_pref("privacy.trackingprotection.cryptomining.enabled", true);
 user_pref("privacy.trackingprotection.fingerprinting.enabled", true);
 user_pref("privacy.trackingprotection.fingerprinting.probable.enabled", true);
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
+user_pref("privacy.trackingprotection.allow_list.baseline.enabled", false);
+user_pref("privacy.trackingprotection.allow_list.convenience.enabled", false);
 
 // =========================
 // SSL/TLS & CERTIFICATES
@@ -105,6 +107,8 @@ user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
 user_pref("breakpad.reportURL", "");
 user_pref("browser.tabs.crashReporting.sendReport", false);
+user_pref("security.csp.reporting.enabled", false);
+user_pref("privacy.antitracking.isolateContentScriptResources", true);
 
 // =========================
 // BROWSER BEHAVIOR & UI
@@ -179,6 +183,7 @@ user_pref("browser.aboutwelcome.enabled", false);
 user_pref("startup.homepage_welcome_url", "");
 user_pref("startup.homepage_welcome_url.additional", "");
 user_pref("browser.firefox-view.feature-tour", '{"screen":"","complete":true}');
+user_pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false);
 
 // =========================
 // DOWNLOADS
@@ -234,3 +239,11 @@ user_pref(
 // THEME & CUSTOMIZATION
 // =========================
 user_pref("widget.windows.mica", true);
+
+// =========================
+// AI INTEGRATION
+// =========================
+user_pref("browser.ml.enable", false);
+user_pref("browser.ml.chat.enabled", false);
+user_pref("browser.ml.linkPreview.enabled", false);
+user_pref("browser.tabs.groups.smart.enabled", false);
