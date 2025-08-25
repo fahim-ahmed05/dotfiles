@@ -213,14 +213,8 @@ user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 user_pref("extensions.getAddons.cache.enabled", false);
 user_pref("browser.discovery.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
-user_pref(
-  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons",
-  false,
-);
-user_pref(
-  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features",
-  false,
-);
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
 user_pref("browser.search.update", false);
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.preferences.experimental.hidden", false);
@@ -230,15 +224,12 @@ user_pref("signon.firefoxRelay.feature", false);
 // =========================
 // PICTURE-IN-PICTURE
 // =========================
-user_pref(
-  "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled",
-  true,
-);
+user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled", true);
 
 // =========================
 // THEME & CUSTOMIZATION
 // =========================
-user_pref("widget.windows.mica", true);
+user_pref("widget.windows.mica", false);
 
 // =========================
 // AI INTEGRATION
