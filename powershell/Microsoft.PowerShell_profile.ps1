@@ -151,9 +151,6 @@ function wu {
     scoop update -a
     scoop cleanup *
 
-    Write-Host "`n📦  Updating chocolatey packages...`n" -ForegroundColor Cyan
-    sudo choco upgrade all -y
-
     Write-Host "`n📦  Updating pip...`n" -ForegroundColor Cyan
     python.exe -m pip install --upgrade pip
 
@@ -232,12 +229,6 @@ function flushDNS {
 # Scoop Search
 if ((Get-Command scoop -ErrorAction SilentlyContinue)) {
     Invoke-Expression (&scoop-search --hook)
-}
-
-# Chocolatey Tab Completion
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-  Import-Module "$ChocolateyProfile"
 }
 
 # Zoxide
