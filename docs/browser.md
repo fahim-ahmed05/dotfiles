@@ -39,6 +39,7 @@
 | **Proton VPN** | [Install](https://addons.mozilla.org/en-US/firefox/addon/proton-vpn-firefox-extension/) | [Install](https://chromewebstore.google.com/detail/proton-vpn-fast-secure/jplgfhpmjnbigmhklmmbgecoobifkmpa) | **N/A** | **N/A** |
 | **Google Docs Offline** | **N/A** | [Install](https://chromewebstore.google.com/detail/google-docs-offline/ghbmnnjooekpmoecnnnilnnbdlolhkhi) | **N/A** | **N/A** |
 | **Global Speed** | [Install](https://addons.mozilla.org/en-US/firefox/addon/global-speed/) | [Install](https://chromewebstore.google.com/detail/global-speed/jpbjcnkcffbooppibceonlgknpkniiff) | [Install](https://microsoftedge.microsoft.com/addons/detail/global-speed/mjhlabbcmjflkpjknnicihkfnmbdfced) | **N/A** |
+| **Tweaks for YouTube** | [Install](https://addons.mozilla.org/en-US/firefox/addon/tweaks-for-youtube/) | [Install](https://chromewebstore.google.com/detail/tweaks-for-youtube/ogkoifddpkoabehfemkolflcjhklmkge) | [Install](https://microsoftedge.microsoft.com/addons/detail/tweaks-for-youtube/nnhifoobfibjmlkejadjmcdckkjbljcp) | **Take a video snapshot (copy to clipboard and save):** `Alt + Shift + X` |
 
 ### [Content Filters](https://github.com/fahim-ahmed05/ublock-content-filters)
 

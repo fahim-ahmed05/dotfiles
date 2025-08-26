@@ -49,17 +49,17 @@ Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/d
 
 ### Winget Packages (Source: Microsoft Store)
 
-| [WhatsApp](https://apps.microsoft.com/detail/9nksqgp7f2nh) | [TwinkleTray](https://apps.microsoft.com/detail/9pljwwsv01lk) | [UniGetUI](https://apps.microsoft.com/detail/xpfftq032ptphf) |
-|----------|----------|----------|
+| [WhatsApp](https://apps.microsoft.com/detail/9nksqgp7f2nh) | [UniGetUI](https://apps.microsoft.com/detail/xpfftq032ptphf) |
+|----------|----------|
 
 ```powershell
-winget install 9NKSQGP7F2NH 9PLJWWSV01LK 9N45NSM4TNBP --source msstore --accept-package-agreements --accept-source-agreements
+winget install 9NKSQGP7F2NH 9N45NSM4TNBP --source msstore --accept-package-agreements --accept-source-agreements
 ```
 
 ### Winget Packages (Source: Winget)
 
 ```powershell
-winget install Mozilla.Firefox 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter AIMP.AIMP Gyan.FFmpeg eMClient.eMClient Microsoft.PowerToys ente-io.auth-desktop ONLYOFFICE.DesktopEditors Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
+winget install Mozilla.Firefox xanderfrangos.twinkletray 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey aria2.aria2 Stremio.Stremio QL-Win.QuickLook AdrienAllard.FileConverter AIMP.AIMP Gyan.FFmpeg eMClient.eMClient Microsoft.PowerToys ente-io.auth-desktop ONLYOFFICE.DesktopEditors Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### Optional Winget Packages (Source: Winget)
