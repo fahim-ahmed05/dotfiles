@@ -5,4 +5,4 @@
 --external-downloader-args aria2c:"-x 16 -k 1M"
 
 # Download location
-# -o C:/Users/Fahim/Downloads/yt-dlp/%(title)s.%(ext)s
+-o C:/Users/Fahim/Downloads/yt-dlp/%(title)s.%(ext)s
