@@ -1,4 +1,4 @@
-| [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md)|
+| [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md) |
 |------|------|------|------|
 
 ---
@@ -27,13 +27,8 @@ irm "https://christitus.com/win" | iex
 
 ### Programs
 
-- [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/) 
-- [Python](https://www.python.org/downloads/)
-- [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm)
-- [Git](https://git-scm.com/download/win)
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases)
-- [Winaero Tweaker](https://winaerotweaker.com/)
+| [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/)  | [Python](https://www.python.org/downloads/) | [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm) | [Git](https://git-scm.com/download/win) | [Visual Studio Code](https://code.visualstudio.com/) | [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases) | [Winaero Tweaker](https://winaerotweaker.com/) |
+|------|------|------|------|------|------|------|
 
 ### Update Winget
 
@@ -97,5 +92,5 @@ pipx install yt-dlp spotdl
 
 ---
 
-| [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md)|
+| [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md) |
 |------|------|------|------|

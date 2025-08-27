@@ -1,22 +1,21 @@
-| [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md)|
+| [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md) |
 |------|------|------|------
 
 ---
 
 # Browser
-- [Firefox](https://www.firefox.com/)
-- [Zen Browser](https://zen-browser.app/)
-- [Brave Browser](https://brave.com/)
-- [IceRaven OLED](https://github.com/GoodyOG/Iceraven-OLED)
+
+[Firefox](https://www.firefox.com/) | [Zen Browser](https://zen-browser.app/) | [Brave Browser](https://brave.com/) | [IceRaven OLED](https://github.com/GoodyOG/Iceraven-OLED)
+|------|------|------|------|
 
 ### Violentmonkey
 
-| Script Name                                                                 | Description                                                    |                                                                                                                                              |
-|------------------------------------------------------------------------------|----------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Return YouTube Dislike](https://returnyoutubedislike.com/)                 | Restores the dislike count on YouTube videos.                  | [Install](https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js)                         |
-| [Rumble - Auto Best Video Quality](https://greasyfork.org/en/scripts/494906-rumble-auto-best-video-quality) | Automatically selects the best available video resolution on Rumble. | [Install](https://update.greasyfork.org/scripts/494906/Rumble%20-%20Auto%20Best%20Video%20Quality.user.js)                                              |
-| [RDS CAPTCHA Solver](https://github.com/fahim-ahmed05/rds-captcha-solver)  | Automatically solves CAPTCHA on the NSU Portal login page.     | [Install](https://github.com/fahim-ahmed05/rds-captcha-solver/raw/main/rdscaptchasolver.user.js)                                                       |
-| [Bypass Paywalls](https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters) | Bypasses paywalls on many popular news sites.                 | [Install](https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=userscript/bpc.en.user.js)                               |
+| Script Name | Description | |
+|------|------|------|
+| [Return YouTube Dislike](https://returnyoutubedislike.com/) | Restores the dislike count on YouTube videos. | [Install](https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js) |
+| [Rumble - Auto Best Video Quality](https://greasyfork.org/en/scripts/494906-rumble-auto-best-video-quality) | Automatically selects the best available video resolution on Rumble. | [Install](https://update.greasyfork.org/scripts/494906/Rumble%20-%20Auto%20Best%20Video%20Quality.user.js) |
+| [RDS CAPTCHA Solver](https://github.com/fahim-ahmed05/rds-captcha-solver) | Automatically solves CAPTCHA on the NSU Portal login page. | [Install](https://github.com/fahim-ahmed05/rds-captcha-solver/raw/main/rdscaptchasolver.user.js) |
+| [Bypass Paywalls](https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters) | Bypasses paywalls on many popular news sites. | [Install](https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=userscript/bpc.en.user.js) |
 
 
 ### Browser Extensions
@@ -39,7 +38,7 @@
 | **Google Dictionary** | **N/A** | [Install](https://chromewebstore.google.com/detail/google-dictionary-by-goog/mgijmajocgfcbeboacabfgobmjgjcoja) | **N/A** | **N/A** |
 | **Proton VPN** | [Install](https://addons.mozilla.org/en-US/firefox/addon/proton-vpn-firefox-extension/) | [Install](https://chromewebstore.google.com/detail/proton-vpn-fast-secure/jplgfhpmjnbigmhklmmbgecoobifkmpa) | **N/A** | **N/A** |
 | **Google Docs Offline** | **N/A** | [Install](https://chromewebstore.google.com/detail/google-docs-offline/ghbmnnjooekpmoecnnnilnnbdlolhkhi) | **N/A** | **N/A** |
-| **Global Speed** | [Install](https://addons.mozilla.org/en-US/firefox/addon/global-speed/) | [Install](https://chromewebstore.google.com/detail/global-speed/jpbjcnkcffbooppibceonlgknpkniiff) | [Install](https://microsoftedge.microsoft.com/addons/detail/global-speed/mjhlabbcmjflkpjknnicihkfnmbdfced) | **N/A** |
+| **Global Speed** | [Install](https://addons.mozilla.org/en-US/firefox/addon/global-speed/) | [Install](https://chromewebstore.google.com/detail/global-speed/jpbjcnkcffbooppibceonlgknpkniiff) | [Install](https://microsoftedge.microsoft.com/addons/detail/global-speed/mjhlabbcmjflkpjknnicihkfnmbdfced) | **Decrease the playback speed by 0.25x:** `Alt + ,`<br> **Increase the playback speed by 0.25x:** `Alt + .`<br> **Set the playback speed to 1x:** `Ctrl + .`<br> **Set the playback speed to 2.5x:** `Ctrl + ,` |
 | **Tweaks for YouTube** | [Install](https://addons.mozilla.org/en-US/firefox/addon/tweaks-for-youtube/) | [Install](https://chromewebstore.google.com/detail/tweaks-for-youtube/ogkoifddpkoabehfemkolflcjhklmkge) | [Install](https://microsoftedge.microsoft.com/addons/detail/tweaks-for-youtube/nnhifoobfibjmlkejadjmcdckkjbljcp) | **Take a video snapshot (copy to clipboard and save):** `Alt + Shift + X` |
 
 ### [Content Filters](https://github.com/fahim-ahmed05/ublock-content-filters)
@@ -52,5 +51,5 @@ https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?f
 
 ---
 
-| [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md)|
+| [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md) |
 |------|------|------|------|
