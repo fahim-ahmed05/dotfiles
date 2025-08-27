@@ -59,13 +59,13 @@ winget install 9NKSQGP7F2NH 9N45NSM4TNBP --source msstore --accept-package-agree
 ### Winget Packages (Source: Winget)
 
 ```powershell
-winget install Mozilla.Firefox xanderfrangos.twinkletray 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey aria2.aria2 Syncthing.Syncthing Stremio.Stremio Obsidian.Obsidian QL-Win.QuickLook AdrienAllard.FileConverter AIMP.AIMP Gyan.FFmpeg eMClient.eMClient Microsoft.PowerToys ente-io.auth-desktop ONLYOFFICE.DesktopEditors Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
+winget install Mozilla.Firefox xanderfrangos.twinkletray 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey aria2.aria2 Syncthing.Syncthing Stremio.Stremio Obsidian.Obsidian QL-Win.QuickLook AdrienAllard.FileConverter AIMP.AIMP Gyan.FFmpeg Brave.Brave yt-dlp.yt-dlp eMClient.eMClient Microsoft.PowerToys ente-io.auth-desktop ONLYOFFICE.DesktopEditors Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### Optional Winget Packages (Source: Winget)
 
 ```powershell
-winget install Brave.Brave Proton.ProtonVPN PeterPawlowski.foobar2000 PrestonN.FreeTube calibre.calibre BlueStack.BlueStacks th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
+winget install DuongDieuPhap.ImageGlass Proton.ProtonVPN PeterPawlowski.foobar2000 PrestonN.FreeTube calibre.calibre BlueStack.BlueStacks th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### Install [Scoop](https://scoop.sh/)
