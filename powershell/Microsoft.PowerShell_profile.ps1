@@ -3,7 +3,7 @@ Set-Alias -Name ls -Value eza
 Set-Alias -Name cd -Value z -Option AllScope
 
 # Prompt
-oh-my-posh init pwsh --config "C:\Users\Fahim\AppData\Local\Programs\oh-my-posh\themes\robbyrussell.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config 'robbyrussell' | Invoke-Expression
 
 # Enhanced PSReadLine Configuration
 $PSReadLineOptions = @{
@@ -136,9 +136,6 @@ function wi {
 function wu {
     Write-Host "`n📦  Updating winget sources...`n" -ForegroundColor Cyan
     winget source update
-    
-    Write-Host "`n📦  Updating oh my posh...`n" -ForegroundColor Cyan
-    winget upgrade JanDeDobbeleer.OhMyPosh --source winget --scope user --force
 
     Write-Host "`n📦  Updating winget packages...`n" -ForegroundColor Cyan
     winget upgrade --all --accept-package-agreements --accept-source-agreements
