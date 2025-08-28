@@ -3,7 +3,7 @@ Set-Alias -Name ls -Value eza
 Set-Alias -Name cd -Value z -Option AllScope
 
 # Prompt
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\robbyrussell.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "C:\Users\Fahim\AppData\Local\Programs\oh-my-posh\themes\robbyrussell.omp.json" | Invoke-Expression
 
 # Enhanced PSReadLine Configuration
 $PSReadLineOptions = @{
