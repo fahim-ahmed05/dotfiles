@@ -44,11 +44,11 @@ Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/d
 
 ### Winget Packages (Source: Microsoft Store)
 
-| [WhatsApp](https://apps.microsoft.com/detail/9nksqgp7f2nh) | [UniGetUI](https://apps.microsoft.com/detail/xpfftq032ptphf) |
-|----------|----------|
+| [WhatsApp](https://apps.microsoft.com/detail/9nksqgp7f2nh) | [UniGetUI](https://apps.microsoft.com/detail/xpfftq032ptphf) | [Folo](https://apps.microsoft.com/detail/9nvfzpv0v0ht)
+|----------|----------|------|
 
 ```powershell
-winget install 9NKSQGP7F2NH 9N45NSM4TNBP --source msstore --accept-package-agreements --accept-source-agreements
+winget install 9nksqgp7f2nh xpfftq032ptphf 9nvfzpv0v0ht --source msstore --accept-package-agreements --accept-source-agreements
 ```
 
 ### Winget Packages (Source: Winget)
