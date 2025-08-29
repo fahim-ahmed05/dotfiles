@@ -14,7 +14,7 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 ### Install PowerShell Packages
 
 ```powershell
-winget install JanDeDobbeleer.OhMyPosh eza-community.eza junegunn.fzf ajeetdsouza.zoxide Microsoft.PowerShell --source winget --accept-package-agreements --accept-source-agreements; wt -w "oh-my-posh disable notice"
+winget install JanDeDobbeleer.OhMyPosh eza-community.eza junegunn.fzf ajeetdsouza.zoxide Microsoft.PowerShell Fastfetch-cli.Fastfetch --source winget --accept-package-agreements --accept-source-agreements; wt -w "oh-my-posh disable notice"
 ```
 
 ### Create Profile
