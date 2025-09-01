@@ -44,7 +44,7 @@
 ### [Content Filters](https://github.com/fahim-ahmed05/ublock-content-filters)
 
 ```
-https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/fix-youtube.txt
+https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/fix-youtube-hide-posts.txt
 https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/misc-annoyances.txt
 https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt
 ```
