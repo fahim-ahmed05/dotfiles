@@ -60,7 +60,7 @@ winget install Mozilla.Firefox xanderfrangos.twinkletray 7zip.7zip HermannSchina
 ### Optional Winget Packages (Source: Winget)
 
 ```powershell
-winget install DuongDieuPhap.ImageGlass Proton.ProtonVPN PeterPawlowski.foobar2000 PrestonN.FreeTube calibre.calibre BlueStack.BlueStacks th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
+winget install Notion.Notion DuongDieuPhap.ImageGlass Proton.ProtonVPN PeterPawlowski.foobar2000 PrestonN.FreeTube calibre.calibre BlueStack.BlueStacks th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### Install [Scoop](https://scoop.sh/)
