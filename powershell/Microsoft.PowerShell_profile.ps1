@@ -137,11 +137,6 @@ function wu {
     Write-Host "`n📦  Updating winget packages...`n" -ForegroundColor Cyan
     winget upgrade --all --accept-package-agreements --accept-source-agreements
 
-    Write-Host "`n📦  Updating scoop packages...`n" -ForegroundColor Cyan
-    scoop update
-    scoop update -a
-    scoop cleanup *
-
     Write-Host "`n📦  Updating pip...`n" -ForegroundColor Cyan
     python.exe -m pip install --upgrade pip
 
