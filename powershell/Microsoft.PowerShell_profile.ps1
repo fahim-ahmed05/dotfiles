@@ -145,9 +145,6 @@ function wu {
     Write-Host "`n📦  Updating pip...`n" -ForegroundColor Cyan
     python.exe -m pip install --upgrade pip
 
-    Write-Host "`n📦  Updating pipx packages...`n" -ForegroundColor Cyan
-    pipx upgrade-all
-
     rmDesktopIcons
 }
 
