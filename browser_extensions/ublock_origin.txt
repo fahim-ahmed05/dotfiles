@@ -1,13 +1,14 @@
 {
   "timeStamp": 0,
-  "version": "",
+  "version": "1.0.0",
   "userSettings": {
     "advancedUserEnabled": true,
-    "cloudStorageEnabled": true,
-    "externalLists": "https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/fix-youtube.txt\nhttps://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/misc-annoyances,
+    "externalLists": "https://filters.adtidy.org/extension/ublock/filters/3.txt\nhttps://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt\nhttps://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/fix-youtube-hide-posts.txt\nhttps://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/misc-annoyances.txt",
     "importedLists": [
-      "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/ContentFilters/ublock-remove-annoyances.txt",
-      "https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/misc-annoyances""
+      "https://filters.adtidy.org/extension/ublock/filters/3.txt",
+      "https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt",
+      "https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/fix-youtube-hide-posts.txt",
+      "https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/misc-annoyances.txt"
     ],
     "popupPanelSections": 63
   },
@@ -19,12 +20,13 @@
     "ublock-quick-fixes",
     "ublock-unbreak",
     "easylist",
+    "adguard-generic",
     "adguard-mobile",
     "easyprivacy",
-    "adguard-spyware",
     "adguard-spyware-url",
     "block-lan",
     "urlhaus-1",
+    "curben-phishing",
     "plowe-0",
     "fanboy-cookiemonster",
     "ublock-cookies-easylist",
@@ -34,8 +36,10 @@
     "easylist-notifications",
     "easylist-annoyances",
     "ublock-annoyances",
-    "https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/fix-youtube.txt",
-    "https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/misc-annoyances"
+    "https://filters.adtidy.org/extension/ublock/filters/3.txt",
+    "https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt",
+    "https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/fix-youtube-hide-posts.txt",
+    "https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/misc-annoyances.txt"
   ],
   "hiddenSettings": {},
   "whitelist": [
