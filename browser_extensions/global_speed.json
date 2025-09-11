@@ -472,6 +472,13 @@
                         "valueStartsWith": "https://example.com",
                         "valueRegex": "example\\.com",
                         "id": "4235866274"
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "valueContains": "plaza.one",
+                        "valueStartsWith": "https://example.com",
+                        "valueRegex": "example\\.com",
+                        "id": "9323903243"
                     }
                 ]
             },
@@ -503,5 +510,5 @@
         3.75
     ],
     "speedSmallStep": 0.25,
-    "version": 12
+    "version": 10
 }
