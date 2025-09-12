@@ -1,0 +1,19 @@
+{
+    "control": [
+        {
+            "VTOY_DEFAULT_SEARCH_ROOT": "/iso"
+        }
+    ],
+    "theme": {
+        "file": "/ventoy/themes/ventoy-dark/theme.txt",
+        "gfxmode": "1920x1080"
+    },
+    "auto_install": [
+        {
+            "image": "/iso/win11-24h2-64bit.iso",
+            "template": [
+                "/ventoy/scripts/win_unattend.xml"
+            ]
+        }
+    ]
+}
