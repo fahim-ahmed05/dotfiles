@@ -137,8 +137,16 @@ function wu {
     Write-Host "`n📦  Updating winget packages...`n" -ForegroundColor Cyan
     winget upgrade --all --accept-package-agreements --accept-source-agreements
 
+    Write-Host "`n📦  Updating scoop packages...`n" -ForegroundColor Cyan
+    scoop update
+    scoop update -a
+    scoop cleanup *
+
     Write-Host "`n📦  Updating pip...`n" -ForegroundColor Cyan
     python.exe -m pip install --upgrade pip
+
+    Write-Host "`n📦  Updating pipx packages...`n" -ForegroundColor Cyan
+    pipx upgrade-all
 
     rmDesktopIcons
 }
@@ -210,11 +218,8 @@ function flushDNS {
 }
 
 # Scoop Search
-if ((Get-Command scoop -ErrorAction SilentlyContinue)) {
-    Invoke-Expression (&scoop-search --hook)
-}
+Invoke-Expression (&scoop-search --hook) }
 
-# Zoxide
-if (Get-Command zoxide -ErrorAction SilentlyContinue) {
-    Invoke-Expression (& { (zoxide init powershell | Out-String) })
-}
+# Zoxide Initialization
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
+
