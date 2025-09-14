@@ -139,8 +139,6 @@ function wu {
 
     Write-Host "`n📦  Updating scoop packages...`n" -ForegroundColor Cyan
     scoop update
-    scoop update -a
-    scoop cleanup *
 
     Write-Host "`n📦  Updating pip...`n" -ForegroundColor Cyan
     python.exe -m pip install --upgrade pip
