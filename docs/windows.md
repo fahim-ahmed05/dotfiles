@@ -49,7 +49,7 @@ winget install 9nksqgp7f2nh xpfftq032ptphf 9nvfzpv0v0ht --source msstore --accep
 ### Winget Packages (Source: Winget)
 
 ```powershell
-winget install Mozilla.Firefox xanderfrangos.twinkletray 7zip.7zip HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Fastfetch-cli.Fastfetch Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey aria2.aria2 Syncthing.Syncthing Stremio.Stremio Obsidian.Obsidian QL-Win.QuickLook AdrienAllard.FileConverter AIMP.AIMP Gyan.FFmpeg Brave.Brave yt-dlp.yt-dlp eMClient.eMClient Microsoft.PowerToys ente-io.auth-desktop ONLYOFFICE.DesktopEditors Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
+winget install Microsoft.PowerShell Mozilla.Firefox xanderfrangos.twinkletray HermannSchinagl.LinkShellExtension yt-dlp.yt-dlp Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey Syncthing.Syncthing Stremio.Stremio Obsidian.Obsidian QL-Win.QuickLook AdrienAllard.FileConverter AIMP.AIMP Brave.Brave eMClient.eMClient Microsoft.PowerToys ente-io.auth-desktop ONLYOFFICE.DesktopEditors Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### Optional Winget Packages (Source: Winget)
@@ -59,21 +59,37 @@ winget install Notion.Notion DuongDieuPhap.ImageGlass Proton.ProtonVPN PeterPawl
 ```
 
 ### Install [Scoop](https://scoop.sh/)
+
 ```powershell
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-scoop install scoop-search
+```
+
+### Scoop Packages
+
+```powershell
+scoop install 7zip aria2 fastfetch nodejs scoop-search
+```
+
+# Optional Scoop Packages
+
+```powershell
+scoop install phantomjs yamlfmt
 ```
 
 ### Install [Pipx](https://github.com/pypa/pipx)
+
 | [Python](https://www.python.org/downloads/) required |
 |------------------------------------------------------|
+
 ```powershell
 scoop install pipx
 pipx ensurepath
 ```
 ### Pipx Packages
+
 | [Python](https://www.python.org/downloads/) required |
 |------------------------------------------------------|
+
 ```powershell
 pipx install yt-dlp spotdl
 ```
