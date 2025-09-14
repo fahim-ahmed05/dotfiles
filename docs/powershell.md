@@ -27,7 +27,7 @@ Profile paths:
 - VSCode PowerShell Extension: `~\Documents\PowerShell\Microsoft.VSCode_profile.ps1`
 - Windows PowerShell: `~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1`
 
-### Install [Nerd Fonts](https://www.nerdfonts.com/)
+### Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 | [Scoop](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md#install-scoop) & [Git](https://git-scm.com/download/win) required |
 |--------------------------------------------------------------------|
 ```powershell
