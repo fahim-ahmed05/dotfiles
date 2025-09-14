@@ -218,8 +218,9 @@ function flushDNS {
 }
 
 # Scoop Search
-Invoke-Expression (&scoop-search --hook) }
+. ([ScriptBlock]::Create((& scoop-search --hook | Out-String)))
 
 # Zoxide Initialization
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
+. ([ScriptBlock]::Create((zoxide init powershell | Out-String)))
+
 
