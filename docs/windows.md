@@ -91,7 +91,7 @@ pipx ensurepath
 |------------------------------------------------------|
 
 ```powershell
-pipx install yt-dlp spotdl
+pipx install spotdl
 ```
 
 ### Cursors
