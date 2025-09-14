@@ -102,5 +102,7 @@ pipx install spotdl
 | [Posy's Cursor (Default + Extras)](https://www.michieldb.nl/other/cursors/) | **N/A** |
 
 ### Media Foundation Codecs
-| [Download](https://www.codecguide.com/media_foundation_codecs.htm) | Silent Install: `Add-AppxPackage -Path *.AppxBundle` |
-|--------------------------------------------------------------------|------------------------------------------------------|
+
+| [Download](https://www.codecguide.com/media_foundation_codecs.htm) | Silent Install: `Add-AppxPackage *.AppxBundle` |
+|--------------------------------------------------------------------|------------------------------------------------|
+
