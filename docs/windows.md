@@ -103,6 +103,6 @@ pipx install spotdl
 
 ### Media Foundation Codecs
 
-Codec Guide: [Download](https://www.codecguide.com/media_foundation_codecs.htm) <br>
-Silent Install: `Add-AppxPackage *.AppxBundle`
-
+| Download                                                              | Install                        |
+|-----------------------------------------------------------------------|--------------------------------|
+| [Codec Guide](https://www.codecguide.com/media_foundation_codecs.htm) | `Add-AppxPackage *.AppxBundle` |
