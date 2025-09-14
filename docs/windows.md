@@ -70,7 +70,7 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 scoop install 7zip aria2 fastfetch nodejs scoop-search
 ```
 
-# Optional Scoop Packages
+### Optional Scoop Packages
 
 ```powershell
 scoop install phantomjs yamlfmt

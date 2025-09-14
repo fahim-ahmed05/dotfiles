@@ -3,7 +3,7 @@
 ### Change Execution Policy
 
 ```powershell
-Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
 
 ### Install PowerShell Packages
