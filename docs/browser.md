@@ -1,8 +1,3 @@
-| [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md) |
-|------|------|------|------
-
----
-
 # Browser
 
 [Firefox](https://www.firefox.com/) | [Zen Browser](https://zen-browser.app/) | [Brave Browser](https://brave.com/) | [IceRaven OLED](https://github.com/GoodyOG/Iceraven-OLED)
@@ -48,8 +43,3 @@ https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/head
 https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/misc-annoyances.txt
 https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt
 ```
-
----
-
-| [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md) | [PowerShell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md) |
-|------|------|------|------|
