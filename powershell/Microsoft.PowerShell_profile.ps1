@@ -222,5 +222,3 @@ function flushDNS {
 
 # Zoxide Initialization
 . ([ScriptBlock]::Create((zoxide init powershell | Out-String)))
-
-
