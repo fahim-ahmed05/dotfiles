@@ -100,3 +100,7 @@ pipx install spotdl
 |------|-------|
 | [Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor) | [Download](https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Original-Ice-Windows.zip) |
 | [Posy's Cursor (Default + Extras)](https://www.michieldb.nl/other/cursors/) | **N/A** |
+
+### Media Foundation Codecs
+| [Download](https://www.codecguide.com/media_foundation_codecs.htm) | Silent Install: `Add-AppxPackage -Path *.AppxBundle` |
+|--------------------------------------------------------------------|------------------------------------------------------|
