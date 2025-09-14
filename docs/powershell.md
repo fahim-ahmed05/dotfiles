@@ -23,8 +23,10 @@ Profile paths:
 - Windows PowerShell: `~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1`
 
 ### Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
+
 | [Scoop](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md#install-scoop) & [Git](https://git-scm.com/download/win) required |
 |--------------------------------------------------------------------|
+
 ```powershell
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
