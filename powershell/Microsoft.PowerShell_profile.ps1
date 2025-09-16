@@ -132,23 +132,15 @@ function reboot {
     }
 }
 
-# Pipx
-function pi {
-    pipx install $args[0]
-}
-
 # Winget
 function ws {
     $query = $args -join ' '
-    Write-Host "`n🔍  Searching for '$query'...`n" -ForegroundColor Cyan
+
+    Write-Host "`n🎯  Scoop`n" -ForegroundColor Cyan
+    scoop search $query
+
+    Write-Host "`n🎯  Winget`n" -ForegroundColor Cyan
     winget search $query
-}
-
-function wi {
-    winget install $args[0] --accept-package-agreements --accept-source-agreements
-    Start-Sleep -Seconds 1.5
-
-    rmDesktopIcons
 }
 
 function wu {
