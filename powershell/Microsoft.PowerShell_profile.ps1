@@ -136,27 +136,27 @@ function reboot {
 function ws {
     $query = $args -join ' '
 
-    Write-Host "`n🎯  Scoop`n" -ForegroundColor Cyan
+    Write-Host "Scoop`n" -ForegroundColor Cyan
     scoop search $query
 
-    Write-Host "`n🎯  Winget`n" -ForegroundColor Cyan
+    Write-Host "`nWinget`n" -ForegroundColor Cyan
     winget search $query
 }
 
 function wu {
-    Write-Host "`n📦  Updating winget packages...`n" -ForegroundColor Cyan
+    Write-Host "Winget`n" -ForegroundColor Cyan
     winget upgrade --all --accept-package-agreements --accept-source-agreements
 
-    Write-Host "`n📦  Updating scoop packages...`n" -ForegroundColor Cyan
+    Write-Host "`nScoop`n" -ForegroundColor Cyan
     scoop update
 
-    Write-Host "`n📦  Updating pip...`n" -ForegroundColor Cyan
+    Write-Host "`nPip`n" -ForegroundColor Cyan
     python.exe -m pip install --upgrade pip
 
-    Write-Host "`n📦  Updating pipx packages...`n" -ForegroundColor Cyan
+    Write-Host "`nPipx`n" -ForegroundColor Cyan
     pipx upgrade-all
 
-    rmDesktopIcons
+    Remove-DesktopIcons
 }
 
 function pubip { (Invoke-WebRequest http://ifconfig.me/ip).Content }
@@ -197,13 +197,12 @@ function hb {
     }
 }
 
-function rmDesktopIcons {
+function Remove-DesktopIcons {
     Remove-Item $env:USERPROFILE\Desktop\*.lnk
     Remove-Item C:\Users\Public\Desktop\*.lnk
-    Write-Host "`n✅  Desktop icons removed.`n" -ForegroundColor Green
 }
 
-function flushCache {
+function Clear-WindowsCache {
     $paths = @(
         "$env:SystemRoot\Prefetch",
         "$env:SystemRoot\Temp",
@@ -216,13 +215,6 @@ function flushCache {
             Remove-Item "$path\*" -Force -Recurse -ErrorAction SilentlyContinue
         }
     }
-
-    Write-Host "`n✅  Windows cache removed.`n" -ForegroundColor Green
-}
-
-function flushDNS {
-    Clear-DnsClientCache
-    Write-Host "`n✅  DNS cache removed.`n" -ForegroundColor Green
 }
 
 # Scoop Search
