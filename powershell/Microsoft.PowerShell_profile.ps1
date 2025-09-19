@@ -1,5 +1,6 @@
 # Aliases
 Set-Alias -Name ls -Value eza
+Set-Alias -Name ff -Value fzf
 Set-Alias -Name cd -Value z -Option AllScope
 
 # Prompt
