@@ -149,7 +149,7 @@ function wu {
     winget upgrade --all --accept-package-agreements --accept-source-agreements
 
     Write-Host "`nScoop`n" -ForegroundColor Cyan
-    scoop update
+    scoop update -a
 
     Write-Host "`nPip`n" -ForegroundColor Cyan
     python.exe -m pip install --upgrade pip
