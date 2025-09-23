@@ -34,5 +34,14 @@
     "mode": "system",
     "light": "One Light",
     "dark": "One Dark"
+  },
+  "disable_ai": true,
+  "collaboration_panel": {
+    "button": false
+  },
+  "title_bar": {
+    "show_sign_in": false,
+    "show_onboarding_banner": false,
+    "show_user_picture": false
   }
 }
