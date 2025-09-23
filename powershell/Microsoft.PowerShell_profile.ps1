@@ -95,7 +95,7 @@ function su {
     )
 }
 
-function poweroff {
+function PowerOff {
     param(
         [switch]$y
     )
@@ -104,7 +104,7 @@ function poweroff {
         shutdown /s /f /t 0
     }
     else {
-        $answer = Read-Host "Are you sure you want to power off the computer? (y/n)"
+        $answer = Read-Host "Are you sure you want to shutdown the computer? (y/n)"
         if ($answer -eq "y") {
             shutdown /s /f /t 0
         }
@@ -114,7 +114,7 @@ function poweroff {
     }
 }
 
-function reboot {
+function Reboot {
     param(
         [switch]$y
     )
