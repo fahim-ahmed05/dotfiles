@@ -146,9 +146,13 @@ function ws {
 
 function wu {
     Write-Host "Winget`n" -ForegroundColor Cyan
+    winget source update
     winget upgrade --all --accept-package-agreements --accept-source-agreements
+    winget upgrade winget --accept-package-agreements --accept-source-agreements
 
     Write-Host "`nScoop`n" -ForegroundColor Cyan
+    scoop status
+    scoop update
     scoop update -a
 
     Write-Host "`nPip`n" -ForegroundColor Cyan
