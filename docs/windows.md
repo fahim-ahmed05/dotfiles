@@ -55,7 +55,7 @@ winget install Microsoft.PowerShell Mozilla.Firefox xanderfrangos.twinkletray He
 ### Optional Winget Packages (Source: Winget)
 
 ```powershell
-winget install Notion.Notion DuongDieuPhap.ImageGlass Proton.ProtonVPN PeterPawlowski.foobar2000 PrestonN.FreeTube calibre.calibre BlueStack.BlueStacks th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
+winget install LocalSend.LocalSend Notion.Notion DuongDieuPhap.ImageGlass Proton.ProtonVPN PeterPawlowski.foobar2000 PrestonN.FreeTube calibre.calibre BlueStack.BlueStacks th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### Install [Scoop](https://scoop.sh/)
