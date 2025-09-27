@@ -47,11 +47,11 @@ https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?f
 
 ### Chrome Flags
 
-| Flag | URL | Value |
-|------|-----|-------|
-|[Smooth Scrolling](chrome://flags/#smooth-scrolling) | `chrome://flags/#smooth-scrolling` | Enabled |
-| [Overlay Scrollbars](chrome://flags/#overlay-scrollbars) | `chrome://flags/#overlay-scrollbars` | Enabled |
-| [Fluent Scrollbars](chrome://flags/#fluent-scrollbars) | `chrome://flags/#fluent-scrollbars` | Enabled |
-| [Fluent Overlay scrollbars](chrome://flags/#fluent-overlay-scrollbars) | `chrome://flags/#fluent-overlay-scrollbars` | Enabled |
-| [Parallel Downloading](chrome://flags/#enable-parallel-downloading) | `chrome://flags/#enable-parallel-downloading` | Enabled |
-| [Auto PiP for Video Playback](chrome://flags/#auto-picture-in-picture-for-video-playback) | `chrome://flags/#auto-picture-in-picture-for-video-playback` | Enabled |
+| Flag                          | URL                                                           | Value   |
+|-------------------------------|---------------------------------------------------------------|---------|
+| Smooth Scrolling              | `chrome://flags/#smooth-scrolling`                            | Enabled |
+| Overlay Scrollbars            | `chrome://flags/#overlay-scrollbars`                          | Enabled |
+| Fluent Scrollbars             | `chrome://flags/#fluent-scrollbars`                           | Enabled |
+| Fluent Overlay scrollbars     | `chrome://flags/#fluent-overlay-scrollbars`                   | Enabled |
+| Parallel Downloading          | `chrome://flags/#enable-parallel-downloading`                 | Enabled |
+| Auto PiP for Video Playback   | `chrome://flags/#auto-picture-in-picture-for-video-playback`  | Enabled |
