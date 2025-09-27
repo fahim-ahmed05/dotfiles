@@ -44,3 +44,14 @@ https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/head
 https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/misc-annoyances.txt
 https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt
 ```
+
+### Chrome Flags
+
+| Flag | URL | Value |
+|------|-----|-------|
+|[Smooth Scrolling](chrome://flags/#smooth-scrolling) | `chrome://flags/#smooth-scrolling` | Enabled |
+| [Overlay Scrollbars](chrome://flags/#overlay-scrollbars) | `chrome://flags/#overlay-scrollbars` | Enabled |
+| [Fluent Scrollbars](chrome://flags/#fluent-scrollbars) | `chrome://flags/#fluent-scrollbars` | Enabled |
+| [Fluent Overlay scrollbars](chrome://flags/#fluent-overlay-scrollbars) | `chrome://flags/#fluent-overlay-scrollbars` | Enabled |
+| [Parallel Downloading](chrome://flags/#enable-parallel-downloading) | `chrome://flags/#enable-parallel-downloading` | Enabled |
+| [Auto PiP for Video Playback](chrome://flags/#auto-picture-in-picture-for-video-playback) | `chrome://flags/#auto-picture-in-picture-for-video-playback` | Enabled |
