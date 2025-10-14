@@ -2,7 +2,7 @@
 $trashPath = Join-Path $HOME "Trash"
 
 # Define folders to exclude from deletion
-$excludeFolders = @("Keep") 
+$excludeFolders = @("KeepThis") 
 
 # Check if the Trash folder exists
 if (-not (Test-Path $trashPath)) {
