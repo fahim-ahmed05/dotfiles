@@ -1,3 +1,5 @@
+Import-Module -Name Microsoft.WinGet.CommandNotFound
+
 # Aliases
 Set-Alias -Name ls -Value eza
 Set-Alias -Name ff -Value fzf
@@ -227,3 +229,5 @@ function Clear-WindowsCache {
 
 # Zoxide Initialization
 . ([ScriptBlock]::Create((zoxide init powershell | Out-String)))
+
+
