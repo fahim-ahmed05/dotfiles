@@ -136,7 +136,7 @@ function Reboot {
 }
 
 # Winget
-function ws {
+function Search-Packages {
     $query = $args -join ' '
 
     Write-Host "Scoop`n" -ForegroundColor Cyan
@@ -146,7 +146,7 @@ function ws {
     winget search $query
 }
 
-function wu {
+function Update-AllPackages {
     Write-Host "Winget`n" -ForegroundColor Cyan
     winget source update
     winget upgrade --all --accept-package-agreements --accept-source-agreements
@@ -213,8 +213,8 @@ function Clear-WindowsCache {
     $paths = @(
         "$env:SystemRoot\Prefetch",
         "$env:SystemRoot\Temp",
-        $env:TEMP,
-        "$env:LOCALAPPDATA\Microsoft\Windows\INetCache"
+        "$env:TEMP",
+        "$HOME\scoop\cache"
     )
 
     foreach ($path in $paths) {
