@@ -218,8 +218,7 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", 
 user_pref("browser.search.update", false);
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.preferences.experimental.hidden", false);
-user_pref("browser.preferences.moreFromMozilla", false);
-user_pref("signon.firefoxRelay.feature", false);
+user_pref("signon.firefoxRelay.feature", "disabled");
 
 // =========================
 // PICTURE-IN-PICTURE
