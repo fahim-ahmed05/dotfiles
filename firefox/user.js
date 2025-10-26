@@ -177,7 +177,6 @@ user_pref("network.IDN_show_punycode", true);
 user_pref("browser.search.suggest.enabled.private", true);
 user_pref("browser.urlbar.groupLabels.enabled", false);
 user_pref("browser.urlbar.trending.featureGate", false);
-user_pref("browser.urlbar.scotchBonnet.enableOverrides", false);
 user_pref("browser.urlbar.quicksuggest.enabled", false);
 
 // =========================
