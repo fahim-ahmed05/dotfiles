@@ -24,6 +24,7 @@ user_pref("privacy.trackingprotection.fingerprinting.enabled", true);
 user_pref("privacy.trackingprotection.allow_list.baseline.enabled", false);
 user_pref("privacy.trackingprotection.allow_list.convenience.enabled", false);
 user_pref("privacy.globalprivacycontrol.enabled", true);
+user_pref("browser.privatebrowsing.resetPBM.enabled", true);
 
 // =========================
 // TELEMETRY & DATA COLLECTION
