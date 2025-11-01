@@ -99,10 +99,14 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 user_pref("ui.key.menuAccessKeyFocuses", false);
 user_pref("findbar.highlightAll", true);
 user_pref("editor.truncate_user_pastes", false);
-user_pref("full-screen-api.warning.timeout", 0);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.menu.showViewImageInfo", true);
+
+// FULLSCREEN BEHAVIOR
+user_pref("full-screen-api.transition-duration.enter", "0 0");
+user_pref("full-screen-api.transition-duration.leave", "0 0");
+user_pref("full-screen-api.warning.timeout", 0);
 
 // OCSP & CERTS
 user_pref("security.OCSP.enabled", 0);
