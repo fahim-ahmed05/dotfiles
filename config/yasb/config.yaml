@@ -150,7 +150,7 @@ widgets:
         round_corners: true
         show_apps: true
         show_app_icons: true
-        show_apps_expanded: true
+        show_apps_expanded: false
         round_corners_type: "normal"
         border_color: "system"
         alignment: "right"
