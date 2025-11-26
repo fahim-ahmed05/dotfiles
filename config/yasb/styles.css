@@ -229,7 +229,6 @@ and a Nord0 based colour pallete for dark mode.
 .microphone-menu {
 	background-color: var(--nord4);
 	color: var(--nord0);
-	min-width: 300px;
 }
 
 /* System microphone volume */
