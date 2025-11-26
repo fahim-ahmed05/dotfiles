@@ -229,6 +229,7 @@ and a Nord0 based colour pallete for dark mode.
 .microphone-menu {
 	background-color: var(--nord4);
 	color: var(--nord0);
+	min-width: 300px;
 }
 
 /* System microphone volume */
@@ -845,7 +846,7 @@ and a Nord0 based colour pallete for dark mode.
 	margin-top: 10px;
 }
 
-/* Source-specific badges (keep brand colors) */
+/* Source-specific badges (brand colors kept) */
 .media-menu .source.aimp {
 	background-color: #6f42c1;
 	color: #ffffff;
@@ -1045,6 +1046,88 @@ and a Nord0 based colour pallete for dark mode.
 
 .media-menu .app-volume-container .unmute-button {
 	color: var(--nord2);
+}
+
+/* CONTEXT MENU – ALWAYS DARK STYLE */
+.context-menu,
+.context-menu .menu-checkbox {
+	background-color: var(--nord0);
+	border: none;
+	padding: 4px 0px;
+	font-family: "Segoe UI";
+	font-size: 12px;
+	color: var(--nord6);
+}
+
+.context-menu::right-arrow {
+	width: 8px;
+	height: 8px;
+	padding-right: 24px;
+}
+
+.context-menu::item,
+.context-menu .menu-checkbox {
+	background-color: transparent;
+	padding: 6px 12px;
+	margin: 2px 6px;
+	border-radius: 6px;
+	min-width: 100px;
+}
+
+.context-menu::item:selected,
+.context-menu .menu-checkbox:hover {
+	background-color: var(--nord2);
+	color: var(--nord6);
+}
+
+.context-menu::separator {
+	height: 1px;
+	background-color: var(--nord2);
+	margin: 4px 8px;
+}
+
+.context-menu::item:disabled {
+	color: var(--nord3);
+	background-color: transparent;
+}
+
+.context-menu .menu-checkbox .checkbox {
+	border: none;
+	padding: 8px 16px;
+	font-size: 12px;
+	margin: 0;
+	color: var(--nord6);
+	font-family: "Segoe UI";
+}
+
+.context-menu .submenu::item:disabled {
+	margin: 0;
+	padding-left: 16px;
+}
+
+.context-menu .menu-checkbox .checkbox:unchecked {
+	color: var(--nord4);
+}
+
+.context-menu .menu-checkbox .checkbox::indicator {
+	width: 12px;
+	height: 12px;
+	margin-left: 0px;
+	margin-right: 8px;
+}
+
+.context-menu .menu-checkbox .checkbox::indicator:unchecked {
+	background: var(--nord2);
+	border-radius: 2px;
+}
+
+.context-menu .menu-checkbox .checkbox::indicator:checked {
+	background: var(--nord9);
+	border-radius: 2px;
+}
+
+.context-menu .menu-checkbox .checkbox:focus {
+	outline: none;
 }
 
 /* DARK THEME BELOW */
