@@ -75,6 +75,7 @@ widgets:
       label_alt: "{%A %d %B %Y, %I:%M %p}"
       #locale: 'en_EN' # Langugae for date, you can set your own, example fr_FR
       #timezones: ["America/Montreal"]
+      tooltip: false
       callbacks:
         on_left: "toggle_calendar"
      
@@ -116,6 +117,7 @@ widgets:
       update_interval: 3600 # Update interval in seconds, Min 600 seconds
       hide_decimal: true
       location: "$env:YASB_WEATHER_LOCATION" # You can use "USA Los Angeles 90006" {COUNTRY CITY ZIP_CODE}, or just city.
+      tooltip: false
       callbacks:
         on_left: "toggle_card"
         on_right: "do_nothing"
@@ -138,7 +140,7 @@ widgets:
     options:
       label: "<span>{icon} </span>{level}"
       label_alt: "{volume}"
-      tooltip: true
+      tooltip: false
       volume_icons:
         - "\ueee8" # Icon for muted
         - "\uf026" # Icon for 0-10% volume
@@ -163,7 +165,7 @@ widgets:
     options:
       label: "<span>{icon} </span>{percent}%"
       label_alt: "Brightness {percent}%"
-      tooltip: true
+      tooltip: false
       hide_unsupported: true
       brightness_toggle_level: [0, 50, 100]
       auto_light: false
@@ -186,7 +188,7 @@ widgets:
     options:
       label: "<span>{icon}</span> {level}"
       label_alt: "<span>{icon}</span> {level}"
-      tooltip: true
+      tooltip: false
       icons:
         normal: "\udb80\udf6c"
         muted: "\udb80\udf6d"
