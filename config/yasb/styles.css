@@ -95,7 +95,7 @@ and a Nord0 based colour pallete for dark mode.
 
 .volume-widget .icon {
 	margin-right: 0;
-	color: var(--nord9);
+	color: var(--nord13);
 }
 
 .brightness-widget {
@@ -104,7 +104,7 @@ and a Nord0 based colour pallete for dark mode.
 
 .brightness-widget .icon {
 	margin-right: 0;
-	color: var(--nord15);
+	color: var(--nord12);
 }
 
 .traffic-widget .icon {
@@ -112,7 +112,7 @@ and a Nord0 based colour pallete for dark mode.
 }
 
 .microphone-widget .icon {
-	color: var(--nord22);
+	color: var(--nord14);
 }
 
 /* NEW MEDIA WIDGET */
