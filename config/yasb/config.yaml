@@ -65,6 +65,11 @@ widgets:
       max_length: 56
       max_length_ellipsis: "..."
       monitor_exclusive: true
+      rewrite:
+      # Strip trailing “.exe” (case-insensitive) and lowercase:
+      - pattern: "^(.+?)\\.exe$"
+        replacement: "\\1"
+        case: lower
       callbacks:
         on_right: "do_nothing"
         on_left: "do_nothing"
