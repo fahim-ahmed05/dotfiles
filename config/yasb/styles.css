@@ -825,7 +825,6 @@ and a Nord0 based colour pallete for dark mode.
 	font-size: 14px;
 	font-weight: 600;
 	margin-left: 10px;
-	font-family: "Segoe UI";
 	color: var(--nord0);
 }
 
@@ -976,7 +975,6 @@ and a Nord0 based colour pallete for dark mode.
 
 .media-menu .playback-time {
 	font-size: 13px;
-	font-family: "Segoe UI";
 	color: var(--nord2);
 	margin-top: 20px;
 	min-width: 100px;
@@ -1607,4 +1605,152 @@ and a Nord0 based colour pallete for dark mode.
 
 *.dark .media-menu .app-volume-container .unmute-button {
 	color: var(--nord3);
+}
+
+/* --------------------------------------------- */
+/* WINDOWS DESKTOPS WIDGET – THEMED WITH NORD    */
+/* --------------------------------------------- */
+
+/* LIGHT MODE */
+.windows-desktops {
+	padding: 0 4px 0 14px;
+}
+
+.windows-desktops .widget-container {
+	background-color: var(--nord4);
+	margin: 4px 0 4px 0;
+	border-radius: 12px;
+}
+
+.windows-desktops .ws-btn {
+	color: var(--nord3);
+	border: none;
+	font-size: 14px;
+	margin: 0 3px;
+	padding: 0;
+}
+
+.windows-desktops .ws-btn.active {
+	color: var(--nord9);
+}
+
+/* Context menu for desktops (light) */
+.windows-desktops .context-menu {
+	background-color: var(--nord4);
+	border: 1px solid var(--nord5);
+	border-radius: 4px;
+	padding: 8px 0;
+}
+
+.windows-desktops .context-menu .menu-item {
+	padding: 6px 16px;
+	color: var(--nord3);
+}
+
+.windows-desktops .context-menu .menu-item:hover {
+	background-color: var(--nord6);
+	color: var(--nord0);
+}
+
+.windows-desktops .context-menu .separator {
+	margin: 2px 0px 2px 0px;
+	height: 1px;
+	background-color: var(--nord5);
+}
+
+/* Rename dialog (light) */
+.windows-desktops .rename-dialog {
+	background-color: var(--nord4);
+	border-radius: 8px;
+}
+
+.windows-desktops .rename-dialog QPushButton {
+	background-color: var(--nord5);
+	color: var(--nord0);
+	border: none;
+	padding: 4px 12px;
+	border-radius: 4px;
+}
+
+.windows-desktops .rename-dialog QPushButton:hover {
+	background-color: var(--nord6);
+	color: var(--nord0);
+}
+
+.windows-desktops .rename-dialog QLabel {
+	color: var(--nord0);
+}
+
+.windows-desktops .rename-dialog QLineEdit {
+	background-color: transparent;
+	border: 1px solid var(--nord9);
+	padding: 4px;
+	color: var(--nord0);
+}
+
+/* DARK MODE */
+*.dark .windows-desktops .widget-container {
+	background-color: var(--nord0);
+}
+
+*.dark .windows-desktops .ws-btn {
+	color: var(--nord4);
+}
+
+*.dark .windows-desktops .ws-btn.active {
+	color: var(--nord9);
+}
+
+/* Context menu for desktops (dark) */
+*.dark .windows-desktops .context-menu {
+	background-color: var(--nord0);
+	border: 1px solid var(--nord2);
+	border-radius: 4px;
+	padding: 8px 0;
+}
+
+*.dark .windows-desktops .context-menu .menu-item {
+	padding: 6px 16px;
+	color: var(--nord4);
+}
+
+*.dark .windows-desktops .context-menu .menu-item:hover {
+	background-color: var(--nord2);
+	color: var(--nord6);
+}
+
+*.dark .windows-desktops .context-menu .separator {
+	margin: 2px 0px 2px 0px;
+	height: 1px;
+	background-color: var(--nord2);
+}
+
+/* Rename dialog (dark) */
+*.dark .windows-desktops .rename-dialog {
+	background-color: var(--nord0);
+	border-radius: 8px;
+}
+
+*.dark .windows-desktops .rename-dialog QPushButton {
+	background-color: var(--nord1);
+	color: var(--nord6);
+	border: none;
+	padding: 4px 12px;
+	border-radius: 4px;
+}
+
+*.dark .windows-desktops .rename-dialog QPushButton:hover {
+	background-color: var(--nord2);
+	color: var(--nord6);
+}
+
+*.dark .windows-desktops .rename-dialog QLabel {
+	color: var(--nord6);
+}
+
+*.dark .windows-desktops .rename-dialog QLineEdit {
+	background-color: transparent;
+	border: 1px solid var(--nord9);
+	padding: 4px;
+	color: var(--nord6);
 }
