@@ -163,6 +163,9 @@ function Update-AllPackages {
     Write-Host "`nPipx`n" -ForegroundColor Cyan
     pipx upgrade-all
 
+    Write-Host "`nSpicetify`n" -ForegroundColor Cyan
+    spicetify update
+
     Remove-DesktopIcons
 }
 
