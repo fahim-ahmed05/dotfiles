@@ -115,10 +115,13 @@ and a Nord0 based colour pallete for dark mode.
 	color: var(--nord14);
 }
 
+.active-window-widget {
+	padding-right: -6px;
+}
+
 /* NEW MEDIA WIDGET */
 .media-widget {
-	padding: 0;
-	margin: 0;
+	padding-left: 6px;
 	border-radius: 0;
 }
 
