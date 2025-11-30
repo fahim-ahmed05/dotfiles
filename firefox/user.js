@@ -102,6 +102,7 @@ user_pref("editor.truncate_user_pastes", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.menu.showViewImageInfo", true);
+user_pref("browser.tabs.warnOnClose", false);
 
 // FULLSCREEN BEHAVIOR
 user_pref("full-screen-api.transition-duration.enter", "0 0");
