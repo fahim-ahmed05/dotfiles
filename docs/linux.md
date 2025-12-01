@@ -38,10 +38,8 @@ echo "SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket" >> ~/.config/environment.
 Log out & log back in.
 
 ## 5. Configure SSH
-```
-nano ~/.ssh/config
-
-Add:
+```bash
+cat > ~/.ssh/config << 'EOF'
 Host *
     AddKeysToAgent yes
 
@@ -54,6 +52,7 @@ Host github-sign
     HostName github.com
     User git
     IdentityFile ~/.ssh/github_sign
+EOF
 ```
 ## 6. Auto-load SSH keys at login (systemd user service)
 ```bash
