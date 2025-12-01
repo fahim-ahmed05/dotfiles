@@ -1,43 +1,42 @@
 # Linux
 
-## Paths
+### Paths
 Scripts: /usr/local/bin
 
-# GitHub SSH Setup
+## GitHub SSH Setup
 
-## 1. Create SSH keys
+### 1. Create SSH keys
 
-### Authentication key
 ```bash
+# Authentication key
 ssh-keygen -t ed25519 -C "your_email@example.com" -f ~/.ssh/github_auth
-```
-### Signing key
-```bash
+# Signing key
 ssh-keygen -t ed25519 -C "your_email@example.com" -f ~/.ssh/github_sign
 ```
 _No passphrase → just press Enter._
 
-## 2. Fix permissions
+### 2. Fix permissions
 ```bash
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/*
 ```
-## 3. Enable systemd-managed ssh-agent socket
+### 3. Enable systemd-managed ssh-agent socket
 ```bash
 systemctl --user enable --now ssh-agent.socket
 
 # Verify
 systemctl --user status ssh-agent.socket
-```
-Should see: `Active: active (listening)`
 
-## 4. Set SSH_AUTH_SOCK system-wide (user)
+# Expected: `Active: active (listening)`
+```
+
+### 4. Set SSH_AUTH_SOCK system-wide (user)
 ```bash
 echo "SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket" >> ~/.config/environment.d/ssh_agent.conf
 ```
-Log out & log back in.
+_Log out & log back in._
 
-## 5. Configure SSH
+### 5. Configure SSH
 ```bash
 cat > ~/.ssh/config << 'EOF'
 Host *
@@ -54,7 +53,7 @@ Host github-sign
     IdentityFile ~/.ssh/github_sign
 EOF
 ```
-## 6. Auto-load SSH keys at login (systemd user service)
+### 6. Auto-load SSH keys at login (systemd user service)
 ```bash
 cat > ~/.config/systemd/user/ssh-add-github.service << 'EOF'
 [Unit]
@@ -76,7 +75,7 @@ systemctl --user daemon-reload
 systemctl --user enable --now ssh-add-github.service
 ```
 
-## 7. Add public keys to GitHub
+### 7. Add public keys to GitHub
 ```bash
 # Show
 cat ~/.ssh/github_auth.pub
@@ -87,14 +86,14 @@ Add:
 - **github_auth.pub** → SSH Authentication Key  
 - **github_sign.pub** → SSH Signing Key  
 
-## 8. Enable SSH commit signing in Git
+### 8. Enable SSH commit signing in Git
 ```bash
 git config --global gpg.format ssh
 git config --global user.signingkey ~/.ssh/github_sign.pub
 git config --global commit.gpgsign true
 git config --global tag.gpgsign true
 ```
-## 9. Test authentication
+### 9. Test authentication
 ```bash
 ssh -T github-auth
 
