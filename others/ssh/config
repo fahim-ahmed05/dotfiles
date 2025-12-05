@@ -1,0 +1,10 @@
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/github_auth
+
+Host github-sign
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/github_sign
+

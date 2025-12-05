@@ -1,0 +1,13 @@
+[user]
+    name = Fahim Ahmed
+    email = fahim.ahmed1453@gmail.com
+    signingkey = ~/.ssh/github_sign.pub
+
+[gpg]
+    format = ssh
+
+[commit]
+    gpgsign = true
+
+[tag]
+    gpgsign = true

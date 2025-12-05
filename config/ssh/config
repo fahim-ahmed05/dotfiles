@@ -1,4 +1,0 @@
-# SSH configuration for GitHub Authentication
-Host github.com
-  User git
-  IdentityFile C:\Users\Fahim\.ssh\github_auth
