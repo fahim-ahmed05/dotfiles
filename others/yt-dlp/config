@@ -2,4 +2,4 @@
 --external-downloader aria2c
 
 # Download location
--o C:/Users/Fahim/Downloads/yt-dlp/%(title)s.%(ext)s
+-o ~/Downloads/yt-dlp/%(title)s.%(ext)s
