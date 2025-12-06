@@ -157,15 +157,6 @@ function Update-AllPackages {
     scoop update -a
     scoop status
 
-    Write-Host "`nPip`n" -ForegroundColor Cyan
-    python.exe -m pip install --upgrade pip
-
-    Write-Host "`nPipx`n" -ForegroundColor Cyan
-    pipx upgrade-all
-
-    Write-Host "`nSpicetify`n" -ForegroundColor Cyan
-    spicetify update
-
     Remove-DesktopIcons
 }
 
