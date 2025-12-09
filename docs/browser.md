@@ -35,7 +35,8 @@
 | **Google Docs Offline** | **N/A** | [Install](https://chromewebstore.google.com/detail/google-docs-offline/ghbmnnjooekpmoecnnnilnnbdlolhkhi) | **N/A** | **N/A** |
 | **Global Speed** | [Install](https://addons.mozilla.org/en-US/firefox/addon/global-speed/) | [Install](https://chromewebstore.google.com/detail/global-speed/jpbjcnkcffbooppibceonlgknpkniiff) | [Install](https://microsoftedge.microsoft.com/addons/detail/global-speed/mjhlabbcmjflkpjknnicihkfnmbdfced) | **Decrease the playback speed by 0.25x:** `Alt + ,`<br> **Increase the playback speed by 0.25x:** `Alt + .`<br> **Set the playback speed to 1x:** `Ctrl + .`<br> **Set the playback speed to 2.5x:** `Ctrl + ,` |
 | **Tweaks for YouTube** | [Install](https://addons.mozilla.org/en-US/firefox/addon/tweaks-for-youtube/) | [Install](https://chromewebstore.google.com/detail/tweaks-for-youtube/ogkoifddpkoabehfemkolflcjhklmkge) | [Install](https://microsoftedge.microsoft.com/addons/detail/tweaks-for-youtube/nnhifoobfibjmlkejadjmcdckkjbljcp) | **Take a video snapshot (copy to clipboard and save):** `Alt + Shift + X` |
-| **Instapaper** | [Install](https://addons.mozilla.org/en-US/firefox/addon/instapaper-official/) | [Install](https://chromewebstore.google.com/detail/instapaper/ldjkgaaoikpmhmkelcgkgacicjfbofhh) | **N/A** | **Save article:** `Ctrl + Shift + I` |
+| **Instapaper** | [Install](https://addons.mozilla.org/en-US/firefox/addon/instapaper-official) | [Install](https://chromewebstore.google.com/detail/instapaper/ldjkgaaoikpmhmkelcgkgacicjfbofhh) | **N/A** | **Save article:** `Ctrl + Shift + I` |
+| **Automatic Picture-in-Picture (PiP)** | **N/A** | [Install](https://chromewebstore.google.com/detail/automatic-picture-in-pict/dmjccoaplbldlhhljlcldhaciadfhkcj) | **N/A** | **Activate:** `Alt + P` |
 
 ### [Content Filters](https://github.com/fahim-ahmed05/ublock-content-filters)
 
