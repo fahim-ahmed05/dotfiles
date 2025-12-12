@@ -62,3 +62,5 @@ user_pref("browser.download.start_downloads_in_tmp_dir", true);
 user_pref("browser.download.open_pdf_attachments_inline", false);
 user_pref("pdfjs.enableScripting", false);
 
+// EXPERIMENTS & PROMOTIONS
+user_pref("signon.firefoxRelay.feature", "disabled");
