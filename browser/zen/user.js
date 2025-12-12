@@ -1,6 +1,12 @@
 // BROWSER BEHAVIOR & UI
 user_pref("browser.tabs.hoverPreview.enabled", true);
 user_pref("browser.tabs.loadBookmarksInBackground", true);
+user_pref("browser.shell.checkDefaultBrowser", false);
+user_pref("browser.uitour.enabled", false);
+user_pref("browser.aboutwelcome.enabled", false);
+user_pref("startup.homepage_welcome_url", "");
+user_pref("startup.homepage_welcome_url.additional", "");
+user_pref("browser.aboutConfig.showWarning", false);
 
 // PERMISSIONS DEFAULTS
 user_pref("permissions.default.xr", 2);
@@ -44,14 +50,6 @@ user_pref("extensions.formautofill.creditCards.enabled", false);
 // PICTURE-IN-PICTURE
 user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled", true);
 
-// UI
-user_pref("browser.shell.checkDefaultBrowser", false);
-user_pref("browser.uitour.enabled", false);
-user_pref("browser.aboutwelcome.enabled", false);
-user_pref("startup.homepage_welcome_url", "");
-user_pref("startup.homepage_welcome_url.additional", "");
-user_pref("browser.aboutConfig.showWarning", false);
-
 // DOWNLOADS
 user_pref("browser.download.manager.addToRecentDocs", false);
 user_pref("browser.download.alwaysOpenPanel", false);
@@ -64,3 +62,6 @@ user_pref("pdfjs.enableScripting", false);
 
 // EXPERIMENTS & PROMOTIONS
 user_pref("signon.firefoxRelay.feature", "disabled");
+
+// Zen
+user_pref("zen.view.experimental-no-window-controls", true);
