@@ -216,6 +216,8 @@ function Clear-WindowsCache {
             Remove-Item "$path\*" -Force -Recurse -ErrorAction SilentlyContinue
         }
     }
+    scoop cache rm -a
+    scoop cleanup -a
 }
 
 # Scoop Search
