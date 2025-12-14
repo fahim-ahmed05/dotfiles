@@ -1,0 +1,8 @@
+{
+    "policies": {
+        "DisableAppUpdate": true,
+        "NoDefaultBookmarks": true,
+        "OverrideFirstRunPage": "",
+        "OverridePostUpdatePage": ""
+    }
+}
