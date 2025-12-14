@@ -1,4 +1,29 @@
 {
+  "completion_menu_scrollbar": "system",
+  "toolbar": {
+    "agent_review": true,
+    "selections_menu": true,
+    "quick_actions": false,
+    "breadcrumbs": false
+  },
+  "scrollbar": {
+    "show": "system"
+  },
+  "search": {
+    "button": true
+  },
+  "debugger": {
+    "button": true
+  },
+  "terminal": {
+    "toolbar": {
+      "breadcrumbs": false
+    },
+    "blinking": "terminal_controlled",
+    "cursor_shape": "bar",
+    "font_size": 14.0,
+    "font_family": "Cascadia Code"
+  },
   "auto_install_extensions": {
     "biome": true
   },
@@ -22,6 +47,7 @@
     "calt": true
   },
   "buffer_font_size": 14,
+  "buffer_font_weight": 600.0,
   "theme": {
     "mode": "system",
     "light": "One Light",
@@ -32,6 +58,10 @@
     "button": false
   },
   "title_bar": {
+    "show_menus": false,
+    "show_branch_icon": false,
+    "show_branch_name": true,
+    "show_project_items": true,
     "show_sign_in": false,
     "show_onboarding_banner": false,
     "show_user_picture": false
