@@ -1,55 +1,55 @@
 {
-    "policies": {
-        "DisableAppUpdate": true,
-        "NoDefaultBookmarks": true,
-        "OverrideFirstRunPage": "",
-        "OverridePostUpdatePage": "",
-        "DisableFirefoxStudies": true,
-        "DisableSetDesktopBackground": true,
-        "DisableTelemetry": true,
-        "DisplayMenuBar": "never",
-        "DNSOverHTTPS": {
-            "Enabled": true,
-            "ProviderURL": "https://dns.adguard-dns.com/dns-query",
-            "Fallback": false,
-            "Locked": false
-        },
-        "DontCheckDefaultBrowser": true,
-        "GenerativeAI": {
-            "Enabled": false,
-            "Chatbot": false,
-            "LinkPreviews": false,
-            "TabGroups": false,
-            "Locked": true
-        },
-        "FirefoxSuggest": {
-            "WebSuggestions": true,
-            "SponsoredSuggestions": false,
-            "ImproveSuggest": false,
-            "Locked": false
-        },
-        "HardwareAcceleration": true,
-        "HttpsOnlyMode": "enabled",
-        "NetworkPrediction": false,
-        "PDFjs": {
-            "Enabled": false,
-            "EnablePermissions": false
-        },
-        "PictureInPicture": {
-            "Enabled": true,
-            "Locked": true
-        },
-        "SearchSuggestEnabled": true,
-        "SkipTermsOfUse": true,
-        "StartDownloadsInTempDirectory": true,
-        "UserMessaging": {
-            "ExtensionRecommendations": false,
-            "FeatureRecommendations": false,
-            "UrlbarInterventions": false,
-            "SkipOnboarding": true,
-            "MoreFromMozilla": false,
-            "FirefoxLabs": true,
-            "Locked": true
-        }
+  "policies": {
+    "DisableAppUpdate": true,
+    "NoDefaultBookmarks": true,
+    "OverrideFirstRunPage": "",
+    "OverridePostUpdatePage": "",
+    "DisableFirefoxStudies": true,
+    "DisableSetDesktopBackground": true,
+    "DisableTelemetry": true,
+    "DisplayMenuBar": "never",
+    "DNSOverHTTPS": {
+      "Enabled": true,
+      "ProviderURL": "https://dns.adguard-dns.com/dns-query",
+      "Fallback": false,
+      "Locked": false
+    },
+    "DontCheckDefaultBrowser": true,
+    "GenerativeAI": {
+      "Enabled": false,
+      "Chatbot": false,
+      "LinkPreviews": false,
+      "TabGroups": false,
+      "Locked": true
+    },
+    "FirefoxSuggest": {
+      "WebSuggestions": true,
+      "SponsoredSuggestions": false,
+      "ImproveSuggest": false,
+      "Locked": false
+    },
+    "HardwareAcceleration": true,
+    "HttpsOnlyMode": "enabled",
+    "NetworkPrediction": false,
+    "PDFjs": {
+      "Enabled": false,
+      "EnablePermissions": false
+    },
+    "PictureInPicture": {
+      "Enabled": true,
+      "Locked": true
+    },
+    "SearchSuggestEnabled": true,
+    "SkipTermsOfUse": true,
+    "StartDownloadsInTempDirectory": true,
+    "UserMessaging": {
+      "ExtensionRecommendations": false,
+      "FeatureRecommendations": false,
+      "UrlbarInterventions": false,
+      "SkipOnboarding": true,
+      "MoreFromMozilla": false,
+      "FirefoxLabs": true,
+      "Locked": true
     }
+  }
 }
