@@ -8,6 +8,7 @@ user_pref("startup.homepage_welcome_url", "");
 user_pref("startup.homepage_welcome_url.additional", "");
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.newtabpage.activity-stream.feeds.topsites", true);
+user_pref("browser.translations.automaticallyPopup", false);
 
 // PERMISSIONS DEFAULTS
 user_pref("permissions.default.xr", 2);
