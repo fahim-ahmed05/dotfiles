@@ -5,6 +5,8 @@ user_pref("gfx.content.skia-font-cache-size", 32);
 user_pref("gfx.canvas.accelerated.cache-items", 32768);
 user_pref("gfx.canvas.accelerated.cache-size", 4096);
 user_pref("webgl.max-size", 16384);
+user_pref("gfx.webrender.layer-compositor", true);
+user_pref("media.wmf.zero-copy-nv12-textures-force-enabled", true)
 
 // DISK CACHE
 user_pref("browser.cache.disk.enable", false);
@@ -53,6 +55,7 @@ user_pref("network.dns.disableIPv6", true);
 
 // HTTPS-ONLY MODE
 user_pref("dom.security.https_only_mode", true);
+user_pref("dom.security.https_only_mode_error_page_user_suggestions", true);
 
 // ENHANCED PRIVACY FEATURES
 user_pref("browser.contentblocking.category", "custom");
@@ -104,12 +107,13 @@ user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.menu.showViewImageInfo", true);
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.translations.automaticallyPopup", false);
-
+user_pref("browser.startup.homepage_override.mstone", "ignore");
 
 // FULLSCREEN BEHAVIOR
 user_pref("full-screen-api.transition-duration.enter", "0 0");
 user_pref("full-screen-api.transition-duration.leave", "0 0");
 user_pref("full-screen-api.warning.timeout", 0);
+user_pref("full-screen-api.warning.delay", -1);
 
 // OCSP & CERTS
 user_pref("security.OCSP.enabled", 0);
