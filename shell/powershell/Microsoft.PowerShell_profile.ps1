@@ -207,8 +207,7 @@ function Clear-WindowsCache {
     $paths = @(
         "$env:SystemRoot\Prefetch",
         "$env:SystemRoot\Temp",
-        "$env:TEMP",
-        "$HOME\scoop\cache"
+        "$env:TEMP"
     )
 
     foreach ($path in $paths) {
@@ -225,5 +224,3 @@ function Clear-WindowsCache {
 
 # Zoxide Initialization
 . ([ScriptBlock]::Create((zoxide init powershell | Out-String)))
-
-
