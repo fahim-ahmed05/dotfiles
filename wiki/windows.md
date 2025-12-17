@@ -1,30 +1,30 @@
 # Windows
 
-### Change Powershell Execution Policy
+## Change Powershell Execution Policy
 
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
 
-### Install [Scoop](https://scoop.sh/)
+## Install [Scoop](https://scoop.sh/)
 
 ```powershell
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 ```
 
-### Programs
+## Programs
 
 - [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm)
 - [Git](https://git-scm.com/download/win)
 - [Visual Studio Code](https://code.visualstudio.com/)
 
-#### Update Winget
+### Update Winget
 
 ```powershell
 winget upgrade winget
 ```
 
-#### Winget Packages (Source: Microsoft Store)
+### Winget Packages (Source: Microsoft Store)
 
 ```powershell
 winget install 9nksqgp7f2nh --source msstore --accept-package-agreements --accept-source-agreements   # WhatsApp
@@ -33,41 +33,41 @@ winget install 9nvfzpv0v0ht --source msstore --accept-package-agreements --accep
 winget install 9p8ltpgcbzxd --source msstore --accept-package-agreements --accept-source-agreements   # Wintoys
 ```
 
-#### Winget Packages (Source: Winget)
+### Winget Packages (Source: Winget)
 
 ```powershell
 winget install Microsoft.PowerShell Mozilla.Firefox xanderfrangos.twinkletray HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey Zaarrg.StremioCommunity Obsidian.Obsidian AdrienAllard.FileConverter Microsoft.PowerToys ente-io.auth-desktop Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
 ```
 
-#### Optional Winget Packages (Source: Winget)
+### Optional Winget Packages (Source: Winget)
 
 ```powershell
 winget install ONLYOFFICE.DesktopEditors eMClient.eMClient BlueStack.BlueStacks th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
 ```
-#### Scoop Packages
+### Scoop Packages
 
 ```powershell
 scoop install 7zip aria2 fastfetch nodejs scoop-search aimp ffmpeg-yt-dlp-nightly python quicklook revouninstaller syncthing trafficmonitor-lite winaero-tweaker yt-dlp zed
 ```
 
-#### Optional Scoop Packages
+### Optional Scoop Packages
 
 ```powershell
 scoop install mpv-git foobar2000 foobar2000-encoders clickpaste localsend logitech-omm 
 ```
 
-### [Activate Windows](https://github.com/massgravel/Microsoft-Activation-Scripts)
+## [Activate Windows](https://github.com/massgravel/Microsoft-Activation-Scripts)
 
 ```powershell
 irm "https://get.activated.win" | iex
 ```
 
-### [Windows Utility](https://github.com/ChrisTitusTech/winutil)
+## [Windows Utility](https://github.com/ChrisTitusTech/winutil)
 
 ```powershell
 irm "https://christitus.com/win" | iex
 ```
-#### Tweaks
+### Tweaks
 - [x] Create Restore Point
 - [x] Disable Explorer Automatic Folder Discovery
 - [x] Disable Wi-Fi Sense
@@ -81,20 +81,20 @@ irm "https://christitus.com/win" | iex
 - [x] Disable Intel MM (vPro LMS)
 - [x] Disable Windows Platform Binary Table (WPBT)
 
-#### Updates
+### Updates
 - [x] Security Settings
 
-### Cursors
+## Cursors
 
 - [Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Original-Ice-Windows.zip)
 - [Posy's Cursor (Default + Extras)](https://www.michieldb.nl/other/cursors/)
 
-### Media Foundation Codecs
+## Media Foundation Codecs
 
 - [Download](https://www.codecguide.com/media_foundation_codecs.htm) the codecs zip file.
 - Open terminal inside the extracted folder and run `Add-AppxPackage *.AppxBundle`.
 
-### Custom Folder Structure
+## Custom Folder Structure
 
 ```
 ~\home
