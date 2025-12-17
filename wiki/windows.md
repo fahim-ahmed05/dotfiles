@@ -26,8 +26,7 @@ irm "https://christitus.com/win" | iex
 - [x] Disable Windows Platform Binary Table (WPBT)
 
 #### Updates
-|Security Settings|
-|-----------------|
+- [x] Security Settings
 
 ### Programs
 
