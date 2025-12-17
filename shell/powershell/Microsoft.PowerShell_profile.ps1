@@ -209,7 +209,8 @@ function Clear-WindowsCache {
         "$env:SystemRoot\Temp",
         "$env:TEMP",
         "$env:LocalAppData\Package Cache",
-        "$env:LocalAppData\pip\cache"
+        "$env:LocalAppData\pip\cache",
+        "$env:AppData\stremio\stremio-server\stremio-cache"
     )
 
     foreach ($path in $paths) {
