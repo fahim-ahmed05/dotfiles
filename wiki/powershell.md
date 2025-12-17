@@ -7,7 +7,12 @@ Git and Scoop required!
 
 ```powerShell
 scoop install oh-my-posh eza fzf zoxide
-oh-my-posh disable notice                 # Disable new update notices
+```
+
+## Disable Oh My Posh Update Notices
+
+```
+oh-my-posh disable notice
 ```
 
 ## Create Profile
