@@ -35,24 +35,24 @@ winget install 9p8ltpgcbzxd --source msstore --accept-package-agreements --accep
 
 ### Winget Packages (Source: Winget)
 
-```powershell
+```
 winget install Microsoft.PowerShell Mozilla.Firefox xanderfrangos.twinkletray HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey Zaarrg.StremioCommunity Obsidian.Obsidian AdrienAllard.FileConverter Microsoft.PowerToys ente-io.auth-desktop Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### Optional Winget Packages (Source: Winget)
 
-```powershell
+```
 winget install ONLYOFFICE.DesktopEditors eMClient.eMClient BlueStack.BlueStacks th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
 ```
 ### Scoop Packages
 
-```powershell
+```
 scoop install 7zip aria2 fastfetch nodejs scoop-search aimp ffmpeg-yt-dlp-nightly python quicklook revouninstaller syncthing trafficmonitor-lite winaero-tweaker yt-dlp zed
 ```
 
 ### Optional Scoop Packages
 
-```powershell
+```
 scoop install mpv-git foobar2000 foobar2000-encoders clickpaste localsend logitech-omm 
 ```
 
@@ -67,6 +67,7 @@ irm "https://get.activated.win" | iex
 ```powershell
 irm "https://christitus.com/win" | iex
 ```
+
 ### Tweaks
 - [x] Create Restore Point
 - [x] Disable Explorer Automatic Folder Discovery
