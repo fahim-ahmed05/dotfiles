@@ -1,14 +1,6 @@
 # Windows
 
-### [Setup Script](https://github.com/fahim-ahmed05/dotfiles/blob/main/ShellScripts/WindowsSetup.ps1)
-
-
-```powershell
-iwr "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/powershell/scripts/WindowsSetup.ps1" | iex
-```
-
-### Activate Windows ([Massgrave](https://github.com/massgravel/Microsoft-Activation-Scripts))
-
+### [Activate Windows](https://github.com/massgravel/Microsoft-Activation-Scripts)
 
 ```powershell
 irm "https://get.activated.win" | iex
@@ -22,8 +14,9 @@ irm "https://christitus.com/win" | iex
 
 ### Programs
 
-| [Revo Uninstaller](https://www.revouninstaller.com/revo-uninstaller-free-download/)  | [Python](https://www.python.org/downloads/) | [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm) | [Git](https://git-scm.com/download/win) | [Visual Studio Code](https://code.visualstudio.com/) | [Traffic Monitor](https://github.com/zhongyang219/TrafficMonitor/releases) | [Winaero Tweaker](https://winaerotweaker.com/) |
-|------|------|------|------|------|------|------|
+- [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm)
+- [Git](https://git-scm.com/download/win)
+- [Visual Studio Code](https://code.visualstudio.com/)
 
 ### Update Winget
 
@@ -31,19 +24,13 @@ irm "https://christitus.com/win" | iex
 winget upgrade winget
 ```
 
-or
-
-```powershell
-Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -ForceApplicationShutdown
-```
-
 ### Winget Packages (Source: Microsoft Store)
 
-| [WhatsApp](https://apps.microsoft.com/detail/9nksqgp7f2nh) | [UniGetUI](https://apps.microsoft.com/detail/xpfftq032ptphf) | [Folo](https://apps.microsoft.com/detail/9nvfzpv0v0ht) | [Wintoys](https://apps.microsoft.com/detail/9p8ltpgcbzxd) |
-|----------|----------|------|------|
-
 ```powershell
-winget install 9nksqgp7f2nh xpfftq032ptphf 9nvfzpv0v0ht 9p8ltpgcbzxd --source msstore --accept-package-agreements --accept-source-agreements
+winget install 9nksqgp7f2nh --source msstore --accept-package-agreements --accept-source-agreements   # WhatsApp
+winget install xpfftq032ptphf --source msstore --accept-package-agreements --accept-source-agreements # UniGetUI
+winget install 9nvfzpv0v0ht --source msstore --accept-package-agreements --accept-source-agreements   # Folo
+winget install 9p8ltpgcbzxd --source msstore --accept-package-agreements --accept-source-agreements   # Wintoys
 ```
 
 ### Winget Packages (Source: Winget)
