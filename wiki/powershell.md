@@ -1,12 +1,13 @@
 # PowerShell
 
 > [!IMPORTANT]
-> [Git](https://git-scm.com/download/win) and [Scoop](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/windows.md#install-scoop) required!
+Git and Scoop required!
 
 ## Install PowerShell Packages
 
 ```powershell
-scoop install oh-my-posh eza fzf zoxide; wt -w "oh-my-posh disable notice"
+scoop install oh-my-posh eza fzf zoxide
+oh-my-posh disable notice # Disable new update notices
 ```
 
 ## Create Profile
