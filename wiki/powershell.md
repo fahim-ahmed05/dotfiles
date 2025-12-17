@@ -1,11 +1,11 @@
 # PowerShell
 
+## Install PowerShell Packages
+
 >
 > [!IMPORTANT]
 > Git and Scoop are required!
 > 
-
-## Install PowerShell Packages
 
 ```
 scoop install oh-my-posh eza fzf zoxide

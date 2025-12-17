@@ -5,12 +5,13 @@
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
+
+## Install [Scoop](https://scoop.sh/)
+
 >
 > [!IMPORTANT]
 > Git is required!
 >
-
-## Install [Scoop](https://scoop.sh/)
 
 ```powershell
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
