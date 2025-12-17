@@ -114,6 +114,6 @@ pipx install spotdl
 ├── bin   -> portable/installed apps
 ├── etc   -> shortcuts to different system folders
 ├── home  -> files and folders created by me
-├── sbin  -> symlinks to apps that I want available in path
+├── sbin  -> symlinks to apps that'll be available in path
 └── share -> appdata and other app related files
 ```
