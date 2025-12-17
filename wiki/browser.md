@@ -5,7 +5,7 @@
 - [Brave Browser](https://brave.com/)
 - [IceRaven OLED](https://github.com/GoodyOG/Iceraven-OLED)
 
-## Browser Extensions
+## Extensions
 
 | Extension | Install | Shortcut |
 |-----------|---------|----------|
