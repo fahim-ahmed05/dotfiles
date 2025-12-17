@@ -20,17 +20,17 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 
 ### Update Winget
 
-```powershell
+```
 winget upgrade winget
 ```
 
 ### Winget Packages (Source: Microsoft Store)
 
-```powershell
-winget install 9nksqgp7f2nh --source msstore --accept-package-agreements --accept-source-agreements   # WhatsApp
-winget install xpfftq032ptphf --source msstore --accept-package-agreements --accept-source-agreements # UniGetUI
-winget install 9nvfzpv0v0ht --source msstore --accept-package-agreements --accept-source-agreements   # Folo
-winget install 9p8ltpgcbzxd --source msstore --accept-package-agreements --accept-source-agreements   # Wintoys
+```
+winget install 9nksqgp7f2nh   --source msstore --accept-package-agreements --accept-source-agreements   # WhatsApp
+winget install xpfftq032ptphf --source msstore --accept-package-agreements --accept-source-agreements   # UniGetUI
+winget install 9nvfzpv0v0ht   --source msstore --accept-package-agreements --accept-source-agreements   # Folo
+winget install 9p8ltpgcbzxd   --source msstore --accept-package-agreements --accept-source-agreements   # Wintoys
 ```
 
 ### Winget Packages (Source: Winget)
