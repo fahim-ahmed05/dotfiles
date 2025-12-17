@@ -109,7 +109,7 @@ pipx install spotdl
 
 ### Folder Structure
 
-```powershell
+```
 ~\root
 ├── bin   -> portable/installed apps
 ├── etc   -> shortcuts to different system folders
