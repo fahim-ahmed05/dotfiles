@@ -208,7 +208,8 @@ function Clear-WindowsCache {
         "$env:SystemRoot\Prefetch",
         "$env:SystemRoot\Temp",
         "$env:TEMP",
-        "$env:LocalAppData\Package Cache"
+        "$env:LocalAppData\Package Cache",
+        "$env:LocalAppData\pip\cache"
     )
 
     foreach ($path in $paths) {
