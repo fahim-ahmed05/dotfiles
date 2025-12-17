@@ -5,9 +5,10 @@
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
-
+>
 > [!IMPORTANT]
-Git required!
+> Git is required!
+>
 
 ## Install [Scoop](https://scoop.sh/)
 

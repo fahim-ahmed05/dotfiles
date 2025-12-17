@@ -1,7 +1,9 @@
 # PowerShell
 
+>
 > [!IMPORTANT]
-Git and Scoop required!
+> Git and Scoop are required!
+> 
 
 ## Install PowerShell Packages
 
