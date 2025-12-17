@@ -1,11 +1,5 @@
 # PowerShell
 
-### Change Execution Policy
-
-```powershell
-Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
-```
-
 ### Install PowerShell Packages
 
 | [Scoop](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md#install-scoop) & [Git](https://git-scm.com/download/win) required |
