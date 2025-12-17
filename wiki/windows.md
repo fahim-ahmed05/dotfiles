@@ -110,10 +110,11 @@ pipx install spotdl
 ### Folder Structure
 
 ```
-~\root
-├── bin   -> portable/installed apps
-├── etc   -> shortcuts to different system folders
-├── home  -> files and folders created by me
-├── sbin  -> symlinks to apps that'll be available in path
-└── share -> appdata and other app related files
+~\home
+├── persist  -> user managed app files
+├── apps     -> portable/user managed apps
+├── files    -> files and folders created by user
+├── shims    -> symlinks to apps that'll be available in path
+├── etc      -> shortcuts to different system folders
+└── themes   -> files related to theming
 ```
