@@ -6,6 +6,9 @@
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
 
+> [!IMPORTANT]
+Git required!
+
 ## Install [Scoop](https://scoop.sh/)
 
 ```powershell
@@ -44,9 +47,6 @@ winget install Microsoft.PowerShell Mozilla.Firefox xanderfrangos.twinkletray He
 ```
 winget install ONLYOFFICE.DesktopEditors eMClient.eMClient BlueStack.BlueStacks th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
 ```
-
-> [!IMPORTANT]
-Scoop required!
 
 ### Scoop Packages
 
