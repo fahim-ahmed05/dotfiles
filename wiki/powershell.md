@@ -18,9 +18,12 @@ if (Test-Path $profile) { "Profile exists: $profile" } else { New-Item $profile 
 ### Profile Paths
 
 ```powershell
-~\Documents\PowerShell\Microsoft.PowerShell_profile.ps1        # PowerShell
-~\Documents\PowerShell\Microsoft.VSCode_profile.ps1            # VSCode PowerShell Extension
-~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 # Windows PowerShell
+~\Documents\PowerShell
+├── Microsoft.PowerShell_profile.ps1     # PowerShell
+└── Microsoft.VSCode_profile.ps1         # VSCode PowerShell Extension
+
+~\Documents\WindowsPowerShell
+└── Microsoft.PowerShell_profile.ps1     # Windows PowerShell
 ```
 
 ## Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
