@@ -5,9 +5,9 @@ Git and Scoop required!
 
 ## Install PowerShell Packages
 
-```
+```powerShell
 scoop install oh-my-posh eza fzf zoxide
-oh-my-posh disable notice # Disable new update notices
+oh-my-posh disable notice                 # Disable new update notices
 ```
 
 ## Create Profile
@@ -28,7 +28,7 @@ if (Test-Path $profile) { "Profile exists: $profile" } else { New-Item $profile 
 
 ## Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 
-```
+```powerShell
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
 ```
