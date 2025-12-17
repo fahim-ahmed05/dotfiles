@@ -106,3 +106,14 @@ pipx install spotdl
 | Download                                                              | Install                        |
 |-----------------------------------------------------------------------|--------------------------------|
 | [Codec Guide](https://www.codecguide.com/media_foundation_codecs.htm) | `Add-AppxPackage *.AppxBundle` |
+
+### Folder Structure
+
+```powershell
+~\root
+├── bin   -> portable/installed apps
+├── etc   -> shortcuts to different system folders
+├── home  -> files and folders created by me
+├── sbin  -> symlinks to apps that I want available in path
+└── share -> appdata and other app related files
+```
