@@ -207,7 +207,8 @@ function Clear-WindowsCache {
     $paths = @(
         "$env:SystemRoot\Prefetch",
         "$env:SystemRoot\Temp",
-        "$env:TEMP"
+        "$env:TEMP",
+        "$env:LocalAppData\Package Cache"
     )
 
     foreach ($path in $paths) {
