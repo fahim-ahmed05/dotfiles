@@ -2,9 +2,9 @@
 
 I use these daily! 👀
 
-### Docs
+### Wiki
 
-[Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/browser.md) | [Powershell](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/windows.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/network.md)
+[Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/browser.md) | [Powershell](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/powershell.md) | [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/windows.md) | [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/network.md)
 |------|------|------|------|
 
 ### Wallpapers
