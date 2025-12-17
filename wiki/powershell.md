@@ -5,7 +5,7 @@ Git and Scoop required!
 
 ## Install PowerShell Packages
 
-```powershell
+```
 scoop install oh-my-posh eza fzf zoxide
 oh-my-posh disable notice # Disable new update notices
 ```
@@ -17,7 +17,7 @@ if (Test-Path $profile) { "Profile exists: $profile" } else { New-Item $profile 
 ```
 ### Profile Paths
 
-```powershell
+```
 ~\Documents\PowerShell
 ├── Microsoft.PowerShell_profile.ps1     # PowerShell
 └── Microsoft.VSCode_profile.ps1         # VSCode PowerShell Extension
@@ -28,7 +28,7 @@ if (Test-Path $profile) { "Profile exists: $profile" } else { New-Item $profile 
 
 ## Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 
-```powershell
+```
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
 ```
