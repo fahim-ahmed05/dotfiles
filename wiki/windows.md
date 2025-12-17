@@ -111,10 +111,10 @@ pipx install spotdl
 
 ```
 ~\home
-├── persist  -> user managed app files
 ├── apps     -> portable/user managed apps
-├── files    -> files and folders created by user
-├── shims    -> symlinks to apps that'll be available in path
 ├── etc      -> shortcuts to different system folders
+├── files    -> files and folders created by user
+├── persist  -> user managed app files
+├── shims    -> symlinks to apps that'll be available in path
 └── themes   -> files related to theming
 ```
