@@ -11,6 +11,23 @@ irm "https://get.activated.win" | iex
 ```powershell
 irm "https://christitus.com/win" | iex
 ```
+#### Tweaks
+- [x] Create Restore Point
+- [x] Disable Explorer Automatic Folder Discovery
+- [x] Disable Wi-Fi Sense
+- [x] Disable Powershell 7 Telemetry
+- [x] Set Services to Manual
+- [x] Disable IPv6
+- [x] Prefer IPv4 over IPv6
+- [x] Disable Teredo
+- [x] Disable Recall
+- [x] Disable Microsoft Copilot
+- [x] Disable Intel MM (vPro LMS)
+- [x] Disable Windows Platform Binary Table (WPBT)
+
+#### Updates
+|Security Settings|
+|-----------------|
 
 ### Programs
 
