@@ -36,7 +36,7 @@ winget install 9p8ltpgcbzxd --source msstore --accept-package-agreements --accep
 ### Winget Packages (Source: Winget)
 
 ```powershell
-winget install Microsoft.PowerShell Mozilla.Firefox xanderfrangos.twinkletray HermannSchinagl.LinkShellExtension yt-dlp.yt-dlp Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey Syncthing.Syncthing Stremio.Stremio Obsidian.Obsidian QL-Win.QuickLook AdrienAllard.FileConverter AIMP.AIMP Brave.Brave eMClient.eMClient Microsoft.PowerToys ente-io.auth-desktop ONLYOFFICE.DesktopEditors Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
+winget install Microsoft.PowerShell Mozilla.Firefox xanderfrangos.twinkletray HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey Stremio.Stremio Obsidian.Obsidian QL-Win.QuickLook AdrienAllard.FileConverter AIMP.AIMP Brave.Brave eMClient.eMClient Microsoft.PowerToys ente-io.auth-desktop ONLYOFFICE.DesktopEditors Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### Optional Winget Packages (Source: Winget)
