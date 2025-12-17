@@ -1,19 +1,20 @@
 # Browser
 
-[Firefox](https://www.firefox.com/) | [Zen Browser](https://zen-browser.app/) | [Brave Browser](https://brave.com/) | [IceRaven OLED](https://github.com/GoodyOG/Iceraven-OLED)
-|------|------|------|------|
+- [Firefox](https://www.firefox.com/)
+- [Zen Browser](https://zen-browser.app/)
+- [Brave Browser](https://brave.com/)
+- [IceRaven OLED](https://github.com/GoodyOG/Iceraven-OLED)
 
-### Violentmonkey
+## Violentmonkey
 
-| Script Name | Description | |
-|------|------|------|
-| [Return YouTube Dislike](https://returnyoutubedislike.com/) | Restores the dislike count on YouTube videos. | [Install](https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js) |
-| [Rumble - Auto Best Video Quality](https://greasyfork.org/en/scripts/494906-rumble-auto-best-video-quality) | Automatically selects the best available video resolution on Rumble. | [Install](https://update.greasyfork.org/scripts/494906/Rumble%20-%20Auto%20Best%20Video%20Quality.user.js) |
-| [RDS CAPTCHA Solver](https://github.com/fahim-ahmed05/rds-captcha-solver) | Automatically solves CAPTCHA on the NSU Portal login page. | [Install](https://github.com/fahim-ahmed05/rds-captcha-solver/raw/main/rdscaptchasolver.user.js) |
-| [Bypass Paywalls](https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters) | Bypasses paywalls on many popular news sites. | [Install](https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=userscript/bpc.en.user.js) |
+| Scripts | Install |
+|---------|---------|
+| [Return YouTube Dislike](https://returnyoutubedislike.com/) | [↗↗↗](https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js) |
+| [Rumble - Auto Best Video Quality](https://greasyfork.org/en/scripts/494906-rumble-auto-best-video-quality) | [↗↗↗](https://update.greasyfork.org/scripts/494906/Rumble%20-%20Auto%20Best%20Video%20Quality.user.js) |
+| [RDS CAPTCHA Solver](https://github.com/fahim-ahmed05/rds-captcha-solver) | [↗↗↗](https://github.com/fahim-ahmed05/rds-captcha-solver/raw/main/rdscaptchasolver.user.js) |
+| [Bypass Paywalls](https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters) | [↗↗↗](https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=userscript/bpc.en.user.js) |
 
-
-### Browser Extensions
+## Browser Extensions
 
 | Extension | Firefox | Chrome | Edge | Shortcut |
 |-----------|---------|--------|------|----------|
@@ -38,7 +39,7 @@
 | **Instapaper** | [Install](https://addons.mozilla.org/en-US/firefox/addon/instapaper-official) | [Install](https://chromewebstore.google.com/detail/instapaper/ldjkgaaoikpmhmkelcgkgacicjfbofhh) | **N/A** | **Save article:** `Ctrl + Shift + I` |
 | **Automatic Picture-in-Picture (PiP)** | **N/A** | [Install](https://chromewebstore.google.com/detail/automatic-picture-in-pict/dmjccoaplbldlhhljlcldhaciadfhkcj) | **N/A** | **Activate:** `Alt + P` |
 
-### [Content Filters](https://github.com/fahim-ahmed05/ublock-content-filters)
+## [Content Filters](https://github.com/fahim-ahmed05/ublock-content-filters)
 
 ```
 https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/fix-youtube-lite.txt
@@ -46,7 +47,7 @@ https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/head
 https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt
 ```
 
-### Chrome Flags
+## Chrome Flags
 
 | Flag                          | URL                                                           | Value   |
 |-------------------------------|---------------------------------------------------------------|---------|
