@@ -56,10 +56,17 @@ winget install ONLYOFFICE.DesktopEditors eMClient.eMClient BlueStack.BlueStacks 
 scoop install 7zip aria2 fastfetch nodejs scoop-search aimp ffmpeg-yt-dlp-nightly python quicklook revouninstaller syncthing trafficmonitor-lite winaero-tweaker yt-dlp zed
 ```
 
+### Add Scoop Personal Bucket
+
+```
+scoop bucket add personal https://github.com/fahim-ahmed05/scoop-bucket
+```
+
 ### Optional Scoop Packages
 
 ```
-scoop install mpv-git foobar2000 foobar2000-encoders clickpaste localsend logitech-omm 
+scoop install mpv-git foobar2000 foobar2000-encoders localsend logitech-omm
+scoop install personal/clickpaste
 ```
 
 ## [Activate Windows](https://github.com/massgravel/Microsoft-Activation-Scripts)
