@@ -50,16 +50,18 @@ winget install Microsoft.PowerShell Mozilla.Firefox xanderfrangos.twinkletray He
 winget install ONLYOFFICE.DesktopEditors eMClient.eMClient BlueStack.BlueStacks th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
 ```
 
-### Scoop Packages
-
-```
-scoop install 7zip aria2 fastfetch nodejs scoop-search aimp ffmpeg-yt-dlp-nightly python quicklook revouninstaller syncthing trafficmonitor-lite winaero-tweaker yt-dlp zed
-```
-
-### Add Scoop Personal Bucket
+### Add Scoop Buckets
 
 ```
 scoop bucket add personal https://github.com/fahim-ahmed05/scoop-bucket
+scoop bucket add extras versions
+```
+
+### Scoop Packages
+
+```
+scoop install 7zip aria2 fastfetch nodejs scoop-search aimp python quicklook revouninstaller syncthing trafficmonitor-lite winaero-tweaker yt-dlp zed
+scoop install versions/ffmpeg-yt-dlp-nightly
 ```
 
 ### Optional Scoop Packages
