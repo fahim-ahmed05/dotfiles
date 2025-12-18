@@ -55,7 +55,6 @@ winget install ONLYOFFICE.DesktopEditors eMClient.eMClient BlueStack.BlueStacks 
 ```
 scoop bucket add personal https://github.com/fahim-ahmed05/scoop-bucket
 scoop bucket add extras versions
-scoop update
 ```
 
 ### Scoop Packages
