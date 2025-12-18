@@ -8,10 +8,8 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
 ## Install [Scoop](https://scoop.sh/)
 
->
 > [!IMPORTANT]
 > Git is required!
->
 
 ```powershell
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
@@ -84,6 +82,7 @@ irm "https://christitus.com/win" | iex
 ```
 
 ### Tweaks
+
 - [x] Create Restore Point
 - [x] Disable Explorer Automatic Folder Discovery
 - [x] Disable Wi-Fi Sense
@@ -98,6 +97,7 @@ irm "https://christitus.com/win" | iex
 - [x] Disable Windows Platform Binary Table (WPBT)
 
 ### Updates
+
 - [x] Security Settings
 
 ## Cursors

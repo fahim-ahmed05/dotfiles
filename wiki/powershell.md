@@ -2,10 +2,8 @@
 
 ## Install PowerShell Packages
 
->
 > [!IMPORTANT]
 > Git and Scoop are required!
-> 
 
 ```
 scoop install oh-my-posh eza fzf zoxide
@@ -16,6 +14,7 @@ scoop install oh-my-posh eza fzf zoxide
 ```powershell
 if (Test-Path $profile) { "Profile exists: $profile" } else { New-Item $profile -ItemType File -Force | Out-Null; "Created: $profile" }
 ```
+
 ### Profile Paths
 
 ```
