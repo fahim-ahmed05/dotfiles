@@ -4,10 +4,10 @@ I use these daily! 👀
 
 ## Wiki
 
-- [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/browser.md)
-- [Network](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/network.md)
-- [Powershell](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/powershell.md)
-- [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/windows.md)
+- [Browser](wiki/browser.md)
+- [Network](wiki/network.md)
+- [Powershell](wiki/powershell.md)
+- [Windows](wiki/windows.md)
 
 ## Wallpaper
 
