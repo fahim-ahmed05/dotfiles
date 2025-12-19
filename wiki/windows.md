@@ -34,10 +34,10 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 ### Update Winget
 
 ```powershell
-# Using Winget
+# Winget
 winget update winget
 
-# Using AppxPackage
+# AppxPackage
 Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -ForceApplicationShutdown
 ```
 
