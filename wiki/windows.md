@@ -1,6 +1,7 @@
 # Windows
 
 ## Download Windows 11 ISO
+
 - [Microsoft](https://www.microsoft.com/en-us/software-download/windows11)
 - [UUP dump](https://uupdump.net/fetchupd.php?arch=amd64&ring=retail)
 
@@ -111,6 +112,12 @@ irm "https://christitus.com/win" | iex
 
 - [Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Original-Ice-Windows.zip)
 - [Posy's Cursor (Default + Extras)](https://www.michieldb.nl/other/cursors/)
+
+## MPV Plugins
+
+- [mpv-autosub](https://github.com/fahim-ahmed05/mpv-autosub)
+- [ModernZ](https://github.com/Samillion/ModernZ)
+- [thumbfast](https://github.com/po5/thumbfast)
 
 ## Media Foundation Codecs
 
