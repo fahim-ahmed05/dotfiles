@@ -119,17 +119,21 @@ if (Test-Path $profile) { "Profile exists: $profile" } else { New-Item $profile 
 └── Microsoft.PowerShell_profile.ps1     # Windows PowerShell
 ```
 
+### Disable Oh My Posh Update Notices
+
+```
+oh-my-posh disable notice
+```
+
+## Fonts
+
+- [Inter](https://rsms.me/inter/download/)
+
 ### Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 
 ```
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
-```
-
-### Disable Oh My Posh Update Notices
-
-```
-oh-my-posh disable notice
 ```
 
 # Network
