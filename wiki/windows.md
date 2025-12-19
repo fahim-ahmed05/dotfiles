@@ -43,7 +43,7 @@ winget install 9p8ltpgcbzxd   --source msstore --accept-package-agreements --acc
 ### Winget Packages (Source: Winget)
 
 ```
-winget install Mozilla.Firefox xanderfrangos.twinkletray HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey Zaarrg.StremioCommunity Obsidian.Obsidian AdrienAllard.FileConverter Microsoft.PowerToys ente-io.auth-desktop Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
+winget install Brave.Brave Mozilla.Firefox xanderfrangos.twinkletray HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey Zaarrg.StremioCommunity Obsidian.Obsidian AdrienAllard.FileConverter Microsoft.PowerToys ente-io.auth-desktop Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### Optional Winget Packages (Source: Winget)
@@ -55,22 +55,21 @@ winget install ONLYOFFICE.DesktopEditors eMClient.eMClient BlueStack.BlueStacks 
 ### Add Scoop Buckets
 
 ```
+scoop bucket add extras
+scoop bucket add versions
 scoop bucket add personal https://github.com/fahim-ahmed05/scoop-bucket
-scoop bucket add extras versions
 ```
 
 ### Scoop Packages
 
 ```
-scoop install 7zip aria2 fastfetch nodejs scoop-search aimp python quicklook revouninstaller syncthing trafficmonitor-lite winaero-tweaker yt-dlp zed
-scoop install versions/ffmpeg-yt-dlp-nightly
+scoop install 7zip aria2 fastfetch nodejs scoop-search aimp python quicklook revouninstaller syncthing trafficmonitor-lite winaero-tweaker yt-dlp zed versions/ffmpeg-yt-dlp-nightly
 ```
 
 ### Optional Scoop Packages
 
 ```
-scoop install mpv-git foobar2000 foobar2000-encoders localsend logitech-omm
-scoop install personal/clickpaste
+scoop install mpv-git foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste
 ```
 
 ## [Activate Windows](https://github.com/massgravel/Microsoft-Activation-Scripts)
@@ -114,14 +113,16 @@ irm "https://christitus.com/win" | iex
 - [Download](https://www.codecguide.com/media_foundation_codecs.htm) the codecs zip file.
 - Open terminal inside the extracted folder and run `Add-AppxPackage *.AppxBundle`.
 
-## Custom Folder Structure
+## Home Folder Structure
 
 ```
-~\home
-├── apps     -> portable/user managed apps
-├── etc      -> shortcuts to different system folders
-├── files    -> files and folders created by user
-├── persist  -> user managed app files
-├── shims    -> symlinks to apps that'll be available in path
-└── themes   -> files related to theming
+~\Home
+├── Apps          -> Portable apps
+├── Config        -> App data
+├── Data          -> File and folders
+├── Dev           -> Coding projects
+├── Git           -> Git repos
+├── Links         -> Shortcuts to system folders
+├── Shims         -> Symlinks to apps
+└── Trash         -> Temp/useless files
 ```
