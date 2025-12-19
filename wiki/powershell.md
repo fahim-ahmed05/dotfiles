@@ -1,5 +1,11 @@
 # PowerShell
 
+## Install PowerShell
+
+```
+winget install Microsoft.PowerShell
+```
+
 ## Install PowerShell Packages
 
 > [!IMPORTANT]
