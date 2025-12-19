@@ -1,9 +1,19 @@
 # Windows
 
+## Download Windows 11 ISO
+- [Microsoft](https://www.microsoft.com/en-us/software-download/windows11)
+- [UUP dump](https://uupdump.net/fetchupd.php?arch=amd64&ring=retail)
+
 ## Change Powershell Execution Policy
 
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+
+## [Activate Windows](https://github.com/massgravel/Microsoft-Activation-Scripts)
+
+```powershell
+irm "https://get.activated.win" | iex
 ```
 
 ## Install [Scoop](https://scoop.sh/)
@@ -70,12 +80,6 @@ scoop install 7zip aria2 fastfetch nodejs scoop-search aimp python quicklook rev
 
 ```
 scoop install mpv-git foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste
-```
-
-## [Activate Windows](https://github.com/massgravel/Microsoft-Activation-Scripts)
-
-```powershell
-irm "https://get.activated.win" | iex
 ```
 
 ## [Windows Utility](https://github.com/ChrisTitusTech/winutil)
