@@ -23,8 +23,12 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 
 ### Update Winget
 
-```
-winget upgrade winget
+```powershell
+# Using Winget
+winget update winget
+
+# Using AppxPackage
+Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -ForceApplicationShutdown
 ```
 
 ### Winget Packages (Source: Microsoft Store)
@@ -39,7 +43,7 @@ winget install 9p8ltpgcbzxd   --source msstore --accept-package-agreements --acc
 ### Winget Packages (Source: Winget)
 
 ```
-winget install Microsoft.PowerShell Mozilla.Firefox xanderfrangos.twinkletray HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey Zaarrg.StremioCommunity Obsidian.Obsidian AdrienAllard.FileConverter Microsoft.PowerToys ente-io.auth-desktop Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
+winget install Mozilla.Firefox xanderfrangos.twinkletray HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey Zaarrg.StremioCommunity Obsidian.Obsidian AdrienAllard.FileConverter Microsoft.PowerToys ente-io.auth-desktop Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### Optional Winget Packages (Source: Winget)
