@@ -1,3 +1,4 @@
+# PowerToys
 Import-Module -Name Microsoft.WinGet.CommandNotFound
 
 # Aliases
