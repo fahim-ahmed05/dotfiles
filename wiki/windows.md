@@ -5,22 +5,24 @@
 - [Microsoft](https://www.microsoft.com/en-us/software-download/windows11)
 - [UUP dump](https://uupdump.net/fetchupd.php?arch=amd64&ring=retail)
 
-## Change Powershell Execution Policy
-
-```powershell
-Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
-```
-
 ## [Activate Windows](https://github.com/massgravel/Microsoft-Activation-Scripts)
 
 ```powershell
 irm "https://get.activated.win" | iex
 ```
 
-## Install [Scoop](https://scoop.sh/)
+## [Scoop](https://scoop.sh/)
 
 > [!IMPORTANT]
 > Git is required!
+
+### Change Powershell Execution Policy
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+
+### Install Scoop
 
 ```powershell
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
@@ -82,6 +84,69 @@ scoop install 7zip aria2 fastfetch nodejs scoop-search aimp python quicklook rev
 ```
 scoop install mpv-git foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste
 ```
+
+## PowerShell
+
+### Install PowerShell
+
+```
+winget install Microsoft.PowerShell
+```
+
+### Install PowerShell Packages
+
+> [!IMPORTANT]
+> Git and Scoop are required!
+
+```
+scoop install oh-my-posh eza fzf zoxide
+```
+
+### Create Profile
+
+```powershell
+if (Test-Path $profile) { "Profile exists: $profile" } else { New-Item $profile -ItemType File -Force | Out-Null; "Created: $profile" }
+```
+
+#### Profile Paths
+
+```
+~\Documents\PowerShell
+├── Microsoft.PowerShell_profile.ps1     # PowerShell
+└── Microsoft.VSCode_profile.ps1         # VSCode PowerShell Extension
+
+~\Documents\WindowsPowerShell
+└── Microsoft.PowerShell_profile.ps1     # Windows PowerShell
+```
+
+### Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
+
+```
+scoop bucket add nerd-fonts
+scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
+```
+
+### Disable Oh My Posh Update Notices
+
+```
+oh-my-posh disable notice
+```
+
+# Network
+
+## [DNS](https://en.wikipedia.org/wiki/Domain_Name_System)
+
+| Provider                                                                              | IPv4                               | IPv6                                         | DoT                   | DoH                                     |
+| ------------------------------------------------------------------------------------- | ---------------------------------- | -------------------------------------------- | --------------------- | --------------------------------------- |
+| [Adguard](https://adguard-dns.io/en/public-dns.html) <br> Block Ads & Malware         | `94.140.14.14` <br> `94.140.15.15` | `2a10:50c0::ad1:ff` <br> `2a10:50c0::ad2:ff` | `dns.adguard-dns.com` | `https://dns.adguard-dns.com/dns-query` |
+| [Quad9](https://quad9.net/service/service-addresses-and-features/) <br> Block Malware | `9.9.9.9` <br> `149.112.112.112`   | `2620:fe::fe` <br> `2620:fe::9`              | `dns.quad9.net`       | `https://dns.quad9.net/dns-query`       |
+
+## [NTP](https://en.wikipedia.org/wiki/Network_Time_Protocol)
+
+| Server                                            | Address               |
+| ------------------------------------------------- | --------------------- |
+| [NTP Pool Project](http://www.pool.ntp.org)       | `pool.ntp.org`        |
+| [Cloudflare NTP](https://www.cloudflare.com/ntp/) | `time.cloudflare.com` |
 
 ## [Windows Utility](https://github.com/ChrisTitusTech/winutil)
 
