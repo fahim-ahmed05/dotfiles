@@ -121,12 +121,12 @@ irm "https://christitus.com/win" | iex
 
 ```
 ~\Home
-├── Apps          -> Portable apps
-├── Config        -> App data
-├── Data          -> File and folders
-├── Dev           -> Coding projects
-├── Git           -> Git repos
-├── Links         -> Shortcuts to system folders
-├── Shims         -> Symlinks to apps
-└── Trash         -> Temp/useless files
+├── Apps      -> Portable apps
+├── Config    -> App data
+├── Data      -> File and folders
+├── Dev       -> Coding projects
+├── Git       -> Git repos
+├── Links     -> Shortcuts to system folders
+├── Shims     -> Symlinks to apps
+└── Trash     -> Temp/useless files
 ```
