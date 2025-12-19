@@ -5,8 +5,6 @@ I use these daily! 👀
 ## Wiki
 
 - [Browser](wiki/browser.md)
-- [Network](wiki/network.md)
-- [Powershell](wiki/powershell.md)
 - [Windows](wiki/windows.md)
 
 ## Wallpaper
