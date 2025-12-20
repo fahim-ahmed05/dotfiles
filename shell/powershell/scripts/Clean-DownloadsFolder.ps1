@@ -1,8 +1,5 @@
-# Define the Downloads folder path
 $downloadsPath = Join-Path $HOME "Downloads"
-
-# Define the destination Trash folder (in your user home directory)
-$trashPath = Join-Path $HOME "Trash"
+$trashPath = Join-Path $HOME "Home" "Trash"
 
 # Create the Trash folder if it doesn't exist
 if (-not (Test-Path $trashPath)) {
