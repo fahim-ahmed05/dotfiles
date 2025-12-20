@@ -5,6 +5,11 @@
 - [Microsoft](https://www.microsoft.com/en-us/software-download/windows11)
 - [UUP dump](https://uupdump.net/fetchupd.php?arch=amd64&ring=retail)
 
+### Tools
+
+- [Generate autounattend.xml](https://schneegans.de/windows/unattend-generator/)
+- [Ventoy](https://www.ventoy.net/en/download.html)
+
 ## [Activate Windows](https://github.com/massgravel/Microsoft-Activation-Scripts)
 
 ```powershell
