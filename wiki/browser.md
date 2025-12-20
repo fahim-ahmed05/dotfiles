@@ -49,7 +49,7 @@ https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?f
 | Parallel Downloading        | `chrome://flags/#enable-parallel-downloading`                | Enabled |
 | Auto PiP for Video Playback | `chrome://flags/#auto-picture-in-picture-for-video-playback` | Enabled |
 
-## [Violentmonkey](https://violentmonkey.github.io/) Scripts
+## Violentmonkey Scripts
 
 - [Return YouTube Dislike](https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js)
 - [Rumble - Auto Best Video Quality](https://update.greasyfork.org/scripts/494906/Rumble%20-%20Auto%20Best%20Video%20Quality.user.js)
