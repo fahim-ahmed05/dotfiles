@@ -1,3 +1,6 @@
+[general]
+import = [ "~/Home/Git/dotfiles/other/alacritty/theme/one_dark.toml" ]
+
 [font]
 normal = { family = "IosevkaTerm Nerd Font Mono", style = "Bold" }
 size = 12
