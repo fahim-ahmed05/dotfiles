@@ -14,7 +14,7 @@ irm "https://get.activated.win" | iex
 ## [Scoop](https://scoop.sh/)
 
 > [!IMPORTANT]
-> Git is required!
+> [Git](https://git-scm.com/download/win) is required!
 
 ### Change Powershell Execution Policy
 
