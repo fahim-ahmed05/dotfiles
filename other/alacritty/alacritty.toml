@@ -1,0 +1,18 @@
+[general]
+live_config_reload = true
+
+[font]
+normal = { family = "IosevkaTerm Nerd Font Mono", style = "Bold" }
+size = 12
+
+[cursor]
+style = { shape = "beam", blinking = "on" }
+
+[terminal]
+shell = { program = "pwsh", args = [ "--nologo" ] }
+
+[window]
+dimensions = { columns = 120, lines = 30 }
+position = { x = 500, y = 100 }
+padding = { x = 10, y = 10 }
+dynamic_title = false
