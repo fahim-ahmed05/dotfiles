@@ -13,6 +13,6 @@ shell = { program = "pwsh", args = [ "--nologo" ] }
 
 [window]
 dimensions = { columns = 120, lines = 30 }
-position = { x = 500, y = 180 }
+position = { x = 450, y = 180 }
 padding = { x = 10, y = 10 }
 dynamic_title = false
