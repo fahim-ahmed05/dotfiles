@@ -96,7 +96,7 @@ winget install Microsoft.PowerShell
 ### Install PowerShell Packages
 
 > [!IMPORTANT]
-> Git and Scoop are required!
+> [Git](https://git-scm.com/download/win) and [Scoop](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/windows.md#scoop) are required!
 
 ```
 scoop install oh-my-posh eza fzf zoxide
