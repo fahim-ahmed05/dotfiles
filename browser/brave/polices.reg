@@ -1,0 +1,12 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave]
+"BraveAIChatEnabled"=dword:00000000
+"BraveNewsDisabled"=dword:00000001
+"BraveRewardsDisabled"=dword:00000001
+"BraveStatsPingEnabled"=dword:00000000
+"BraveVPNDisabled"=dword:00000001
+"BraveWalletDisabled"=dword:00000001
+"BraveTalkDisabled"=dword:00000001
+"DnsOverHttpsMode"="secure"
+"DnsOverHttpsTemplates"="https://dns.adguard-dns.com/dns-query"
