@@ -1,0 +1,33 @@
+{
+  "Install": [],
+  "WPFFeature": [],
+  "WPFTweaks": [
+    "WPFTweaksRestorePoint",
+    "WPFTweaksDebloatAdobe",
+    "WPFTweaksDisableExplorerAutoDiscovery",
+    "WPFTweaksRazerBlock",
+    "WPFTweaksRemoveCopilot",
+    "WPFTweaksEndTaskOnTaskbar",
+    "WPFTweaksTeredo",
+    "WPFTweaksBlockAdobeNet",
+    "WPFTweaksServices",
+    "WPFTweaksEdgeDebloat",
+    "WPFTweaksTele",
+    "WPFTweaksRemoveGallery",
+    "WPFTweaksRightClickMenu",
+    "WPFTweaksBraveDebloat",
+    "WPFTweaksRecallOff",
+    "WPFTweaksDisableipsix",
+    "WPFTweaksIPv46",
+    "WPFTweaksConsumerFeatures",
+    "WPFTweaksPowershell7Tele",
+    "WPFTweaksDisableLMS1",
+    "WPFTweaksWifi",
+    "WPFTweaksActivity",
+    "WPFTweaksDisableWpbtExecution",
+    "WPFTweaksDVR",
+    "WPFTweaksDeleteTempFiles",
+    "WPFTweaksLoc"
+  ],
+  "WPFInstall": []
+}
