@@ -165,8 +165,6 @@ irm "https://christitus.com/win" | iex
 
 ### Tweaks
 
-#### Essential Tweaks
-
 - [x] Create Restore Point
 - [x] Disable Wi-Fi Sense
 - [x] Set Services to Manual
@@ -190,13 +188,13 @@ irm "https://christitus.com/win" | iex
 ## Home Folder Structure
 
 ```
-~\Home
-├── Apps      -> Portable apps
-├── Config    -> App data
-├── Data      -> File and folders
-├── Dev       -> Coding projects
-├── Git       -> Git repos
-├── Links     -> Shortcuts to system folders
-├── Shims     -> Symlinks to apps
-└── Trash     -> Temp/useless files
+~
+├── Apps
+├── Backups
+├── Configs
+├── Dev
+├── Git
+├── Links
+├── Shims
+└── Trash
 ```
