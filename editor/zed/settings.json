@@ -1,69 +1,44 @@
 {
-  "completion_menu_scrollbar": "system",
   "toolbar": {
-    "agent_review": true,
-    "selections_menu": true,
-    "quick_actions": false,
-    "breadcrumbs": false
-  },
-  "scrollbar": {
-    "show": "system"
-  },
-  "search": {
-    "button": true
+    "selections_menu": true
   },
   "debugger": {
     "button": true
   },
-  "terminal": {
-    "toolbar": {
-      "breadcrumbs": false
-    },
-    "blinking": "terminal_controlled",
-    "cursor_shape": "bar",
-    "font_size": 14.0,
-    "font_family": "Cascadia Code"
+  "tab_bar": {
+    "show": true
   },
-  "auto_install_extensions": {
-    "biome": true
+  "title_bar": {
+    "show_project_items": true,
+    "show_onboarding_banner": false,
+    "show_user_picture": false,
+    "show_sign_in": false,
+    "show_branch_icon": false
   },
   "auto_update": false,
-  "restore_on_startup": "last_session",
+  "disable_ai": true,
+  "terminal": {
+    "font_size": 14.0,
+    "cursor_shape": "bar",
+    "font_weight": 400.0,
+    "font_family": "CaskaydiaMono Nerd Font"
+  },
   "autosave": {
     "after_delay": {
       "milliseconds": 1000
     }
   },
-  "soft_wrap": "editor_width",
-  "base_keymap": "VSCode",
+  "ui_font_family": "Inter",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
   "telemetry": {
     "diagnostics": false,
     "metrics": false
   },
-  "ui_font_family": "Inter",
-  "ui_font_size": 16,
-  "buffer_font_family": "JetBrainsMono Nerd Font",
-  "buffer_font_features": {
-    "calt": true
-  },
-  "buffer_font_size": 14,
-  "buffer_font_weight": 600.0,
+  "ui_font_size": 16.0,
+  "buffer_font_size": 14.0,
   "theme": {
     "mode": "system",
     "light": "One Light",
     "dark": "One Dark"
-  },
-  "disable_ai": true,
-  "collaboration_panel": {
-    "button": false
-  },
-  "title_bar": {
-    "show_menus": false,
-    "show_branch_icon": false,
-    "show_branch_name": true,
-    "show_project_items": true,
-    "show_sign_in": false,
-    "show_onboarding_banner": false,
-    "show_user_picture": false
   }
 }
