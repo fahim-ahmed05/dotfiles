@@ -1,6 +1,3 @@
-# PowerToys
-Import-Module -Name Microsoft.WinGet.CommandNotFound
-
 # Aliases
 Set-Alias -Name ls -Value eza
 Set-Alias -Name ff -Value fzf
