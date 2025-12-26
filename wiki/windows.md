@@ -168,38 +168,8 @@ irm "https://christitus.com/win" | iex
 #### Essential Tweaks
 
 - [x] Create Restore Point
-- [x] Delete Temporary Files
-- [x] Disable ConsumerFeatures
-- [x] Disable Telemetry
-- [x] Disable Activity History
-- [x] Disable Explorer Automatic Folder Discovery
-- [x] Disable GameDVR
-- [x] Disable Location Tracking
 - [x] Disable Wi-Fi Sense
-- [x] Enable End Task With Right Click
-- [x] Disable Powershell 7 Telemetry
 - [x] Set Services to Manual
-
-#### Advanced Tweaks
-
-- [x] Adobe Network Block
-- [x] Adobe Debloat
-- [x] Block Razer Software Installs
-- [x] Brave Debloat
-- [x] Edge Debloat
-- [x] Disable IPv6
-- [x] Prefer IPv4 over IPv6
-- [x] Disable Teredo
-- [x] Disable Recall
-- [x] Disable Microsoft Copilot
-- [x] Disable Intel MM (vPro LMS)
-- [x] Disable Windows Platform Binary Table (WPBT)
-- [x] Set Classic Right-Click Menu
-- [x] Remove Gallary from explorer
-
-### Updates
-
-- [x] Security Settings
 
 ## Cursors
 
