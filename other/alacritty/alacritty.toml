@@ -1,8 +1,8 @@
 [general]
-import = [ "~/Home/Git/dotfiles/other/alacritty/theme/one_dark.toml" ]
+import = [ "~/Git/dotfiles/other/alacritty/theme/one_dark.toml" ]
 
 [font]
-normal = { family = "IosevkaTerm Nerd Font Mono", style = "Bold" }
+normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
 size = 12
 
 [cursor]
