@@ -185,7 +185,7 @@ irm "https://christitus.com/win" | iex
 - [Download](https://www.codecguide.com/media_foundation_codecs.htm) the codecs zip file.
 - Open terminal inside the extracted folder and run `Add-AppxPackage *.AppxBundle`.
 
-## Home Folder Structure
+## Home Folder
 
 ```
 ~
