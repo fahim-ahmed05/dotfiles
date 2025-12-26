@@ -52,6 +52,7 @@ winget install Brave.Brave Mozilla.Firefox xanderfrangos.twinkletray HermannSchi
 ```
 winget install ONLYOFFICE.DesktopEditors eMClient.eMClient BlueStack.BlueStacks th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
 ```
+
 ### [Scoop](https://scoop.sh/)
 
 > [!IMPORTANT]
@@ -187,4 +188,3 @@ irm "https://christitus.com/win" | iex
 
 - [Download](https://www.codecguide.com/media_foundation_codecs.htm) the codecs zip file.
 - Open terminal inside the extracted folder and run `Add-AppxPackage *.AppxBundle`.
-
