@@ -251,3 +251,10 @@ user_pref("privacy.userContext.ui.enabled", true);
 
 // SIDEBAR
 user_pref("sidebar.position_start", false);
+
+// Font Rendering
+user_pref("gfx.font_rendering.cleartype_params.rendering_mode", 5);
+user_pref("gfx.font_rendering.cleartype_params.cleartype_level", 100);
+user_pref("gfx.font_rendering.directwrite.use_gdi_table_loading", false);
+user_pref("gfx.font_rendering.cleartype_params.enhanced_contrast", 50);
+
