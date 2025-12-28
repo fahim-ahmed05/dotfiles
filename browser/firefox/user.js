@@ -6,7 +6,7 @@ user_pref("gfx.canvas.accelerated.cache-items", 32768);
 user_pref("gfx.canvas.accelerated.cache-size", 4096);
 user_pref("webgl.max-size", 16384);
 user_pref("gfx.webrender.layer-compositor", true);
-user_pref("media.wmf.zero-copy-nv12-textures-force-enabled", true)
+user_pref("media.wmf.zero-copy-nv12-textures-force-enabled", true);
 
 // DISK CACHE
 user_pref("browser.cache.disk.enable", false);
@@ -177,8 +177,14 @@ user_pref("startup.homepage_welcome_url.additional", "");
 user_pref("browser.firefox-view.feature-tour", '{"screen":"","complete":true}');
 user_pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false);
 user_pref("browser.newtabpage.activity-stream.showSearch", false);
-user_pref("browser.newtabpage.activity-stream.section.highlights.includeBookmarks", false);
-user_pref("browser.newtabpage.activity-stream.section.highlights.includeDownloads", false);
+user_pref(
+  "browser.newtabpage.activity-stream.section.highlights.includeBookmarks",
+  false,
+);
+user_pref(
+  "browser.newtabpage.activity-stream.section.highlights.includeDownloads",
+  false,
+);
 
 // DOWNLOADS
 user_pref("browser.download.manager.addToRecentDocs", false);
@@ -219,8 +225,14 @@ user_pref("extensions.getAddons.showPane", false);
 user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 user_pref("browser.discovery.enabled", false);
 user_pref("browser.aboutwelcome.enabled", false);
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
+user_pref(
+  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons",
+  false,
+);
+user_pref(
+  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features",
+  false,
+);
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("signon.firefoxRelay.feature", "disabled");
 
@@ -236,7 +248,10 @@ user_pref("browser.urlbar.trending.featureGate", false);
 user_pref("browser.urlbar.quicksuggest.enabled", false);
 
 // PICTURE-IN-PICTURE
-user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled", true);
+user_pref(
+  "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled",
+  true,
+);
 
 // AI INTEGRATION
 user_pref("browser.ml.enable", false);
@@ -252,9 +267,8 @@ user_pref("privacy.userContext.ui.enabled", true);
 // SIDEBAR
 user_pref("sidebar.position_start", false);
 
-// Font Rendering
+// FONT RENDERING
 user_pref("gfx.font_rendering.cleartype_params.rendering_mode", 5);
 user_pref("gfx.font_rendering.cleartype_params.cleartype_level", 100);
 user_pref("gfx.font_rendering.directwrite.use_gdi_table_loading", false);
 user_pref("gfx.font_rendering.cleartype_params.enhanced_contrast", 50);
-
