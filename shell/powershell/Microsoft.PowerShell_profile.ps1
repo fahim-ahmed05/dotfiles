@@ -138,7 +138,7 @@ function Search-Packages {
     $query = $args -join ' '
 
     Write-Host "Scoop`n" -ForegroundColor Cyan
-    scoop-search $query
+    scoop search $query
 
     Write-Host "`nWinget`n" -ForegroundColor Cyan
     winget search $query
