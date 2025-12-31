@@ -220,8 +220,5 @@ function Clear-WindowsCache {
     scoop cleanup -a
 }
 
-# Scoop Search
-. ([ScriptBlock]::Create((& scoop-search --hook | Out-String)))
-
 # Zoxide Initialization
 . ([ScriptBlock]::Create((zoxide init powershell | Out-String)))
