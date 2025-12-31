@@ -118,7 +118,7 @@
 			"enabled": true
 		},
 		"captions-selector": {
-			"enabled": true,
+			"enabled": false,
 			"disableCaptions": true,
 			"autoload": true,
 			"lastCaptionsCode": "en"
