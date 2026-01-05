@@ -219,6 +219,7 @@ function Clear-WindowsCache {
     }
     scoop cache rm -a
     scoop cleanup -a
+    uv cache clean
 }
 
 # Zoxide Initialization
