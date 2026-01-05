@@ -137,11 +137,12 @@ function Reboot {
 function Search-Packages {
     $query = $args -join ' '
 
-    Write-Host "Scoop`n" -ForegroundColor Cyan
-    scoop search $query
-
     Write-Host "`nWinget`n" -ForegroundColor Cyan
     winget search $query
+    
+    Write-Host "`nScoop`n" -ForegroundColor Cyan
+    scoop update
+    scoop search $query
 }
 
 function Update-AllPackages {
