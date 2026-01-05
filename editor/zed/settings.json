@@ -1,19 +1,31 @@
 {
+  "use_system_window_tabs": false,
+  "bottom_dock_layout": "contained",
+  "tabs": {
+    "file_icons": false,
+    "git_status": false
+  },
+  "scrollbar": {
+    "show": "system"
+  },
   "toolbar": {
-    "selections_menu": true
+    "selections_menu": true,
   },
   "debugger": {
-    "button": true
+    "button": true,
   },
   "tab_bar": {
-    "show": true
+    "show_tab_bar_buttons": true,
+    "show_nav_history_buttons": true,
+    "show": true,
   },
   "title_bar": {
+    "show_menus": false,
     "show_project_items": true,
     "show_onboarding_banner": false,
     "show_user_picture": false,
     "show_sign_in": false,
-    "show_branch_icon": false
+    "show_branch_icon": true,
   },
   "auto_update": false,
   "disable_ai": true,
@@ -21,24 +33,30 @@
     "font_size": 14.0,
     "cursor_shape": "bar",
     "font_weight": 400.0,
-    "font_family": "CaskaydiaMono Nerd Font"
+    "font_family": "CaskaydiaMono Nerd Font",
+    "shell": {
+      "with_arguments": {
+        "program": "pwsh.exe",
+        "args": ["-NoLogo"],
+      },
+    },
   },
   "autosave": {
     "after_delay": {
-      "milliseconds": 1000
-    }
+      "milliseconds": 1000,
+    },
   },
   "ui_font_family": "Inter",
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "ui_font_size": 16.0,
   "buffer_font_size": 14.0,
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark"
-  }
+    "dark": "One Dark",
+  },
 }
