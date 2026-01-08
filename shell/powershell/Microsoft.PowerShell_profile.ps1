@@ -149,6 +149,8 @@ function Update-AllPackages {
     Write-Host "`nUpdating winget packages...`n" -ForegroundColor Cyan
     winget source update
     winget upgrade --all --accept-package-agreements --accept-source-agreements
+
+    Write-Host "`nUpdating winget...`n" -ForegroundColor Cyan
     winget upgrade winget --accept-package-agreements --accept-source-agreements
 
     Write-Host "`nUpdating scoop packages...`n" -ForegroundColor Cyan
@@ -159,7 +161,7 @@ function Update-AllPackages {
     Write-Host "`nUpdating pip...`n" -ForegroundColor Cyan
     python.exe -m pip install --upgrade pip
 
-    Write-Host "`nUpdating python packages...`n" -ForegroundColor Cyan
+    Write-Host "`nUpdating uv packages...`n" -ForegroundColor Cyan
     uv tool upgrade --all
     
     Write-Host "`nRemoving desktop icons...`n" -ForegroundColor Cyan
