@@ -155,7 +155,7 @@ function Update-AllPackages {
     scoop update -a
     scoop status
     
-    Write-Host "`nRemoving desktop icons..."
+    Write-Host "`nRemoving desktop icons...`n" -ForegroundColor Cyan
     Remove-DesktopIcons
 }
 
