@@ -155,6 +155,12 @@ function Update-AllPackages {
     scoop update
     scoop update -a
     scoop status
+
+    Write-Host "`nUpdating pip...`n" -ForegroundColor Cyan
+    python.exe -m pip install --upgrade pip
+
+    Write-Host "`nUpdating python packages...`n" -ForegroundColor Cyan
+    uv tool upgrade --all
     
     Write-Host "`nRemoving desktop icons...`n" -ForegroundColor Cyan
     Remove-DesktopIcons
