@@ -136,12 +136,13 @@ function Reboot {
 # Winget
 function Search-Packages {
     $query = $args -join ' '
+    $scoopQuery = ($query -replace '\s+', '-')
 
     Write-Host "`nSearching winget packages...`n" -ForegroundColor Cyan
     winget search $query
     
     Write-Host "`nSearching scoop packages..." -ForegroundColor Cyan
-    & "~\Git\fast-scoop-search\Scoop-Search.ps1" $query
+    & "~\Git\fast-scoop-search\Scoop-Search.ps1" $scoopQuery
 }
 
 function Update-AllPackages {
