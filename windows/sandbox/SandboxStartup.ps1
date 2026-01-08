@@ -1,7 +1,8 @@
-<# Create a shortcut of Ungoogled Chromium on the desktop #>
+# Create a shortcut of Ungoogled Chromium on the desktop
 $WshShell = New-Object -ComObject WScript.Shell
 $Shortcut = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\Chromium.lnk")
 $Shortcut.TargetPath = "C:\Users\WDAGUtilityAccount\Desktop\WinsbSharedFolder\SandboxFiles\UngoogledChromium\chrome.exe"
+$Shortcut.Arguments = "--user-data-dir=C:\Users\WDAGUtilityAccount\Desktop\WinsbSharedFolder\SandboxFiles\ChromiumProfile"
 $Shortcut.Save()
 
 # Enable Dark Mode for Apps
