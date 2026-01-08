@@ -154,7 +154,8 @@ function Update-AllPackages {
     scoop update
     scoop update -a
     scoop status
-
+    
+    Write-Host "`n"
     Remove-DesktopIcons
 }
 
