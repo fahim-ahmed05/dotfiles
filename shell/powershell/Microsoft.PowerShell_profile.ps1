@@ -137,25 +137,25 @@ function Reboot {
 function Search-Packages {
     $query = $args -join ' '
 
-    Write-Host "`nWinget`n" -ForegroundColor Cyan
+    Write-Host "`nSearching winget packages...`n" -ForegroundColor Cyan
     winget search $query
     
-    Write-Host "`nScoop" -ForegroundColor Cyan
+    Write-Host "`nSearching scoop packages..." -ForegroundColor Cyan
     & "~\Git\fast-scoop-search\Scoop-Search.ps1" $query
 }
 
 function Update-AllPackages {
-    Write-Host "`nWinget`n" -ForegroundColor Cyan
+    Write-Host "`nUpdating winget packages...`n" -ForegroundColor Cyan
     winget source update
     winget upgrade --all --accept-package-agreements --accept-source-agreements
     winget upgrade winget --accept-package-agreements --accept-source-agreements
 
-    Write-Host "`nScoop`n" -ForegroundColor Cyan
+    Write-Host "`nUpdating scoop packages...`n" -ForegroundColor Cyan
     scoop update
     scoop update -a
     scoop status
     
-    Write-Host "`n"
+    Write-Host "`nRemoving desktop icons..."
     Remove-DesktopIcons
 }
 
