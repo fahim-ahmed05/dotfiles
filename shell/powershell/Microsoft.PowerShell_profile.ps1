@@ -147,7 +147,6 @@ function Search-Packages {
 
 function Update-AllPackages {
     Write-Host "Winget`n" -ForegroundColor Cyan
-    Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" -ForceApplicationShutdown
     winget source update
     winget upgrade --all --accept-package-agreements --accept-source-agreements
     winget upgrade winget --accept-package-agreements --accept-source-agreements
