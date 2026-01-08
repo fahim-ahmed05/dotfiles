@@ -140,9 +140,8 @@ function Search-Packages {
     Write-Host "Winget`n" -ForegroundColor Cyan
     winget search $query
     
-    Write-Host "`nScoop`n" -ForegroundColor Cyan
-    scoop update
-    scoop search $query
+    Write-Host "`nScoop" -ForegroundColor Cyan
+    & "~\Git\fast-scoop-search\Scoop-Search.ps1" $query
 }
 
 function Update-AllPackages {
