@@ -137,7 +137,7 @@ function Reboot {
 function Search-Packages {
     $query = $args -join ' '
 
-    Write-Host "Winget`n" -ForegroundColor Cyan
+    Write-Host "`nWinget`n" -ForegroundColor Cyan
     winget search $query
     
     Write-Host "`nScoop" -ForegroundColor Cyan
@@ -145,7 +145,7 @@ function Search-Packages {
 }
 
 function Update-AllPackages {
-    Write-Host "Winget`n" -ForegroundColor Cyan
+    Write-Host "`nWinget`n" -ForegroundColor Cyan
     winget source update
     winget upgrade --all --accept-package-agreements --accept-source-agreements
     winget upgrade winget --accept-package-agreements --accept-source-agreements
