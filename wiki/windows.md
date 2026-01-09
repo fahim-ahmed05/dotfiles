@@ -155,10 +155,10 @@ scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/
 
 ### [NTP](https://en.wikipedia.org/wiki/Network_Time_Protocol)
 
-| Server                                            | Address               |
-| ------------------------------------------------- | --------------------- |
-| [NTP Pool Project](http://www.pool.ntp.org)       | `pool.ntp.org`        |
-| [Cloudflare NTP](https://www.cloudflare.com/ntp/) | `time.cloudflare.com` |
+| Server                                             | Address               |
+| -------------------------------------------------- | --------------------- |
+| [NTP Pool Project](http://www.pool.ntp.org)        | `pool.ntp.org`        |
+| [Cloudflare NTP](https://www.cloudflare.com/time/) | `time.cloudflare.com` |
 
 ## [Windows Utility](https://github.com/ChrisTitusTech/winutil)
 
