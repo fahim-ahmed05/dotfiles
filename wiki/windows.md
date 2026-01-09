@@ -94,12 +94,26 @@ scoop install uv mpv-git alacritty ayugram foobar2000 foobar2000-encoders locals
 ### Python
 
 > [!IMPORTANT]
-> Python and uv is required!
+> [Python](#scoop-packages) and [uv](#optional-scoop-packages) are required!
 
 #### Python Packages
 
 ```
 uv tool install internetarchive subliminal
+```
+
+## Fonts
+
+- [Inter](https://rsms.me/inter/download/)
+
+> [!IMPORTANT]
+> [Scoop](#scoop) is required!
+
+### Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
+
+```
+scoop bucket add nerd-fonts
+scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
 ```
 
 ## PowerShell
@@ -140,20 +154,6 @@ if (Test-Path $profile) { "Profile exists: $profile" } else { New-Item $profile 
 
 ```
 oh-my-posh disable notice
-```
-
-## Fonts
-
-- [Inter](https://rsms.me/inter/download/)
-
-> [!IMPORTANT]
-> [Scoop](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/windows.md#scoop) are required!
-
-### Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
-
-```
-scoop bucket add nerd-fonts
-scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
 ```
 
 ## Network
@@ -199,4 +199,8 @@ irm "https://christitus.com/win" | iex
 ## Media Foundation Codecs
 
 - [Download](https://www.codecguide.com/media_foundation_codecs.htm) the codecs zip file.
-- Open terminal inside the extracted folder and run `Add-AppxPackage *.AppxBundle`.
+- Open terminal inside the extracted folder and run 
+
+```
+Add-AppxPackage *.AppxBundle
+```
