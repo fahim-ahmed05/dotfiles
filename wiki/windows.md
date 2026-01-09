@@ -21,6 +21,7 @@ irm "https://get.activated.win" | iex
 - [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm)
 - [Git](https://git-scm.com/download/win)
 - [Visual Studio Code](https://code.visualstudio.com/)
+- [Internet Download Manager](https://www.internetdownloadmanager.com/download.html)
 
 ### Winget
 
