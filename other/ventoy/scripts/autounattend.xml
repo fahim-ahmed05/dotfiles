@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend"
 	xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
-	<!--https://schneegans.de/windows/unattend-generator/?LanguageMode=Unattended&UILanguage=en-US&Locale=en-US&Keyboard=00000409&GeoLocation=244&ProcessorArchitecture=amd64&BypassRequirementsCheck=true&BypassNetworkCheck=true&HidePowerShellWindows=true&ComputerNameMode=Random&CompactOsMode=Never&TimeZoneMode=Explicit&TimeZone=Bangladesh+Standard+Time&PartitionMode=Interactive&DiskAssertionMode=Skip&WindowsEditionMode=Generic&WindowsEdition=pro_workstations&InstallFromMode=Automatic&PEMode=Default&UserAccountMode=Unattended&AccountName0=Fahim&AccountDisplayName0=&AccountPassword0=&AccountGroup0=Administrators&AutoLogonMode=Own&PasswordExpirationMode=Unlimited&LockoutMode=Default&HideFiles=HiddenSystem&ShowFileExtensions=true&ClassicContextMenu=true&ShowEndTask=true&TaskbarSearch=Hide&TaskbarIconsMode=Empty&HideTaskViewButton=true&DisableBingResults=true&StartTilesMode=Empty&StartPinsMode=Empty&DisableFastStartup=true&EnableLongPaths=true&DisableLastAccess=true&PreventDeviceEncryption=true&HideEdgeFre=true&DeleteWindowsOld=true&EffectsMode=Custom&ControlAnimations=true&AnimateMinMax=true&TaskbarAnimations=true&DWMAeroPeekEnabled=true&MenuAnimation=true&TooltipAnimation=true&SelectionFade=true&CursorShadow=true&ListviewShadow=true&ThumbnailsOrIcon=true&ListviewAlphaSelect=true&DragFullWindows=true&ComboBoxAnimation=true&FontSmoothing=true&ListBoxSmoothScrolling=true&DropShadow=true&DesktopIconsMode=Custom&IconRecycleBin=true&StartFoldersMode=Custom&StartFolderFileExplorer=true&StartFolderSettings=true&WifiMode=Skip&ExpressSettings=DisableAll&LockKeysMode=Skip&StickyKeysMode=Disabled&ColorMode=Custom&SystemColorTheme=Dark&AppsColorTheme=Dark&AccentColor=%230078d4&EnableTransparency=true&WallpaperMode=Default&LockScreenMode=Default&WdacMode=Skip-->
+	<!--https://schneegans.de/windows/unattend-generator/?LanguageMode=Unattended&UILanguage=en-US&Locale=en-US&Keyboard=00000409&GeoLocation=244&ProcessorArchitecture=amd64&BypassRequirementsCheck=true&BypassNetworkCheck=true&HidePowerShellWindows=true&ComputerNameMode=Random&CompactOsMode=Never&TimeZoneMode=Explicit&TimeZone=Bangladesh+Standard+Time&PartitionMode=Interactive&DiskAssertionMode=Skip&WindowsEditionMode=Generic&WindowsEdition=pro_workstations&InstallFromMode=Automatic&PEMode=Default&UserAccountMode=Unattended&AccountName0=Fahim&AccountDisplayName0=Fahim+Ahmed&AccountPassword0=&AccountGroup0=Administrators&AutoLogonMode=Own&PasswordExpirationMode=Unlimited&LockoutMode=Default&HideFiles=HiddenSystem&ShowFileExtensions=true&ClassicContextMenu=true&ShowEndTask=true&TaskbarSearch=Hide&TaskbarIconsMode=Empty&HideTaskViewButton=true&DisableBingResults=true&StartTilesMode=Empty&StartPinsMode=Empty&DisableWindowsUpdate=true&DisableFastStartup=true&EnableLongPaths=true&DisableLastAccess=true&PreventDeviceEncryption=true&HideEdgeFre=true&DisableEdgeStartupBoost=true&DeleteWindowsOld=true&DisableAutomaticRestartSignOn=true&EffectsMode=Custom&ControlAnimations=true&AnimateMinMax=true&TaskbarAnimations=true&DWMAeroPeekEnabled=true&MenuAnimation=true&TooltipAnimation=true&SelectionFade=true&CursorShadow=true&ListviewShadow=true&ThumbnailsOrIcon=true&ListviewAlphaSelect=true&DragFullWindows=true&ComboBoxAnimation=true&FontSmoothing=true&ListBoxSmoothScrolling=true&DropShadow=true&DeleteEdgeDesktopIcon=true&DesktopIconsMode=Custom&IconRecycleBin=true&StartFoldersMode=Custom&StartFolderFileExplorer=true&StartFolderSettings=true&WifiMode=Skip&ExpressSettings=DisableAll&LockKeysMode=Skip&StickyKeysMode=Disabled&ColorMode=Custom&SystemColorTheme=Dark&AppsColorTheme=Dark&AccentColor=%230078d4&EnableTransparency=true&WallpaperMode=Default&LockScreenMode=Default&WdacMode=Skip&AppLockerMode=Skip-->
 	<settings pass="offlineServicing"></settings>
 	<settings pass="windowsPE">
 		<component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64"
@@ -49,16 +49,15 @@
 			<RunSynchronous>
 				<RunSynchronousCommand wcm:action="add">
 					<Order>1</Order>
-					<Path>powershell.exe -WindowStyle Hidden -NoProfile -Command "$xml =
+					<Path>powershell.exe -WindowStyle "Hidden" -NoProfile -Command "$xml =
 						[xml]::new(); $xml.Load('C:\Windows\Panther\unattend.xml'); $sb =
 						[scriptblock]::Create( $xml.unattend.Extensions.ExtractScript );
 						Invoke-Command -ScriptBlock $sb -ArgumentList $xml;"</Path>
 				</RunSynchronousCommand>
 				<RunSynchronousCommand wcm:action="add">
 					<Order>2</Order>
-					<Path>powershell.exe -WindowStyle Hidden -NoProfile -Command "Get-Content
-						-LiteralPath 'C:\Windows\Setup\Scripts\Specialize.ps1' -Raw |
-						Invoke-Expression;"</Path>
+					<Path>powershell.exe -WindowStyle "Hidden" -ExecutionPolicy "Unrestricted"
+						-NoProfile -File "C:\Windows\Setup\Scripts\Specialize.ps1"</Path>
 				</RunSynchronousCommand>
 				<RunSynchronousCommand wcm:action="add">
 					<Order>3</Order>
@@ -66,9 +65,8 @@
 				</RunSynchronousCommand>
 				<RunSynchronousCommand wcm:action="add">
 					<Order>4</Order>
-					<Path>powershell.exe -WindowStyle Hidden -NoProfile -Command "Get-Content
-						-LiteralPath 'C:\Windows\Setup\Scripts\DefaultUser.ps1' -Raw |
-						Invoke-Expression;"</Path>
+					<Path>powershell.exe -WindowStyle "Hidden" -ExecutionPolicy "Unrestricted"
+						-NoProfile -File "C:\Windows\Setup\Scripts\DefaultUser.ps1"</Path>
 				</RunSynchronousCommand>
 				<RunSynchronousCommand wcm:action="add">
 					<Order>5</Order>
@@ -97,7 +95,7 @@
 				<LocalAccounts>
 					<LocalAccount wcm:action="add">
 						<Name>Fahim</Name>
-						<DisplayName></DisplayName>
+						<DisplayName>Fahim Ahmed</DisplayName>
 						<Group>Administrators</Group>
 						<Password>
 							<Value></Value>
@@ -124,9 +122,8 @@
 			<FirstLogonCommands>
 				<SynchronousCommand wcm:action="add">
 					<Order>1</Order>
-					<CommandLine>powershell.exe -WindowStyle Hidden -NoProfile -Command "Get-Content
-						-LiteralPath 'C:\Windows\Setup\Scripts\FirstLogon.ps1' -Raw |
-						Invoke-Expression;"</CommandLine>
+					<CommandLine>powershell.exe -WindowStyle "Hidden" -ExecutionPolicy
+						"Unrestricted" -NoProfile -File "C:\Windows\Setup\Scripts\FirstLogon.ps1"</CommandLine>
 				</SynchronousCommand>
 			</FirstLogonCommands>
 		</component>
@@ -223,6 +220,72 @@
 			&lt;Exec&gt;
 			&lt;Command&gt;C:\Windows\System32\wscript.exe&lt;/Command&gt;
 			&lt;Arguments&gt;C:\Windows\Setup\Scripts\UnlockStartLayout.vbs&lt;/Arguments&gt;
+			&lt;/Exec&gt;
+			&lt;/Actions&gt;
+			&lt;/Task&gt;
+		</File>
+		<File path="C:\Windows\Setup\Scripts\PauseWindowsUpdate.ps1">
+			$formatter = {
+			$args[0].ToString( "yyyy'-'MM'-'dd'T'HH':'mm':'ssK" );
+			};
+			$now = [datetime]::UtcNow;
+			$start = &amp; $formatter $now;
+			$end = &amp; $formatter $now.AddDays( 7 );
+
+			$params = @{
+			LiteralPath = 'Registry::HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings';
+			Type = 'String';
+			Force = $true;
+			};
+
+			Set-ItemProperty @params -Name 'PauseFeatureUpdatesStartTime' -Value $start;
+			Set-ItemProperty @params -Name 'PauseFeatureUpdatesEndTime' -Value $end;
+			Set-ItemProperty @params -Name 'PauseQualityUpdatesStartTime' -Value $start;
+			Set-ItemProperty @params -Name 'PauseQualityUpdatesEndTime' -Value $end;
+			Set-ItemProperty @params -Name 'PauseUpdatesStartTime' -Value $start;
+			Set-ItemProperty @params -Name 'PauseUpdatesExpiryTime' -Value $end;
+		</File>
+		<File path="C:\Windows\Setup\Scripts\PauseWindowsUpdate.xml">
+			&lt;Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task"&gt;
+			&lt;Triggers&gt;
+			&lt;BootTrigger&gt;
+			&lt;Repetition&gt;
+			&lt;Interval&gt;P1D&lt;/Interval&gt;
+			&lt;StopAtDurationEnd&gt;false&lt;/StopAtDurationEnd&gt;
+			&lt;/Repetition&gt;
+			&lt;Enabled&gt;true&lt;/Enabled&gt;
+			&lt;/BootTrigger&gt;
+			&lt;/Triggers&gt;
+			&lt;Principals&gt;
+			&lt;Principal id="Author"&gt;
+			&lt;UserId&gt;S-1-5-19&lt;/UserId&gt;
+			&lt;RunLevel&gt;LeastPrivilege&lt;/RunLevel&gt;
+			&lt;/Principal&gt;
+			&lt;/Principals&gt;
+			&lt;Settings&gt;
+			&lt;MultipleInstancesPolicy&gt;IgnoreNew&lt;/MultipleInstancesPolicy&gt;
+			&lt;DisallowStartIfOnBatteries&gt;false&lt;/DisallowStartIfOnBatteries&gt;
+			&lt;StopIfGoingOnBatteries&gt;false&lt;/StopIfGoingOnBatteries&gt;
+			&lt;AllowHardTerminate&gt;true&lt;/AllowHardTerminate&gt;
+			&lt;StartWhenAvailable&gt;false&lt;/StartWhenAvailable&gt;
+			&lt;RunOnlyIfNetworkAvailable&gt;false&lt;/RunOnlyIfNetworkAvailable&gt;
+			&lt;IdleSettings&gt;
+			&lt;StopOnIdleEnd&gt;true&lt;/StopOnIdleEnd&gt;
+			&lt;RestartOnIdle&gt;false&lt;/RestartOnIdle&gt;
+			&lt;/IdleSettings&gt;
+			&lt;AllowStartOnDemand&gt;true&lt;/AllowStartOnDemand&gt;
+			&lt;Enabled&gt;true&lt;/Enabled&gt;
+			&lt;Hidden&gt;false&lt;/Hidden&gt;
+			&lt;RunOnlyIfIdle&gt;false&lt;/RunOnlyIfIdle&gt;
+			&lt;WakeToRun&gt;false&lt;/WakeToRun&gt;
+			&lt;ExecutionTimeLimit&gt;PT72H&lt;/ExecutionTimeLimit&gt;
+			&lt;Priority&gt;7&lt;/Priority&gt;
+			&lt;/Settings&gt;
+			&lt;Actions Context="Author"&gt;
+			&lt;Exec&gt;
+			&lt;Command&gt;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe&lt;/Command&gt;
+			&lt;Arguments&gt;-ExecutionPolicy "Unrestricted" -NoProfile -File
+			"C:\Windows\Setup\Scripts\PauseWindowsUpdate.ps1"&lt;/Arguments&gt;
 			&lt;/Exec&gt;
 			&lt;/Actions&gt;
 			&lt;/Task&gt;
@@ -332,8 +395,16 @@
 			'C:\Windows\Setup\Scripts\UnlockStartLayout.xml' -Raw );
 			};
 			{
+			Register-ScheduledTask -TaskName 'PauseWindowsUpdate' -Xml $( Get-Content -LiteralPath
+			'C:\Windows\Setup\Scripts\PauseWindowsUpdate.xml' -Raw );
+			};
+			{
 			reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\FileSystem" /v LongPathsEnabled /t
 			REG_DWORD /d 1 /f
+			};
+			{
+			Remove-Item -LiteralPath 'C:\Users\Public\Desktop\Microsoft Edge.lnk' -ErrorAction
+			'SilentlyContinue' -Verbose;
 			};
 			{
 			fsutil.exe behavior set disableLastAccess 1;
@@ -351,8 +422,13 @@
 			REG_DWORD /d 1 /f;
 			};
 			{
-			Get-Content -LiteralPath 'C:\Windows\Setup\Scripts\SetStartPins.ps1' -Raw |
-			Invoke-Expression;
+			reg.exe add "HKLM\Software\Policies\Microsoft\Edge\Recommended" /v BackgroundModeEnabled
+			/t REG_DWORD /d 0 /f;
+			reg.exe add "HKLM\Software\Policies\Microsoft\Edge\Recommended" /v StartupBoostEnabled
+			/t REG_DWORD /d 0 /f;
+			};
+			{
+			&amp; 'C:\Windows\Setup\Scripts\SetStartPins.ps1';
 			};
 			{
 			Set-ItemProperty -LiteralPath
@@ -411,6 +487,10 @@
 			reg.exe add "HKU\.DEFAULT\Control Panel\Accessibility\StickyKeys" /v Flags /t REG_SZ /d
 			10 /f;
 			};
+			{
+			reg.exe add "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v
+			"DisableAutomaticRestartSignOn" /t REG_DWORD /d 1 /f;
+			};
 			);
 
 			&amp; {
@@ -435,7 +515,8 @@
 			"`r`n" * 3;
 			$complete += $increment;
 			}
-			} *&gt;&amp;1 &gt;&gt; "C:\Windows\Setup\Scripts\Specialize.log";
+			} *&gt;&amp;1 | Out-String -Width 1KB -Stream &gt;&gt;
+			"C:\Windows\Setup\Scripts\Specialize.log";
 		</File>
 		<File path="C:\Windows\Setup\Scripts\UserOnce.ps1">
 			$scripts = @(
@@ -443,6 +524,10 @@
 			[System.Diagnostics.EventLog]::WriteEntry( 'UnattendGenerator', "User '$env:USERNAME'
 			has requested to unlock the Start menu layout.",
 			[System.Diagnostics.EventLogEntryType]::Information, 1 );
+			};
+			{
+			Remove-Item -LiteralPath "${env:USERPROFILE}\Desktop\Microsoft Edge.lnk" -ErrorAction
+			'SilentlyContinue' -Verbose;
 			};
 			{
 			reg.exe add
@@ -553,8 +638,7 @@
 			'Binary';
 			};
 			{
-			Get-Content -LiteralPath 'C:\Windows\Setup\Scripts\SetColorTheme.ps1' -Raw |
-			Invoke-Expression;
+			&amp; 'C:\Windows\Setup\Scripts\SetColorTheme.ps1';
 			};
 			{
 			Get-Process -Name 'explorer' -ErrorAction 'SilentlyContinue' | Where-Object
@@ -586,7 +670,7 @@
 			"`r`n" * 3;
 			$complete += $increment;
 			}
-			} *&gt;&amp;1 &gt;&gt; "$env:TEMP\UserOnce.log";
+			} *&gt;&amp;1 | Out-String -Width 1KB -Stream &gt;&gt; "$env:TEMP\UserOnce.log";
 		</File>
 		<File path="C:\Windows\Setup\Scripts\DefaultUser.ps1">
 			$scripts = @(
@@ -631,9 +715,9 @@
 			};
 			{
 			reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\RunOnce" /v
-			"UnattendedSetup" /t REG_SZ /d "powershell.exe -WindowStyle Hidden -NoProfile -Command
-			\""Get-Content -LiteralPath 'C:\Windows\Setup\Scripts\UserOnce.ps1' -Raw |
-			Invoke-Expression;\""" /f;
+			"UnattendedSetup" /t REG_SZ /d "powershell.exe -WindowStyle \""Hidden\""
+			-ExecutionPolicy \""Unrestricted\"" -NoProfile -File
+			\""C:\Windows\Setup\Scripts\UserOnce.ps1\""" /f;
 			};
 			);
 
@@ -659,7 +743,8 @@
 			"`r`n" * 3;
 			$complete += $increment;
 			}
-			} *&gt;&amp;1 &gt;&gt; "C:\Windows\Setup\Scripts\DefaultUser.log";
+			} *&gt;&amp;1 | Out-String -Width 1KB -Stream &gt;&gt;
+			"C:\Windows\Setup\Scripts\DefaultUser.log";
 		</File>
 		<File path="C:\Windows\Setup\Scripts\FirstLogon.ps1">
 			$scripts = @(
@@ -669,6 +754,13 @@
 			};
 			{
 			cmd.exe /c "rmdir C:\Windows.old";
+			};
+			{
+			Remove-Item -LiteralPath @(
+			'C:\Windows\Panther\unattend.xml';
+			'C:\Windows\Panther\unattend-original.xml';
+			'C:\Windows\Setup\Scripts\Wifi.xml';
+			) -Force -ErrorAction 'SilentlyContinue' -Verbose;
 			};
 			);
 
@@ -694,7 +786,8 @@
 			"`r`n" * 3;
 			$complete += $increment;
 			}
-			} *&gt;&amp;1 &gt;&gt; "C:\Windows\Setup\Scripts\FirstLogon.log";
+			} *&gt;&amp;1 | Out-String -Width 1KB -Stream &gt;&gt;
+			"C:\Windows\Setup\Scripts\FirstLogon.log";
 		</File>
 	</Extensions>
 </unattend>

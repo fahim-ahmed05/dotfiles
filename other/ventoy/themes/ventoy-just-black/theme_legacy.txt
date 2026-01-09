@@ -1,5 +1,5 @@
 
-desktop-image: "background.png"
+desktop-image: "1024x768.png"
 title-text: " "
 title-color: "#ffffff"
 message-color: "#f2f2f2"
@@ -76,6 +76,14 @@ terminal-box: "terminal_box_*.png"
     width = 10%
     height = 25
     + label {text = "@VTOY_GRUB2_MODE@" color = "red" align = "left"} 
+}
+
++ hbox{ 
+    left = 30%+200
+    top = 95%-25
+    width = 10%
+    height = 25
+    + label {text = "@VTOY_WIMBOOT_MODE@" color = "red" align = "left"} 
 }
 
 + hbox{ 

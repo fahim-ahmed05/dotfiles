@@ -5,14 +5,18 @@
         }
     ],
     "theme": {
-        "file": "/ventoy/themes/ventoy-dark/theme.txt",
+        "file": "/ventoy/themes/ventoy-just-black/theme.txt",
+        "gfxmode": "1920x1080"
+    },
+    "theme_legacy": {
+        "file": "/ventoy/themes/ventoy-just-black/theme_legacy.txt",
         "gfxmode": "1920x1080"
     },
     "auto_install": [
         {
-            "image": "/iso/win11-24h2-64bit.iso",
+            "image": "/iso/Win11_25H2_English_x64.iso",
             "template": [
-                "/ventoy/scripts/win_unattend.xml"
+                "/ventoy/scripts/autounattend.xml"
             ]
         }
     ]
