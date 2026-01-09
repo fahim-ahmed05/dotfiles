@@ -177,14 +177,8 @@ user_pref("startup.homepage_welcome_url.additional", "");
 user_pref("browser.firefox-view.feature-tour", '{"screen":"","complete":true}');
 user_pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false);
 user_pref("browser.newtabpage.activity-stream.showSearch", false);
-user_pref(
-  "browser.newtabpage.activity-stream.section.highlights.includeBookmarks",
-  false,
-);
-user_pref(
-  "browser.newtabpage.activity-stream.section.highlights.includeDownloads",
-  false,
-);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includeBookmarks", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includeDownloads", false);
 
 // DOWNLOADS
 user_pref("browser.download.manager.addToRecentDocs", false);
@@ -225,14 +219,8 @@ user_pref("extensions.getAddons.showPane", false);
 user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 user_pref("browser.discovery.enabled", false);
 user_pref("browser.aboutwelcome.enabled", false);
-user_pref(
-  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons",
-  false,
-);
-user_pref(
-  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features",
-  false,
-);
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("signon.firefoxRelay.feature", "disabled");
 
@@ -248,10 +236,7 @@ user_pref("browser.urlbar.trending.featureGate", false);
 user_pref("browser.urlbar.quicksuggest.enabled", false);
 
 // PICTURE-IN-PICTURE
-user_pref(
-  "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled",
-  true,
-);
+user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled", true);
 
 // AI INTEGRATION
 user_pref("browser.ml.enable", false);
