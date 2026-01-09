@@ -14,7 +14,7 @@
     },
     "auto_install": [
         {
-            "image": "/iso/Win11_25H2_English_x64.iso",
+            "image": "/iso/win11.iso",
             "template": [
                 "/ventoy/scripts/autounattend.xml"
             ]
