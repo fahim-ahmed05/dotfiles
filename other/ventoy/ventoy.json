@@ -16,7 +16,7 @@
         {
             "image": "/iso/win11.iso",
             "template": [
-                "/ventoy/scripts/autounattend.xml"
+                "/ventoy/scripts/win11-autounattend.xml"
             ]
         }
     ]
