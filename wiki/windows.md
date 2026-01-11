@@ -56,7 +56,7 @@ winget install ONLYOFFICE.DesktopEditors eMClient.eMClient BlueStack.BlueStacks 
 
 ### [Scoop](https://scoop.sh/)
 
-> [!IMPORTANT]: [Git](https://git-scm.com/download/win) is required!
+> [!IMPORTANT] : [Git](https://git-scm.com/download/win) is required!
 
 #### Change Powershell Execution Policy
 
@@ -92,7 +92,7 @@ scoop install uv mpv-git alacritty ayugram foobar2000 foobar2000-encoders locals
 
 ### Python
 
-> [!IMPORTANT]: [Python](#scoop-packages) and [uv](#optional-scoop-packages) are required!
+> [!IMPORTANT] : [Python](#scoop-packages) and [uv](#optional-scoop-packages) are required!
 
 #### Python Packages
 
@@ -104,7 +104,7 @@ uv tool install internetarchive subliminal
 
 - [Inter](https://rsms.me/inter/download/)
 
-> [!IMPORTANT]: [Scoop](#scoop) is required!
+> [!IMPORTANT] : [Scoop](#scoop) is required!
 
 ### Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 
@@ -123,7 +123,7 @@ winget install Microsoft.PowerShell
 
 ### Install PowerShell Packages
 
-> [!IMPORTANT]: [Git](https://git-scm.com/download/win) and [Scoop](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/windows.md#scoop) are required!
+> [!IMPORTANT] : [Git](https://git-scm.com/download/win) and [Scoop](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/windows.md#scoop) are required!
 
 ```
 scoop install oh-my-posh eza fzf zoxide
