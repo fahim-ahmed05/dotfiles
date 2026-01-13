@@ -207,8 +207,16 @@ function hb {
 }
 
 function Remove-DesktopIcons {
-    Remove-Item $env:USERPROFILE\Desktop\*.lnk
-    Remove-Item C:\Users\Public\Desktop\*.lnk
+    $paths = @(
+        "$env:UserProfile\Desktop",
+        "C:\Users\Public\Desktop"
+    )
+
+    foreach ($path in $paths) {
+        if (Test-Path $path) {
+            Remove-Item "$path\*.lnk" -Force -ErrorAction SilentlyContinue        
+        }
+    }
 }
 
 function Clear-WindowsCache {
@@ -224,12 +232,18 @@ function Clear-WindowsCache {
 
     foreach ($path in $paths) {
         if (Test-Path $path) {
-            Remove-Item "$path\*" -Force -Recurse -ErrorAction SilentlyContinue
+            Remove-Item -Path "$path\*" -Force -Recurse -ErrorAction SilentlyContinue
         }
     }
-    scoop cache rm -a
-    scoop cleanup -a
-    uv cache clean
+
+    if (Get-Command scoop -ErrorAction SilentlyContinue) {
+        scoop cache rm -a
+        scoop cleanup -a
+    }
+
+    if (Get-Command uv -ErrorAction SilentlyContinue) {
+        uv cache clean
+    }
 }
 
 # Zoxide Initialization
