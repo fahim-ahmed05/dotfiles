@@ -7,9 +7,9 @@
 
 ### Tools
 
-- [Generate autounattend.xml](https://schneegans.de/windows/unattend-generator/)
-- [Microsoft Update Catalog](https://www.catalog.update.microsoft.com/home.aspx)
 - [Ventoy](https://www.ventoy.net/en/download.html)
+- [Microsoft Update Catalog](https://www.catalog.update.microsoft.com/home.aspx)
+- [Generate autounattend.xml](https://schneegans.de/windows/unattend-generator/)
 
 ## [Activate Windows](https://github.com/massgravel/Microsoft-Activation-Scripts)
 
@@ -19,8 +19,8 @@ irm "https://get.activated.win" | iex
 
 ## Programs
 
-- [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm)
 - [Git](https://git-scm.com/download/win)
+- [K-Lite Codec Pack](https://codecguide.com/download_k-lite_codec_pack_standard.htm)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Internet Download Manager](https://www.internetdownloadmanager.com/download.html)
 
@@ -180,19 +180,18 @@ oh-my-posh disable notice
 
 ## Tweak Tools
 
+- [Winhance](https://github.com/memstechtips/Winhance/releases/latest/download/Winhance.Installer.exe)
 - [Windows Utility](https://github.com/ChrisTitusTech/winutil)
 
 ```powershell
 irm "https://christitus.com/win" | iex
 ```
 
-- [Winhance](https://github.com/memstechtips/Winhance/releases/latest/download/Winhance.Installer.exe)
-
 ## MPV Plugins
 
-- [mpv-autosub](https://github.com/fahim-ahmed05/mpv-autosub)
 - [ModernZ](https://github.com/Samillion/ModernZ)
 - [thumbfast](https://github.com/po5/thumbfast)
+- [mpv-autosub](https://github.com/fahim-ahmed05/mpv-autosub)
 
 ## Media Foundation Codecs
 
