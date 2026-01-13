@@ -108,6 +108,7 @@ user_pref("browser.menu.showViewImageInfo", true);
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.translations.automaticallyPopup", false);
 user_pref("browser.startup.homepage_override.mstone", "ignore");
+user_pref("widget.windows.mica", true);
 
 // FULLSCREEN BEHAVIOR
 user_pref("full-screen-api.transition-duration.enter", "0 0");
