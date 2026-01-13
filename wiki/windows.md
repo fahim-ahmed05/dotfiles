@@ -173,23 +173,20 @@ oh-my-posh disable notice
 | [NTP Pool Project](http://www.pool.ntp.org)        | `pool.ntp.org`        |
 | [Cloudflare NTP](https://www.cloudflare.com/time/) | `time.cloudflare.com` |
 
-## [Windows Utility](https://github.com/ChrisTitusTech/winutil)
+## Cursors
+
+- [Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Original-Ice-Windows.zip)
+- [Posy's Cursor (Default + Extras)](https://www.michieldb.nl/other/cursors/)
+
+## Tweak Tools
+
+- [Windows Utility](https://github.com/ChrisTitusTech/winutil)
 
 ```powershell
 irm "https://christitus.com/win" | iex
 ```
 
-### Tweaks
-
-- [x] Create Restore Point
-- [x] Disable Wi-Fi Sense
-- [x] Disable PowerShell 7 Telemetry
-- [x] Set Services to Manual
-
-## Cursors
-
-- [Bibata Original Ice](https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Original-Ice-Windows.zip)
-- [Posy's Cursor (Default + Extras)](https://www.michieldb.nl/other/cursors/)
+- [Winhance](https://github.com/memstechtips/Winhance/releases/latest/download/Winhance.Installer.exe)
 
 ## MPV Plugins
 
@@ -200,7 +197,7 @@ irm "https://christitus.com/win" | iex
 ## Media Foundation Codecs
 
 - [Download](https://www.codecguide.com/media_foundation_codecs.htm) the codecs zip file.
-- Open terminal inside the extracted folder and run 
+- Open terminal inside the extracted folder and run
 
 ```
 Add-AppxPackage *.AppxBundle
