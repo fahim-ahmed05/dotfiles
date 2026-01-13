@@ -8,6 +8,7 @@
 ### Tools
 
 - [Generate autounattend.xml](https://schneegans.de/windows/unattend-generator/)
+- [Microsoft Update Catalog](https://www.catalog.update.microsoft.com/home.aspx)
 - [Ventoy](https://www.ventoy.net/en/download.html)
 
 ## [Activate Windows](https://github.com/massgravel/Microsoft-Activation-Scripts)
