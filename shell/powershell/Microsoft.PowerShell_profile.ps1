@@ -218,7 +218,8 @@ function Clear-WindowsCache {
         "$env:TEMP",
         "$env:LocalAppData\Package Cache",
         "$env:LocalAppData\pip\cache",
-        "$env:AppData\stremio\stremio-server\stremio-cache"
+        "$env:AppData\stremio\stremio-server\stremio-cache",
+        "$env:UserProfile\Configs\FlowLauncher\Settings\Plugins\Flow.Launcher.Plugin.ClipboardPlus\CachedImages"
     )
 
     foreach ($path in $paths) {
