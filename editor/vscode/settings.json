@@ -1,5 +1,6 @@
 {
     "workbench.startupEditor": "none",
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
     "workbench.tips.enabled": false,
     "workbench.list.smoothScrolling": true,
     "editor.fontFamily": "'JetBrainsMono Nerd Font', Consolas, 'Courier New', monospace",
@@ -14,22 +15,59 @@
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.smoothScrolling": true,
     "editor.cursorBlinking": "phase",
-    "files.autoSave": "afterDelay",
     "explorer.confirmDragAndDrop": false,
+    "explorer.confirmPasteNative": false,
     "explorer.confirmDelete": false,
     "explorer.compactFolders": false,
     "breadcrumbs.enabled": false,
     "terminal.integrated.smoothScrolling": true,
-    "terminal.integrated.hideOnStartup": "always",
+    "terminal.integrated.hideOnStartup": "whenEmpty",
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.cursorStyleInactive": "line",
-    "terminal.integrated.defaultProfile.windows": "PowerShell",
     "powershell.integratedConsole.showOnStartup": false,
     "powershell.integratedConsole.suppressStartupBanner": true,
     "git.confirmSync": false,
-    "update.mode": "start",
+    "update.mode": "none",
     "update.showReleaseNotes": false,
     "git.openRepositoryInParentFolders": "always",
     "editor.wordWrap": "on",
-    "powershell.promptToUpdatePowerShell": false
+    "powershell.promptToUpdatePowerShell": false,
+    "workbench.colorTheme": "One Dark Pro Flat",
+    "files.autoSave": "afterDelay",
+    "redhat.telemetry.enabled": false,
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": false,
+        "scminput": false
+    },
+    "autoTheme.lightTheme": "Default Light Modern",
+    "autoTheme.darkTheme": "One Dark Pro Flat",
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "autoTheme.enabled": true,
+    "git.autofetch": true,
+    "chat.agent.maxRequests": 50,
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.html": "default"
+    },
+    "[markdown]": {
+        "diffEditor.ignoreTrimWhitespace": true
+    },
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "update.enableWindowsBackgroundUpdates": false
 }
