@@ -166,6 +166,7 @@ function Update-AllPackages {
     
     Write-Host "`nRemoving desktop icons...`n" -ForegroundColor Cyan
     Remove-DesktopIcons
+    Write-Host "Done.`n" -ForegroundColor Green
 }
 
 function pubip { (Invoke-WebRequest http://ifconfig.me/ip).Content }
