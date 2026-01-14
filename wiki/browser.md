@@ -34,7 +34,7 @@
 
 ```
 https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/fix-youtube-lite.txt
-https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/misc-annoyances.txt
+https://raw.githubusercontent.com/fahim-ahmed05/ublock-content-filters/refs/heads/main/hide-annoyances.txt
 https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=bpc-paywall-filter.txt
 ```
 
