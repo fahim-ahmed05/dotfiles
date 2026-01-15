@@ -214,9 +214,7 @@ function Remove-DesktopIcons {
     )
 
     foreach ($path in $paths) {
-        if (Test-Path $path) {
-            Remove-Item "$path\*.lnk" -Force -ErrorAction SilentlyContinue        
-        }
+        Remove-Item "$path\*.lnk" -Force -ErrorAction SilentlyContinue        
     }
 }
 
