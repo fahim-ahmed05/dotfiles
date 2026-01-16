@@ -1,6 +1,8 @@
 # Windows
 
-## Windows 11 ISO
+## Install Windows
+
+### Windows 11 ISO
 
 - [Microsoft](https://www.microsoft.com/en-us/software-download/windows11)
 - [UUP dump](https://uupdump.net/fetchupd.php?arch=amd64&ring=retail)
