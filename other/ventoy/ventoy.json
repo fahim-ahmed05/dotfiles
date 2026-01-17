@@ -1,22 +1,20 @@
 {
-    "control": [
-        {
-            "VTOY_DEFAULT_SEARCH_ROOT": "/iso"
-        }
+    "control":[
+        { "VTOY_DEFAULT_SEARCH_ROOT": "/ventoy/iso" }
     ],
-    "theme": {
+    "theme":{
         "file": "/ventoy/themes/ventoy-just-black/theme.txt",
         "gfxmode": "1920x1080"
     },
-    "theme_legacy": {
+    "theme_legacy":{
         "file": "/ventoy/themes/ventoy-just-black/theme_legacy.txt",
         "gfxmode": "1920x1080"
     },
-    "auto_install": [
+    "auto_install":[
         {
-            "image": "/iso/win11.iso",
-            "template": [
-                "/ventoy/scripts/win11-autounattend.xml"
+            "parent": "/ventoy/iso/win",
+            "template":[
+                "/ventoy/scripts/autounattend.xml"
             ]
         }
     ]
