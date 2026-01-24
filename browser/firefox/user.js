@@ -274,7 +274,6 @@ user_pref("gfx.font_rendering.cleartype_params.enhanced_contrast", 50);
 // FIREFOX WINUI
 user_pref("uc.winui.aptos", true);
 user_pref("uc.winui.extra-highlights", true);
-user_pref("uc.winui.hide-shortcuts", true);
 user_pref("uc.winui.more-acrylic", true);
 user_pref("uc.winui.smaller-toolbar-buttons", true);
 user_pref("uc.winui.floating-tabs", true);
