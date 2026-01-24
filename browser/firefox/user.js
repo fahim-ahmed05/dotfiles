@@ -1,3 +1,5 @@
+const { use } = require("react");
+
 // GENERAL
 user_pref("gfx.content.skia-font-cache-size", 32);
 
@@ -109,6 +111,16 @@ user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.translations.automaticallyPopup", false);
 user_pref("browser.startup.homepage_override.mstone", "ignore");
 user_pref("widget.windows.mica", true);
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+user_pref("svg.context-properties.content.enabled", true);
+user_pref("layout.css.color-mix.enabled", true);
+user_pref("layout.css.light-dark.enabled", true);
+user_pref("widget.transparent-windows", true);
+user_pref("browser.urlbar.groupLabels.enabled", false);
+user_pref("browser.newtabpage.activity-stream.newtabLayouts.variant-a", false);
+user_pref("browser.newtabpage.activity-stream.newtabLayouts.variant-b", false);
+user_pref("browser.startup.blankWindow", false);
+user_pref("sidebar.revamp.round-content-area", false);
 
 // FULLSCREEN BEHAVIOR
 user_pref("full-screen-api.transition-duration.enter", "0 0");
@@ -258,3 +270,17 @@ user_pref("gfx.font_rendering.cleartype_params.rendering_mode", 5);
 user_pref("gfx.font_rendering.cleartype_params.cleartype_level", 100);
 user_pref("gfx.font_rendering.directwrite.use_gdi_table_loading", false);
 user_pref("gfx.font_rendering.cleartype_params.enhanced_contrast", 50);
+
+// FIREFOX WINUI
+user_pref("uc.winui.aptos", true);
+user_pref("uc.winui.extra-highlights", true);
+user_pref("uc.winui.hide-shortcuts", true);
+user_pref("uc.winui.more-acrylic", true);
+user_pref("uc.winui.smaller-toolbar-buttons", true);
+user_pref("uc.winui.floating-tabs", true);
+user_pref("uc.winui.extension-tray", true);
+user_pref("uc.winui.transparent-navbar", true);
+user_pref("uc.winui.mac-back-forward", true);
+user_pref("uc.winui.alternate-urlbar-dropdown-animation", 3);
+
+
