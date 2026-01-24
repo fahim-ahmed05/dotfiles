@@ -55,3 +55,7 @@ https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?f
 - [Rumble - Auto Best Video Quality](https://update.greasyfork.org/scripts/494906/Rumble%20-%20Auto%20Best%20Video%20Quality.user.js)
 - [RDS CAPTCHA Solver](https://github.com/fahim-ahmed05/rds-captcha-solver/raw/main/rdscaptchasolver.user.js)
 - [Bypass Paywalls](https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=userscript/bpc.en.user.js)
+
+## Firefox
+
+- [Firefox Win-UI Theme](https://github.com/Lockframe/Firefox-WinUI)
