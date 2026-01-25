@@ -3,3 +3,6 @@
 
 # Download location
 -o ~/Downloads/yt-dlp/%(title)s.%(ext)s
+
+# Use Node.js for JavaScript rendering
+--js-runtimes node
