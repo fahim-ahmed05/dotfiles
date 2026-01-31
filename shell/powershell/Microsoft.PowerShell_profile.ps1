@@ -158,9 +158,6 @@ function Update-AllPackages {
     scoop update -a
     scoop status
 
-    Write-Host "`nUpdating pip...`n" -ForegroundColor Cyan
-    python.exe -m pip install --upgrade pip
-
     Write-Host "`nUpdating uv packages...`n" -ForegroundColor Cyan
     uv tool upgrade --all
     
