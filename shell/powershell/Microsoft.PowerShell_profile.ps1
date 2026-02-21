@@ -166,6 +166,27 @@ function Update-AllPackages {
     Write-Host "Done.`n" -ForegroundColor Green
 }
 
+function Install-Packages {
+    param(
+        [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true)]
+        [string[]]$Packages
+    )
+
+    foreach ($pkg in $Packages) {
+        if ($pkg -match '\.') {
+            Write-Host "`nInstalling $pkg via winget...`n" -ForegroundColor Cyan
+            winget install "$pkg"
+        }
+
+        else {
+            Write-Host "`nInstalling $pkg via scoop...`n" -ForegroundColor Cyan
+            scoop install "$pkg"
+        }
+    }
+
+    Remove-DesktopIcons
+}
+
 function pubip { (Invoke-WebRequest http://ifconfig.me/ip).Content }
 
 # Windows Terminal
