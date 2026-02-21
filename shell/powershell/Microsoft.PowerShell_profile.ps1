@@ -175,7 +175,7 @@ function Install-Packages {
     foreach ($pkg in $Packages) {
         if ($pkg -match '\.') {
             Write-Host "`nInstalling $pkg via winget...`n" -ForegroundColor Cyan
-            winget install "$pkg"
+            winget install "$pkg" --source winget --accept-package-agreements --accept-source-agreements
         }
 
         else {
