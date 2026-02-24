@@ -1,0 +1,69 @@
+{
+	"global": {
+		"mode": "hardlink",
+		"trash": true,
+		"trashDir": "%USERPROFILE%\\Trash\\dotmngr"
+	},
+	"packages": {
+		"pwsh": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\powershell\\Microsoft.PowerShell_profile.ps1",
+					"to": "%USERPROFILE%\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\powershell\\Microsoft.PowerShell_profile.ps1",
+					"to": "%USERPROFILE%\\Documents\\PowerShell\\Microsoft.VSCode_profile.ps1"
+				}
+			]
+		},
+		"firefox": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\browser\\firefox\\policies.json",
+					"to": "C:\\Program Files\\Mozilla Firefox\\distribution\\policies.json"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\browser\\firefox\\user.js",
+					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\ohjjmxud.Personal\\user.js"
+				}
+			]
+		},
+		"autohotkey": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\ahk\\main.ahk",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\autohotkey.lnk"
+				}
+			]
+		},
+		"flowlauncher": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\FlowLauncher\\Plugins",
+					"to": "%APPDATA%\\FlowLauncher\\Plugins"
+				},
+				{
+					"from": "%USERPROFILE%\\Configs\\FlowLauncher\\Settings",
+					"to": "%APPDATA%\\FlowLauncher\\Settings"
+				}
+			]
+		},
+		"quicklook": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\QuickLook\\UserData",
+					"to": "%USERPROFILE%\\scoop\\persist\\quicklook\\UserData"
+				}
+			]
+		}
+	}
+}
