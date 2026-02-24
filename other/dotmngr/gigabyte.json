@@ -28,6 +28,11 @@
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\browser\\firefox\\user.js",
 					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\ohjjmxud.Personal\\user.js"
+				},
+				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\gitpkgs\\github.com__Lockframe__Firefox-WinUI\\chrome",
+					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\ohjjmxud.Personal\\chrome"
 				}
 			]
 		},
@@ -62,6 +67,47 @@
 				{
 					"from": "%USERPROFILE%\\Configs\\QuickLook\\UserData",
 					"to": "%USERPROFILE%\\scoop\\persist\\quicklook\\UserData"
+				}
+			]
+		},
+		"mpv": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\gitpkgs\\github.com__Samillion__ModernZ\\modernz.lua",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\modernz.lua"
+				},
+				{
+					"from": "%USERPROFILE%\\gitpkgs\\github.com__Samillion__ModernZ\\fluent-system-icons.ttf",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\fonts\\fluent-system-icons.ttf"
+				},
+				{
+					"from": "%USERPROFILE%\\gitpkgs\\github.com__po5__thumbfast\\thumbfast.lua",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\thumbfast.lua"
+				},
+				{
+					"from": "%USERPROFILE%\\gitpkgs\\github.com__fahim-ahmed05__mpv-autosub\\autosub.lua",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\autosub.lua"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\mpv\\input.conf",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\input.conf"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\mpv\\mpv.conf",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\mpv.conf"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\mpv\\script-opts\\autosub.conf",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\autosub.conf"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\mpv\\script-opts\\thumbfast.conf",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\thumbfast.conf"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\mpv\\script-opts\\modernz.conf",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\modernz.conf"
 				}
 			]
 		}
