@@ -214,5 +214,13 @@ function Clear-WindowsCache {
     }
 }
 
+function dotmngr {
+    $computer = $env:COMPUTERNAME.ToLowerInvariant()
+    $config   = Join-Path $env:UserProfile "git\dotfiles\other\dotmngr\$computer.json"
+    $script   = Join-Path $env:UserProfile "git\dotmngr\dotmngr.ps1"
+
+    & $script -ConfigPath $config @args
+}
+
 # Zoxide Initialization
 . ([ScriptBlock]::Create((zoxide init powershell | Out-String)))
