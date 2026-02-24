@@ -24,6 +24,9 @@ function Update-AllPackages {
 
     Write-Host "`nUpdating uv packages...`n" -ForegroundColor Cyan
     uv tool upgrade --all
+
+    Write-Host "`nUpdating gitpkg packages...`n" -ForegroundColor Cyan
+    gitpkg update all
     
     Write-Host "`nRemoving desktop icons...`n" -ForegroundColor Cyan
     Remove-DesktopIcons
@@ -50,3 +53,5 @@ function Install-Packages {
 
     Remove-DesktopIcons
 }
+
+function gitpkg { & "$env:UserProfile\Git\gitpkg\gitpkg.ps1" @args }
