@@ -122,7 +122,19 @@
 					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\cineindex.ico"
 				}
 			]
-
+		},
+		"logisim": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\scoop\\apps\\microsoft-jdk\\current\\bin\\java.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Logisim.lnk",
+					"arguments": "-jar \"%USERPROFILE%\\Apps\\Logisim\\logisim-generic-2.7.1.jar\"",
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\logisim.ico",
+					"windowStyle": 7
+				}
+			]
 		}
 	}
 }
