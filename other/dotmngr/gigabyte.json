@@ -135,6 +135,38 @@
 					"windowStyle": 7
 				}
 			]
+		},
+		"power": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%SYSTEMROOT%\\System32\\shutdown.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Reboot.lnk",
+					"arguments": "/r /t 0",
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\power.ico",
+					"windowStyle": 7
+				},
+				{
+					"from": "%SYSTEMROOT%\\System32\\shutdown.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Reboot to BIOS.lnk",
+					"arguments": "/r /fw /t 0",
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\power.ico",
+					"windowStyle": 7
+				}
+			]
+		},
+		"winutil": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\scoop\\shims\\alacritty.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Windows Utility.lnk",
+					"arguments": "-e pwsh -noprofile -command \"irm https://christitus.com/win | iex\"",
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\ctt-winutils.ico"
+				}
+			]
 		}
 	}
 }
