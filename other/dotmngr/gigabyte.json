@@ -110,6 +110,19 @@
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\modernz.conf"
 				}
 			]
+		},
+		"cineindex": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\scoop\\shims\\alacritty.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\CineIndex.lnk",
+					"arguments": "-e pwsh -noprofile -command cineindex",
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\cineindex.ico"
+				}
+			]
+
 		}
 	}
 }
