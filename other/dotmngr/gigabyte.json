@@ -15,6 +15,11 @@
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\powershell\\Microsoft.PowerShell_profile.ps1",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Microsoft.VSCode_profile.ps1"
+				},
+				{
+					"mode":"junction",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\powershell\\modules\\ManagePackages",
+					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\ManagePackages"
 				}
 			]
 		},
