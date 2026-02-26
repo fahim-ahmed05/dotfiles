@@ -132,7 +132,7 @@
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Logisim.lnk",
 					"arguments": "-jar \"%USERPROFILE%\\Apps\\Logisim\\logisim-generic-2.7.1.jar\"",
 					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\logisim.ico",
-					"windowStyle": 7
+					"windowStyle": "minimized"
 				}
 			]
 		},
@@ -145,14 +145,14 @@
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Reboot.lnk",
 					"arguments": "/r /t 0",
 					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\power.ico",
-					"windowStyle": 7
+					"windowStyle": "minimized"
 				},
 				{
 					"from": "%SYSTEMROOT%\\System32\\shutdown.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Reboot to BIOS.lnk",
 					"arguments": "/r /fw /t 0",
 					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\power.ico",
-					"windowStyle": 7
+					"windowStyle": "minimized"
 				}
 			]
 		},
