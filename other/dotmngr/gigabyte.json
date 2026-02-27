@@ -91,7 +91,7 @@
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\thumbfast.lua"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkgs\\github.com__fahim-ahmed05__mpv-autosub\\autosub.lua",
+					"from": "%USERPROFILE%\\Git\\mpv-autosub\\autosub.lua",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\autosub.lua"
 				},
 				{
