@@ -1,5 +1,6 @@
 # Modules
-Import-Module -Name ManagePackages -Force -ErrorAction SilentlyContinue
+Import-Module -Name PkgOps -Force -ErrorAction SilentlyContinue
+Import-Module -Name FileOps -Force -ErrorAction SilentlyContinue
 
 # Aliases
 Set-Alias -Name ls -Value eza
@@ -171,46 +172,6 @@ function hb {
     }
     catch {
         Write-Error "Failed to upload the document. Error: $_"
-    }
-}
-
-function Remove-DesktopIcons {
-    $paths = @(
-        "$env:UserProfile\Desktop",
-        "C:\Users\Public\Desktop"
-    )
-
-    foreach ($path in $paths) {
-        if (Test-Path $path) {
-            Remove-Item "$path\*.lnk" -Force -ErrorAction SilentlyContinue        
-        }       
-    }
-}
-
-function Clear-WindowsCache {
-    $paths = @(
-        "$env:SystemRoot\Prefetch",
-        "$env:SystemRoot\Temp",
-        "$env:TEMP",
-        "$env:LocalAppData\Package Cache",
-        "$env:LocalAppData\pip\cache",
-        "$env:AppData\stremio\stremio-server\stremio-cache",
-        "$env:UserProfile\Configs\FlowLauncher\Settings\Plugins\Flow.Launcher.Plugin.ClipboardPlus\CachedImages"
-    )
-
-    foreach ($path in $paths) {
-        if (Test-Path $path) {
-            Remove-Item -Path "$path\*" -Force -Recurse -ErrorAction SilentlyContinue
-        }
-    }
-
-    if (Get-Command scoop -ErrorAction SilentlyContinue) {
-        scoop cache rm -a
-        scoop cleanup -a
-    }
-
-    if (Get-Command uv -ErrorAction SilentlyContinue) {
-        uv cache clean
     }
 }
 
