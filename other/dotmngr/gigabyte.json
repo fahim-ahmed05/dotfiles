@@ -17,7 +17,7 @@
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Microsoft.VSCode_profile.ps1"
 				},
 				{
-					"mode":"junction",
+					"mode": "junction",
 					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\powershell\\modules\\ManagePackages",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\ManagePackages"
 				}
@@ -118,9 +118,14 @@
 		},
 		"cineindex": {
 			"enabled": true,
-			"mode": "shortcut",
 			"items": [
 				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Configs\\CineIndex",
+					"to": "%LOCALAPPDATA%\\CineIndex\\CineIndex"
+				},
+				{
+					"mode": "shortcut",
 					"from": "%USERPROFILE%\\scoop\\shims\\alacritty.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\CineIndex.lnk",
 					"arguments": "-e pwsh -noprofile -command cineindex",
@@ -180,6 +185,104 @@
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\sumatra_pdf\\settings.txt",
 					"to": "%LOCALAPPDATA%\\SumatraPDF\\SumatraPDF-settings.txt"
+				}
+			]
+		},
+		"aimp": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\AIMP\\Profile",
+					"to": "%USERPROFILE%\\scoop\\persist\\aimp\\Profile"
+				}
+			]
+		},
+		"ayugram": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\AyuGram\\tdata",
+					"to": "%USERPROFILE%\\scoop\\persist\\ayugram\\tdata"
+				}
+			]
+		},
+		"browsertamer": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\BrowserTamer\\config.ini",
+					"to": "%LOCALAPPDATA%\\bt\\config.ini"
+				}
+			]
+		},
+		"foobar2k": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\foobar2000\\profile",
+					"to": "%USERPROFILE%\\scoop\\persist\\foobar2000\\profile"
+				}
+			]
+		},
+		"freetube": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\FreeTube",
+					"to": "%APPDATA%\\FreeTube"
+				}
+			]
+		},
+		"stremiokai": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\StremioKai\\stremio.exe.WebView2",
+					"to": "%USERPROFILE%\\scoop\\persist\\stremio-kai\\stremio.exe.WebView2"
+				}
+			]
+		},
+		"syncthing": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\Syncthing\\config",
+					"to": "%USERPROFILE%\\scoop\\persist\\syncthing\\config"
+				}
+			]
+		},
+		"telegram": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\Telegram\\tdata",
+					"to": "%USERPROFILE%\\scoop\\persist\\telegram\\tdata"
+				}
+			]
+		},
+		"torbrowser": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\TorBrowser\\profile.default",
+					"to": "%USERPROFILE%\\scoop\\persist\\tor-browser\\TorBrowser\\Data\\Browser\\profile.default"
+				}
+			]
+		},
+		"ytdlp": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\yt-dlp\\config",
+					"to": "%APPDATA%\\yt-dlp\\config"
 				}
 			]
 		}
