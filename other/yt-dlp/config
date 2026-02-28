@@ -1,8 +1,20 @@
-# Use aria2c
+# ---------- External downloader ----------
 --external-downloader aria2c
+--external-downloader-args aria2c:"-x16 -s16 -k1M"
 
-# Download location
--o ~/Downloads/yt-dlp/%(title)s.%(ext)s
+# ---------- Paths ----------
+--paths home:~/Downloads/yt-dlp
+--paths temp:~/Downloads/yt-dlp/temp
 
-# Use Node.js for JavaScript rendering
+# ---------- Output filename ----------
+-o %(title)s.%(ext)s
+
+# ---------- Keep partial downloads ----------
+--part
+
+# ---------- JS runtime ----------
 --js-runtimes node
+
+# ---------- Resume partially downloaded files ----------
+--continue
+
