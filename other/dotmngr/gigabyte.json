@@ -172,6 +172,16 @@
 					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\ctt-winutils.ico"
 				}
 			]
+		},
+		"sumatrapdf": {
+			"enabled": true,
+			"mode": "copyOnce",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\sumatra_pdf\\settings.txt",
+					"to": "%LOCALAPPDATA%\\SumatraPDF\\SumatraPDF-settings.txt"
+				}
+			]
 		}
 	}
 }
