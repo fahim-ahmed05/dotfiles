@@ -302,7 +302,6 @@
 		},
 		"wt": {
 			"enabled": true,
-			"mode": "junction",
 			"items": [
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\windows\\terminal\\settings.json",
