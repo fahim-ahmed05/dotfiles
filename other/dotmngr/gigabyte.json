@@ -290,6 +290,25 @@
 					"to": "%APPDATA%\\yt-dlp\\config"
 				}
 			]
+		},
+		"winget": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\windows\\winget\\settings.json",
+					"to": "%LOCALAPPDATA%\\Packages\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\\LocalState\\settings.json"
+				}
+			]
+		},
+		"wt": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\windows\\terminal\\settings.json",
+					"to": "%LOCALAPPDATA%\\Packages\\Microsoft.WindowsTerminal_8wekyb3d8bbwe\\LocalState\\settings.json"
+				}
+			]
 		}
 	}
 }
