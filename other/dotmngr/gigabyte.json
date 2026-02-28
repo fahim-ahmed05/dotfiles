@@ -18,8 +18,13 @@
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\powershell\\modules\\ManagePackages",
-					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\ManagePackages"
+					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\powershell\\modules\\PkgOps",
+					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\PkgOps"
+				},
+				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\powershell\\modules\\FileOps",
+					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\FileOps"
 				}
 			]
 		},
