@@ -168,6 +168,11 @@
 					"arguments": "/r /fw /t 0",
 					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\power.ico",
 					"windowStyle": "minimized"
+				},
+				{
+					"from": "%SYSTEMROOT%\\System32\\SlideToShutDown.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Slide to Shutdown.lnk",
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\power.ico"
 				}
 			]
 		},
