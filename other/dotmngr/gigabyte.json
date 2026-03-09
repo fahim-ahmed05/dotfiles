@@ -88,8 +88,8 @@
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\modernz.lua"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkgs\\github.com__Samillion__ModernZ\\fluent-system-icons.ttf",
-					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\fonts\\fluent-system-icons.ttf"
+					"from": "%USERPROFILE%\\gitpkgs\\github.com__Samillion__ModernZ\\modernz-icons.ttf",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\fonts\\modernz-icons.ttf"
 				},
 				{
 					"from": "%USERPROFILE%\\gitpkgs\\github.com__po5__thumbfast\\thumbfast.lua",
