@@ -24,9 +24,9 @@
     - "exclude" matches by name and applies to both files and folders.
 
 .PARAMETER Action
-    Clean  - Move items from all source folders to Trash.
+    Clean  - Move items from all source folders to Trash. (default)
     Empty  - Permanently delete everything in Trash (honoring trashExclude).
-    All    - Do both in sequence. (default)
+    All    - Do both in sequence.
 
 .PARAMETER Source
     Optional partial match against a source path in the config.
@@ -52,7 +52,7 @@
 param(
     [string]$ConfigPath = (Join-Path $PSScriptRoot "..\configs\clear_folders.json"),
     [ValidateSet("Clean", "Empty", "All")]
-    [string]$Action = "All",
+    [string]$Action = "Clean",
     [string]$Source = ""
 )
 
