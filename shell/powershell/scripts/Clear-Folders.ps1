@@ -1,3 +1,54 @@
+<#
+.SYNOPSIS
+    Moves folder contents to a Trash directory and/or empties the Trash.
+
+.DESCRIPTION
+    Reads source folders, exclusions, and the Trash path from a JSON config file.
+    Paths in the config support environment variables (e.g. %USERPROFILE%).
+
+.PARAMETER ConfigPath
+    Path to the JSON config file.
+    Defaults to: <script-dir>\..\configs\clear_folders.json
+
+    Expected config shape:
+        {
+          "trashPath": "%USERPROFILE%\\Home\\Trash",
+          "sources": [
+            { "path": "%USERPROFILE%\\Desktop", "exclude": ["qBittorrent"] },
+            { "path": "%USERPROFILE%\\Downloads" }
+          ],
+          "trashExclude": ["DoNotDelete"]
+        }
+
+    - "exclude" is optional per source; omit to move everything.
+    - "exclude" matches by name and applies to both files and folders.
+
+.PARAMETER Action
+    Clean  - Move items from all source folders to Trash.
+    Empty  - Permanently delete everything in Trash (honoring trashExclude).
+    All    - Do both in sequence. (default)
+
+.PARAMETER Source
+    Optional partial match against a source path in the config.
+    When specified, only that source is cleaned.
+    Example: -Source Desktop
+
+.EXAMPLE
+    .\Clear-Folders.ps1
+    Cleans all sources and empties Trash using the default config.
+
+.EXAMPLE
+    .\Clear-Folders.ps1 -Action Clean -Source Downloads
+    Only moves Downloads contents to Trash.
+
+.EXAMPLE
+    .\Clear-Folders.ps1 -Action Empty
+    Only empties the Trash folder.
+
+.EXAMPLE
+    .\Clear-Folders.ps1 -ConfigPath "D:\configs\myclean.json" -Action Clean
+    Cleans sources using a custom config file.
+#>
 param(
     [string]$ConfigPath = (Join-Path $PSScriptRoot "..\configs\clear_folders.json"),
     [ValidateSet("Clean", "Empty", "All")]
