@@ -43,7 +43,7 @@ function Install-Packages {
         $digitCount = ([regex]::Matches($pkg, '\d')).Count
 
         if ($digitCount -gt 2) {
-            Write-Host "`nInstalling $pkg via Microsoft Store...`n" -ForegroundColor Cyan
+            Write-Host "`nInstalling $pkg via winget...`n" -ForegroundColor Cyan
             winget install "$pkg" --source msstore --accept-package-agreements --accept-source-agreements
         }
 
