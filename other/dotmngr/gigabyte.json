@@ -37,7 +37,7 @@
 				},
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\browser\\firefox\\user.js",
-					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\ohjjmxud.Personal\\user.js"
+					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\c2ipkr4o.personal\\user.js"
 				}
 			]
 		},
