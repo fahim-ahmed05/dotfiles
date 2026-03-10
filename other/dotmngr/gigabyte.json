@@ -214,7 +214,7 @@
 			]
 		},
 		"browsertamer": {
-			"enabled": true,
+			"enabled": false,
 			"items": [
 				{
 					"from": "%USERPROFILE%\\Configs\\BrowserTamer\\config.ini",
