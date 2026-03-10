@@ -4,6 +4,7 @@
         "%SYSTEMROOT%\\Temp",
         "%TEMP%",
         "%LOCALAPPDATA%\\Package Cache",
+        "%ProgramData%\\Package Cache",
         "%LOCALAPPDATA%\\pip\\cache",
         "%APPDATA%\\stremio\\stremio-server\\stremio-cache",
         "%USERPROFILE%\\Configs\\FlowLauncher\\Settings\\Plugins\\Flow.Launcher.Plugin.ClipboardPlus\\CachedImages"
