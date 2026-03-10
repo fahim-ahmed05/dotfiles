@@ -40,7 +40,14 @@ function Install-Packages {
     )
 
     foreach ($pkg in $Packages) {
-        if ($pkg -match '\.') {
+        $digitCount = ([regex]::Matches($pkg, '\d')).Count
+
+        if ($digitCount -gt 2) {
+            Write-Host "`nInstalling $pkg via Microsoft Store...`n" -ForegroundColor Cyan
+            winget install "$pkg" --source msstore --accept-package-agreements --accept-source-agreements
+        }
+
+        elseif ($pkg -match '\.') {
             Write-Host "`nInstalling $pkg via winget...`n" -ForegroundColor Cyan
             winget install "$pkg" --source winget --accept-package-agreements --accept-source-agreements
         }
