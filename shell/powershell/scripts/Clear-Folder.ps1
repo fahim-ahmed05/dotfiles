@@ -24,12 +24,14 @@
     - "exclude" matches by name and applies to both files and folders.
 
 .PARAMETER Source
-    Optional. Can be either:
-    - A name/partial match against a config source path (e.g. "Downloads" matches "%USERPROFILE%\Downloads").
-      The config's exclude list will be applied.
-    - A direct path (rooted like "C:\Folder", relative like ".\subfolder", or "%ENV%\path").
-      No exclusions are applied for direct paths.
-    - "." to target the current directory.
+    Optional. Behaviour mirrors rm semantics:
+    - Omit              : clean all sources defined in the config (with their excludes).
+    - "Downloads"       : partial match against config sources, applies config excludes.
+    - "."               : move the current folder itself to Trash.
+    - "*"               : move contents of the current folder to Trash.
+    - "C:\Folder"       : move that folder itself to Trash.
+    - "C:\Folder\*"     : move contents of that folder to Trash.
+    - "%ENV%\path"      : env vars are expanded; same . / * rules apply.
 
 .PARAMETER Empty
     Empties the Trash only. Cannot be combined with -All.
@@ -43,11 +45,19 @@
 
 .EXAMPLE
     .\Clear-Folder.ps1 Downloads
-    Cleans Downloads (matched from config).
+    Cleans Downloads (matched from config, excludes applied).
 
 .EXAMPLE
     .\Clear-Folder.ps1 .
-    Cleans the current directory.
+    Moves the current folder itself to Trash.
+
+.EXAMPLE
+    .\Clear-Folder.ps1 *
+    Moves the contents of the current folder to Trash.
+
+.EXAMPLE
+    .\Clear-Folder.ps1 "C:\Foo\*"
+    Moves the contents of C:\Foo to Trash.
 
 .EXAMPLE
     .\Clear-Folder.ps1 -Empty
@@ -77,16 +87,57 @@ if (-not (Test-Path $trashPath)) {
     New-Item -ItemType Directory -Path $trashPath | Out-Null
 }
 
+function Assert-SafePath {
+    param([string]$ResolvedPath)
+    $resolvedHome = [System.IO.Path]::GetFullPath($HOME)
+    if ($ResolvedPath -eq $resolvedHome) {
+        Write-Warning "Refusing to move the user home folder ($ResolvedPath). Specify a subfolder instead."
+        return $false
+    }
+    return $true
+}
+
+# Moves the folder itself into Trash
+function Move-FolderToTrash {
+    param([string]$SourcePath)
+
+    $resolved = [System.IO.Path]::GetFullPath($SourcePath)
+
+    if (-not (Test-Path $resolved)) {
+        Write-Warning "Path not found: $resolved"
+        return
+    }
+    if (-not (Assert-SafePath $resolved)) { return }
+
+    $destination = Join-Path $trashPath (Split-Path $resolved -Leaf)
+    if (Test-Path $destination) {
+        $timestamp = (Get-Date).ToString("yyyyMMdd_HHmmss")
+        $destination = "${destination}_$timestamp"
+    }
+
+    try {
+        Move-Item -Path $resolved -Destination $destination -Force -ErrorAction Stop
+        Write-Host "Moved: $resolved -> $destination" -ForegroundColor Green
+    }
+    catch {
+        Write-Warning "Failed: $resolved. Error: $($_.Exception.Message)"
+    }
+}
+
+# Moves the contents of a folder into Trash
 function Move-ToTrash {
     param([string]$SourcePath, [string[]]$Exclude)
 
-    if (-not (Test-Path $SourcePath)) {
-        Write-Warning "Source path not found: $SourcePath"
+    $resolved = [System.IO.Path]::GetFullPath($SourcePath)
+
+    if (-not (Test-Path $resolved)) {
+        Write-Warning "Source path not found: $resolved"
         return
     }
+    if (-not (Assert-SafePath $resolved)) { return }
 
     # Exclude matches both files and folders by name
-    $items = Get-ChildItem -Path $SourcePath -Force
+    $items = Get-ChildItem -Path $resolved -Force
 
     foreach ($item in $items) {
         if ($Exclude -notcontains $item.Name) {
@@ -110,7 +161,7 @@ function Move-ToTrash {
         }
     }
 
-    Write-Host "`n$SourcePath cleaned. Kept: $($Exclude -join ', ')" -ForegroundColor Cyan
+    Write-Host "`n$resolved cleaned. Kept: $($Exclude -join ', ')" -ForegroundColor Cyan
 }
 
 function Clear-Trash {
@@ -140,12 +191,25 @@ if (-not $Empty) {
     if ($Source) {
         # Treat as a direct path if it's rooted, starts with . or .., or contains % (env var)
         $isPath = [System.IO.Path]::IsPathRooted($Source) -or
-                  $Source -match '^\.\.?[/\\]?' -or
-                  $Source -match '%'
+                  $Source -match '^\.' -or
+                  $Source -match '%' -or
+                  $Source -eq '*'
         if ($isPath) {
-            $expandedSource = [System.Environment]::ExpandEnvironmentVariables($Source)
-            $resolvedSource = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($expandedSource)
-            Move-ToTrash -SourcePath $resolvedSource -Exclude @()
+            # Trailing \* or bare * = move contents; everything else = move the folder itself
+            if ($Source -eq '*') {
+                # * = contents of current directory
+                Move-ToTrash -SourcePath (Get-Location).Path -Exclude @()
+            } elseif ($Source -match '[/\\]\*$' -or $Source.EndsWith('*')) {
+                # path\* or path/* = contents of that folder
+                $base = [System.Environment]::ExpandEnvironmentVariables($Source -replace '[/\\]?\*$', '')
+                $resolved = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($base)
+                Move-ToTrash -SourcePath $resolved -Exclude @()
+            } else {
+                # bare path or . = move the folder itself
+                $expanded = [System.Environment]::ExpandEnvironmentVariables($Source)
+                $resolved = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($expanded)
+                Move-FolderToTrash -SourcePath $resolved
+            }
         } else {
             # Match by name against config sources
             $sources = $config.sources | Where-Object { $_.path -like "*$Source*" }
