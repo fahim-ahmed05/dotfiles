@@ -317,6 +317,18 @@
 					"to": "%APPDATA%\\alacritty\\alacritty.toml"
 				}
 			]
+		},
+		"mumuplayer": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main\\MuMuNxMain.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Android 12.lnk",
+					"WorkingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
+					"arguments": "-v 0"
+				}
+			]
 		}
 	}
 }
