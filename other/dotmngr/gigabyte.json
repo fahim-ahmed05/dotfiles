@@ -308,6 +308,15 @@
 					"to": "%LOCALAPPDATA%\\Packages\\Microsoft.WindowsTerminal_8wekyb3d8bbwe\\LocalState\\settings.json"
 				}
 			]
+		},
+		"alacritty": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\alacritty\\alacritty.toml",
+					"to": "%APPDATA%\\alacritty\\alacritty.toml"
+				}
+			]
 		}
 	}
 }
