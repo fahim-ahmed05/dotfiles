@@ -139,7 +139,7 @@
 			"items": [
 				{
 					"from": "%USERPROFILE%\\scoop\\apps\\microsoft-jdk\\current\\bin\\java.exe",
-					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Logisim.lnk",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps\\Logisim.lnk",
 					"arguments": "-jar \"%USERPROFILE%\\Apps\\Logisim\\logisim-generic-2.7.1.jar\"",
 					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\logisim.ico",
 					"windowStyle": "minimized"
@@ -327,6 +327,17 @@
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Android 12.lnk",
 					"WorkingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
 					"arguments": "-v 0"
+				}
+			]
+		},
+		"ghosttoolbox": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "C:\\Ghost Toolbox\\toolbox.updater.x64.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Ghost Toolbox.lnk",
+					"WorkingDirectory": "C:\\Ghost Toolbox"
 				}
 			]
 		}
