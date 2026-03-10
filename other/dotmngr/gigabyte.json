@@ -340,6 +340,15 @@
 					"WorkingDirectory": "C:\\Ghost Toolbox"
 				}
 			]
+		},
+		"zed": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\editor\\zed\\settings.json",
+					"to": "%APPDATA%\\Zed\\settings.json"
+				}
+			]
 		}
 	}
 }
