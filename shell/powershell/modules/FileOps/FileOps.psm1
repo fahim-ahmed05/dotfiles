@@ -33,5 +33,6 @@ function Remove-DesktopIcons {
     }
 }
 
+function Clear-DesktopFolder { & "$env:UserProfile\Git\dotfiles\shell\powershell\scripts\Clear-Folders.ps1" -Action "Clean" -Source "Desktop" }
 function Clear-DownloadsFolder { & "$env:UserProfile\Git\dotfiles\shell\powershell\scripts\Clear-Folders.ps1" -Action "Clean" -Source "Downloads" }
 function Clear-TrashFolder { & "$env:UserProfile\Git\dotfiles\shell\powershell\scripts\Clear-Folders.ps1" -Action "Empty" }
