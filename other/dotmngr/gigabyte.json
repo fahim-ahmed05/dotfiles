@@ -264,7 +264,8 @@
 					"mode": "shortcut",
 					"from": "%USERPROFILE%\\scoop\\apps\\syncthing\\current\\syncthing.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Syncthing.lnk",
-					"arguments": "--home \"C:\\Users\\Fahim\\scoop\\apps\\syncthing\\current\\config\" --no-upgrade"
+					"arguments": "--home \"C:\\Users\\Fahim\\scoop\\apps\\syncthing\\current\\config\" --no-upgrade",
+					"windowStyle": "minimized"
 				}
 			]
 		},
