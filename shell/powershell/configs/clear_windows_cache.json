@@ -2,12 +2,12 @@
     "paths": [
         "%SYSTEMROOT%\\Prefetch",
         "%SYSTEMROOT%\\Temp",
-        "%TEMP%",
+        "%LOCALAPPDATA%\\Temp",
         "%LOCALAPPDATA%\\Package Cache",
         "%ProgramData%\\Package Cache",
         "%LOCALAPPDATA%\\pip\\cache",
         "%APPDATA%\\stremio\\stremio-server\\stremio-cache",
-        "%USERPROFILE%\\Configs\\FlowLauncher\\Settings\\Plugins\\Flow.Launcher.Plugin.ClipboardPlus\\CachedImages"
+        "%APPDATA%\\FlowLauncher\\Settings\\Plugins\\Flow.Launcher.Plugin.ClipboardPlus\\CachedImages"
     ],
     "commands": [
         "scoop cache rm -a",
