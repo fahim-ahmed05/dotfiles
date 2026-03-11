@@ -42,7 +42,7 @@ function Install-Packages {
     foreach ($pkg in $Packages) {
         $digitCount = ([regex]::Matches($pkg, '\d')).Count
 
-        if ($digitCount -gt 2) {
+        if ($digitCount -gt 1) {
             Write-Host "`nInstalling $pkg via winget...`n" -ForegroundColor Cyan
             winget install "$pkg" --source msstore --accept-package-agreements --accept-source-agreements
         }
