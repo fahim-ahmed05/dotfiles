@@ -356,6 +356,15 @@
 					"to": "%APPDATA%\\Zed\\settings.json"
 				}
 			]
+		},
+		"filepilot": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\fpilot\\FPilot-Config.json",
+					"to": "%APPDATA%\\Voidstar\\FilePilot\\FPilot-Config.json"
+				}
+			]
 		}
 	}
 }
