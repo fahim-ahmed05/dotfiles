@@ -365,6 +365,24 @@
 					"to": "%APPDATA%\\Voidstar\\FilePilot\\FPilot-Config.json"
 				}
 			]
+		},
+		"musicbee": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\MusicBee\\AppData",
+					"to": "%USERPROFILE%\\scoop\\persist\\musicbee\\AppData"
+				},
+				{
+					"from": "%USERPROFILE%\\Configs\\MusicBee\\Library",
+					"to": "%USERPROFILE%\\scoop\\persist\\musicbee\\Library"
+				},
+				{
+					"from": "%USERPROFILE%\\Configs\\MusicBee\\Plugins",
+					"to": "%USERPROFILE%\\scoop\\persist\\musicbee\\Plugins"
+				}
+			]
 		}
 	}
 }
