@@ -7,7 +7,8 @@
         "%ProgramData%\\Package Cache",
         "%LOCALAPPDATA%\\pip\\cache",
         "%APPDATA%\\stremio\\stremio-server\\stremio-cache",
-        "%APPDATA%\\FlowLauncher\\Settings\\Plugins\\Flow.Launcher.Plugin.ClipboardPlus\\CachedImages"
+        "%APPDATA%\\FlowLauncher\\Settings\\Plugins\\Flow.Launcher.Plugin.ClipboardPlus\\CachedImages",
+        "C:\\Ghost Toolbox\\wget"
     ],
     "commands": [
         "scoop cache rm -a",
