@@ -1,0 +1,388 @@
+{
+	"global": {
+		"mode": "hardlink",
+		"trash": true,
+		"trashDir": "%USERPROFILE%\\Trash\\dotmngr"
+	},
+	"packages": {
+		"pwsh": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\powershell\\Microsoft.PowerShell_profile.ps1",
+					"to": "%USERPROFILE%\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\powershell\\Microsoft.PowerShell_profile.ps1",
+					"to": "%USERPROFILE%\\Documents\\PowerShell\\Microsoft.VSCode_profile.ps1"
+				},
+				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\powershell\\modules\\PkgOps",
+					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\PkgOps"
+				},
+				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\powershell\\modules\\FileOps",
+					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\FileOps"
+				}
+			]
+		},
+		"firefox": {
+			"enabled": false,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\browser\\firefox\\policies.json",
+					"to": "C:\\Program Files\\Mozilla Firefox\\distribution\\policies.json"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\browser\\firefox\\user.js",
+					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\c2ipkr4o.personal\\user.js"
+				}
+			]
+		},
+		"autohotkey": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\ahk\\main.ahk",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\autohotkey.lnk"
+				}
+			]
+		},
+		"flowlauncher": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\FlowLauncher\\Plugins",
+					"to": "%APPDATA%\\FlowLauncher\\Plugins"
+				},
+				{
+					"from": "%USERPROFILE%\\Configs\\FlowLauncher\\Settings",
+					"to": "%APPDATA%\\FlowLauncher\\Settings"
+				}
+			]
+		},
+		"quicklook": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\QuickLook\\UserData",
+					"to": "%USERPROFILE%\\scoop\\persist\\quicklook\\UserData"
+				}
+			]
+		},
+		"mpv": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\gitpkgs\\github.com__Samillion__ModernZ\\modernz.lua",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\modernz.lua"
+				},
+				{
+					"from": "%USERPROFILE%\\gitpkgs\\github.com__Samillion__ModernZ\\modernz-icons.ttf",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\fonts\\modernz-icons.ttf"
+				},
+				{
+					"from": "%USERPROFILE%\\gitpkgs\\github.com__po5__thumbfast\\thumbfast.lua",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\thumbfast.lua"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\mpv-autosub\\autosub.lua",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\autosub.lua"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\mpv\\input.conf",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\input.conf"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\mpv\\mpv.conf",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\mpv.conf"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\mpv\\script-opts\\autosub.conf",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\autosub.conf"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\mpv\\script-opts\\thumbfast.conf",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\thumbfast.conf"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\mpv\\script-opts\\modernz.conf",
+					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\modernz.conf"
+				}
+			]
+		},
+		"cineindex": {
+			"enabled": true,
+			"items": [
+				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Configs\\CineIndex",
+					"to": "%LOCALAPPDATA%\\CineIndex\\CineIndex"
+				},
+				{
+					"mode": "shortcut",
+					"from": "%USERPROFILE%\\scoop\\shims\\alacritty.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\CineIndex.lnk",
+					"arguments": "-e pwsh -noprofile -command cineindex",
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\cineindex.ico"
+				}
+			]
+		},
+		"logisim": {
+			"enabled": false,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\scoop\\apps\\microsoft-jdk\\current\\bin\\java.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps\\Logisim.lnk",
+					"arguments": "-jar \"%USERPROFILE%\\Apps\\Logisim\\logisim-generic-2.7.1.jar\"",
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\logisim.ico",
+					"windowStyle": "minimized"
+				}
+			]
+		},
+		"power": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%SYSTEMROOT%\\System32\\shutdown.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Reboot.lnk",
+					"arguments": "/r /t 0",
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\power.ico",
+					"windowStyle": "minimized"
+				},
+				{
+					"from": "%SYSTEMROOT%\\System32\\shutdown.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Reboot to BIOS.lnk",
+					"arguments": "/r /fw /t 0",
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\power.ico",
+					"windowStyle": "minimized"
+				},
+				{
+					"from": "%SYSTEMROOT%\\System32\\SlideToShutDown.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Slide to Shutdown.lnk",
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\power.ico"
+				}
+			]
+		},
+		"winutil": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\scoop\\shims\\alacritty.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Windows Utility.lnk",
+					"arguments": "-e pwsh -noprofile -command \"irm https://christitus.com/win | iex\"",
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\ctt-winutils.ico"
+				}
+			]
+		},
+		"sumatrapdf": {
+			"enabled": true,
+			"mode": "seed",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\sumatra_pdf\\settings.txt",
+					"to": "%LOCALAPPDATA%\\SumatraPDF\\SumatraPDF-settings.txt"
+				}
+			]
+		},
+		"aimp": {
+			"enabled": false,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\AIMP\\Profile",
+					"to": "%USERPROFILE%\\scoop\\persist\\aimp\\Profile"
+				}
+			]
+		},
+		"ayugram": {
+			"enabled": false,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\AyuGram\\tdata",
+					"to": "%USERPROFILE%\\scoop\\persist\\ayugram\\tdata"
+				}
+			]
+		},
+		"browsertamer": {
+			"enabled": false,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\BrowserTamer\\config.ini",
+					"to": "%LOCALAPPDATA%\\bt\\config.ini"
+				}
+			]
+		},
+		"foobar2k": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\foobar2000\\profile",
+					"to": "%USERPROFILE%\\scoop\\persist\\foobar2000\\profile"
+				}
+			]
+		},
+		"freetube": {
+			"enabled": false,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\FreeTube",
+					"to": "%APPDATA%\\FreeTube"
+				}
+			]
+		},
+		"stremiokai": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\StremioKai\\stremio.exe.WebView2",
+					"to": "%USERPROFILE%\\scoop\\persist\\stremio-kai\\stremio.exe.WebView2"
+				}
+			]
+		},
+		"syncthing": {
+			"enabled": true,
+			"items": [
+				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Configs\\Syncthing\\config",
+					"to": "%USERPROFILE%\\scoop\\persist\\syncthing\\config"
+				},
+				{
+					"mode": "shortcut",
+					"from": "%USERPROFILE%\\scoop\\apps\\syncthing\\current\\syncthing.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Syncthing.lnk",
+					"arguments": "--home \"C:\\Users\\Fahim\\scoop\\apps\\syncthing\\current\\config\" --no-upgrade",
+					"windowStyle": "minimized"
+				}
+			]
+		},
+		"telegram": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\Telegram\\tdata",
+					"to": "%USERPROFILE%\\scoop\\persist\\telegram\\tdata"
+				}
+			]
+		},
+		"torbrowser": {
+			"enabled": false,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\TorBrowser\\profile.default",
+					"to": "%USERPROFILE%\\scoop\\persist\\tor-browser\\TorBrowser\\Data\\Browser\\profile.default"
+				}
+			]
+		},
+		"ytdlp": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\yt-dlp\\config",
+					"to": "%APPDATA%\\yt-dlp\\config"
+				}
+			]
+		},
+		"winget": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\windows\\winget\\settings.json",
+					"to": "%LOCALAPPDATA%\\Packages\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\\LocalState\\settings.json"
+				}
+			]
+		},
+		"wt": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\windows\\terminal\\settings.json",
+					"to": "%LOCALAPPDATA%\\Packages\\Microsoft.WindowsTerminal_8wekyb3d8bbwe\\LocalState\\settings.json"
+				}
+			]
+		},
+		"alacritty": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\alacritty\\alacritty.toml",
+					"to": "%APPDATA%\\alacritty\\alacritty.toml"
+				}
+			]
+		},
+		"mumuplayer": {
+			"enabled": false,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main\\MuMuNxMain.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Android 12.lnk",
+					"WorkingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
+					"arguments": "-v 0"
+				}
+			]
+		},
+		"ghosttoolbox": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "C:\\Ghost Toolbox\\toolbox.updater.x64.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Ghost Toolbox.lnk",
+					"WorkingDirectory": "C:\\Ghost Toolbox"
+				}
+			]
+		},
+		"zed": {
+			"enabled": false,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\editor\\zed\\settings.json",
+					"to": "%APPDATA%\\Zed\\settings.json"
+				}
+			]
+		},
+		"filepilot": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\fpilot\\FPilot-Config.json",
+					"to": "%APPDATA%\\Voidstar\\FilePilot\\FPilot-Config.json"
+				}
+			]
+		},
+		"musicbee": {
+			"enabled": false,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\MusicBee\\AppData",
+					"to": "%USERPROFILE%\\scoop\\persist\\musicbee\\AppData"
+				},
+				{
+					"from": "%USERPROFILE%\\Configs\\MusicBee\\Library",
+					"to": "%USERPROFILE%\\scoop\\persist\\musicbee\\Library"
+				},
+				{
+					"from": "%USERPROFILE%\\Configs\\MusicBee\\Plugins",
+					"to": "%USERPROFILE%\\scoop\\persist\\musicbee\\Plugins"
+				}
+			]
+		}
+	}
+}
