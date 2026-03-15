@@ -185,7 +185,7 @@
 		},
 		"sumatrapdf": {
 			"enabled": true,
-			"mode": "copyOnce",
+			"mode": "seed",
 			"items": [
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\sumatra_pdf\\settings.txt",
