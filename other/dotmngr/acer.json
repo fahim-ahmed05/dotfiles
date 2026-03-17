@@ -383,6 +383,23 @@
 					"to": "%USERPROFILE%\\scoop\\persist\\musicbee\\Plugins"
 				}
 			]
+		},
+		"jellyfin": {
+			"enabled": true,
+			"items": [
+				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Configs\\Jellyfin\\data",
+					"to": "%USERPROFILE%\\scoop\\persist\\jellyfin\\data"
+				},
+				{
+					"mode": "shortcut",
+					"from": "%USERPROFILE%\\scoop\\apps\\jellyfin\\current\\system\\jellyfin.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Jellyfin.lnk",
+					"arguments": "-d \"C:\\Users\\Fahim\\scoop\\apps\\jellyfin\\current\\data\"",
+					"windowStyle": "minimized"
+				}
+			]
 		}
 	}
 }
