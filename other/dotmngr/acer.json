@@ -42,7 +42,7 @@
 			]
 		},
 		"autohotkey": {
-			"enabled": true,
+			"enabled": false,
 			"mode": "shortcut",
 			"items": [
 				{
