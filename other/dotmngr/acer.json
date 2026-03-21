@@ -400,6 +400,20 @@
 					"windowStyle": "minimized"
 				}
 			]
+		},
+		"folders": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "D:\\Fahim\\Others",
+					"to": "%USERPROFILE%\\Others"
+				},
+				{
+					"from": "D:\\Fahim\\Trash",
+					"to": "%USERPROFILE%\\Trash"
+				}
+			]
 		}
 	}
 }
