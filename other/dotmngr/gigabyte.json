@@ -393,6 +393,16 @@
 					"to": "%APPDATA%\\twinkle-tray"
 				}
 			]
+		},
+		"ytmusic": {
+			"enabled": true,
+			"mode": "seed",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\other\\th-ch_ytm\\config.json",
+					"to": "%APPDATA%\\YouTube Music\\config.json"
+				}
+			]
 		}
 	}
 }
