@@ -1,4 +1,4 @@
-# .\Force-CancelGitHubRun.ps1 -Owner "name/username" -Repo "repo_name" -RunId 123456789 -Token "ghp_token"
+# .\Cancel-GitHubAction.ps1 -Owner "name/username" -Repo "repo_name" -RunId 123456789 -Token "ghp_token"
 
 param(
     [Parameter(Mandatory = $true)]
