@@ -139,10 +139,24 @@ function Reboot {
 
 function pubip { (Invoke-WebRequest http://ifconfig.me/ip).Content }
 
-# Windows Terminal
+# Restart Terminal
 function rt {
-    wt --profile $env:WT_PROFILE_ID -d (Get-Location).Path
-    exit
+    $currentPath = (Get-Location).Path
+
+    # 1. Windows Terminal Check
+    if ($env:WT_SESSION) {
+        wt --profile $env:WT_PROFILE_ID -d "$currentPath"
+        exit
+    } 
+    # 2. Alacritty Check (Using your confirmed environment variables)
+    elseif ($env:ALACRITTY_LOG) {
+        Start-Process alacritty -ArgumentList "--working-directory `"$currentPath`""
+        exit
+    } 
+    # 3. Fallback
+    else {
+        Write-Warning "Terminal not recognized. This function currently supports Windows Terminal and Alacritty."
+    }
 }
 
 # HasteBin
