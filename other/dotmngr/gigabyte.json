@@ -383,6 +383,16 @@
 					"to": "%USERPROFILE%\\scoop\\persist\\musicbee\\Plugins"
 				}
 			]
+		},
+		"twinkletry": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\TwinkleTray",
+					"to": "%APPDATA%\\twinkle-tray"
+				}
+			]
 		}
 	}
 }
