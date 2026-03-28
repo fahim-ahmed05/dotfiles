@@ -20,18 +20,8 @@ function Clear-WindowsCache {
     }
 }
 
-function Remove-DesktopIcons {
-    $paths = @(
-        "$env:UserProfile\Desktop",
-        "C:\Users\Public\Desktop"
-    )
-
-    foreach ($path in $paths) {
-        if (Test-Path $path) {
-            Remove-Item "$path\*.lnk" -Force -ErrorAction SilentlyContinue        
-        }       
-    }
-}
-
 function Clear-Folder { & "$env:UserProfile\Git\dotfiles\shell\powershell\scripts\Clear-Folder.ps1" @args }
+
+function Remove-DesktopIcons { Clear-Folder "$env:UserProfile\Desktop\*.lnk" "C:\Users\Public\Desktop\*.lnk" }
+
 
