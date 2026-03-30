@@ -48,13 +48,13 @@ winget install 9p8ltpgcbzxd   --source msstore --accept-package-agreements --acc
 #### Winget Packages (Source: Winget)
 
 ```
-winget install Brave.Brave Mozilla.Firefox xanderfrangos.twinkletray HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AutoHotkey.AutoHotkey Zaarrg.StremioCommunity Obsidian.Obsidian AdrienAllard.FileConverter Microsoft.PowerToys ente-io.auth-desktop Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
+winget install Brave.Brave Mozilla.Firefox xanderfrangos.twinkletray HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything qBittorrent.qBittorrent Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF Obsidian.Obsidian AdrienAllard.FileConverter Microsoft.PowerToys ente-io.auth-desktop Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 #### Optional Winget Packages (Source: Winget)
 
 ```
-winget install ONLYOFFICE.DesktopEditors eMClient.eMClient BlueStack.BlueStacks th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
+winget install ONLYOFFICE.DesktopEditors eMClient.eMClient AutoHotkey.AutoHotkey th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### [Scoop](https://scoop.sh/)
@@ -91,7 +91,7 @@ scoop install 7zip aria2 fastfetch nodejs aimp python quicklook revouninstaller 
 #### Optional Scoop Packages
 
 ```
-scoop install uv mpv-git alacritty ayugram foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste personal/playtorrio vivetool umpv 
+scoop install uv mpv-git alacritty telegram ayugram foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste personal/playtorrio vivetool umpv 
 ```
 
 ### Python
@@ -102,7 +102,8 @@ scoop install uv mpv-git alacritty ayugram foobar2000 foobar2000-encoders locals
 #### Python Packages
 
 ```
-uv tool install internetarchive subliminal
+uv tool install internetarchive
+uv tool install subliminal
 ```
 
 ## Fonts
