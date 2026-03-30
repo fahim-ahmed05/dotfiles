@@ -4,8 +4,9 @@ I use these daily! 👀
 
 ## Wiki
 
-- [Browser](wiki/browser.md)
-- [Windows](wiki/windows.md)
+- [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/browser.md)
+- [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/windows.md)
+- [Android](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/android.md)
 
 ## Credit
 
