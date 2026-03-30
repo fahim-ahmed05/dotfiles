@@ -9,7 +9,7 @@ adb shell settings put global private_dns_mode hostname
 adb shell settings put global private_dns_specifier dns.adguard-dns.com
 ```
 
-## How to Verify It Worked
+### How to Verify It Worked
 
 After running the commands, confirm the settings were applied:
 
@@ -25,7 +25,7 @@ hostname
 dns.adguard-dns.com
 ```
 
-## How to Revert to Default Settings
+### How to Revert to Default Settings
 
 To restore the default behavior (Automatic mode):
 
