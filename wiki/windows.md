@@ -85,13 +85,13 @@ scoop bucket add personal https://github.com/fahim-ahmed05/scoop-bucket
 #### Scoop Packages
 
 ```
-scoop install 7zip aria2 fastfetch nodejs aimp python quicklook revouninstaller syncthing trafficmonitor-lite winaero-tweaker yt-dlp zed versions/ffmpeg-yt-dlp-nightly
+scoop install 7zip aria2 fastfetch nodejs aimp python quicklook revouninstaller mrrss syncthing trafficmonitor-lite winaero-tweaker yt-dlp zed versions/ffmpeg-yt-dlp-nightly
 ```
 
 #### Optional Scoop Packages
 
 ```
-scoop install uv mpv-git alacritty telegram ayugram foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste personal/playtorrio vivetool umpv 
+scoop install uv mpv-git alacritty telegram ayugram foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste personal/winhance vivetool umpv 
 ```
 
 ### Python

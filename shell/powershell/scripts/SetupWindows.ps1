@@ -1,5 +1,5 @@
 param(
-    [Parameter(Mandatory=$true, HelpMessage="Path to the configuration JSON file")]
+    [Parameter(Mandatory = $true, HelpMessage = "Path to the configuration JSON file")]
     [string]$ConfigPath
 )
 
@@ -8,36 +8,41 @@ if (-not (Test-Path $ConfigPath)) {
     exit 
 }
 
-$config = Get-Content $ConfigPath | ConvertFrom-Json
+$WinSetupConfig = Get-Content $ConfigPath | ConvertFrom-Json
 
 Write-Host "--- Initializing System Setup ---" -ForegroundColor Cyan
 
 # 1. Set Execution Policy (Skip if not in config)
-if ($null -ne $config.settings -and $null -ne $config.settings.execution_policy) {
+if ($null -ne $WinSetupConfig.settings -and $null -ne $WinSetupConfig.settings.execution_policy) {
     Write-Host "Setting Execution Policy..."
-    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy $config.settings.execution_policy -Force
+    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy $WinSetupConfig.settings.execution_policy -Force -WarningAction SilentlyContinue -ErrorAction SilentlyContinue
 }
 
 # 2. Run Pre-Install Commands (Skip if not in config)
-if ($null -ne $config.pre_install_commands) {
+if ($null -ne $WinSetupConfig.pre_install_commands) {
     Write-Host "`n--- Running Pre-Install Tasks ---" -ForegroundColor Cyan
-    foreach ($cmd in $config.pre_install_commands) {
+    foreach ($cmd in $WinSetupConfig.pre_install_commands) {
         Write-Host "Running: $($cmd.name)" -ForegroundColor Yellow
         Invoke-Expression $cmd.command
     }
 }
 
 # 3. Handle Winget (Skip if not in config)
-if ($null -ne $config.winget) {
+if ($null -ne $WinSetupConfig.winget) {
     Write-Host "`n--- Installing Winget Packages ---" -ForegroundColor Cyan
-    
+
+    # Update Winget sources and packages first
+    winget source update 
+    winget update winget --accept-package-agreements --accept-source-agreements
+    winget update --all --accept-package-agreements --accept-source-agreements
+
     # Safely fetch Winget arguments if they exist
     $wingetArgs = ""
-    if ($null -ne $config.settings -and $null -ne $config.settings.winget_args) {
-        $wingetArgs = $config.settings.winget_args
+    if ($null -ne $WinSetupConfig.settings -and $null -ne $WinSetupConfig.settings.winget_args) {
+        $wingetArgs = $WinSetupConfig.settings.winget_args
     }
 
-    foreach ($group in $config.winget) {
+    foreach ($group in $WinSetupConfig.winget) {
         foreach ($pkg in $group.packages) {
             Write-Host "Installing $pkg from $($group.source)..."
             
@@ -49,7 +54,7 @@ if ($null -ne $config.winget) {
 }
 
 # 4. Handle Scoop (Skip if not in config)
-if ($null -ne $config.scoop) {
+if ($null -ne $WinSetupConfig.scoop) {
     Write-Host "`n--- Checking Scoop ---" -ForegroundColor Cyan
     if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
         Write-Host "Installing Scoop..." -ForegroundColor Yellow
@@ -57,45 +62,55 @@ if ($null -ne $config.scoop) {
     }
 
     # Add Buckets (Skip if array is missing)
-    if ($null -ne $config.scoop.buckets) {
-        foreach ($bucket in $config.scoop.buckets) {
+    if ($null -ne $WinSetupConfig.scoop.buckets) {
+        foreach ($bucket in $WinSetupConfig.scoop.buckets) {
             Write-Host "Adding bucket: $($bucket.name)"
             if ($bucket.url) {
                 scoop bucket add $bucket.name $bucket.url
-            } else {
+            }
+            else {
                 scoop bucket add $bucket.name
             }
         }
     }
 
     # Install Scoop Packages (Skip if array is missing)
-    if ($null -ne $config.scoop.packages) {
-        Write-Host "Installing Scoop packages..."
-        scoop install $config.scoop.packages
+    if ($null -ne $WinSetupConfig.scoop.packages) {
+        Write-Host "`n--- Installing Scoop Packages ---" -ForegroundColor Cyan
+
+        # Update Scoop and existing apps first
+        scoop update
+        scoop update -a
+        
+        foreach ($pkg in $WinSetupConfig.scoop.packages) {
+            Write-Host "Installing $pkg..."
+            scoop install $pkg
+        }
     }
 }
 
 # 5. Handle uv tools (Skip if not in config)
-if ($null -ne $config.uv -and $null -ne $config.uv.tools) {
+if ($null -ne $WinSetupConfig.uv -and $null -ne $WinSetupConfig.uv.tools) {
     Write-Host "`n--- Installing Python Tools via uv ---" -ForegroundColor Cyan
     
     # Refresh environment variables just in case Scoop just installed uv
-    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 
     if (Get-Command uv -ErrorAction SilentlyContinue) {
-        foreach ($tool in $config.uv.tools) {
+        foreach ($tool in $WinSetupConfig.uv.tools) {
             Write-Host "Installing $tool..."
             uv tool install $tool
         }
-    } else {
+    }
+    else {
         Write-Host "Warning: 'uv' command not found in config or system. Skipping uv tool installations." -ForegroundColor Red
     }
 }
 
 # 6. Run Post-Install Commands (Skip if not in config)
-if ($null -ne $config.post_install_commands) {
+if ($null -ne $WinSetupConfig.post_install_commands) {
     Write-Host "`n--- Running Post-Install Tasks ---" -ForegroundColor Cyan
-    foreach ($cmd in $config.post_install_commands) {
+    foreach ($cmd in $WinSetupConfig.post_install_commands) {
         Write-Host "Running: $($cmd.name)" -ForegroundColor Yellow
         Invoke-Expression $cmd.command
     }

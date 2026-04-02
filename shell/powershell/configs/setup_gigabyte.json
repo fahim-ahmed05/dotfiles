@@ -5,12 +5,8 @@
     },
     "pre_install_commands": [
         {
-            "name": "Update Winget",
-            "command": "winget source update; winget update winget --accept-package-agreements --accept-source-agreements"
-        },
-        {
-            "name": "Update Winget Packages",
-            "command": "winget update --all --accept-package-agreements --accept-source-agreements"
+            "name": "Upgrade Winget to Latest Version",
+            "command": "Add-AppxPackage -Path \"https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle\" -ForceApplicationShutdown"
         }
     ],
     "winget": [
