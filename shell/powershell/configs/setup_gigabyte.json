@@ -5,10 +5,6 @@
     },
     "pre_install_commands": [
         {
-            "name": "Install Scoop",
-            "command": "Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression"
-        },
-        {
             "name": "Update Winget",
             "command": "Add-AppxPackage -Path \"https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle\" -ForceApplicationShutdown"
         },
