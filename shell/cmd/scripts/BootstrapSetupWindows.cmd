@@ -7,8 +7,8 @@ echo.
 
 :: 1. Define GitHub Raw URLs
 :: IMPORTANT: Replace these URLs with the RAW links to your files on GitHub!
-set "URL_SCRIPT=https://raw.githubusercontent.com/fahim-ahmed05/YOUR_REPO/main/setup.ps1"
-set "URL_CONFIG=https://raw.githubusercontent.com/fahim-ahmed05/YOUR_REPO/main/config.json"
+set "URL_SCRIPT=https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/shell/powershell/scripts/SetupWindows.ps1"
+set "URL_CONFIG=https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/shell/powershell/configs/setup_gigabyte.json"
 
 :: 2. Set up the temporary working directory in the USER'S Temp folder
 set "SETUP_DIR=%USERPROFILE%\AppData\Local\Temp\WinSetup"
