@@ -41,7 +41,7 @@ Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/d
 ```
 winget install 9nksqgp7f2nh   --source msstore --accept-package-agreements --accept-source-agreements   # WhatsApp
 winget install xpfftq032ptphf --source msstore --accept-package-agreements --accept-source-agreements   # UniGetUI
-winget install 9nvfzpv0v0ht   --source msstore --accept-package-agreements --accept-source-agreements   # Folo
+winget install 9n45nsm4tnbp   --source msstore --accept-package-agreements --accept-source-agreements   # FluentFlyout
 winget install 9p8ltpgcbzxd   --source msstore --accept-package-agreements --accept-source-agreements   # Wintoys
 ```
 
