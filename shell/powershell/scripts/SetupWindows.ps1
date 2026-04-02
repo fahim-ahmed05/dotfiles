@@ -40,7 +40,10 @@ if ($null -ne $config.winget) {
     foreach ($group in $config.winget) {
         foreach ($pkg in $group.packages) {
             Write-Host "Installing $pkg from $($group.source)..."
-            winget install $pkg --source $($group.source) $wingetArgs
+            
+            # Use Invoke-Expression to prevent PowerShell from quoting the arguments
+            $cmd = "winget install $pkg --source $($group.source) $wingetArgs"
+            Invoke-Expression $cmd
         }
     }
 }
@@ -68,7 +71,7 @@ if ($null -ne $config.scoop) {
     # Install Scoop Packages (Skip if array is missing)
     if ($null -ne $config.scoop.packages) {
         Write-Host "Installing Scoop packages..."
-        scoop install ($config.scoop.packages -join " ")
+        scoop install $config.scoop.packages
     }
 }
 
