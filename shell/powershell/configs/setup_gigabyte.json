@@ -122,12 +122,12 @@
             "command": "oh-my-posh disable notice"
         },
         {
-            "name": "Chris Titus WinUtil",
-            "command": "irm 'https://christitus.com/win' | iex"
-        },
-        {
             "name": "Activate Windows",
             "command": "irm 'https://get.activated.win' | iex"
+        },
+        {
+            "name": "Chris Titus WinUtil",
+            "command": "irm 'https://christitus.com/win' | iex"
         }
     ]
 }
