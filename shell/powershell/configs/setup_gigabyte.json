@@ -6,7 +6,7 @@
     "pre_install_commands": [
         {
             "name": "Update Winget",
-            "command": "winget source update --accept-source-agreements; winget update winget --accept-package-agreements --accept-source-agreements"
+            "command": "winget source update; winget update winget --accept-package-agreements --accept-source-agreements"
         },
         {
             "name": "Update Winget Packages",
