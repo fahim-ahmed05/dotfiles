@@ -19,7 +19,7 @@ if "%COMP_NAME%"=="" (
 echo.
 
 :: 1. Define GitHub Raw URLs
-set "URL_SCRIPT=https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/shell/powershell/scripts/SetupWindows.ps1"
+set "URL_SCRIPT=https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/shell/powershell/scripts/Setup-Windows.ps1"
 set "URL_CONFIG=https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/shell/powershell/configs/%CONFIG_FILE%"
 
 :: 2. Set up the temporary working directory in the USER'S Temp folder
