@@ -1,0 +1,143 @@
+{
+    "settings": {
+        "execution_policy": "RemoteSigned",
+        "winget_args": "--accept-package-agreements --accept-source-agreements"
+    },
+    "network": {
+        "ntp_server": "pool.ntp.org",
+        "dns": [
+            "94.140.14.14",
+            "94.140.15.15",
+            "2a10:50c0::ad1:ff",
+            "2a10:50c0::ad2:ff"
+        ],
+        "doh_template": "https://dns.adguard-dns.com/dns-query"
+    },
+    "pre_install_commands": [
+        {
+            "name": "Install Scoop",
+            "command": "Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression"
+        },
+        {
+            "name": "Update Winget",
+            "command": "Add-AppxPackage -Path \"https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle\" -ForceApplicationShutdown"
+        },
+        {
+            "name": "Update Winget Packages",
+            "command": "winget update --all --accept-package-agreements --accept-source-agreements"
+        }
+    ],
+    "winget": [
+        {
+            "source": "msstore",
+            "packages": [
+                "9nksqgp7f2nh",
+                "xpfftq032ptphf",
+                "9n45nsm4tnbp",
+                "9p8ltpgcbzxd"
+            ]
+        },
+        {
+            "source": "winget",
+            "packages": [
+                "Brave.Brave",
+                "Mozilla.Firefox",
+                "xanderfrangos.twinkletray",
+                "HermannSchinagl.LinkShellExtension",
+                "Notepad++.Notepad++",
+                "voidtools.Everything",
+                "qBittorrent.qBittorrent",
+                "Flow-Launcher.Flow-Launcher",
+                "SumatraPDF.SumatraPDF",
+                "Obsidian.Obsidian",
+                "AdrienAllard.FileConverter",
+                "Microsoft.PowerToys",
+                "ente-io.auth-desktop",
+                "Cloudflare.Warp",
+                "Tonec.InternetDownloadManager",
+                "ONLYOFFICE.DesktopEditors",
+                "eMClient.eMClient",
+                "th-ch.YouTubeMusic",
+                "Microsoft.PowerShell"
+            ]
+        }
+    ],
+    "scoop": {
+        "buckets": [
+            {
+                "name": "extras"
+            },
+            {
+                "name": "versions"
+            },
+            {
+                "name": "nerd-fonts"
+            },
+            {
+                "name": "java"
+            },
+            {
+                "name": "personal",
+                "url": "https://github.com/fahim-ahmed05/scoop-bucket"
+            }
+        ],
+        "packages": [
+            "7zip",
+            "aria2",
+            "fastfetch",
+            "nodejs",
+            "aimp",
+            "python",
+            "quicklook",
+            "revouninstaller",
+            "mrrss",
+            "syncthing",
+            "trafficmonitor-lite",
+            "winaero-tweaker",
+            "yt-dlp",
+            "versions/ffmpeg-yt-dlp-nightly",
+            "uv",
+            "mpv-git",
+            "alacritty",
+            "telegram",
+            "ayugram",
+            "foobar2000",
+            "foobar2000-encoders",
+            "localsend",
+            "logitech-omm",
+            "personal/clickpaste",
+            "personal/playtorrio",
+            "personal/winhance",
+            "personal/stremio-kai",
+            "personal/inter-font",
+            "nerd-fonts/JetBrainsMono-NF",
+            "nerd-fonts/CascadiaMono-NF",
+            "oh-my-posh",
+            "eza",
+            "fzf",
+            "zoxide",
+            "microsoft-jdk",
+            "musicbee"
+        ]
+    },
+    "uv": {
+        "tools": [
+            "internetarchive",
+            "subliminal"
+        ]
+    },
+    "post_install_commands": [
+        {
+            "name": "Disable Oh My Posh Update Notices",
+            "command": "oh-my-posh disable notice"
+        },
+        {
+            "name": "Chris Titus WinUtil",
+            "command": "irm 'https://christitus.com/win' | iex"
+        },
+        {
+            "name": "Activate Windows",
+            "command": "irm 'https://get.activated.win' | iex"
+        }
+    ]
+}
