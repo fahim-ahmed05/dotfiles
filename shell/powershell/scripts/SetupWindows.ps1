@@ -96,6 +96,8 @@ if ($null -ne $WinSetupConfig.uv -and $null -ne $WinSetupConfig.uv.tools) {
     # Refresh environment variables just in case Scoop just installed uv
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 
+    uv tool update-shell
+
     if (Get-Command uv -ErrorAction SilentlyContinue) {
         foreach ($tool in $WinSetupConfig.uv.tools) {
             Write-Host "Installing $tool..."
