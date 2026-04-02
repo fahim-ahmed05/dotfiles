@@ -414,6 +414,18 @@
 					"to": "%USERPROFILE%\\Trash"
 				}
 			]
+		},
+		"brave": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%LOCALAPPDATA%\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Brave.lnk",
+					"arguments": "--profile-directory=\"Default\"",
+					"WorkingDirectory": "%LOCALAPPDATA%\\BraveSoftware\\Brave-Browser\\Application"
+				}
+			]
 		}
 	}
 }
