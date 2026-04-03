@@ -355,7 +355,7 @@
 			]
 		},
 		"zed": {
-			"enabled": true,
+			"enabled": false,
 			"items": [
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\editor\\zed\\settings.json",
