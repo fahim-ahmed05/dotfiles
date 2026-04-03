@@ -333,7 +333,8 @@
 					"from": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main\\MuMuNxMain.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Android 12.lnk",
 					"WorkingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
-					"arguments": "-v 0"
+					"arguments": "-v 0",
+					"iconLocation": "C:\\Program Files\\Netease\\MuMuPlayer\\nx_device\\12.0\\shell\\MuMuNxDevice.ico"
 				}
 			]
 		},
