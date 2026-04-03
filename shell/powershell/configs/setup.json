@@ -126,6 +126,22 @@
             "command": "ssh-add \"%USERPROFILE%\\.ssh\\github_sign\""
         },
         {
+            "name": "Apply Registry Fix: Edge Policies",
+            "command": "Start-Process reg.exe -Verb RunAs -ArgumentList 'import \"%USERPROFILE%\\Git\\dotfiles\\browser\\msedge\\polices.reg\"' -Wait"
+        },
+        {
+            "name": "Apply Registry Fix: Brave Policies",
+            "command": "Start-Process reg.exe -Verb RunAs -ArgumentList 'import \"%USERPROFILE%\\Git\\dotfiles\\browser\\brave\\polices.reg\"' -Wait"
+        },
+        {
+            "name": "Apply Registry Fix: MPC-HC Settings",
+            "command": "reg.exe import \"%USERPROFILE%\\Git\\dotfiles\\other\\mpc-hc\\mpc-hc-settings.reg\""
+        },
+        {
+            "name": "Apply Registry Fix: Disable OneDrive Personal",
+            "command": "reg.exe import \"%USERPROFILE%\\Git\\dotfiles\\windows\\onedrive\\DisableOneDrivePersonal.reg\""
+        },
+        {
             "name": "Disable Oh My Posh Update Notices",
             "command": "oh-my-posh disable notice"
         },
