@@ -169,6 +169,10 @@
         {
             "name": "Clean Up Desktop Shortcuts",
             "command": "Start-Process powershell -Verb RunAs -ArgumentList '-Command \"Remove-Item -Path $env:USERPROFILE\\Desktop\\*.lnk, $env:PUBLIC\\Desktop\\*.lnk, $env:USERPROFILE\\Desktop\\*.url, $env:PUBLIC\\Desktop\\*.url -Force -ErrorAction SilentlyContinue\"' -Wait"
+        },
+        {
+            "name": "Install CineIndex",
+            "command": "uv tool install \"%USERPROFILE%\\Git\\cineindex\""
         }
     ]
 }
