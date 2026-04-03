@@ -119,11 +119,11 @@
         },
         {
             "name": "Add GitHub Auth Key",
-            "command": "ssh-add \"`\"%USERPROFILE%\\.ssh\\github_auth`\"\""
+            "command": "ssh-add \"%USERPROFILE%\\.ssh\\github_auth\""
         },
         {
             "name": "Add GitHub Sign Key",
-            "command": "ssh-add \"`\"%USERPROFILE%\\.ssh\\github_sign`\"\""
+            "command": "ssh-add \"%USERPROFILE%\\.ssh\\github_sign\""
         },
         {
             "name": "Disable Oh My Posh Update Notices",

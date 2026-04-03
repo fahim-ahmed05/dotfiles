@@ -8,20 +8,27 @@ if (-not (Test-Path $ConfigPath)) {
     exit 
 }
 
+# Renamed from $config to $WinSetupConfig to prevent variable collisions with external scripts
 $WinSetupConfig = Get-Content $ConfigPath | ConvertFrom-Json
 
 Write-Host "--- Initializing System Setup ---" -ForegroundColor Cyan
 
-# 1. Set Execution Policy (Skip if not in config)
-if ($null -ne $WinSetupConfig.settings -and $null -ne $WinSetupConfig.settings.execution_policy) {
+# 1. Set Execution Policy (Skip if missing, or explicitly disabled)
+if ($null -ne $WinSetupConfig.settings -and $WinSetupConfig.settings.enabled -ne $false -and $null -ne $WinSetupConfig.settings.execution_policy) {
     Write-Host "Setting Execution Policy..."
     Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy $WinSetupConfig.settings.execution_policy -Force -WarningAction SilentlyContinue -ErrorAction SilentlyContinue
 }
 
-# 2. Run Pre-Install Commands (Skip if not in config)
+# 2. Run Pre-Install Commands (Skip if missing)
 if ($null -ne $WinSetupConfig.pre_install_commands) {
     Write-Host "`n--- Running Pre-Install Tasks ---" -ForegroundColor Cyan
     foreach ($cmd in $WinSetupConfig.pre_install_commands) {
+        # Check if this specific command is disabled
+        if ($cmd.enabled -eq $false) {
+            Write-Host "Skipping disabled task: $($cmd.name)" -ForegroundColor DarkGray
+            continue
+        }
+
         Write-Host "Running: $($cmd.name)" -ForegroundColor Yellow
         # Expand %VAR% environment variables before executing
         $expandedCmd = [System.Environment]::ExpandEnvironmentVariables($cmd.command)
@@ -29,8 +36,8 @@ if ($null -ne $WinSetupConfig.pre_install_commands) {
     }
 }
 
-# 3. Handle Winget (Skip if not in config)
-if ($null -ne $WinSetupConfig.winget) {
+# 3. Handle Winget (Skip if missing or explicitly disabled at the top level)
+if ($null -ne $WinSetupConfig.winget -and $WinSetupConfig.winget.enabled -ne $false) {
     Write-Host "`n--- Installing Winget Packages ---" -ForegroundColor Cyan
 
     # Update Winget sources and packages first
@@ -45,6 +52,12 @@ if ($null -ne $WinSetupConfig.winget) {
     }
 
     foreach ($group in $WinSetupConfig.winget) {
+        # Check if this specific winget source group is disabled
+        if ($group.enabled -eq $false) {
+            Write-Host "Skipping disabled Winget group: $($group.source)" -ForegroundColor DarkGray
+            continue
+        }
+
         foreach ($pkg in $group.packages) {
             Write-Host "Installing $pkg from $($group.source)..."
             
@@ -55,8 +68,8 @@ if ($null -ne $WinSetupConfig.winget) {
     }
 }
 
-# 4. Handle Scoop (Skip if not in config)
-if ($null -ne $WinSetupConfig.scoop) {
+# 4. Handle Scoop (Skip if missing, or explicitly disabled)
+if ($null -ne $WinSetupConfig.scoop -and $WinSetupConfig.scoop.enabled -ne $false) {
     Write-Host "`n--- Checking Scoop ---" -ForegroundColor Cyan
     if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
         Write-Host "Installing Scoop..." -ForegroundColor Yellow
@@ -66,6 +79,12 @@ if ($null -ne $WinSetupConfig.scoop) {
     # Add Buckets (Skip if array is missing)
     if ($null -ne $WinSetupConfig.scoop.buckets) {
         foreach ($bucket in $WinSetupConfig.scoop.buckets) {
+            # Check if this specific bucket is disabled
+            if ($bucket.enabled -eq $false) {
+                Write-Host "Skipping disabled Scoop bucket: $($bucket.name)" -ForegroundColor DarkGray
+                continue
+            }
+
             Write-Host "Adding bucket: $($bucket.name)"
             if ($bucket.url) {
                 scoop bucket add $bucket.name $bucket.url
@@ -91,8 +110,8 @@ if ($null -ne $WinSetupConfig.scoop) {
     }
 }
 
-# 5. Handle uv tools (Skip if not in config)
-if ($null -ne $WinSetupConfig.uv -and $null -ne $WinSetupConfig.uv.tools) {
+# 5. Handle uv tools (Skip if missing, or explicitly disabled)
+if ($null -ne $WinSetupConfig.uv -and $WinSetupConfig.uv.enabled -ne $false -and $null -ne $WinSetupConfig.uv.tools) {
     Write-Host "`n--- Installing Python Tools via uv ---" -ForegroundColor Cyan
     
     # Refresh environment variables just in case Scoop just installed uv
@@ -109,10 +128,16 @@ if ($null -ne $WinSetupConfig.uv -and $null -ne $WinSetupConfig.uv.tools) {
     }
 }
 
-# 6. Run Post-Install Commands (Skip if not in config)
+# 6. Run Post-Install Commands (Skip if missing)
 if ($null -ne $WinSetupConfig.post_install_commands) {
     Write-Host "`n--- Running Post-Install Tasks ---" -ForegroundColor Cyan
     foreach ($cmd in $WinSetupConfig.post_install_commands) {
+        # Check if this specific command is disabled
+        if ($cmd.enabled -eq $false) {
+            Write-Host "Skipping disabled task: $($cmd.name)" -ForegroundColor DarkGray
+            continue
+        }
+
         Write-Host "Running: $($cmd.name)" -ForegroundColor Yellow
         # Expand %VAR% environment variables before executing
         $expandedCmd = [System.Environment]::ExpandEnvironmentVariables($cmd.command)
