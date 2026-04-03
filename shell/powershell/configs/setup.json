@@ -173,6 +173,10 @@
         {
             "name": "Install CineIndex",
             "command": "uv tool install \"%USERPROFILE%\\Git\\cineindex\""
+        },
+        {
+            "name": "Disable Aria2 Warning in Scoop",
+            "command": "scoop config aria2-warning-enabled false"
         }
     ]
 }
