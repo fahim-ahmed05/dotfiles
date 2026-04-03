@@ -451,6 +451,20 @@
 					"to": "%USERPROFILE%\\Links\\User_ Start Menu.lnk"
 				}
 			]
+		},
+		"qbittorrent": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\qBittorrent\\Roaming",
+					"to": "%APPDATA%\\qBittorrent"
+				},
+				{
+					"from": "%USERPROFILE%\\Configs\\qBittorrent\\Local",
+					"to": "%LOCALAPPDATA%\\qBittorrent"
+				}
+			]
 		}
 	}
 }
