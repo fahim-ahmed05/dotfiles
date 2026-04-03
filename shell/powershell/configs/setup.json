@@ -112,7 +112,7 @@
     "post_install_commands": [
         {
             "name": "Import Git Package List",
-            "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\Git\\gitpkg\\gitpkg.ps1\""
+            "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\Git\\gitpkg\\gitpkg.ps1\" import \"D:\\Backups\\Configs\\gitpkg\\gitpkg.json\""
         },
         {
             "name": "Link dotfiles",
