@@ -5,7 +5,7 @@
     },
     "pre_install_commands": [
         {
-            "enable": false,
+            "enabled": false,
             "name": "Upgrade Winget to Latest Version",
             "command": "Add-AppxPackage -Path \"https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle\" -ForceApplicationShutdown"
         }
