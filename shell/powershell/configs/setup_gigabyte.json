@@ -111,7 +111,7 @@
     "post_install_commands": [
         {
             "name": "Link dotfiles",
-            "command": ".\\%USERPROFILE%\\Git\\dotmngr\\dotmngr.ps1 -ConfigPath %USERPROFILE%\\Git\\dotfiles\\other\\dotmngr\\gigabyte.json"
+            "command": "& \"%USERPROFILE%\\Git\\dotmngr\\dotmngr.ps1\" -ConfigPath \"%USERPROFILE%\\Git\\dotfiles\\other\\dotmngr\\gigabyte.json\""
         },
         {
             "name": "Disable Oh My Posh Update Notices",
