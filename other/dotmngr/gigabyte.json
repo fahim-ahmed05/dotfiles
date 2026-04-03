@@ -38,6 +38,11 @@
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\browser\\firefox\\user.js",
 					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\c2ipkr4o.personal\\user.js"
+				},
+				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Configs\\Firefox\\c2ipkr4o.personal",
+					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\c2ipkr4o.personal"
 				}
 			]
 		},
