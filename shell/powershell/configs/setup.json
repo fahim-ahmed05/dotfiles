@@ -110,6 +110,10 @@
     },
     "post_install_commands": [
         {
+            "name": "Import Git Package List",
+            "command": "gitpkg import \"D:\\Backups\\Configs\\gitpkg\\gitpkg.json\""
+        },
+        {
             "name": "Link dotfiles",
             "command": "& \"%USERPROFILE%\\Git\\dotmngr\\dotmngr.ps1\" -ConfigPath \"%USERPROFILE%\\Git\\dotfiles\\other\\dotmngr\\gigabyte.json\""
         },
