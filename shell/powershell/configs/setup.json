@@ -5,6 +5,7 @@
     },
     "pre_install_commands": [
         {
+            "enable": false,
             "name": "Upgrade Winget to Latest Version",
             "command": "Add-AppxPackage -Path \"https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle\" -ForceApplicationShutdown"
         }
@@ -111,11 +112,11 @@
     "post_install_commands": [
         {
             "name": "Import Git Package List",
-            "command": "& \"%USERPROFILE%\\Git\\gitpkg\\gitpkg.ps1\" import \"D:\\Backups\\Configs\\gitpkg\\gitpkg.json\""
+            "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\Git\\gitpkg\\gitpkg.ps1\""
         },
         {
             "name": "Link dotfiles",
-            "command": "& \"%USERPROFILE%\\Git\\dotmngr\\dotmngr.ps1\" -ConfigPath \"%USERPROFILE%\\Git\\dotfiles\\other\\dotmngr\\gigabyte.json\""
+            "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\Git\\dotmngr\\dotmngr.ps1\" -ConfigPath \"%USERPROFILE%\\Git\\dotfiles\\other\\dotmngr\\gigabyte.json\""
         },
         {
             "name": "Enable SSH Agent",
@@ -142,6 +143,14 @@
             "command": "reg.exe import \"%USERPROFILE%\\Git\\dotfiles\\other\\mpc-hc\\mpc-hc-settings.reg\""
         },
         {
+            "name": "Apply Registry Fix: Add 7-Zip to Context Menu",
+            "command": "reg import \"%USERPROFILE%\\scoop\\apps\\7zip\\current\\install-context.reg\""
+        },
+        {
+            "name": "Apply Registry Fix: Make Python Available to System",
+            "command": "reg import \"%USERPROFILE%\\scoop\\apps\\python\\current\\install-pep-514.reg\""
+        },
+        {
             "name": "Apply Registry Fix: Disable OneDrive Personal",
             "command": "reg.exe import \"%USERPROFILE%\\Git\\dotfiles\\windows\\onedrive\\DisableOneDrivePersonal.reg\""
         },
@@ -156,6 +165,10 @@
         {
             "name": "Chris Titus WinUtil",
             "command": "irm 'https://christitus.com/win' | iex"
+        },
+        {
+            "name": "Clean Up Desktop Shortcuts",
+            "command": "Start-Process powershell -Verb RunAs -ArgumentList '-Command \"Remove-Item -Path $env:USERPROFILE\\Desktop\\*.lnk, $env:PUBLIC\\Desktop\\*.lnk, $env:USERPROFILE\\Desktop\\*.url, $env:PUBLIC\\Desktop\\*.url -Force -ErrorAction SilentlyContinue\"' -Wait"
         }
     ]
 }

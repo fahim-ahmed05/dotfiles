@@ -122,6 +122,7 @@ if ($null -ne $WinSetupConfig.uv -and $WinSetupConfig.uv.enabled -ne $false -and
             Write-Host "Installing $tool..."
             uv tool install $tool
         }
+        uv tool update-shell
     }
     else {
         Write-Host "Warning: 'uv' command not found in config or system. Skipping uv tool installations." -ForegroundColor Red
