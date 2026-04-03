@@ -111,7 +111,7 @@
     "post_install_commands": [
         {
             "name": "Import Git Package List",
-            "command": "gitpkg import \"D:\\Backups\\Configs\\gitpkg\\gitpkg.json\""
+            "command": "& \"%USERPROFILE%\\Git\\gitpkg\\gitpkg.ps1\" import \"D:\\Backups\\Configs\\gitpkg\\gitpkg.json\""
         },
         {
             "name": "Link dotfiles",
