@@ -338,7 +338,7 @@
 			]
 		},
 		"ghosttoolbox": {
-			"enabled": true,
+			"enabled": false,
 			"mode": "shortcut",
 			"items": [
 				{
