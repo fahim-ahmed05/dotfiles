@@ -183,13 +183,13 @@ oh-my-posh disable notice
 
 ## Tweak Tools
 
-- [Winhance](https://github.com/memstechtips/Winhance)
+### [Winhance](https://github.com/memstechtips/Winhance)
 
 ```powershell
 irm "https://get.winhance.net" | iex
 ```
 
-- [Windows Utility](https://github.com/ChrisTitusTech/winutil)
+### [Windows Utility](https://github.com/ChrisTitusTech/winutil)
 
 ```powershell
 irm "https://christitus.com/win" | iex
