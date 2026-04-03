@@ -416,6 +416,36 @@
 					"WorkingDirectory": "%LOCALAPPDATA%\\BraveSoftware\\Brave-Browser\\Application"
 				}
 			]
+		},
+		"linksfolder": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Android Apps",
+					"to": "%USERPROFILE%\\Links\\User_ Start Menu_ Android Apps.lnk"
+				},
+				{
+					"from": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps",
+					"to": "%USERPROFILE%\\Links\\User_ Start Menu_ Apps.lnk"
+				},
+				{
+					"from": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs",
+					"to": "%USERPROFILE%\\Links\\User_ Start Menu_ Programs.lnk"
+				},
+				{
+					"from": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts",
+					"to": "%USERPROFILE%\\Links\\User_ Start Menu_ Shortcuts.lnk"
+				},
+				{
+					"from": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup",
+					"to": "%USERPROFILE%\\Links\\User_ Start Menu_ Startup.lnk"
+				},
+				{
+					"from": "%APPDATA%\\Microsoft\\Windows\\Start Menu",
+					"to": "%USERPROFILE%\\Links\\User_ Start Menu.lnk"
+				}
+			]
 		}
 	}
 }
