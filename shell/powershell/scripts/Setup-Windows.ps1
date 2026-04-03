@@ -23,7 +23,9 @@ if ($null -ne $WinSetupConfig.pre_install_commands) {
     Write-Host "`n--- Running Pre-Install Tasks ---" -ForegroundColor Cyan
     foreach ($cmd in $WinSetupConfig.pre_install_commands) {
         Write-Host "Running: $($cmd.name)" -ForegroundColor Yellow
-        Invoke-Expression $cmd.command
+        # Expand %VAR% environment variables before executing
+        $expandedCmd = [System.Environment]::ExpandEnvironmentVariables($cmd.command)
+        Invoke-Expression $expandedCmd
     }
 }
 
@@ -96,8 +98,6 @@ if ($null -ne $WinSetupConfig.uv -and $null -ne $WinSetupConfig.uv.tools) {
     # Refresh environment variables just in case Scoop just installed uv
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 
-    uv tool update-shell
-
     if (Get-Command uv -ErrorAction SilentlyContinue) {
         foreach ($tool in $WinSetupConfig.uv.tools) {
             Write-Host "Installing $tool..."
@@ -114,7 +114,9 @@ if ($null -ne $WinSetupConfig.post_install_commands) {
     Write-Host "`n--- Running Post-Install Tasks ---" -ForegroundColor Cyan
     foreach ($cmd in $WinSetupConfig.post_install_commands) {
         Write-Host "Running: $($cmd.name)" -ForegroundColor Yellow
-        Invoke-Expression $cmd.command
+        # Expand %VAR% environment variables before executing
+        $expandedCmd = [System.Environment]::ExpandEnvironmentVariables($cmd.command)
+        Invoke-Expression $expandedCmd
     }
 }
 
