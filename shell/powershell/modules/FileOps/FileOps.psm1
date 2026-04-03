@@ -22,6 +22,6 @@ function Clear-WindowsCache {
 
 function Clear-Folder { & "$env:UserProfile\Git\dotfiles\shell\powershell\scripts\Clear-Folder.ps1" @args }
 
-function Remove-DesktopIcons { Clear-Folder "$env:UserProfile\Desktop\*.lnk" "C:\Users\Public\Desktop\*.lnk" }
+function Remove-DesktopIcons { Clear-Folder "$env:UserProfile\Desktop\*.lnk" "$env:PUBLIC\Desktop\*.lnk" }
 
 
