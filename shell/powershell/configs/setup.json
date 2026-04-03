@@ -162,9 +162,9 @@
             "name": "Activate Windows",
             "command": "irm 'https://get.activated.win' | iex"
         },
-        {
+{
             "name": "Chris Titus WinUtil",
-            "command": "irm 'https://christitus.com/win' | iex"
+            "command": "Start-Process powershell -Verb RunAs -ArgumentList '-Command \"irm https://christitus.com/win | iex\"' -Wait"
         },
         {
             "name": "Clean Up Desktop Shortcuts",
