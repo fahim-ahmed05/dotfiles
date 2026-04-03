@@ -116,7 +116,7 @@
         },
         {
             "name": "Link dotfiles",
-            "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\Git\\dotmngr\\dotmngr.ps1\" -ConfigPath \"%USERPROFILE%\\Git\\dotfiles\\other\\dotmngr\\gigabyte.json\""
+            "command": "Start-Process pwsh -Verb RunAs -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\Git\\dotmngr\\dotmngr.ps1\" -ConfigPath \"%USERPROFILE%\\Git\\dotfiles\\other\\dotmngr\\gigabyte.json\"' -Wait"
         },
         {
             "name": "Enable SSH Agent",
