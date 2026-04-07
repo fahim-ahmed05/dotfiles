@@ -155,6 +155,10 @@
             "command": "reg.exe import \"%USERPROFILE%\\Git\\dotfiles\\windows\\onedrive\\DisableOneDrivePersonal.reg\""
         },
         {
+            "name": "Apply Registry Fix: Add Alacritty to Context Menu",
+            "command": "reg import \"%USERPROFILE%\\scoop\\apps\\alacritty\\current\\install-context.reg\""
+        },
+        {
             "name": "Disable Oh My Posh Update Notices",
             "command": "oh-my-posh disable notice"
         },
