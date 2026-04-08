@@ -93,10 +93,17 @@ function la {
 }
 
 function su {
-    Start-Process wt -Verb RunAs -ArgumentList @(
-        "--profile", $env:WT_PROFILE_ID,
-        "-d", (Get-Location).Path
-    )
+    if ($env:ALACRITTY_LOG) {
+        Start-Process alacritty -Verb RunAs -ArgumentList @(
+            "--working-directory", (Get-Location).Path
+        )
+    }
+    else {
+        Start-Process wt -Verb RunAs -ArgumentList @(
+            "--profile", $env:WT_PROFILE_ID,
+            "-d", (Get-Location).Path
+        )
+    }
 }
 
 function PowerOff {
