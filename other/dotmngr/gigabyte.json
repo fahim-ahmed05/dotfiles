@@ -340,6 +340,20 @@
 					"WorkingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
 					"arguments": "-v 0",
 					"iconLocation": "C:\\Program Files\\Netease\\MuMuPlayer\\nx_device\\12.0\\shell\\MuMuNxDevice.ico"
+				},
+				{
+					"from": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main\\MuMuNxMain.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Android Apps\\Google Photos (Android 12).lnk",
+					"WorkingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
+					"arguments": "-p app.morphe.android.apps.photos -v 0",
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\google-photos.ico"
+				},
+				{
+					"from": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main\\MuMuNxMain.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Android Apps\\HDO Box (Android 12).lnk",
+					"WorkingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
+					"arguments": "-p com.tv.hdobox -v 0",
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\hdo-box.ico"
 				}
 			]
 		},
