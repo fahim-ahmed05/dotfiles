@@ -42,7 +42,8 @@
                 "ONLYOFFICE.DesktopEditors",
                 "eMClient.eMClient",
                 "th-ch.YouTubeMusic",
-                "Microsoft.PowerShell"
+                "Microsoft.PowerShell",
+                "Notion.Notion"
             ]
         }
     ],
