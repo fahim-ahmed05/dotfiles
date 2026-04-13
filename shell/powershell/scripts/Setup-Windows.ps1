@@ -3,12 +3,12 @@ param(
     [string]$ConfigPath
 )
 
-# 1. Unified directory for both Bootstrap and direct Script execution
+# --- 1. Environment & Setup ---
 $SetupTempDir = Join-Path $env:TEMP "WinSetup"
 
-# 2. Folder Maintenance: Ensure a clean environment for repo updates
+# Folder Maintenance
 if (Test-Path $SetupTempDir) {
-    if ((Get-ChildItem -Path $SetupTempDir).Count -gt 0) {
+    if (@(Get-ChildItem -Path $SetupTempDir).Count -gt 0) {
         Write-Host "Cleaning existing setup files..." -ForegroundColor Gray
         Remove-Item -Path "$SetupTempDir\*" -Recurse -Force -ErrorAction SilentlyContinue
     }
@@ -16,23 +16,20 @@ if (Test-Path $SetupTempDir) {
     New-Item -Path $SetupTempDir -ItemType Directory -Force | Out-Null
 }
 
-# 3. Helper Function: Resolve GitHub/Remote Paths
+# --- 2. Helper Functions ---
 function Resolve-ExternalPath {
     param([string]$Path)
     
     if ($Path -like "http*") {
-        # Create a unique ID to prevent collisions between same-named files
         $urlHash = [BitConverter]::ToString([System.Security.Cryptography.MD5]::Create().ComputeHash([System.Text.Encoding]::UTF8.GetBytes($Path))).Replace("-", "").Substring(0, 8)
         $fileName = Split-Path $Path -Leaf
         $localPath = Join-Path $SetupTempDir "$urlHash`_$fileName"
         
-        # Don't re-download if it already exists in this session
         if (Test-Path $localPath) { return $localPath }
 
         Write-Host "  -> Downloading: $fileName" -ForegroundColor Gray
         try {
-            # Bypass cache to ensure GitHub Raw updates are immediate
-            Invoke-WebRequest -Uri $Path -OutFile $localPath -ErrorAction Stop -Headers @{"Cache-Control"="no-cache"}
+            Invoke-WebRequest -Uri $Path -OutFile $localPath -ErrorAction Stop -Headers @{"Cache-Control"="no-cache"} -UseBasicParsing
             return $localPath
         } catch {
             Write-Error "Failed to download $Path"
@@ -42,22 +39,23 @@ function Resolve-ExternalPath {
     return [System.Environment]::ExpandEnvironmentVariables($Path)
 }
 
+# --- 3. Configuration Loading ---
 if (-not (Test-Path $ConfigPath)) { 
     Write-Error "Configuration file not found at: $ConfigPath"
     exit 
 }
-
 $WinSetupConfig = Get-Content $ConfigPath | ConvertFrom-Json
 
 Write-Host "--- Initializing System Setup ---" -ForegroundColor Cyan
 
-# 1. Set Execution Policy
+# --- 4. Core Installations ---
+# Execution Policy
 if ($null -ne $WinSetupConfig.settings -and $WinSetupConfig.settings.enabled -ne $false -and $null -ne $WinSetupConfig.settings.execution_policy) {
     Write-Host "Setting Execution Policy..."
     Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy $WinSetupConfig.settings.execution_policy -Force -WarningAction SilentlyContinue -ErrorAction SilentlyContinue
 }
 
-# 2. Run Pre-Install Commands
+# Pre-Install
 if ($null -ne $WinSetupConfig.pre_install_commands) {
     Write-Host "`n--- Running Pre-Install Tasks ---" -ForegroundColor Cyan
     foreach ($cmd in $WinSetupConfig.pre_install_commands) {
@@ -67,7 +65,7 @@ if ($null -ne $WinSetupConfig.pre_install_commands) {
     }
 }
 
-# 3. Handle Winget
+# Winget
 if ($null -ne $WinSetupConfig.winget -and $WinSetupConfig.winget.enabled -ne $false) {
     Write-Host "`n--- Installing Winget Packages ---" -ForegroundColor Cyan
     winget source update 
@@ -82,11 +80,11 @@ if ($null -ne $WinSetupConfig.winget -and $WinSetupConfig.winget.enabled -ne $fa
     }
 }
 
-# 4. Handle Scoop
+# Scoop
 if ($null -ne $WinSetupConfig.scoop -and $WinSetupConfig.scoop.enabled -ne $false) {
     Write-Host "`n--- Checking Scoop ---" -ForegroundColor Cyan
     if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
-        Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+        Invoke-RestMethod -Uri https://get.scoop.sh -UseBasicParsing | Invoke-Expression
     }
     if ($null -ne $WinSetupConfig.scoop.buckets) {
         foreach ($bucket in $WinSetupConfig.scoop.buckets) {
@@ -100,39 +98,93 @@ if ($null -ne $WinSetupConfig.scoop -and $WinSetupConfig.scoop.enabled -ne $fals
     }
 }
 
-# 5. Handle uv tools
+# uv tools
 if ($null -ne $WinSetupConfig.uv -and $WinSetupConfig.uv.enabled -ne $false) {
     Write-Host "`n--- Installing Python Tools via uv ---" -ForegroundColor Cyan
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+    
     if (Get-Command uv -ErrorAction SilentlyContinue) {
         foreach ($tool in $WinSetupConfig.uv.tools) { uv tool install $tool }
     }
 }
 
-# 6. Run Post-Install Commands (With Dynamic File Resolution)
+# --- 5. Batched Post-Install Execution ---
 if ($null -ne $WinSetupConfig.post_install_commands) {
-    Write-Host "`n--- Running Post-Install Tasks ---" -ForegroundColor Cyan
+    Write-Host "`n--- Preparing Post-Install Tasks ---" -ForegroundColor Cyan
+    
+    $batch_Normal = @()
+    $batch_Pwsh = @()
+    $batch_Admin = @()
+    $batch_AdminPwsh = @()
+
     foreach ($cmd in $WinSetupConfig.post_install_commands) {
         if ($cmd.enabled -eq $false) { continue }
 
-        Write-Host "Running: $($cmd.name)" -ForegroundColor Yellow
+        Write-Host "Resolving files for: $($cmd.name)..." -ForegroundColor Gray
         $finalCmd = $cmd.command
 
-        # Resolve remote files from the 'files' array
+        # Expand environment variables FIRST
+        $finalCmd = [System.Environment]::ExpandEnvironmentVariables($finalCmd)
+
+        # Resolve remote files
         if ($null -ne $cmd.files) {
             foreach ($fileEntry in $cmd.files) {
                 $resolvedPath = Resolve-ExternalPath -Path $fileEntry.path
                 if ($null -ne $resolvedPath) {
-                    # Swaps {{placeholder}} with the actual local temp path
                     $finalCmd = $finalCmd.Replace($fileEntry.var, $resolvedPath)
                 }
             }
-        } else {
-            $finalCmd = [System.Environment]::ExpandEnvironmentVariables($finalCmd)
         }
 
-        Invoke-Expression $finalCmd
+        # Wrap the command with progress logging
+        $batchedTask = "Write-Host `"  -> Running: $($cmd.name)`" -ForegroundColor Yellow`n$finalCmd`n"
+
+        # Sort into execution buckets
+        if ($cmd.admin -eq $true -and $cmd.pwsh -eq $true) {
+            $batch_AdminPwsh += $batchedTask
+        } elseif ($cmd.admin -eq $true) {
+            $batch_Admin += $batchedTask
+        } elseif ($cmd.pwsh -eq $true) {
+            $batch_Pwsh += $batchedTask
+        } else {
+            $batch_Normal += $batchedTask
+        }
     }
+
+    # Batch Execution Function
+    function Run-Batch {
+        param([string]$Context, [array]$Commands, [string]$Exe, [bool]$Elevate)
+        
+        if ($Commands.Count -eq 0) { return }
+        
+        Write-Host "`n=== Executing Batch: $Context ($($Commands.Count) tasks) ===" -ForegroundColor Cyan
+        
+        $scriptBlock = $Commands -join "`n"
+        
+        if ($Elevate) {
+            $scriptBlock += "`nWrite-Host `"Batch complete. Closing in 3 seconds...`" -ForegroundColor Green`nStart-Sleep -Seconds 3"
+        }
+
+        if ($Exe -eq "current") {
+            $sb = [scriptblock]::Create($scriptBlock)
+            Invoke-Command -ScriptBlock $sb
+        } else {
+            $encodedCmd = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($scriptBlock))
+            
+            if ($Elevate) {
+                Write-Host "Waiting for Administrator Approval..." -ForegroundColor DarkGray
+                Start-Process $Exe -Verb RunAs -ArgumentList "-NoProfile -ExecutionPolicy Bypass -EncodedCommand $encodedCmd" -Wait
+            } else {
+                & $Exe -NoProfile -ExecutionPolicy Bypass -EncodedCommand $encodedCmd
+            }
+        }
+    }
+
+    # Execute all buckets
+    Run-Batch -Context "Standard Tasks (PS 5.1)" -Commands $batch_Normal -Exe "current" -Elevate $false
+    Run-Batch -Context "Standard Tasks (PowerShell 7)" -Commands $batch_Pwsh -Exe "pwsh" -Elevate $false
+    Run-Batch -Context "Elevated Tasks (PS 5.1)" -Commands $batch_Admin -Exe "powershell" -Elevate $true
+    Run-Batch -Context "Elevated Tasks (PowerShell 7)" -Commands $batch_AdminPwsh -Exe "pwsh" -Elevate $true
 }
 
 Write-Host "`n--- Setup Complete! Please restart your terminal. ---" -ForegroundColor Green
