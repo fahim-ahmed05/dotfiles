@@ -26,6 +26,9 @@ echo.
 set "USER_INPUT="
 set /p USER_INPUT="Input: "
 
+:: Strip accidental spaces from input
+set "USER_INPUT=!USER_INPUT: =!"
+
 :: 1. Fallback to setup.json
 if "!USER_INPUT!"=="" set "USER_INPUT=setup.json"
 
@@ -34,10 +37,9 @@ echo !USER_INPUT!| findstr /I "http" >nul
 if !ERRORLEVEL! equ 0 (
     set "URL_CONFIG=!USER_INPUT!"
 ) else (
-    :: Ensure .json extension is present
-    set "FINAL_NAME=!USER_INPUT!.json"
-    set "FINAL_NAME=!FINAL_NAME:.json.json=.json!"
-    set "URL_CONFIG=!BASE_CONFIG_URL!!FINAL_NAME!"
+    :: Strip any existing .json extension, then cleanly append it back
+    set "CLEAN_NAME=!USER_INPUT:.json=!"
+    set "URL_CONFIG=!BASE_CONFIG_URL!!CLEAN_NAME!.json"
 )
 
 :: 3. Confirmation Prompt
