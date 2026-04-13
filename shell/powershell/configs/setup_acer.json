@@ -90,7 +90,8 @@
             "oh-my-posh",
             "eza",
             "fzf",
-            "zoxide"
+            "zoxide",
+            "jellyfin"
         ]
     },
     "uv": {
