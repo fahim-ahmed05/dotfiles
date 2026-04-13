@@ -31,7 +31,7 @@ if defined USER_INPUT (
     set "USER_INPUT=!USER_INPUT: =!"
 )
 
-:: 2. Fallback to setup.json if empty (or if they just typed spaces)
+:: 2. Fallback to setup.json if empty
 if "!USER_INPUT!"=="" set "USER_INPUT=setup.json"
 
 :: 3. Resolve URL logic
@@ -39,7 +39,6 @@ echo !USER_INPUT!| findstr /I "http" >nul
 if !ERRORLEVEL! equ 0 (
     set "URL_CONFIG=!USER_INPUT!"
 ) else (
-    :: Strip any existing .json extension, then cleanly append it back
     set "CLEAN_NAME=!USER_INPUT:.json=!"
     set "URL_CONFIG=!BASE_CONFIG_URL!!CLEAN_NAME!.json"
 )
