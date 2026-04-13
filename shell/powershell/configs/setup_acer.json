@@ -1,0 +1,172 @@
+{
+    "settings": {
+        "execution_policy": "RemoteSigned",
+        "winget_args": "--accept-package-agreements --accept-source-agreements"
+    },
+    "pre_install_commands": [
+        {
+            "enabled": true,
+            "name": "Upgrade Winget to Latest Version",
+            "command": "Add-AppxPackage -Path \"https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle\" -ForceApplicationShutdown"
+        }
+    ],
+    "winget": [
+        {
+            "source": "msstore",
+            "packages": [
+                "9nksqgp7f2nh",
+                "xpfftq032ptphf",
+                "9p8ltpgcbzxd"
+            ]
+        },
+        {
+            "source": "winget",
+            "packages": [
+                "Brave.Brave",
+                "HermannSchinagl.LinkShellExtension",
+                "Notepad++.Notepad++",
+                "voidtools.Everything.Alpha",
+                "CodeSector.TeraCopy",
+                "qBittorrent.qBittorrent",
+                "Flow-Launcher.Flow-Launcher",
+                "SumatraPDF.SumatraPDF",
+                "Obsidian.Obsidian",
+                "AdrienAllard.FileConverter",
+                "Microsoft.PowerToys",
+                "ente-io.auth-desktop",
+                "Cloudflare.Warp",
+                "Tonec.InternetDownloadManager",
+                "ONLYOFFICE.DesktopEditors",
+                "eMClient.eMClient",
+                "th-ch.YouTubeMusic",
+                "Microsoft.PowerShell",
+                "Notion.Notion"
+            ]
+        }
+    ],
+    "scoop": {
+        "buckets": [
+            {
+                "name": "extras"
+            },
+            {
+                "name": "versions"
+            },
+            {
+                "name": "nerd-fonts"
+            },
+            {
+                "name": "personal",
+                "url": "https://github.com/fahim-ahmed05/scoop-bucket"
+            }
+        ],
+        "packages": [
+            "7zip",
+            "aria2",
+            "fastfetch",
+            "nodejs",
+            "python",
+            "quicklook",
+            "revouninstaller",
+            "mrrss",
+            "syncthing",
+            "trafficmonitor-lite",
+            "winaero-tweaker",
+            "yt-dlp",
+            "versions/ffmpeg-yt-dlp-nightly",
+            "uv",
+            "mpv-git",
+            "alacritty",
+            "telegram",
+            "foobar2000",
+            "foobar2000-encoders",
+            "localsend",
+            "personal/clickpaste",
+            "personal/winhance",
+            "personal/stremio-kai",
+            "personal/inter-font",
+            "nerd-fonts/JetBrainsMono-NF",
+            "nerd-fonts/CascadiaMono-NF",
+            "oh-my-posh",
+            "eza",
+            "fzf",
+            "zoxide"
+        ]
+    },
+    "uv": {
+        "tools": [
+            "internetarchive",
+            "subliminal"
+        ]
+    },
+    "post_install_commands": [
+        {
+            "name": "Link dotfiles",
+            "command": "Start-Process pwsh -Verb RunAs -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File \"D:\\Fahim\\Git\\dotmngr\\dotmngr.ps1\" -ConfigPath \"D:\\Fahim\\Git\\dotfiles\\other\\dotmngr\\acer.json\"' -Wait"
+        },
+        {
+            "name": "Enable SSH Agent",
+            "command": "Start-Process powershell -Verb RunAs -ArgumentList '-Command \"Get-Service -Name ssh-agent | Set-Service -StartupType Manual; Start-Service ssh-agent\"' -Wait"
+        },
+        {
+            "name": "Add GitHub Auth Key",
+            "command": "ssh-add \"%USERPROFILE%\\.ssh\\github_auth\""
+        },
+        {
+            "name": "Add GitHub Sign Key",
+            "command": "ssh-add \"%USERPROFILE%\\.ssh\\github_sign\""
+        },
+        {
+            "name": "Apply Registry Fix: Edge Policies",
+            "command": "Start-Process reg.exe -Verb RunAs -ArgumentList 'import \"%USERPROFILE%\\Git\\dotfiles\\browser\\msedge\\polices.reg\"' -Wait"
+        },
+        {
+            "name": "Apply Registry Fix: Brave Policies",
+            "command": "Start-Process reg.exe -Verb RunAs -ArgumentList 'import \"%USERPROFILE%\\Git\\dotfiles\\browser\\brave\\polices.reg\"' -Wait"
+        },
+        {
+            "name": "Apply Registry Fix: MPC-HC Settings",
+            "command": "reg.exe import \"%USERPROFILE%\\Git\\dotfiles\\other\\mpc-hc\\mpc-hc-settings.reg\""
+        },
+        {
+            "name": "Apply Registry Fix: Add 7-Zip to Context Menu",
+            "command": "reg import \"%USERPROFILE%\\scoop\\apps\\7zip\\current\\install-context.reg\""
+        },
+        {
+            "name": "Apply Registry Fix: Make Python Available to System",
+            "command": "reg import \"%USERPROFILE%\\scoop\\apps\\python\\current\\install-pep-514.reg\""
+        },
+        {
+            "name": "Apply Registry Fix: Disable OneDrive Personal",
+            "command": "reg.exe import \"%USERPROFILE%\\Git\\dotfiles\\windows\\onedrive\\DisableOneDrivePersonal.reg\""
+        },
+        {
+            "name": "Apply Registry Fix: Add Alacritty to Context Menu",
+            "command": "reg import \"%USERPROFILE%\\scoop\\apps\\alacritty\\current\\install-context.reg\""
+        },
+        {
+            "name": "Disable Oh My Posh Update Notices",
+            "command": "oh-my-posh disable notice"
+        },
+        {
+            "name": "Activate Windows",
+            "command": "irm 'https://get.activated.win' | iex"
+        },
+{
+            "name": "Chris Titus WinUtil",
+            "command": "Start-Process powershell -Verb RunAs -ArgumentList '-Command \"irm https://christitus.com/win | iex\"' -Wait"
+        },
+        {
+            "name": "Clean Up Desktop Shortcuts",
+            "command": "Start-Process powershell -Verb RunAs -ArgumentList '-Command \"Remove-Item -Path $env:USERPROFILE\\Desktop\\*.lnk, $env:PUBLIC\\Desktop\\*.lnk, $env:USERPROFILE\\Desktop\\*.url, $env:PUBLIC\\Desktop\\*.url -Force -ErrorAction SilentlyContinue\"' -Wait"
+        },
+        {
+            "name": "Install CineIndex",
+            "command": "uv tool install \"%USERPROFILE%\\Git\\cineindex\""
+        },
+        {
+            "name": "Disable Aria2 Warning in Scoop",
+            "command": "scoop config aria2-warning-enabled false"
+        }
+    ]
+}
