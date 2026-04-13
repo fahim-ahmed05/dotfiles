@@ -6,12 +6,17 @@ param(
 # --- 1. Environment & Setup ---
 $SetupTempDir = Join-Path $env:TEMP "WinSetup"
 
+# Resolve absolute paths so we know exactly what NOT to delete
+$CurrentScriptPath = $MyInvocation.MyCommand.Path
+$ConfigFullPath = if (Test-Path $ConfigPath) { (Resolve-Path $ConfigPath).Path } else { $ConfigPath }
+
 # Folder Maintenance
 if (Test-Path $SetupTempDir) {
-    if (@(Get-ChildItem -Path $SetupTempDir).Count -gt 0) {
-        Write-Host "Cleaning existing setup files..." -ForegroundColor Gray
-        Remove-Item -Path "$SetupTempDir\*" -Recurse -Force -ErrorAction SilentlyContinue
-    }
+    Write-Host "Cleaning stale setup files..." -ForegroundColor Gray
+    # Only delete files that are NOT the script itself or the active config
+    Get-ChildItem -Path $SetupTempDir | Where-Object { 
+        $_.FullName -ne $CurrentScriptPath -and $_.FullName -ne $ConfigFullPath 
+    } | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
 } else {
     New-Item -Path $SetupTempDir -ItemType Directory -Force | Out-Null
 }
