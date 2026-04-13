@@ -102,6 +102,21 @@
     },
     "post_install_commands": [
         {
+            "name": "Import Git Package List",
+            "pwsh": true,
+            "files": [
+                {
+                    "var": "{{script}}",
+                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/gitpkg/main/gitpkg.ps1"
+                },
+                {
+                    "var": "{{file}}",
+                    "path": "D:\\Backups\\Acer Nitro 5\\Configs\\gitpkg\\gitpkg.json"
+                }
+            ],
+            "command": "& '{{script}}' import '{{file}}'"
+        },
+        {
             "name": "Link dotfiles",
             "admin": true,
             "pwsh": true,
@@ -124,11 +139,11 @@
         },
         {
             "name": "Add GitHub Auth Key",
-            "command": "ssh-add \"%USERPROFILE%\\.ssh\\github_auth\""
+            "command": "ssh-add '%USERPROFILE%\\.ssh\\github_auth'"
         },
         {
             "name": "Add GitHub Sign Key",
-            "command": "ssh-add \"%USERPROFILE%\\.ssh\\github_sign\""
+            "command": "ssh-add '%USERPROFILE%\\.ssh\\github_sign'"
         },
         {
             "name": "Apply Registry Fix: Edge Policies",
@@ -139,7 +154,7 @@
                     "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/browser/msedge/polices.reg"
                 }
             ],
-            "command": "reg.exe import \"{{file}}\""
+            "command": "reg.exe import '{{file}}'"
         },
         {
             "name": "Apply Registry Fix: Brave Policies",
@@ -150,7 +165,7 @@
                     "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/browser/brave/polices.reg"
                 }
             ],
-            "command": "reg.exe import \"{{file}}\""
+            "command": "reg.exe import '{{file}}'"
         },
         {
             "name": "Apply Registry Fix: MPC-HC Settings",
@@ -160,15 +175,15 @@
                     "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/other/mpc-hc/mpc-hc-settings.reg"
                 }
             ],
-            "command": "reg.exe import \"{{file}}\""
+            "command": "reg.exe import '{{file}}'"
         },
         {
             "name": "Apply Registry Fix: Add 7-Zip to Context Menu",
-            "command": "reg import \"%USERPROFILE%\\scoop\\apps\\7zip\\current\\install-context.reg\""
+            "command": "reg import '%USERPROFILE%\\scoop\\apps\\7zip\\current\\install-context.reg'"
         },
         {
             "name": "Apply Registry Fix: Make Python Available to System",
-            "command": "reg import \"%USERPROFILE%\\scoop\\apps\\python\\current\\install-pep-514.reg\""
+            "command": "reg import '%USERPROFILE%\\scoop\\apps\\python\\current\\install-pep-514.reg'"
         },
         {
             "name": "Apply Registry Fix: Disable OneDrive Personal",
@@ -178,9 +193,9 @@
                     "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/windows/onedrive/DisableOneDrivePersonal.reg"
                 }
             ],
-            "command": "reg.exe import \"{{file}}\""
+            "command": "reg.exe import '{{file}}'"
         },
-                {
+        {
             "name": "Apply Registry Fix: Silent Windows Update",
             "files": [
                 {
@@ -188,11 +203,11 @@
                     "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/windows/registry/SilentWindowsUpdate.reg"
                 }
             ],
-            "command": "reg.exe import \"{{file}}\""
+            "command": "reg.exe import '{{file}}'"
         },
         {
             "name": "Apply Registry Fix: Add Alacritty to Context Menu",
-            "command": "reg import \"%USERPROFILE%\\scoop\\apps\\alacritty\\current\\install-context.reg\""
+            "command": "reg import '%USERPROFILE%\\scoop\\apps\\alacritty\\current\\install-context.reg'"
         },
         {
             "name": "Disable Oh My Posh Update Notices",
