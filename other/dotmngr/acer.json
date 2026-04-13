@@ -412,6 +412,10 @@
 				{
 					"from": "D:\\Fahim\\Trash",
 					"to": "%USERPROFILE%\\Trash"
+				},
+				{
+					"from": "D:\\Fahim\\Git",
+					"to": "%USERPROFILE%\\Git"
 				}
 			]
 		},
