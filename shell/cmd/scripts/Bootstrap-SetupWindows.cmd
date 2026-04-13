@@ -31,7 +31,7 @@ if defined USER_INPUT (
     set "USER_INPUT=!USER_INPUT: =!"
 )
 
-:: 2. Fallback to setup.json if empty
+:: 2. Fallback to default if empty
 if "!USER_INPUT!"=="" set "USER_INPUT=setup.json"
 
 :: 3. Resolve URL logic
@@ -39,7 +39,22 @@ echo !USER_INPUT!| findstr /I "http" >nul
 if !ERRORLEVEL! equ 0 (
     set "URL_CONFIG=!USER_INPUT!"
 ) else (
+    :: Strip any existing .json extension to get the clean base name
     set "CLEAN_NAME=!USER_INPUT:.json=!"
+    
+    :: Exception for the root setup.json
+    if /I "!CLEAN_NAME!"=="setup" (
+        rem Do nothing, leave it as 'setup'
+    ) else (
+        :: Check if the name already starts with "setup_"
+        echo !CLEAN_NAME!| findstr /b /i "setup_" >nul
+        if !ERRORLEVEL! neq 0 (
+            :: Prepend setup_ if it's missing
+            set "CLEAN_NAME=setup_!CLEAN_NAME!"
+        )
+    )
+    
+    :: Construct the final URL
     set "URL_CONFIG=!BASE_CONFIG_URL!!CLEAN_NAME!.json"
 )
 
