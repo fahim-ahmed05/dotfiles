@@ -1,53 +1,77 @@
 @echo off
+SETLOCAL EnableDelayedExpansion
 TITLE Windows Automated Setup Bootstrapper
-echo ==========================================
-echo       Windows Setup Bootstrapper
-echo ==========================================
-echo.
 
-:: Prompt for the computer configuration
-set "COMP_NAME="
-set /p COMP_NAME="Enter computer name (e.g., acer, gigabyte) or press Enter for default: "
-
-if "%COMP_NAME%"=="" (
-    set "CONFIG_FILE=setup.json"
-    echo [INFO] No name provided. Defaulting to setup.json.
-) else (
-    set "CONFIG_FILE=setup_%COMP_NAME%.json"
-    echo [INFO] Target configuration: %CONFIG_FILE%.
-)
-echo.
-
-:: 1. Define GitHub Raw URLs
+:: 1. Define Base GitHub Raw URLs
+set "BASE_CONFIG_URL=https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/shell/powershell/configs/"
 set "URL_SCRIPT=https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/shell/powershell/scripts/Setup-Windows.ps1"
-set "URL_CONFIG=https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/shell/powershell/configs/%CONFIG_FILE%"
 
-:: 2. Set up the temporary working directory in the USER'S Temp folder
-set "SETUP_DIR=%USERPROFILE%\AppData\Local\Temp\WinSetup"
-echo [INFO] Preparing temporary directory at %SETUP_DIR%...
-if exist "%SETUP_DIR%" rmdir /s /q "%SETUP_DIR%"
-mkdir "%SETUP_DIR%"
-cd /d "%SETUP_DIR%"
+:: 2. Set up the unified temporary working directory
+set "SETUP_DIR=%TEMP%\WinSetup"
+if exist "!SETUP_DIR!" rmdir /s /q "!SETUP_DIR!"
+mkdir "!SETUP_DIR!"
+cd /d "!SETUP_DIR!"
 
-:: 3. Download the files
+:INPUT_LOOP
+cls
+echo ==========================================
+echo       Configuration Selection
+echo ==========================================
+echo.
+echo Enter the Config Name (e.g., acer) 
+echo OR paste a Direct URL (GitHub Raw or jsDelivr):
+echo (Press Enter for default: setup.json)
+echo.
+
+set "USER_INPUT="
+set /p USER_INPUT="Input: "
+
+:: 1. Fallback to setup.json
+if "!USER_INPUT!"=="" set "USER_INPUT=setup.json"
+
+:: 2. Resolve URL logic
+echo !USER_INPUT!| findstr /I "http" >nul
+if !ERRORLEVEL! equ 0 (
+    set "URL_CONFIG=!USER_INPUT!"
+) else (
+    :: Ensure .json extension is present
+    set "FINAL_NAME=!USER_INPUT!.json"
+    set "FINAL_NAME=!FINAL_NAME:.json.json=.json!"
+    set "URL_CONFIG=!BASE_CONFIG_URL!!FINAL_NAME!"
+)
+
+:: 3. Confirmation Prompt
+echo.
+echo ------------------------------------------
+echo TARGET URL: !URL_CONFIG!
+echo ------------------------------------------
+echo.
+set "CONFIRM="
+set /p CONFIRM="Is this URL correct? (Y/N, default Y): "
+
+if /i "!CONFIRM!"=="N" goto INPUT_LOOP
+
+:: 4. Proceed with Download
+echo.
 echo [INFO] Downloading setup.ps1...
-:: The -f flag forces curl to fail silently on HTTP errors (like 404 Not Found)
-curl -sL -f "%URL_SCRIPT%" -o "setup.ps1"
-if %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] Failed to download setup.ps1. Please check the script URL.
+curl -sL -f -H "Cache-Control: no-cache" "!URL_SCRIPT!" -o "setup.ps1"
+if !ERRORLEVEL! NEQ 0 (
+    echo [ERROR] Failed to download setup.ps1.
     pause
     exit /b 1
 )
 
-echo [INFO] Downloading %CONFIG_FILE%...
-curl -sL -f "%URL_CONFIG%" -o "config.json"
-if %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] Failed to download %CONFIG_FILE%. Make sure the config file exists in your GitHub repo!
+echo [INFO] Downloading configuration...
+curl -sL -f -H "Cache-Control: no-cache" "!URL_CONFIG!" -o "config.json"
+if !ERRORLEVEL! NEQ 0 (
+    echo.
+    echo [ERROR] Failed to download the config file.
+    echo Please check the filename or URL and try again.
     pause
-    exit /b 1
+    goto INPUT_LOOP
 )
 
-:: 4. Execute the PowerShell Script and pass the config file
+:: 5. Execute
 echo.
 echo [INFO] Launching the automated setup...
 echo.
@@ -55,5 +79,5 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "setup.ps1" -ConfigPath "con
 
 echo.
 echo ==========================================
-echo Bootstrap process complete. You can close this window.
+echo Bootstrap process complete.
 pause
