@@ -416,6 +416,10 @@
 				{
 					"from": "D:\\Fahim\\Git",
 					"to": "%USERPROFILE%\\Git"
+				},
+				{
+					"from": "D:\\Fahim\\gitpkgs",
+					"to": "%USERPROFILE%\\gitpkgs"
 				}
 			]
 		},
