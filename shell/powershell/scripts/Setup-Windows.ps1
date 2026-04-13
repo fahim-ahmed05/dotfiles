@@ -17,7 +17,8 @@ if (Test-Path $SetupTempDir) {
     Get-ChildItem -Path $SetupTempDir | Where-Object { 
         $_.FullName -ne $CurrentScriptPath -and $_.FullName -ne $ConfigFullPath 
     } | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
-} else {
+}
+else {
     New-Item -Path $SetupTempDir -ItemType Directory -Force | Out-Null
 }
 
@@ -34,9 +35,10 @@ function Resolve-ExternalPath {
 
         Write-Host "  -> Downloading: $fileName" -ForegroundColor Gray
         try {
-            Invoke-WebRequest -Uri $Path -OutFile $localPath -ErrorAction Stop -Headers @{"Cache-Control"="no-cache"} -UseBasicParsing
+            Invoke-WebRequest -Uri $Path -OutFile $localPath -ErrorAction Stop -Headers @{"Cache-Control" = "no-cache" } -UseBasicParsing
             return $localPath
-        } catch {
+        }
+        catch {
             Write-Error "Failed to download $Path"
             return $null
         }
@@ -107,6 +109,7 @@ if ($null -ne $WinSetupConfig.scoop -and $WinSetupConfig.scoop.enabled -ne $fals
 if ($null -ne $WinSetupConfig.uv -and $WinSetupConfig.uv.enabled -ne $false) {
     Write-Host "`n--- Installing Python Tools via uv ---" -ForegroundColor Cyan
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+    uv tool update-shell
     
     if (Get-Command uv -ErrorAction SilentlyContinue) {
         foreach ($tool in $WinSetupConfig.uv.tools) { uv tool install $tool }
@@ -147,11 +150,14 @@ if ($null -ne $WinSetupConfig.post_install_commands) {
         # Sort into execution buckets
         if ($cmd.admin -eq $true -and $cmd.pwsh -eq $true) {
             $batch_AdminPwsh += $batchedTask
-        } elseif ($cmd.admin -eq $true) {
+        }
+        elseif ($cmd.admin -eq $true) {
             $batch_Admin += $batchedTask
-        } elseif ($cmd.pwsh -eq $true) {
+        }
+        elseif ($cmd.pwsh -eq $true) {
             $batch_Pwsh += $batchedTask
-        } else {
+        }
+        else {
             $batch_Normal += $batchedTask
         }
     }
@@ -173,13 +179,15 @@ if ($null -ne $WinSetupConfig.post_install_commands) {
         if ($Exe -eq "current") {
             $sb = [scriptblock]::Create($scriptBlock)
             Invoke-Command -ScriptBlock $sb
-        } else {
+        }
+        else {
             $encodedCmd = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($scriptBlock))
             
             if ($Elevate) {
                 Write-Host "Waiting for Administrator Approval..." -ForegroundColor DarkGray
                 Start-Process $Exe -Verb RunAs -ArgumentList "-NoProfile -ExecutionPolicy Bypass -EncodedCommand $encodedCmd" -Wait
-            } else {
+            }
+            else {
                 & $Exe -NoProfile -ExecutionPolicy Bypass -EncodedCommand $encodedCmd
             }
         }
