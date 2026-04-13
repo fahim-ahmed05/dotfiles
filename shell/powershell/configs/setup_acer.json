@@ -103,11 +103,24 @@
     "post_install_commands": [
         {
             "name": "Link dotfiles",
-            "command": "Start-Process pwsh -Verb RunAs -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File \"D:\\Fahim\\Git\\dotmngr\\dotmngr.ps1\" -ConfigPath \"D:\\Fahim\\Git\\dotfiles\\other\\dotmngr\\acer.json\"' -Wait"
+            "admin": true,
+            "pwsh": true,
+            "files": [
+                {
+                    "var": "{{script}}",
+                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotmngr/main/dotmngr.ps1"
+                },
+                {
+                    "var": "{{config}}",
+                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/other/dotmngr/acer.json"
+                }
+            ],
+            "command": "& '{{script}}' -ConfigPath '{{config}}'"
         },
         {
             "name": "Enable SSH Agent",
-            "command": "Start-Process powershell -Verb RunAs -ArgumentList '-Command \"Get-Service -Name ssh-agent | Set-Service -StartupType Manual; Start-Service ssh-agent\"' -Wait"
+            "admin": true,
+            "command": "Get-Service -Name ssh-agent | Set-Service -StartupType Manual; Start-Service ssh-agent"
         },
         {
             "name": "Add GitHub Auth Key",
@@ -119,15 +132,35 @@
         },
         {
             "name": "Apply Registry Fix: Edge Policies",
-            "command": "Start-Process reg.exe -Verb RunAs -ArgumentList 'import \"%USERPROFILE%\\Git\\dotfiles\\browser\\msedge\\polices.reg\"' -Wait"
+            "admin": true,
+            "files": [
+                {
+                    "var": "{{file}}",
+                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/browser/msedge/polices.reg"
+                }
+            ],
+            "command": "reg.exe import \"{{file}}\""
         },
         {
             "name": "Apply Registry Fix: Brave Policies",
-            "command": "Start-Process reg.exe -Verb RunAs -ArgumentList 'import \"%USERPROFILE%\\Git\\dotfiles\\browser\\brave\\polices.reg\"' -Wait"
+            "admin": true,
+            "files": [
+                {
+                    "var": "{{file}}",
+                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/browser/brave/polices.reg"
+                }
+            ],
+            "command": "reg.exe import \"{{file}}\""
         },
         {
             "name": "Apply Registry Fix: MPC-HC Settings",
-            "command": "reg.exe import \"%USERPROFILE%\\Git\\dotfiles\\other\\mpc-hc\\mpc-hc-settings.reg\""
+            "files": [
+                {
+                    "var": "{{file}}",
+                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/other/mpc-hc/mpc-hc-settings.reg"
+                }
+            ],
+            "command": "reg.exe import \"{{file}}\""
         },
         {
             "name": "Apply Registry Fix: Add 7-Zip to Context Menu",
@@ -139,7 +172,23 @@
         },
         {
             "name": "Apply Registry Fix: Disable OneDrive Personal",
-            "command": "reg.exe import \"%USERPROFILE%\\Git\\dotfiles\\windows\\onedrive\\DisableOneDrivePersonal.reg\""
+            "files": [
+                {
+                    "var": "{{file}}",
+                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/windows/onedrive/DisableOneDrivePersonal.reg"
+                }
+            ],
+            "command": "reg.exe import \"{{file}}\""
+        },
+                {
+            "name": "Apply Registry Fix: Silent Windows Update",
+            "files": [
+                {
+                    "var": "{{file}}",
+                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/windows/registry/SilentWindowsUpdate.reg"
+                }
+            ],
+            "command": "reg.exe import \"{{file}}\""
         },
         {
             "name": "Apply Registry Fix: Add Alacritty to Context Menu",
@@ -153,17 +202,19 @@
             "name": "Activate Windows",
             "command": "irm 'https://get.activated.win' | iex"
         },
-{
+        {
             "name": "Chris Titus WinUtil",
-            "command": "Start-Process powershell -Verb RunAs -ArgumentList '-Command \"irm https://christitus.com/win | iex\"' -Wait"
+            "admin": true,
+            "command": "irm https://christitus.com/win | iex"
         },
         {
             "name": "Clean Up Desktop Shortcuts",
-            "command": "Start-Process powershell -Verb RunAs -ArgumentList '-Command \"Remove-Item -Path $env:USERPROFILE\\Desktop\\*.lnk, $env:PUBLIC\\Desktop\\*.lnk, $env:USERPROFILE\\Desktop\\*.url, $env:PUBLIC\\Desktop\\*.url -Force -ErrorAction SilentlyContinue\"' -Wait"
+            "admin": true,
+            "command": "Remove-Item -Path $env:USERPROFILE\\Desktop\\*.lnk, $env:PUBLIC\\Desktop\\*.lnk, $env:USERPROFILE\\Desktop\\*.url, $env:PUBLIC\\Desktop\\*.url -Force -ErrorAction SilentlyContinue"
         },
         {
             "name": "Install CineIndex",
-            "command": "uv tool install \"%USERPROFILE%\\Git\\cineindex\""
+            "command": "uv tool install git+https://github.com/fahim-ahmed05/cineindex.git"
         },
         {
             "name": "Disable Aria2 Warning in Scoop",
