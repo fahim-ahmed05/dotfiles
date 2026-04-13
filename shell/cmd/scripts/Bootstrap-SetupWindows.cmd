@@ -26,13 +26,15 @@ echo.
 set "USER_INPUT="
 set /p USER_INPUT="Input: "
 
-:: Strip accidental spaces from input
-set "USER_INPUT=!USER_INPUT: =!"
+:: 1. Clean input ONLY if the user actually typed something
+if defined USER_INPUT (
+    set "USER_INPUT=!USER_INPUT: =!"
+)
 
-:: 1. Fallback to setup.json
+:: 2. Fallback to setup.json if empty (or if they just typed spaces)
 if "!USER_INPUT!"=="" set "USER_INPUT=setup.json"
 
-:: 2. Resolve URL logic
+:: 3. Resolve URL logic
 echo !USER_INPUT!| findstr /I "http" >nul
 if !ERRORLEVEL! equ 0 (
     set "URL_CONFIG=!USER_INPUT!"
@@ -42,7 +44,7 @@ if !ERRORLEVEL! equ 0 (
     set "URL_CONFIG=!BASE_CONFIG_URL!!CLEAN_NAME!.json"
 )
 
-:: 3. Confirmation Prompt
+:: 4. Confirmation Prompt
 echo.
 echo ------------------------------------------
 echo TARGET URL: !URL_CONFIG!
@@ -53,7 +55,7 @@ set /p CONFIRM="Is this URL correct? (Y/N, default Y): "
 
 if /i "!CONFIRM!"=="N" goto INPUT_LOOP
 
-:: 4. Proceed with Download
+:: 5. Proceed with Download
 echo.
 echo [INFO] Downloading setup.ps1...
 curl -sL -f -H "Cache-Control: no-cache" "!URL_SCRIPT!" -o "setup.ps1"
@@ -73,7 +75,7 @@ if !ERRORLEVEL! NEQ 0 (
     goto INPUT_LOOP
 )
 
-:: 5. Execute
+:: 6. Execute
 echo.
 echo [INFO] Launching the automated setup...
 echo.
