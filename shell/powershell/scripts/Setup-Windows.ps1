@@ -186,10 +186,10 @@ if ($null -ne $WinSetupConfig.post_install_commands) {
     }
 
     # Execute all buckets
-    Run-Batch -Context "Standard Tasks (PS 5.1)" -Commands $batch_Normal -Exe "current" -Elevate $false
-    Run-Batch -Context "Standard Tasks (PowerShell 7)" -Commands $batch_Pwsh -Exe "pwsh" -Elevate $false
     Run-Batch -Context "Elevated Tasks (PS 5.1)" -Commands $batch_Admin -Exe "powershell" -Elevate $true
     Run-Batch -Context "Elevated Tasks (PowerShell 7)" -Commands $batch_AdminPwsh -Exe "pwsh" -Elevate $true
+    Run-Batch -Context "Standard Tasks (PS 5.1)" -Commands $batch_Normal -Exe "current" -Elevate $false
+    Run-Batch -Context "Standard Tasks (PowerShell 7)" -Commands $batch_Pwsh -Exe "pwsh" -Elevate $false
 }
 
 Write-Host "`n--- Setup Complete! Please restart your terminal. ---" -ForegroundColor Green
