@@ -314,6 +314,7 @@
 		},
 		"wt": {
 			"enabled": true,
+			"mode": "symlink",
 			"items": [
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\windows\\terminal\\settings.json",
