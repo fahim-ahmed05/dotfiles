@@ -5,15 +5,12 @@ param(
 
 # --- 1. Environment & Setup ---
 $SetupTempDir = Join-Path $env:TEMP "WinSetup"
-
-# Resolve absolute paths so we know exactly what NOT to delete
 $CurrentScriptPath = $MyInvocation.MyCommand.Path
 $ConfigFullPath = if (Test-Path $ConfigPath) { (Resolve-Path $ConfigPath).Path } else { $ConfigPath }
 
 # Folder Maintenance
 if (Test-Path $SetupTempDir) {
     Write-Host "Cleaning stale setup files..." -ForegroundColor Gray
-    # Only delete files that are NOT the script itself or the active config
     Get-ChildItem -Path $SetupTempDir | Where-Object { 
         $_.FullName -ne $CurrentScriptPath -and $_.FullName -ne $ConfigFullPath 
     } | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
@@ -56,6 +53,7 @@ $WinSetupConfig = Get-Content $ConfigPath | ConvertFrom-Json
 Write-Host "--- Initializing System Setup ---" -ForegroundColor Cyan
 
 # --- 4. Core Installations ---
+
 # Execution Policy
 if ($null -ne $WinSetupConfig.settings -and $WinSetupConfig.settings.enabled -ne $false -and $null -ne $WinSetupConfig.settings.execution_policy) {
     Write-Host "Setting Execution Policy..."
@@ -90,18 +88,28 @@ if ($null -ne $WinSetupConfig.winget -and $WinSetupConfig.winget.enabled -ne $fa
 # Scoop
 if ($null -ne $WinSetupConfig.scoop -and $WinSetupConfig.scoop.enabled -ne $false) {
     Write-Host "`n--- Checking Scoop ---" -ForegroundColor Cyan
-    if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
-        Invoke-RestMethod -Uri https://get.scoop.sh -UseBasicParsing | Invoke-Expression
+    
+    # Refresh Path in case Winget just installed Git
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+    
+    if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+        Write-Host "  [SKIPPED] Git is not installed or not found in PATH." -ForegroundColor Yellow
+        Write-Host "  Scoop requires Git to manage buckets. Please install Git first." -ForegroundColor Yellow
     }
-    if ($null -ne $WinSetupConfig.scoop.buckets) {
-        foreach ($bucket in $WinSetupConfig.scoop.buckets) {
-            if ($bucket.enabled -eq $false) { continue }
-            if ($bucket.url) { scoop bucket add $bucket.name $bucket.url } else { scoop bucket add $bucket.name }
+    else {
+        if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
+            Invoke-RestMethod -Uri https://get.scoop.sh -UseBasicParsing | Invoke-Expression
         }
-    }
-    if ($null -ne $WinSetupConfig.scoop.packages) {
-        scoop update; scoop update -a
-        foreach ($pkg in $WinSetupConfig.scoop.packages) { scoop install $pkg }
+        if ($null -ne $WinSetupConfig.scoop.buckets) {
+            foreach ($bucket in $WinSetupConfig.scoop.buckets) {
+                if ($bucket.enabled -eq $false) { continue }
+                if ($bucket.url) { scoop bucket add $bucket.name $bucket.url } else { scoop bucket add $bucket.name }
+            }
+        }
+        if ($null -ne $WinSetupConfig.scoop.packages) {
+            scoop update; scoop update -a
+            foreach ($pkg in $WinSetupConfig.scoop.packages) { scoop install $pkg }
+        }
     }
 }
 
@@ -110,7 +118,7 @@ if ($null -ne $WinSetupConfig.uv -and $WinSetupConfig.uv.enabled -ne $false) {
     Write-Host "`n--- Installing Python Tools via uv ---" -ForegroundColor Cyan
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
     uv tool update-shell
-    
+
     if (Get-Command uv -ErrorAction SilentlyContinue) {
         foreach ($tool in $WinSetupConfig.uv.tools) { uv tool install $tool }
     }
