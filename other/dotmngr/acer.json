@@ -432,10 +432,6 @@
 			"mode": "shortcut",
 			"items": [
 				{
-					"from": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Android Apps",
-					"to": "%USERPROFILE%\\Links\\User_ Start Menu_ Android Apps.lnk"
-				},
-				{
 					"from": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps",
 					"to": "%USERPROFILE%\\Links\\User_ Start Menu_ Apps.lnk"
 				},
