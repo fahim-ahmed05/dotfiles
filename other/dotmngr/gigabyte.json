@@ -479,6 +479,17 @@
 					"to": "%LOCALAPPDATA%\\qBittorrent"
 				}
 			]
+		},
+		"grayjay": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Apps\\Grayjay\\Grayjay.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps\\GrayJay.lnk",
+					"iconLocation": "%USERPROFILE%\\Apps\\Grayjay\\logo.ico"
+				}
+			]
 		}
 	}
 }
