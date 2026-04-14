@@ -491,6 +491,16 @@
 					"WorkingDirectory": "%USERPROFILE%\\Apps\\Grayjay"
 				}
 			]
+		},
+		"rdp": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\RDP\\ACER.rdp",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Acer Nitro 5 (RDP).lnk"
+				}
+			]
 		}
 	}
 }
