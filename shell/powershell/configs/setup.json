@@ -200,7 +200,7 @@
             "files": [
                 {
                     "var": "{{file}}",
-                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/windows/onedrive/DisableOneDrivePersonal.reg"
+                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/windows/registry/DisableOneDrivePersonal.reg"
                 }
             ],
             "command": "reg.exe import '{{file}}'"
