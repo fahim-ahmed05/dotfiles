@@ -487,7 +487,8 @@
 				{
 					"from": "%USERPROFILE%\\Apps\\Grayjay\\Grayjay.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps\\GrayJay.lnk",
-					"iconLocation": "%USERPROFILE%\\Apps\\Grayjay\\logo.ico"
+					"iconLocation": "%USERPROFILE%\\Apps\\Grayjay\\logo.ico",
+					"WorkingDirectory": "%USERPROFILE%\\Apps\\Grayjay"
 				}
 			]
 		}
