@@ -1,8 +1,7 @@
 {
 	"global": {
 		"mode": "hardlink",
-		"trash": true,
-		"trashDir": "%USERPROFILE%\\Trash\\dotmngr"
+		"trash": true
 	},
 	"packages": {
 		"pwsh": {
