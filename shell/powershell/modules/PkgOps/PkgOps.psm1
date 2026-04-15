@@ -28,7 +28,7 @@ function Update-AllPackages {
     uv tool upgrade --all
 
     Write-Host "`nUpdating gitpkg packages...`n" -ForegroundColor Cyan
-    gitpkg pull all
+    gitpkg pull
     
     Write-Host "`nRemoving desktop icons...`n" -ForegroundColor Cyan
     Remove-DesktopIcons
