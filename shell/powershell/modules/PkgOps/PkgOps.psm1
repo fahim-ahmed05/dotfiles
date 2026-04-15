@@ -1,3 +1,5 @@
+Set-Alias gitpkg "$env:UserProfile\gitpkg\gitpkg@main-e90b9fb1\gitpkg.ps1"
+
 function Search-Packages {
     $query = $args -join ' '
     $scoopQuery = ($query -replace '\s+', '-')
@@ -61,4 +63,4 @@ function Install-Packages {
     Remove-DesktopIcons
 }
 
-function gitpkg { & "$env:UserProfile\Git\gitpkg\gitpkg.ps1" @args }
+
