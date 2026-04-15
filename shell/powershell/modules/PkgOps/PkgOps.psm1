@@ -8,7 +8,7 @@ function Search-Packages {
     winget search $query
     
     Write-Host "`nSearching scoop packages..." -ForegroundColor Cyan
-    & "$env:UserProfile\Git\fast-scoop-search\Scoop-Search.ps1" $scoopQuery
+    & "$env:UserProfile\gitpkg\fast-scoop-search@main-6569d60a\Scoop-Search.ps1" $scoopQuery
 }
 
 function Update-AllPackages {
