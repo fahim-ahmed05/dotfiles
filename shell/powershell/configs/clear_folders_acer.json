@@ -1,0 +1,13 @@
+{
+  "trashPath": "D:\\Fahim\\Trash",
+  "sources": [
+    {
+      "path": "%USERPROFILE%\\Desktop"
+    },
+    {
+      "path": "D:\\Fahim\\Downloads",
+      "exclude": ["qBittorrent"]
+    }
+  ],
+  "trashExclude": ["DoNotDelete"]
+}

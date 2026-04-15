@@ -20,7 +20,13 @@ function Clear-WindowsCache {
     }
 }
 
-function Clear-Folder { & "$env:UserProfile\Git\dotfiles\shell\powershell\scripts\Clear-Folder.ps1" @args }
+function Clear-Folder {
+    $computer = $env:COMPUTERNAME.ToLowerInvariant()
+    $config = Join-Path $env:UserProfile "gitpkg\dotfiles@main-7d97e48e\shell\powershell\configs\clear_folders_$computer.json"
+    $script = Join-Path $env:UserProfile "gitpkg\dotfiles@main-7d97e48e\shell\powershell\scripts\Clear-Folder.ps1"
+
+    & $script -ConfigPath $config @args
+}
 
 function Remove-DesktopIcons { Clear-Folder "$env:UserProfile\Desktop\*.lnk" "$env:PUBLIC\Desktop\*.lnk" }
 
