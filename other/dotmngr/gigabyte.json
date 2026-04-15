@@ -120,6 +120,47 @@
 				}
 			]
 		},
+		"jellyfinmpv": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\gitpkg\\ModernZ@main-fb59a1a4\\modernz.lua",
+					"to": "%APPDATA%\\jellyfin-mpv-shim\\portable_config\\scripts\\modernz.lua"
+				},
+				{
+					"from": "%USERPROFILE%\\gitpkg\\ModernZ@main-fb59a1a4\\modernz-icons.ttf",
+					"to": "%APPDATA%\\jellyfin-mpv-shim\\portable_config\\fonts\\modernz-icons.ttf"
+				},
+				{
+					"from": "%USERPROFILE%\\gitpkg\\thumbfast@master-c46790bd\\thumbfast.lua",
+					"to": "%APPDATA%\\jellyfin-mpv-shim\\portable_config\\scripts\\thumbfast.lua"
+				},
+				{
+					"from": "%USERPROFILE%\\gitpkg\\mpv-autosub@main-6176c793\\autosub.lua",
+					"to": "%APPDATA%\\jellyfin-mpv-shim\\portable_config\\scripts\\autosub.lua"
+				},
+				{
+					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\input.conf",
+					"to": "%APPDATA%\\jellyfin-mpv-shim\\portable_config\\input.conf"
+				},
+				{
+					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\mpv.conf",
+					"to": "%APPDATA%\\jellyfin-mpv-shim\\portable_config\\mpv.conf"
+				},
+				{
+					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\script-opts\\autosub.conf",
+					"to": "%APPDATA%\\jellyfin-mpv-shim\\portable_config\\script-opts\\autosub.conf"
+				},
+				{
+					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\script-opts\\thumbfast.conf",
+					"to": "%APPDATA%\\jellyfin-mpv-shim\\portable_config\\script-opts\\thumbfast.conf"
+				},
+				{
+					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\script-opts\\modernz.conf",
+					"to": "%APPDATA%\\jellyfin-mpv-shim\\portable_config\\script-opts\\modernz.conf"
+				}
+			]
+		},
 		"cineindex": {
 			"enabled": true,
 			"items": [
