@@ -30,7 +30,6 @@
 param(
     [string]$ConfigPath = (Join-Path $PSScriptRoot "..\configs\clear_folders.json"),
     
-    # ValueFromRemainingArguments allows space-separated paths without commas
     [Parameter(Position=0, ValueFromPipeline=$true, ValueFromRemainingArguments=$true)]
     [string[]]$Source = @(),
     
@@ -67,7 +66,6 @@ function Process-ItemToTrash {
         [string[]]$Exclude
     )
 
-    # Check for exclusions (supports exact names and wildcards like *.lnk)
     $isExcluded = $false
     foreach ($ex in $Exclude) {
         if ($Item.Name -like $ex) {
@@ -85,7 +83,6 @@ function Process-ItemToTrash {
 
     $dest = Join-Path $trashPath $Item.Name
 
-    # Collision Handling: Preserve extension on files
     if (Test-Path -LiteralPath $dest) {
         $timestamp = (Get-Date).ToString("yyyyMMdd-HHmmss")
         if ($Item -is [System.IO.FileInfo]) {
@@ -96,7 +93,6 @@ function Process-ItemToTrash {
             $dest = Join-Path $trashPath "$($Item.Name)_$timestamp"
         }
         
-        # Failsafe for rapid loop collisions
         $counter = 1
         while (Test-Path -LiteralPath $dest) {
             if ($Item -is [System.IO.FileInfo]) {
@@ -121,7 +117,6 @@ function Clear-Trash {
     $items = Get-ChildItem -LiteralPath $trashPath -Force
 
     foreach ($item in $items) {
-        # Check for exclusions (supports exact names and wildcards)
         $isExcluded = $false
         foreach ($ex in $Exclude) {
             if ($item.Name -like $ex) {
@@ -149,7 +144,6 @@ function Clear-Trash {
 if (-not $Empty) {
     if ($Source.Count -gt 0) {
         foreach ($s in $Source) {
-            # Heuristic to check if input is a literal file path/wildcard or a config alias
             $isPathLike = [System.IO.Path]::IsPathRooted($s) -or $s -match '^\.' -or $s -match '%' -or $s -match '\*' -or $s -match '[\\/]'
             
             if (-not $isPathLike) {
@@ -168,10 +162,8 @@ if (-not $Empty) {
                 }
             }
 
-            # Handle as direct path, wildcard, or specific file
             $expanded = [System.Environment]::ExpandEnvironmentVariables($s)
             try {
-                # Get-Item natively handles *.lnk, \*, and explicit files/folders.
                 $items = Get-Item -Path $expanded -Force -ErrorAction Stop
                 foreach ($item in $items) {
                     Process-ItemToTrash -Item $item -Exclude @()
@@ -181,7 +173,6 @@ if (-not $Empty) {
             }
         }
     } else {
-        # No source specified, clean all from config
         foreach ($src in $config.sources) {
             $expanded = [System.Environment]::ExpandEnvironmentVariables($src.path)
             if (Test-Path -LiteralPath $expanded) {
@@ -194,7 +185,6 @@ if (-not $Empty) {
     }
 }
 
-# Empty Trash if requested
 if ($Empty -or $All) {
     Clear-Trash -Exclude $config.trashExclude
 }
