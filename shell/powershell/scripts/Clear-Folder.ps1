@@ -87,7 +87,7 @@ function Process-ItemToTrash {
 
     # Collision Handling: Preserve extension on files
     if (Test-Path -LiteralPath $dest) {
-        $timestamp = (Get-Date).ToString("yyyyMMdd_HHmmss")
+        $timestamp = (Get-Date).ToString("yyyyMMdd-HHmmss")
         if ($Item -is [System.IO.FileInfo]) {
             $baseName = [System.IO.Path]::GetFileNameWithoutExtension($Item.Name)
             $ext = [System.IO.Path]::GetExtension($Item.Name)
