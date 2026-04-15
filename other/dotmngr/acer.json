@@ -389,7 +389,7 @@
 			"items": [
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\Jellyfin\\data",
+					"from": "D:\\Fahim\\Configs\\Jellyfin\\data",
 					"to": "%USERPROFILE%\\scoop\\persist\\jellyfin\\data"
 				},
 				{
