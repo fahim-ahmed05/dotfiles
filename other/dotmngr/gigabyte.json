@@ -378,21 +378,21 @@
 				{
 					"from": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main\\MuMuNxMain.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Android 12.lnk",
-					"WorkingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
+					"workingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
 					"arguments": "-v 0",
 					"iconLocation": "C:\\Program Files\\Netease\\MuMuPlayer\\nx_device\\12.0\\shell\\MuMuNxDevice.ico"
 				},
 				{
 					"from": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main\\MuMuNxMain.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Android Apps\\Google Photos (Android 12).lnk",
-					"WorkingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
+					"workingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
 					"arguments": "-p app.morphe.android.apps.photos -v 0",
 					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\google-photos.ico"
 				},
 				{
 					"from": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main\\MuMuNxMain.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Android Apps\\HDO Box (Android 12).lnk",
-					"WorkingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
+					"workingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
 					"arguments": "-p com.tv.hdobox -v 0",
 					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\hdo-box.ico"
 				}
@@ -405,7 +405,7 @@
 				{
 					"from": "C:\\Ghost Toolbox\\toolbox.updater.x64.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Ghost Toolbox.lnk",
-					"WorkingDirectory": "C:\\Ghost Toolbox"
+					"workingDirectory": "C:\\Ghost Toolbox"
 				}
 			]
 		},
@@ -472,7 +472,7 @@
 					"from": "%LOCALAPPDATA%\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Brave.lnk",
 					"arguments": "--profile-directory=\"Default\"",
-					"WorkingDirectory": "%LOCALAPPDATA%\\BraveSoftware\\Brave-Browser\\Application"
+					"workingDirectory": "%LOCALAPPDATA%\\BraveSoftware\\Brave-Browser\\Application"
 				}
 			]
 		},
@@ -528,7 +528,7 @@
 					"from": "%USERPROFILE%\\Apps\\Grayjay\\Grayjay.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps\\GrayJay.lnk",
 					"iconLocation": "%USERPROFILE%\\Apps\\Grayjay\\logo.ico",
-					"WorkingDirectory": "%USERPROFILE%\\Apps\\Grayjay"
+					"workingDirectory": "%USERPROFILE%\\Apps\\Grayjay"
 				}
 			]
 		},
@@ -539,6 +539,18 @@
 				{
 					"from": "%USERPROFILE%\\Configs\\RDP\\ACER.rdp",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Acer Nitro 5 (RDP).lnk"
+				}
+			]
+		},
+		"windhawk": {
+			"enabled": true,
+			"items": [
+				{
+					"mode": "shortcut",
+					"from": "%USERPROFILE%\\scoop\\apps\\windhawk\\current\\windhawk.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\windhawk.lnk",
+					"workingDirectory": "%USERPROFILE%\\scoop\\apps\\windhawk\\current",
+					"arguments": "-tray-only"
 				}
 			]
 		}
