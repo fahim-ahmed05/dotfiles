@@ -553,6 +553,16 @@
 					"arguments": "-tray-only"
 				}
 			]
+		},
+		"vacuumtube": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\scoop\\persist\\vacuumtube\\data",
+					"to": "%USERPROFILE%\\Configs\\VacuumTube\\data"
+				}
+			]
 		}
 	}
 }
