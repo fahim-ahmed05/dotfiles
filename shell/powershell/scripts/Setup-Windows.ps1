@@ -78,7 +78,7 @@ if ($null -ne $WinSetupConfig.winget -and $WinSetupConfig.winget.enabled -ne $fa
         if ($group.enabled -eq $false) { continue }
         foreach ($pkg in $group.packages) {
             Write-Host "Installing $pkg from $($group.source)..."
-            Invoke-Expression "winget install $pkg --source $($group.source) $wingetArgs"
+            Invoke-Expression "winget install --id $pkg --source $($group.source) $wingetArgs"
         }
     }
 }
