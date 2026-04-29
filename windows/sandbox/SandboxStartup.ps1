@@ -1,6 +1,5 @@
 # Clear the desktop of the sandbox
-Remove-Item "$env:UserProfile\Desktop\*.lnk" -Recurse -Force
-Remove-Item "$env:PUBLIC\Desktop\*.lnk" -Recurse -Force
+Remove-Item "$env:UserProfile\Desktop\*.lnk", "$env:PUBLIC\Desktop\*.lnk" -Recurse -Force
 
 # Create a shortcut of Ungoogled Chromium on the desktop
 $WshShell = New-Object -ComObject WScript.Shell
