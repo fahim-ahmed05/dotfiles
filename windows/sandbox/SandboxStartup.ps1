@@ -2,7 +2,7 @@
 $WshShell = New-Object -ComObject WScript.Shell
 $Shortcut = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\Chromium.lnk")
 $Shortcut.TargetPath = "C:\Users\WDAGUtilityAccount\Desktop\WinsbSharedFolder\SandboxFiles\UngoogledChromium\chrome.exe"
-$Shortcut.Arguments = "--user-data-dir=C:\Users\WDAGUtilityAccount\Desktop\WinsbSharedFolder\SandboxFiles\ChromiumProfile"
+$Shortcut.Arguments = "--user-data-dir=C:\Users\WDAGUtilityAccount\Desktop\WinsbSharedFolder\SandboxFiles\UngoogledChromium\UserData --no-default-browser-check --disable-logging --disable-breakpad --disable-machine-id --disable-encryption-win"
 $Shortcut.Save()
 
 # Enable Dark Mode for Apps
