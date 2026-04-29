@@ -1,3 +1,7 @@
+# Clear the desktop of the sandbox
+$desktopPath = [System.Environment]::GetFolderPath("Desktop")
+Remove-Item "$desktopPath\*.lnk" -Recurse -Force
+
 # Create a shortcut of Ungoogled Chromium on the desktop
 $WshShell = New-Object -ComObject WScript.Shell
 $Shortcut = $WshShell.CreateShortcut("$env:USERPROFILE\Desktop\Chromium.lnk")
