@@ -563,20 +563,20 @@
 					"to": "%USERPROFILE%\\scoop\\persist\\vacuumtube\\data"
 				}
 			]
+		},
+		"sandbox": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\windows\\sandbox\\SandboxStartup.ps1",
+					"to": "%USERPROFILE\\WinsbSharedFolder\\SandboxFiles\\SandboxStartup.ps1"
+				},
+				{
+					"mode": "shortcut",
+					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\windows\\sandbox\\Sandbox.wsb",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Windows Sandbox (Custom).lnk"
+				}
+			]
 		}
-	},
-	"sandbox": {
-		"enabled": true,
-		"items": [
-			{
-				"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\windows\\sandbox\\SandboxStartup.ps1",
-				"to": "%USERPROFILE\\WinsbSharedFolder\\SandboxFiles\\SandboxStartup.ps1"
-			},
-			{
-				"mode": "shortcut",
-				"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\windows\\sandbox\\Sandbox.wsb",
-				"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Windows Sandbox (Custom).lnk"
-			}
-		]
 	}
 }
