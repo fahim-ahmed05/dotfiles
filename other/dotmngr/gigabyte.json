@@ -570,7 +570,7 @@
 				{
 					"mode": "seed",
 					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\windows\\sandbox\\SandboxStartup.ps1",
-					"to": "%USERPROFILE\\WinsbSharedFolder\\SandboxFiles\\SandboxStartup.ps1"
+					"to": "%USERPROFILE%\\WinsbSharedFolder\\SandboxFiles\\SandboxStartup.ps1"
 				},
 				{
 					"mode": "shortcut",
