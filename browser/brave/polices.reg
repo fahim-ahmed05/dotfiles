@@ -8,5 +8,10 @@ Windows Registry Editor Version 5.00
 "BraveVPNDisabled"=dword:00000001
 "BraveWalletDisabled"=dword:00000001
 "BraveTalkDisabled"=dword:00000001
+"TorDisabled"=dword:00000001
+"BraveP3AEnabled"=dword:00000000
+"UrlKeyedAnonymizedDataCollectionEnabled"=dword:00000000
+"SafeBrowsingExtendedReportingEnabled"=dword:00000000
+"MetricsReportingEnabled"=dword:00000000
 "DnsOverHttpsMode"="secure"
 "DnsOverHttpsTemplates"="https://dns.adguard-dns.com/dns-query"
