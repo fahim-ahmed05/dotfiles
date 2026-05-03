@@ -195,7 +195,7 @@ function hb {
 
 function dotmngr {
     $computer = $env:COMPUTERNAME.ToLowerInvariant()
-    $config = Join-Path $env:UserProfile "Git\dotmngr\$computer.json"
+    $config = Join-Path $env:UserProfile "Git\dotfiles\dotmngr\$computer.json"
     $script = Join-Path $env:UserProfile "Git\dotmngr\dotmngr.ps1"
 
     & $script -ConfigPath $config @args
