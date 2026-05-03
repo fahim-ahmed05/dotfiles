@@ -47,7 +47,7 @@ function Expand-Path {
     return $expanded
 }
 
-function Pull-Repo {
+function Get-RepoChanges {
     param([string]$RepoPath)
     
     $fullPath = Expand-Path $RepoPath
@@ -84,7 +84,7 @@ $config = Get-Content $ConfigPath -Raw | ConvertFrom-Json
 # Process specific repos
 if ($config.repos) {
     foreach ($repo in $config.repos) {
-        Pull-Repo $repo
+        Get-RepoChanges $repo
     }
 }
 
@@ -95,7 +95,7 @@ if ($config.folders) {
         if (Test-Path $expandedFolder) {
             $subdirs = Get-ChildItem -Path $expandedFolder -Directory
             foreach ($subdir in $subdirs) {
-                Pull-Repo $subdir.FullName
+                Get-RepoChanges $subdir.FullName
             }
         } else {
             Write-Host "[-] Folder not found: $expandedFolder" -ForegroundColor Red
