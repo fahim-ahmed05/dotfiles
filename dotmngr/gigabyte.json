@@ -243,7 +243,8 @@
 					"from": "%USERPROFILE%\\scoop\\shims\\alacritty.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Windows Utility.lnk",
 					"arguments": "-e pwsh -noprofile -command \"irm https://christitus.com/win | iex\"",
-					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\ctt-winutils.ico"
+					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\ctt-winutils.ico",
+					"runAsAdmin": true
 				}
 			]
 		},

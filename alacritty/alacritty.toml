@@ -1,5 +1,5 @@
 [general]
-import = [ "~/Git/dotfiles/other/alacritty/theme/one_dark.toml" ]
+import = [ "~/Git/dotfiles/alacritty/theme/one_dark.toml" ]
 
 [font]
 normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
