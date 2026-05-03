@@ -91,7 +91,7 @@ if ($config.repos) {
 
 # Process folders containing multiple repos
 if ($config.folders) {
-    Write-Host "`n--- Processing Repository Folders ---" -ForegroundColor Green
+    Write-Host "--- Processing Repository Folders ---" -ForegroundColor Green
     foreach ($folder in $config.folders) {
         $expandedFolder = Expand-Path $folder
         if (Test-Path $expandedFolder) {
