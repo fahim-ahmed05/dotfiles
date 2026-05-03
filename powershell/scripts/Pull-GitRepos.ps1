@@ -6,6 +6,16 @@
     Reads a JSON file containing specific repo paths and folders containing multiple repos.
     Expands environment variables in paths and performs 'git pull' in each repository.
 
+    JSON Config Example:
+    {
+        "repos": [
+            "%USERPROFILE%\\Git\\dotfiles"
+        ],
+        "folders": [
+            "%USERPROFILE%\\Git"
+        ]
+    }
+
 .PARAMETER ConfigPath
     Path to the JSON configuration file. Defaults to 'powershell/configs/git_repos.json' relative to the dotfiles root.
 

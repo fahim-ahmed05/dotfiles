@@ -29,7 +29,10 @@ function Update-AllPackages {
 
     Write-Host "`nUpdating gitpkg packages...`n" -ForegroundColor Cyan
     gitpkg pull
-    
+
+    Write-Host "`nUpdating git repos...`n" -ForegroundColor Cyan
+    & "$env:UserProfile\Git\dotfiles\powershell\scripts\Pull-GitRepos.ps1"
+
     Write-Host "`nRemoving desktop icons...`n" -ForegroundColor Cyan
     Remove-DesktopIcons
     Write-Host "Done.`n" -ForegroundColor Green
