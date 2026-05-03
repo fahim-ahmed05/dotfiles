@@ -4,25 +4,43 @@
 		"trash": true
 	},
 	"packages": {
+		"ssh": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\ssh\\config",
+					"to": "%USERPROFILE%\\.ssh\\config"
+				}
+			]
+		},
+		"git": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\git\\config",
+					"to": "%USERPROFILE%\\.gitconfig"
+				}
+			]
+		},
 		"pwsh": {
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\shell\\powershell\\Microsoft.PowerShell_profile.ps1",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\powershell\\Microsoft.PowerShell_profile.ps1",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\shell\\powershell\\Microsoft.PowerShell_profile.ps1",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\powershell\\Microsoft.PowerShell_profile.ps1",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Microsoft.VSCode_profile.ps1"
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\shell\\powershell\\modules\\PkgOps",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\powershell\\modules\\PkgOps",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\PkgOps"
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\shell\\powershell\\modules\\FileOps",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\powershell\\modules\\FileOps",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\FileOps"
 				}
 			]
@@ -32,11 +50,11 @@
 			"items": [
 				{
 					"admin": true,
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\browser\\firefox\\policies.json",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\firefox\\policies.json",
 					"to": "C:\\Program Files\\Mozilla Firefox\\distribution\\policies.json"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\browser\\firefox\\user.js",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\firefox\\user.js",
 					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\c2ipkr4o.personal\\user.js"
 				},
 				{
@@ -51,7 +69,7 @@
 			"mode": "shortcut",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\ahk\\main.ahk",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\ahk\\main.ahk",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\autohotkey.lnk"
 				}
 			]
@@ -96,27 +114,27 @@
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\thumbfast.lua"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\mpv-autosub@main-6176c793\\autosub.lua",
+					"from": "%USERPROFILE%\\Git\\mpv-autosub\\autosub.lua",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\autosub.lua"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\input.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\input.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\input.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\mpv.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\mpv.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\mpv.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\script-opts\\autosub.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\autosub.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\autosub.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\script-opts\\thumbfast.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\thumbfast.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\thumbfast.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\script-opts\\modernz.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\modernz.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\modernz.conf"
 				}
 			]
@@ -137,27 +155,27 @@
 					"to": "%APPDATA%\\jellyfin-mpv-shim\\scripts\\thumbfast.lua"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\mpv-autosub@main-6176c793\\autosub.lua",
+					"from": "%USERPROFILE%\\Git\\mpv-autosub\\autosub.lua",
 					"to": "%APPDATA%\\jellyfin-mpv-shim\\scripts\\autosub.lua"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\input.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\input.conf",
 					"to": "%APPDATA%\\jellyfin-mpv-shim\\input.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\mpv.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\mpv.conf",
 					"to": "%APPDATA%\\jellyfin-mpv-shim\\mpv.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\script-opts\\autosub.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\autosub.conf",
 					"to": "%APPDATA%\\jellyfin-mpv-shim\\script-opts\\autosub.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\script-opts\\thumbfast.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\thumbfast.conf",
 					"to": "%APPDATA%\\jellyfin-mpv-shim\\script-opts\\thumbfast.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\mpv\\script-opts\\modernz.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\modernz.conf",
 					"to": "%APPDATA%\\jellyfin-mpv-shim\\script-opts\\modernz.conf"
 				}
 			]
@@ -234,7 +252,7 @@
 			"mode": "seed",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\sumatra_pdf\\settings.txt",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\sumatra_pdf\\settings.txt",
 					"to": "%LOCALAPPDATA%\\SumatraPDF\\SumatraPDF-settings.txt"
 				}
 			]
@@ -339,7 +357,7 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\yt-dlp\\config",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\yt-dlp\\config",
 					"to": "%APPDATA%\\yt-dlp\\config"
 				}
 			]
@@ -348,7 +366,7 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\windows\\winget\\settings.json",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\windows\\winget\\settings.json",
 					"to": "%LOCALAPPDATA%\\Packages\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\\LocalState\\settings.json"
 				}
 			]
@@ -358,7 +376,7 @@
 			"mode": "symlink",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\windows\\terminal\\settings.json",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\windows\\terminal\\settings.json",
 					"to": "%LOCALAPPDATA%\\Packages\\Microsoft.WindowsTerminal_8wekyb3d8bbwe\\LocalState\\settings.json"
 				}
 			]
@@ -367,7 +385,7 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\alacritty\\alacritty.toml",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\alacritty\\alacritty.toml",
 					"to": "%APPDATA%\\alacritty\\alacritty.toml"
 				}
 			]
@@ -414,7 +432,7 @@
 			"enabled": false,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\editor\\zed\\settings.json",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\editor\\zed\\settings.json",
 					"to": "%APPDATA%\\Zed\\settings.json"
 				}
 			]
@@ -423,7 +441,7 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\fpilot\\FPilot-Config.json",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\fpilot\\FPilot-Config.json",
 					"to": "%APPDATA%\\Voidstar\\FilePilot\\FPilot-Config.json"
 				}
 			]
@@ -460,7 +478,7 @@
 			"mode": "seed",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\other\\th-ch_ytm\\config.json",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\th-ch_ytm\\config.json",
 					"to": "%APPDATA%\\YouTube Music\\config.json"
 				}
 			]
@@ -569,12 +587,12 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\windows\\sandbox\\SandboxStartup.ps1",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\windows_sandbox\\SandboxStartup.ps1",
 					"to": "%USERPROFILE%\\WinsbSharedFolder\\SandboxFiles\\SandboxStartup.ps1"
 				},
 				{
 					"mode": "shortcut",
-					"from": "%USERPROFILE%\\gitpkg\\dotfiles@main-7d97e48e\\windows\\sandbox\\Sandbox.wsb",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\windows_sandbox\\Sandbox.wsb",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Windows Sandbox (Custom).lnk"
 				}
 			]
