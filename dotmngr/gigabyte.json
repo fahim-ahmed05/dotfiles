@@ -367,7 +367,7 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\windows\\winget\\settings.json",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\winget\\settings.json",
 					"to": "%LOCALAPPDATA%\\Packages\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\\LocalState\\settings.json"
 				}
 			]
@@ -377,7 +377,7 @@
 			"mode": "symlink",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\windows\\terminal\\settings.json",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\wt\\settings.json",
 					"to": "%LOCALAPPDATA%\\Packages\\Microsoft.WindowsTerminal_8wekyb3d8bbwe\\LocalState\\settings.json"
 				}
 			]
