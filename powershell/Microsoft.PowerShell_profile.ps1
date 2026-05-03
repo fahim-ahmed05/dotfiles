@@ -197,10 +197,7 @@ function hb {
 }
 
 function dotmngr {
-    $config = Join-Path $env:UserProfile "Git\dotfiles\dotmngr\$computer.json"
-    $script = Join-Path $env:UserProfile "Git\dotmngr\dotmngr.ps1"
-
-    & $script -ConfigPath $config @args
+    & "$env:UserProfile\Git\dotmngr\dotmngr.ps1" -ConfigPath "$env:UserProfile\Git\dotfiles\dotmngr\$computer.json" @args
 }
 
 function whereis ($command) {

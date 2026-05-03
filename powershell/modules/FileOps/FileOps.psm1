@@ -21,10 +21,7 @@ function Clear-WindowsCache {
 }
 
 function Clear-Folder {
-    $config = Join-Path $env:UserProfile "Git\dotfiles\powershell\configs\clear_folders_$computer.json"
-    $script = Join-Path $env:UserProfile "Git\dotfiles\powershell\scripts\Clear-Folder.ps1"
-
-    & $script -ConfigPath $config @args
+    & "$env:UserProfile\Git\dotfiles\powershell\scripts\Clear-Folder.ps1" -ConfigPath "$env:UserProfile\Git\dotfiles\powershell\configs\clear_folders_$computer.json" @args
 }
 
 function Remove-DesktopIcons { Clear-Folder "$env:UserProfile\Desktop\*.lnk" "$env:PUBLIC\Desktop\*.lnk" }
