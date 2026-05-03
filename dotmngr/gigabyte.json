@@ -226,7 +226,8 @@
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Reboot to BIOS.lnk",
 					"arguments": "/r /fw /t 0",
 					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\power.ico",
-					"windowStyle": "minimized"
+					"windowStyle": "minimized",
+					 "runAsAdmin": true
 				},
 				{
 					"from": "%SYSTEMROOT%\\System32\\SlideToShutDown.exe",
