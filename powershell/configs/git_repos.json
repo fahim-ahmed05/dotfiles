@@ -1,6 +1,6 @@
 {
-    "repos": [
-        "%USERPROFILE%\\Git\\dotfiles"
-    ],
-    "folders": []
+    "repos": [],
+    "folders": [
+        "%USERPROFILE%\\Git"
+    ]
 }
