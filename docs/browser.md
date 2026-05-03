@@ -45,8 +45,6 @@ https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?f
 | --------------------------- | ------------------------------------------------------------ | ------- |
 | Smooth Scrolling            | `chrome://flags/#smooth-scrolling`                           | Enabled |
 | Overlay Scrollbars          | `chrome://flags/#overlay-scrollbars`                         | Enabled |
-| Fluent Scrollbars           | `chrome://flags/#fluent-scrollbars`                          | Enabled |
-| Fluent Overlay scrollbars   | `chrome://flags/#fluent-overlay-scrollbars`                  | Enabled |
 | Parallel Downloading        | `chrome://flags/#enable-parallel-downloading`                | Enabled |
 | Auto PiP for Video Playback | `chrome://flags/#auto-picture-in-picture-for-video-playback` | Enabled |
 
@@ -57,6 +55,3 @@ https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?f
 - [RDS CAPTCHA Solver](https://github.com/fahim-ahmed05/rds-captcha-solver/raw/main/rdscaptchasolver.user.js)
 - [Bypass Paywalls](https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean-filters/blob/raw?file=userscript/bpc.en.user.js)
 
-## Firefox
-
-- [Firefox Win-UI Theme](https://github.com/Lockframe/Firefox-WinUI)
