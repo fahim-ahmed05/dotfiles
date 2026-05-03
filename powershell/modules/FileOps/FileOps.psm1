@@ -21,7 +21,6 @@ function Clear-WindowsCache {
 }
 
 function Clear-Folder {
-    $computer = $env:COMPUTERNAME.ToLowerInvariant()
     $config = Join-Path $env:UserProfile "Git\dotfiles\powershell\configs\clear_folders_$computer.json"
     $script = Join-Path $env:UserProfile "Git\dotfiles\powershell\scripts\Clear-Folder.ps1"
 

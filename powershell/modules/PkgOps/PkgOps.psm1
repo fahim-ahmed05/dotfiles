@@ -31,7 +31,7 @@ function Update-AllPackages {
     gitpkg pull
 
     Write-Host "`nUpdating git repos...`n" -ForegroundColor Cyan
-    & "$env:UserProfile\Git\dotfiles\powershell\scripts\Pull-GitRepos.ps1"
+    & "$env:UserProfile\Git\dotfiles\powershell\scripts\Pull-GitRepos.ps1" -ConfigPath "$PSScriptRoot\..\configs\git_repos_$computer.json"
 
     Write-Host "`nRemoving desktop icons...`n" -ForegroundColor Cyan
     Remove-DesktopIcons
