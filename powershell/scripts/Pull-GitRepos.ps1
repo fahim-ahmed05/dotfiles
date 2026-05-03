@@ -83,7 +83,6 @@ $config = Get-Content $ConfigPath -Raw | ConvertFrom-Json
 
 # Process specific repos
 if ($config.repos) {
-    Write-Host "--- Processing Specific Repositories ---" -ForegroundColor Green
     foreach ($repo in $config.repos) {
         Pull-Repo $repo
     }
@@ -91,7 +90,6 @@ if ($config.repos) {
 
 # Process folders containing multiple repos
 if ($config.folders) {
-    Write-Host "--- Processing Repository Folders ---" -ForegroundColor Green
     foreach ($folder in $config.folders) {
         $expandedFolder = Expand-Path $folder
         if (Test-Path $expandedFolder) {
@@ -105,4 +103,4 @@ if ($config.folders) {
     }
 }
 
-Write-Host "`n[+] Pull complete!" -ForegroundColor Green
+Write-Host "[+] Pull complete!" -ForegroundColor Green
