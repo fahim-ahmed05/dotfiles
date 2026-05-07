@@ -20,9 +20,7 @@ function Update-AllPackages {
     winget upgrade winget --accept-package-agreements --accept-source-agreements
 
     Write-Host "`nUpdating scoop packages...`n" -ForegroundColor Cyan
-    scoop update
-    scoop update -a
-    scoop status
+    scoop update; scoop update -a; scoop status
 
     Write-Host "`nUpdating uv packages...`n" -ForegroundColor Cyan
     uv tool upgrade --all
@@ -58,7 +56,7 @@ function Install-Packages {
 
         else {
             Write-Host "`nInstalling $pkg via scoop...`n" -ForegroundColor Cyan
-            scoop install "$pkg"
+            scoop update; scoop install "$pkg"
         }
     }
 
