@@ -227,7 +227,7 @@
 					"arguments": "/r /fw /t 0",
 					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\power.ico",
 					"windowStyle": "minimized",
-					 "runAsAdmin": true
+					"runAsAdmin": true
 				},
 				{
 					"from": "%SYSTEMROOT%\\System32\\SlideToShutDown.exe",
@@ -596,6 +596,20 @@
 					"mode": "shortcut",
 					"from": "%USERPROFILE%\\Git\\dotfiles\\windows_sandbox\\Sandbox.wsb",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Windows Sandbox (Custom).lnk"
+				}
+			]
+		},
+		"antigravity": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\scoop\\persist\\antigravity\\data\\user-data",
+					"to": "%APPDATA%\\Antigravity"
+				},
+				{
+					"from": "%USERPROFILE%\\scoop\\persist\\antigravity\\data\\extensions",
+					"to": "%USERPROFILE%\\.antigravity\\extensions"
 				}
 			]
 		}
