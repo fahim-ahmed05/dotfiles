@@ -280,11 +280,12 @@
 			]
 		},
 		"browsertamer": {
-			"enabled": false,
+			"enabled": true,
+			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\BrowserTamer\\config.ini",
-					"to": "%LOCALAPPDATA%\\bt\\config.ini"
+					"from": "%USERPROFILE%\\Configs\\BrowserTamer",
+					"to": "%USERPROFILE%\\scoop\\persist\\browser-tamer"
 				}
 			]
 		},
