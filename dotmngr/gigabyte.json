@@ -613,6 +613,18 @@
 					"to": "%USERPROFILE%\\.antigravity\\extensions"
 				}
 			]
+		},
+		"ungoogled-chromium": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\WinsbSharedFolder\\SandboxFiles\\UngoogledChromium\\chrome.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps\\Ungoogled Chromium (Sandbox).lnk",
+					"arguments": "--user-data-dir=\"%USERPROFILE%\\WinsbSharedFolder\\SandboxFiles\\UngoogledChromium\\UserData\" --no-default-browser-check --disable-logging --disable-breakpad --disable-machine-id --disable-encryption-win",
+					"workingDirectory": "%USERPROFILE%\\WinsbSharedFolder\\SandboxFiles\\UngoogledChromium"
+				}
+			]
 		}
 	}
 }
