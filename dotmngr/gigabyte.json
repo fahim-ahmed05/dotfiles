@@ -285,7 +285,7 @@
 			"items": [
 				{
 					"from": "%USERPROFILE%\\Configs\\BrowserTamer",
-					"to": "%USERPROFILE%\\scoop\\persist\\browser-tamer"
+					"to": "%USERPROFILE%\\scoop\\persist\\bt"
 				}
 			]
 		},
