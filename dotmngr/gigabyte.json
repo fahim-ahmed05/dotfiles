@@ -469,10 +469,11 @@
 		},
 		"twinkletray": {
 			"enabled": true,
+			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\TwinkleTray\\settings.json",
-					"to": "%APPDATA%\\twinkle-tray\\settings.json"
+					"from": "%USERPROFILE%\\Configs\\TwinkleTray",
+					"to": "%APPDATA%\\twinkle-tray"
 				}
 			]
 		},
