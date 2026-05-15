@@ -294,7 +294,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\foobar2000\\profile",
+					"from": "%USERPROFILE%\\Configs\\Foobar2000",
 					"to": "%USERPROFILE%\\scoop\\persist\\foobar2000\\profile"
 				}
 			]
