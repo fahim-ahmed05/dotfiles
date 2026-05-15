@@ -204,7 +204,7 @@
 				{
 					"from": "%USERPROFILE%\\scoop\\apps\\microsoft-jdk\\current\\bin\\java.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps\\Logisim.lnk",
-					"arguments": "-jar \"%USERPROFILE%\\Apps\\Logisim\\logisim-generic-2.7.1.jar\"",
+					"arguments": "-jar \"%USERPROFILE%\\Apps\\logisim\\logisim-generic-2.7.1.jar\"",
 					"iconLocation": "%USERPROFILE%\\Configs\\icon\\logisim.ico",
 					"windowStyle": "minimized"
 				}
@@ -548,10 +548,10 @@
 			"mode": "shortcut",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Apps\\Grayjay\\Grayjay.exe",
+					"from": "%USERPROFILE%\\Apps\\grayjay\\Grayjay.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps\\GrayJay.lnk",
 					"iconLocation": "%USERPROFILE%\\Apps\\Grayjay\\logo.ico",
-					"workingDirectory": "%USERPROFILE%\\Apps\\Grayjay"
+					"workingDirectory": "%USERPROFILE%\\Apps\\grayjay"
 				}
 			]
 		},
