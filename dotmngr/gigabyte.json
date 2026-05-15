@@ -627,8 +627,7 @@
 			]
 		},
 		"spotdl": {
-			"enabled": true,
-			"mode": "seed",
+			"enabled": false,
 			"items": [
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\spotdl\\config.json",
