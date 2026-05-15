@@ -1,5 +1,5 @@
 {
-  "trashPath": "%USERPROFILE%\\Trash",
+  "trashPath": "%USERPROFILE%\\trash",
   "sources": [
     {
       "path": "%USERPROFILE%\\Desktop"

@@ -8,7 +8,7 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\ssh\\config",
+					"from": "%USERPROFILE%\\git\\dotfiles\\ssh\\config",
 					"to": "%USERPROFILE%\\.ssh\\config"
 				}
 			]
@@ -17,7 +17,7 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\git\\config",
+					"from": "%USERPROFILE%\\git\\dotfiles\\git\\config",
 					"to": "%USERPROFILE%\\.gitconfig"
 				}
 			]
@@ -26,21 +26,21 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\powershell\\Microsoft.PowerShell_profile.ps1",
+					"from": "%USERPROFILE%\\git\\dotfiles\\powershell\\Microsoft.PowerShell_profile.ps1",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\powershell\\Microsoft.PowerShell_profile.ps1",
+					"from": "%USERPROFILE%\\git\\dotfiles\\powershell\\Microsoft.PowerShell_profile.ps1",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Microsoft.VSCode_profile.ps1"
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Git\\dotfiles\\powershell\\modules\\PkgOps",
+					"from": "%USERPROFILE%\\git\\dotfiles\\powershell\\modules\\PkgOps",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\PkgOps"
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Git\\dotfiles\\powershell\\modules\\FileOps",
+					"from": "%USERPROFILE%\\git\\dotfiles\\powershell\\modules\\FileOps",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\FileOps"
 				}
 			]
@@ -50,16 +50,16 @@
 			"items": [
 				{
 					"admin": true,
-					"from": "%USERPROFILE%\\Git\\dotfiles\\firefox\\policies.json",
+					"from": "%USERPROFILE%\\git\\dotfiles\\firefox\\policies.json",
 					"to": "C:\\Program Files\\Mozilla Firefox\\distribution\\policies.json"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\firefox\\user.js",
+					"from": "%USERPROFILE%\\git\\dotfiles\\firefox\\user.js",
 					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\c2ipkr4o.personal\\user.js"
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\Firefox\\c2ipkr4o.personal",
+					"from": "%USERPROFILE%\\resources\\firefox\\c2ipkr4o.personal",
 					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\c2ipkr4o.personal"
 				}
 			]
@@ -69,7 +69,7 @@
 			"mode": "shortcut",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\ahk\\main.ahk",
+					"from": "%USERPROFILE%\\git\\dotfiles\\ahk\\main.ahk",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\autohotkey.lnk"
 				}
 			]
@@ -79,11 +79,11 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\FlowLauncher\\Plugins",
+					"from": "%USERPROFILE%\\resources\\flowlauncher\\Plugins",
 					"to": "%APPDATA%\\FlowLauncher\\Plugins"
 				},
 				{
-					"from": "%USERPROFILE%\\Configs\\FlowLauncher\\Settings",
+					"from": "%USERPROFILE%\\resources\\flowlauncher\\Settings",
 					"to": "%APPDATA%\\FlowLauncher\\Settings"
 				}
 			]
@@ -93,7 +93,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\QuickLook\\UserData",
+					"from": "%USERPROFILE%\\resources\\quicklook",
 					"to": "%USERPROFILE%\\scoop\\persist\\quicklook\\UserData"
 				}
 			]
@@ -114,27 +114,27 @@
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\thumbfast.lua"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\mpv-autosub\\autosub.lua",
+					"from": "%USERPROFILE%\\git\\mpv-autosub\\autosub.lua",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\autosub.lua"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\input.conf",
+					"from": "%USERPROFILE%\\git\\dotfiles\\mpv\\input.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\input.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\mpv.conf",
+					"from": "%USERPROFILE%\\git\\dotfiles\\mpv\\mpv.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\mpv.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\autosub.conf",
+					"from": "%USERPROFILE%\\git\\dotfiles\\mpv\\script-opts\\autosub.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\autosub.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\thumbfast.conf",
+					"from": "%USERPROFILE%\\git\\dotfiles\\mpv\\script-opts\\thumbfast.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\thumbfast.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\modernz.conf",
+					"from": "%USERPROFILE%\\git\\dotfiles\\mpv\\script-opts\\modernz.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\modernz.conf"
 				}
 			]
@@ -155,27 +155,27 @@
 					"to": "%APPDATA%\\jellyfin-mpv-shim\\scripts\\thumbfast.lua"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\mpv-autosub\\autosub.lua",
+					"from": "%USERPROFILE%\\git\\mpv-autosub\\autosub.lua",
 					"to": "%APPDATA%\\jellyfin-mpv-shim\\scripts\\autosub.lua"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\input.conf",
+					"from": "%USERPROFILE%\\git\\dotfiles\\mpv\\input.conf",
 					"to": "%APPDATA%\\jellyfin-mpv-shim\\input.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\mpv.conf",
+					"from": "%USERPROFILE%\\git\\dotfiles\\mpv\\mpv.conf",
 					"to": "%APPDATA%\\jellyfin-mpv-shim\\mpv.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\autosub.conf",
+					"from": "%USERPROFILE%\\git\\dotfiles\\mpv\\script-opts\\autosub.conf",
 					"to": "%APPDATA%\\jellyfin-mpv-shim\\script-opts\\autosub.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\thumbfast.conf",
+					"from": "%USERPROFILE%\\git\\dotfiles\\mpv\\script-opts\\thumbfast.conf",
 					"to": "%APPDATA%\\jellyfin-mpv-shim\\script-opts\\thumbfast.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\modernz.conf",
+					"from": "%USERPROFILE%\\git\\dotfiles\\mpv\\script-opts\\modernz.conf",
 					"to": "%APPDATA%\\jellyfin-mpv-shim\\script-opts\\modernz.conf"
 				}
 			]
@@ -185,7 +185,7 @@
 			"items": [
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\CineIndex",
+					"from": "%USERPROFILE%\\resources\\cineindex",
 					"to": "%LOCALAPPDATA%\\CineIndex\\CineIndex"
 				},
 				{
@@ -193,7 +193,7 @@
 					"from": "%USERPROFILE%\\scoop\\shims\\alacritty.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\CineIndex.lnk",
 					"arguments": "-e pwsh -noprofile -command cineindex",
-					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\cineindex.ico"
+					"iconLocation": "%USERPROFILE%\\resources\\icon\\cineindex.ico"
 				}
 			]
 		},
@@ -205,7 +205,7 @@
 					"from": "%USERPROFILE%\\scoop\\apps\\microsoft-jdk\\current\\bin\\java.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps\\Logisim.lnk",
 					"arguments": "-jar \"%USERPROFILE%\\Apps\\Logisim\\logisim-generic-2.7.1.jar\"",
-					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\logisim.ico",
+					"iconLocation": "%USERPROFILE%\\resources\\icon\\logisim.ico",
 					"windowStyle": "minimized"
 				}
 			]
@@ -218,21 +218,21 @@
 					"from": "%SYSTEMROOT%\\System32\\shutdown.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Reboot.lnk",
 					"arguments": "/r /t 0",
-					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\power.ico",
+					"iconLocation": "%USERPROFILE%\\resources\\icon\\power.ico",
 					"windowStyle": "minimized"
 				},
 				{
 					"from": "%SYSTEMROOT%\\System32\\shutdown.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Reboot to BIOS.lnk",
 					"arguments": "/r /fw /t 0",
-					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\power.ico",
+					"iconLocation": "%USERPROFILE%\\resources\\icon\\power.ico",
 					"windowStyle": "minimized",
 					"runAsAdmin": true
 				},
 				{
 					"from": "%SYSTEMROOT%\\System32\\SlideToShutDown.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Slide to Shutdown.lnk",
-					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\power.ico"
+					"iconLocation": "%USERPROFILE%\\resources\\icon\\power.ico"
 				}
 			]
 		},
@@ -244,7 +244,7 @@
 					"from": "%USERPROFILE%\\scoop\\shims\\alacritty.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Windows Utility.lnk",
 					"arguments": "-e pwsh -noprofile -command \"irm https://christitus.com/win | iex\"",
-					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\ctt-winutils.ico",
+					"iconLocation": "%USERPROFILE%\\resources\\icon\\ctt-winutils.ico",
 					"runAsAdmin": true
 				}
 			]
@@ -254,7 +254,7 @@
 			"mode": "seed",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\sumatra_pdf\\settings.txt",
+					"from": "%USERPROFILE%\\git\\dotfiles\\sumatra_pdf\\settings.txt",
 					"to": "%LOCALAPPDATA%\\SumatraPDF\\SumatraPDF-settings.txt"
 				}
 			]
@@ -264,7 +264,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\aimp",
+					"from": "%USERPROFILE%\\resources\\aimp",
 					"to": "%USERPROFILE%\\scoop\\persist\\aimp\\Profile"
 				}
 			]
@@ -274,17 +274,17 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\AyuGram\\tdata",
+					"from": "%USERPROFILE%\\resources\\ayugram",
 					"to": "%USERPROFILE%\\scoop\\persist\\ayugram\\tdata"
 				}
 			]
 		},
-		"browsertamer": {
+		"bt": {
 			"enabled": true,
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\BrowserTamer",
+					"from": "%USERPROFILE%\\resources\\bt",
 					"to": "%USERPROFILE%\\scoop\\persist\\bt"
 				}
 			]
@@ -294,7 +294,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\Foobar2000",
+					"from": "%USERPROFILE%\\resources\\foobar2k",
 					"to": "%USERPROFILE%\\scoop\\persist\\foobar2000\\profile"
 				}
 			]
@@ -304,7 +304,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\FreeTube",
+					"from": "%USERPROFILE%\\resources\\freetube",
 					"to": "%APPDATA%\\FreeTube"
 				}
 			]
@@ -314,8 +314,8 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\StremioKai\\stremio.exe.WebView2",
-					"to": "%USERPROFILE%\\scoop\\persist\\stremio-kai\\stremio.exe.WebView2"
+					"from": "%USERPROFILE%\\resources\\stremiokai",
+					"to": "%USERPROFILE%\\scoop\\persist\\stremio-kai\\stremio.exe.WebView2\\EBWebView"
 				}
 			]
 		},
@@ -324,7 +324,7 @@
 			"items": [
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\Syncthing\\config",
+					"from": "%USERPROFILE%\\resources\\syncthing",
 					"to": "%USERPROFILE%\\scoop\\persist\\syncthing\\config"
 				},
 				{
@@ -341,7 +341,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\Telegram\\tdata",
+					"from": "%USERPROFILE%\\resources\\telegram",
 					"to": "%USERPROFILE%\\scoop\\persist\\telegram\\tdata"
 				}
 			]
@@ -351,7 +351,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\TorBrowser\\profile.default",
+					"from": "%USERPROFILE%\\resources\\torbrowser",
 					"to": "%USERPROFILE%\\scoop\\persist\\tor-browser\\TorBrowser\\Data\\Browser\\profile.default"
 				}
 			]
@@ -360,7 +360,7 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\yt-dlp\\config",
+					"from": "%USERPROFILE%\\git\\dotfiles\\yt-dlp\\config",
 					"to": "%APPDATA%\\yt-dlp\\config"
 				}
 			]
@@ -369,7 +369,7 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\winget\\settings.json",
+					"from": "%USERPROFILE%\\git\\dotfiles\\winget\\settings.json",
 					"to": "%LOCALAPPDATA%\\Packages\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\\LocalState\\settings.json"
 				}
 			]
@@ -379,7 +379,7 @@
 			"mode": "symlink",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\wt\\settings.json",
+					"from": "%USERPROFILE%\\git\\dotfiles\\wt\\settings.json",
 					"to": "%LOCALAPPDATA%\\Packages\\Microsoft.WindowsTerminal_8wekyb3d8bbwe\\LocalState\\settings.json"
 				}
 			]
@@ -388,7 +388,7 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\alacritty\\alacritty.toml",
+					"from": "%USERPROFILE%\\git\\dotfiles\\alacritty\\alacritty.toml",
 					"to": "%APPDATA%\\alacritty\\alacritty.toml"
 				}
 			]
@@ -409,14 +409,14 @@
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Android Apps\\Google Photos (Android 12).lnk",
 					"workingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
 					"arguments": "-p app.morphe.android.apps.photos -v 0",
-					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\google-photos.ico"
+					"iconLocation": "%USERPROFILE%\\resources\\icon\\google-photos.ico"
 				},
 				{
 					"from": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main\\MuMuNxMain.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Android Apps\\HDO Box (Android 12).lnk",
 					"workingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
 					"arguments": "-p com.tv.hdobox -v 0",
-					"iconLocation": "%USERPROFILE%\\Configs\\Themes\\Icons\\hdo-box.ico"
+					"iconLocation": "%USERPROFILE%\\resources\\icon\\hdo-box.ico"
 				}
 			]
 		},
@@ -435,7 +435,7 @@
 			"enabled": false,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\editor\\zed\\settings.json",
+					"from": "%USERPROFILE%\\git\\dotfiles\\editor\\zed\\settings.json",
 					"to": "%APPDATA%\\Zed\\settings.json"
 				}
 			]
@@ -444,7 +444,7 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\fpilot\\FPilot-Config.json",
+					"from": "%USERPROFILE%\\git\\dotfiles\\fpilot\\FPilot-Config.json",
 					"to": "%APPDATA%\\Voidstar\\FilePilot\\FPilot-Config.json"
 				}
 			]
@@ -454,15 +454,15 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\MusicBee\\AppData",
+					"from": "%USERPROFILE%\\resources\\musicbee\\AppData",
 					"to": "%USERPROFILE%\\scoop\\persist\\musicbee\\AppData"
 				},
 				{
-					"from": "%USERPROFILE%\\Configs\\MusicBee\\Library",
+					"from": "%USERPROFILE%\\resources\\musicbee\\Library",
 					"to": "%USERPROFILE%\\scoop\\persist\\musicbee\\Library"
 				},
 				{
-					"from": "%USERPROFILE%\\Configs\\MusicBee\\Plugins",
+					"from": "%USERPROFILE%\\resources\\musicbee\\Plugins",
 					"to": "%USERPROFILE%\\scoop\\persist\\musicbee\\Plugins"
 				}
 			]
@@ -472,7 +472,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\TwinkleTray",
+					"from": "%USERPROFILE%\\resources\\twinkletray",
 					"to": "%APPDATA%\\twinkle-tray"
 				}
 			]
@@ -482,7 +482,7 @@
 			"mode": "seed",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\th-ch_ytm\\config.json",
+					"from": "%USERPROFILE%\\git\\dotfiles\\th-ch_ytm\\config.json",
 					"to": "%APPDATA%\\YouTube Music\\config.json"
 				}
 			]
@@ -534,11 +534,11 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\qBittorrent\\Roaming",
+					"from": "%USERPROFILE%\\resources\\qbittorrent\\roaming",
 					"to": "%APPDATA%\\qBittorrent"
 				},
 				{
-					"from": "%USERPROFILE%\\Configs\\qBittorrent\\Local",
+					"from": "%USERPROFILE%\\resources\\qbittorrent\\local",
 					"to": "%LOCALAPPDATA%\\qBittorrent"
 				}
 			]
@@ -560,7 +560,7 @@
 			"mode": "shortcut",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\RDP\\ACER.rdp",
+					"from": "%USERPROFILE%\\resources\\rdp\\ACER.rdp",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Acer Nitro 5 (RDP).lnk"
 				}
 			]
@@ -582,7 +582,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\VacuumTube",
+					"from": "%USERPROFILE%\\resources\\vacuumtube",
 					"to": "%USERPROFILE%\\scoop\\persist\\vacuumtube"
 				}
 			]
@@ -591,12 +591,12 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\windows_sandbox\\SandboxStartup.ps1",
+					"from": "%USERPROFILE%\\git\\dotfiles\\windows_sandbox\\SandboxStartup.ps1",
 					"to": "%USERPROFILE%\\WinsbSharedFolder\\SandboxFiles\\SandboxStartup.ps1"
 				},
 				{
 					"mode": "shortcut",
-					"from": "%USERPROFILE%\\Git\\dotfiles\\windows_sandbox\\Sandbox.wsb",
+					"from": "%USERPROFILE%\\git\\dotfiles\\windows_sandbox\\Sandbox.wsb",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Windows Sandbox (Custom).lnk"
 				}
 			]
@@ -631,7 +631,7 @@
 			"enabled": false,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\spotdl\\config.json",
+					"from": "%USERPROFILE%\\git\\dotfiles\\spotdl\\config.json",
 					"to": "%USERPROFILE%\\.spotdl\\config.json"
 				}
 			]
