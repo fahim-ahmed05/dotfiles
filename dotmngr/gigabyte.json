@@ -264,7 +264,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\AIMP\\Profile",
+					"from": "%USERPROFILE%\\Configs\\aimp",
 					"to": "%USERPROFILE%\\scoop\\persist\\aimp\\Profile"
 				}
 			]
