@@ -625,6 +625,15 @@
 					"workingDirectory": "%USERPROFILE%\\WinsbSharedFolder\\SandboxFiles\\UngoogledChromium"
 				}
 			]
+		},
+		"spotdl": {
+			"enabled": true,
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\spotdl\\config.json",
+					"to": "%USERPROFILE%\\.spotdl\\config.json"
+				}
+			]
 		}
 	}
 }
