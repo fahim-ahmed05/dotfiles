@@ -1,0 +1,9 @@
+{
+  "sandbox": [
+    "%USERPROFILE%\\dotfiles\\windows_sandbox\\Sandbox.wsb.reg",
+    "%USERPROFILE%\\dotfiles\\windows_sandbox\\Sandbox.usb.reg"
+  ],
+  "extras": [
+    "relative-regs\\example.reg"
+  ]
+}
