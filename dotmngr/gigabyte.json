@@ -582,8 +582,8 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\VacuumTube\\data",
-					"to": "%USERPROFILE%\\scoop\\persist\\vacuumtube\\data"
+					"from": "%USERPROFILE%\\Configs\\VacuumTube",
+					"to": "%USERPROFILE%\\scoop\\persist\\vacuumtube"
 				}
 			]
 		},
