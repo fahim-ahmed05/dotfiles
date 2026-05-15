@@ -606,11 +606,15 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\scoop\\persist\\antigravity\\data\\user-data",
+					"from": "%USERPROFILE%\\Configs\\antigravity",
+					"to": "%USERPROFILE%\\scoop\\persist\\antigravity\\data"
+				},
+				{
+					"from": "%USERPROFILE%\\Configs\\antigravity\\user-data",
 					"to": "%APPDATA%\\Antigravity"
 				},
 				{
-					"from": "%USERPROFILE%\\scoop\\persist\\antigravity\\data\\extensions",
+					"from": "%USERPROFILE%\\Configs\\antigravity\\extensions",
 					"to": "%USERPROFILE%\\.antigravity\\extensions"
 				}
 			]
