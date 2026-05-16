@@ -16,9 +16,7 @@ function Expand-PercentVars {
 
 # Check elevation
 $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
-if (-not $isAdmin) {
-    Write-Warning "Process is not elevated; importing .reg may fail without admin rights."
-}
+# Note: don't warn here unconditionally; warn only if admin-required files are found and elevation fails
 
 # Resolve config path
 try {
@@ -173,16 +171,29 @@ if ($adminEntries.Count -gt 0 -and -not $isAdmin) {
     if ($pwshCmd) { $exe = $pwshCmd.Source } else { $exe = (Get-Command powershell).Source }
 
     $argList = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', $PSCommandPath, '-Config', $configPath, '-Action', $Action, '-ImportAdminOnly')
-    Start-Process -FilePath $exe -ArgumentList $argList -Verb RunAs -Wait
-
-    # After elevated helper finishes, apply action to non-admin entries in this (non-elevated) process
-    foreach ($item in $nonAdminEntries) {
-        $proc = Invoke-RegistryAction -Path $item.Path -Action $Action
-        if ($null -eq $proc) { Write-Warning "Operation skipped for $($item.Path)."; continue }
-        if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
+    try {
+        Start-Process -FilePath $exe -ArgumentList $argList -Verb RunAs -Wait
+        # After elevated helper finishes, apply action to non-admin entries in this (non-elevated) process
+        foreach ($item in $nonAdminEntries) {
+            $proc = Invoke-RegistryAction -Path $item.Path -Action $Action
+            if ($null -eq $proc) { Write-Warning "Operation skipped for $($item.Path)."; continue }
+            if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
+        }
+        exit 0
     }
+    catch {
+        Write-Warning "Failed to launch elevated helper: $($_.Exception.Message)"
+        Write-Warning "Admin-required .reg files detected but elevation failed; skipping admin imports and continuing with non-admin entries."
 
-    exit 0
+        # Proceed directly to non-admin entries
+        foreach ($item in $nonAdminEntries) {
+            $proc = Invoke-RegistryAction -Path $item.Path -Action $Action
+            if ($null -eq $proc) { Write-Warning "Operation skipped for $($item.Path)."; continue }
+            if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
+        }
+
+        exit 0
+    }
 }
 
 # Otherwise (either elevated already or no admin entries): apply action to admin first, then non-admin
