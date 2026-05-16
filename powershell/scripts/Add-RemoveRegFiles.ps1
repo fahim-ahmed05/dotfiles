@@ -1,5 +1,5 @@
 Param(
-    [string]$Config = (Join-Path $PSScriptRoot "..\configs\reg_import.json"),
+    [string]$Config = (Join-Path $PSScriptRoot "..\configs\reg_files.json"),
     [string[]]$Groups,
     [ValidateSet('add', 'remove')][string]$Action = 'add',
     [switch]$ImportAdminOnly
