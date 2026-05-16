@@ -1,0 +1,29 @@
+{
+  "alacritty": {
+    "enabled": true,
+    "add": [
+      "%USERPROFILE%\\scoop\\apps\\alacritty\\current\\install-context.reg"
+    ],
+    "remove": [
+      "%USERPROFILE%\\scoop\\apps\\alacritty\\current\\uninstall-context.reg"
+    ]
+  },
+  "7zip": {
+    "enabled": true,
+    "add": [
+      "%USERPROFILE%\\scoop\\apps\\7zip\\current\\install-context.reg"
+    ],
+    "remove": [
+      "%USERPROFILE%\\scoop\\apps\\7zip\\current\\uninstall-context.reg"
+    ]
+  },
+  "python": {
+    "enabled": true,
+    "add": [
+      "%USERPROFILE%\\scoop\\apps\\python\\current\\install-pep-514.reg"
+    ],
+    "remove": [
+      "%USERPROFILE%\\scoop\\apps\\python\\current\\uninstall-pep-514.reg"
+    ]
+  }
+}

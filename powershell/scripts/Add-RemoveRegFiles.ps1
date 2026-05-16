@@ -1,6 +1,7 @@
 Param(
-    [string]$Config = "registry-config.json",
+    [string]$Config = (Join-Path $PSScriptRoot "..\configs\reg_import.json"),
     [string[]]$Groups,
+    [ValidateSet('add', 'remove')][string]$Action = 'add',
     [switch]$Elevated,
     [switch]$ImportAdminOnly
 )
@@ -42,11 +43,11 @@ try {
     $json = $jsonText | ConvertFrom-Json -ErrorAction Stop
 }
 catch {
-    Write-Error "Failed to parse JSON in $configPath: $_"
+    Write-Error "Failed to parse JSON in $($configPath): $($_.Exception.Message)"
     exit 1
 }
 
-# Normalize entries: require object mapping group names to arrays
+# Normalize entries: require object mapping group names to arrays or group objects
 if ($null -eq $json) { Write-Error "Config is empty"; exit 1 }
 if ($json -is [System.Array]) {
     Write-Error "Array config is no longer supported. Use an object mapping group names to arrays."
@@ -54,19 +55,62 @@ if ($json -is [System.Array]) {
 }
 
 $obj = $json
+$selectedGroups = @{}
 if (-not $Groups -or $Groups.Count -eq 0) {
-    $groupNames = $obj.PSObject.Properties | ForEach-Object { $_.Name }
+    foreach ($prop in $obj.PSObject.Properties) {
+        $groupName = $prop.Name
+        $groupValue = $prop.Value
+        $isEnabled = $true
+
+        if ($groupValue -isnot [System.Array]) {
+            if ($groupValue.PSObject.Properties.Name -contains 'enabled' -and $groupValue.enabled -eq $false) {
+                $isEnabled = $false
+            }
+        }
+
+        if ($isEnabled) {
+            $selectedGroups[$groupName] = $true
+        }
+    }
 }
 else {
-    $groupNames = $Groups
+    foreach ($groupName in $Groups) {
+        $selectedGroups[$groupName] = $true
+    }
 }
 
 $entries = @()
-foreach ($g in $groupNames) {
+foreach ($g in $selectedGroups.Keys) {
     if (-not ($obj.PSObject.Properties.Name -contains $g)) { Write-Warning "Group '$g' not found in config."; continue }
     $val = $obj.$g
-    if (-not ($val -is [System.Array])) { Write-Warning "Group '$g' is not an array; skipping."; continue }
-    $entries += $val
+    if ($val -is [System.Array]) {
+        $entries += $val
+        continue
+    }
+
+    $actionKey = $Action  # 'add' or 'remove'
+    if ($val.PSObject.Properties.Name -contains $actionKey) {
+        if ($val.$actionKey -is [System.Array]) {
+            $entries += $val.$actionKey
+        }
+        else {
+            Write-Warning "Group '$g' $actionKey value is not an array; skipping."
+        }
+        continue
+    }
+
+    # Fallback to 'paths' for backward compatibility when action is 'add'
+    if ($actionKey -eq 'add' -and $val.PSObject.Properties.Name -contains 'paths') {
+        if ($val.paths -is [System.Array]) {
+            $entries += $val.paths
+        }
+        else {
+            Write-Warning "Group '$g' paths value is not an array; skipping."
+        }
+        continue
+    }
+
+    Write-Warning "Group '$g' has no '$actionKey' array; skipping."
 }
 
 # Resolve and categorize entries into admin-needed vs non-admin
@@ -98,12 +142,30 @@ foreach ($entry in $entries) {
     else { $nonAdminEntries += [pscustomobject]@{ Path = $fullPath; Content = $content } }
 }
 
+# Helper function to apply registry action
+function Invoke-RegistryAction {
+    param(
+        [string]$Path,
+        [string]$Action = 'add'
+    )
+    if ($Action -eq 'remove') {
+        Write-Output "Removing registry entries from file: $Path"
+        # For .reg files with entries like [-HKEY_...], reg import handles deletion
+        $proc = Start-Process -FilePath "reg.exe" -ArgumentList @('import', $Path) -NoNewWindow -Wait -PassThru
+    }
+    else {
+        Write-Output "Importing registry file: $Path"
+        $proc = Start-Process -FilePath "reg.exe" -ArgumentList @('import', $Path) -NoNewWindow -Wait -PassThru
+    }
+    return $proc
+}
+
 # If called with -ImportAdminOnly, import only admin entries and exit
 if ($ImportAdminOnly) {
     foreach ($item in $adminEntries) {
-        Write-Output "(elevated) Importing admin registry file: $($item.Path)"
-        $proc = Start-Process -FilePath "reg.exe" -ArgumentList @('import', $item.Path) -NoNewWindow -Wait -PassThru
-        if ($proc.ExitCode -ne 0) { Write-Warning "Import failed for $($item.Path) (exit code $($proc.ExitCode))." }
+        Write-Output "(elevated) $($Action)ing admin registry file: $($item.Path)"
+        $proc = Invoke-RegistryAction -Path $item.Path -Action $Action
+        if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
     }
     exit 0
 }
@@ -115,28 +177,25 @@ if ($adminEntries.Count -gt 0 -and -not $isAdmin) {
     $pwshCmd = Get-Command pwsh -ErrorAction SilentlyContinue
     if ($pwshCmd) { $exe = $pwshCmd.Source } else { $exe = (Get-Command powershell).Source }
 
-    $argList = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', $PSCommandPath, '-Config', $configPath, '-ImportAdminOnly')
+    $argList = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', $PSCommandPath, '-Config', $configPath, '-Action', $Action, '-ImportAdminOnly')
     Start-Process -FilePath $exe -ArgumentList $argList -Verb RunAs -Wait
 
-    # After elevated helper finishes, import non-admin entries in this (non-elevated) process
+    # After elevated helper finishes, apply action to non-admin entries in this (non-elevated) process
     foreach ($item in $nonAdminEntries) {
-        Write-Output "Importing non-admin registry file: $($item.Path)"
-        $proc = Start-Process -FilePath "reg.exe" -ArgumentList @('import', $item.Path) -NoNewWindow -Wait -PassThru
-        if ($proc.ExitCode -ne 0) { Write-Warning "Import failed for $($item.Path) (exit code $($proc.ExitCode))." }
+        $proc = Invoke-RegistryAction -Path $item.Path -Action $Action
+        if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
     }
 
     exit 0
 }
 
-# Otherwise (either elevated already or no admin entries): import admin first, then non-admin
+# Otherwise (either elevated already or no admin entries): apply action to admin first, then non-admin
 foreach ($item in $adminEntries) {
-    Write-Output "Importing admin registry file: $($item.Path)"
-    $proc = Start-Process -FilePath "reg.exe" -ArgumentList @('import', $item.Path) -NoNewWindow -Wait -PassThru
-    if ($proc.ExitCode -ne 0) { Write-Warning "Import failed for $($item.Path) (exit code $($proc.ExitCode))." }
+    $proc = Invoke-RegistryAction -Path $item.Path -Action $Action
+    if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
 }
 
 foreach ($item in $nonAdminEntries) {
-    Write-Output "Importing non-admin registry file: $($item.Path)"
-    $proc = Start-Process -FilePath "reg.exe" -ArgumentList @('import', $item.Path) -NoNewWindow -Wait -PassThru
-    if ($proc.ExitCode -ne 0) { Write-Warning "Import failed for $($item.Path) (exit code $($proc.ExitCode))." }
+    $proc = Invoke-RegistryAction -Path $item.Path -Action $Action
+    if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
 }
