@@ -143,26 +143,39 @@ function Invoke-RegistryAction {
     }
 }
 
-
-# If called with -ImportAdminOnly, import only admin entries and exit
-if ($ImportAdminOnly) {
-    # Group by group name for display
+# Helper function to display and process grouped entries
+function Show-GroupedEntries {
+    param(
+        [pscustomobject[]]$Entries,
+        [string]$Action = 'add'
+    )
+    
+    if ($Entries.Count -eq 0) { return }
+    
+    # Group by group name
     $grouped = @{}
-    foreach ($entry in $adminEntries) {
+    foreach ($entry in $Entries) {
         if (-not $grouped.ContainsKey($entry.Group)) {
             $grouped[$entry.Group] = @()
         }
         $grouped[$entry.Group] += $entry
     }
     
+    # Display each group with color
+    $color = if ($Action -eq 'add') { 'Cyan' } else { 'Yellow' }
     foreach ($groupName in ($grouped.Keys | Sort-Object)) {
-        $color = if ($Action -eq 'add') { 'Cyan' } else { 'Yellow' }
         Write-Host "$Action : $groupName" -ForegroundColor $color
         foreach ($item in $grouped[$groupName]) {
             $proc = Invoke-RegistryAction -Path $item.Path -Action $Action -Group $item.Group
             if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
         }
     }
+}
+
+
+# If called with -ImportAdminOnly, import only admin entries and exit
+if ($ImportAdminOnly) {
+    Show-GroupedEntries -Entries $adminEntries -Action $Action
     exit 0
 }
 
@@ -177,22 +190,7 @@ if ($adminEntries.Count -gt 0 -and -not $isAdmin) {
     try {
         Start-Process -FilePath $exe -ArgumentList $argList -Verb RunAs -Wait
         # After elevated helper finishes, apply action to non-admin entries in this (non-elevated) process
-        $grouped = @{}
-        foreach ($entry in $nonAdminEntries) {
-            if (-not $grouped.ContainsKey($entry.Group)) {
-                $grouped[$entry.Group] = @()
-            }
-            $grouped[$entry.Group] += $entry
-        }
-        
-        foreach ($groupName in ($grouped.Keys | Sort-Object)) {
-            $color = if ($Action -eq 'add') { 'Cyan' } else { 'Yellow' }
-            Write-Host "$Action : $groupName" -ForegroundColor $color
-            foreach ($item in $grouped[$groupName]) {
-                $proc = Invoke-RegistryAction -Path $item.Path -Action $Action -Group $item.Group
-                if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
-            }
-        }
+        Show-GroupedEntries -Entries $nonAdminEntries -Action $Action
         exit 0
     }
     catch {
@@ -200,42 +198,11 @@ if ($adminEntries.Count -gt 0 -and -not $isAdmin) {
         Write-Warning "Admin-required .reg files detected but elevation failed; skipping admin imports and continuing with non-admin entries."
 
         # Proceed directly to non-admin entries
-        $grouped = @{}
-        foreach ($entry in $nonAdminEntries) {
-            if (-not $grouped.ContainsKey($entry.Group)) {
-                $grouped[$entry.Group] = @()
-            }
-            $grouped[$entry.Group] += $entry
-        }
-        
-        foreach ($groupName in ($grouped.Keys | Sort-Object)) {
-            $color = if ($Action -eq 'add') { 'Cyan' } else { 'Yellow' }
-            Write-Host "$Action : $groupName" -ForegroundColor $color
-            foreach ($item in $grouped[$groupName]) {
-                $proc = Invoke-RegistryAction -Path $item.Path -Action $Action -Group $item.Group
-                if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
-            }
-        }
+        Show-GroupedEntries -Entries $nonAdminEntries -Action $Action
 
         exit 0
     }
 }
 # Otherwise (either elevated already or no admin entries): apply action to admin first, then non-admin
-# Group by group name for display
 $allEntries = $adminEntries + $nonAdminEntries
-$grouped = @{}
-foreach ($entry in $allEntries) {
-    if (-not $grouped.ContainsKey($entry.Group)) {
-        $grouped[$entry.Group] = @()
-    }
-    $grouped[$entry.Group] += $entry
-}
-
-foreach ($groupName in ($grouped.Keys | Sort-Object)) {
-    $color = if ($Action -eq 'add') { 'Cyan' } else { 'Yellow' }
-    Write-Host "$Action : $groupName" -ForegroundColor $color
-    foreach ($item in $grouped[$groupName]) {
-        $proc = Invoke-RegistryAction -Path $item.Path -Action $Action -Group $item.Group
-        if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
-    }
-}
+Show-GroupedEntries -Entries $allEntries -Action $Action
