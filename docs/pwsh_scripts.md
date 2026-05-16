@@ -41,7 +41,6 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File powershell/scripts/Add-RemoveRegFi
 - **`-Config`**: Path to the JSON config file (defaults to `../configs/reg_import.json` relative to the script).
 - **`-Groups`**: One or more group names to process. If omitted, all enabled groups are processed.
 - **`-Action`**: `add` (default) or `remove`. Determines which array (`add` or `remove`) to use from each group.
-- **`-Elevated`**: Internal flag; indicates the script is running in an elevated context (avoid passing manually).
 - **`-ImportAdminOnly`**: Internal flag; tells the script to only process admin-required entries (used by the elevated helper).
 
 ### Config Schema
@@ -110,10 +109,6 @@ File paths support `%VAR%` expansion. Common examples:
 - `%USERPROFILE%` → `C:\Users\<username>`
 - `%TEMP%` → `C:\Users\<username>\AppData\Local\Temp`
 - `%SYSTEMROOT%` → `C:\Windows`
-
-### Backward Compatibility
-
-For groups with `"enabled": true` and `-Action add`, the script falls back to a `"paths"` array if `"add"` is not present. This is for backward compatibility only; new configs should use `"add"` and `"remove"` explicitly.
 
 ### Examples
 

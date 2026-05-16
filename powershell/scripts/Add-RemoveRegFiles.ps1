@@ -2,7 +2,6 @@ Param(
     [string]$Config = (Join-Path $PSScriptRoot "..\configs\reg_import.json"),
     [string[]]$Groups,
     [ValidateSet('add', 'remove')][string]$Action = 'add',
-    [switch]$Elevated,
     [switch]$ImportAdminOnly
 )
 
@@ -95,17 +94,6 @@ foreach ($g in $selectedGroups.Keys) {
         }
         else {
             Write-Warning "Group '$g' $actionKey value is not an array; skipping."
-        }
-        continue
-    }
-
-    # Fallback to 'paths' for backward compatibility when action is 'add'
-    if ($actionKey -eq 'add' -and $val.PSObject.Properties.Name -contains 'paths') {
-        if ($val.paths -is [System.Array]) {
-            $entries += $val.paths
-        }
-        else {
-            Write-Warning "Group '$g' paths value is not an array; skipping."
         }
         continue
     }
