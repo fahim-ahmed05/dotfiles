@@ -148,16 +148,22 @@ function Invoke-RegistryAction {
         [string]$Path,
         [string]$Action = 'add'
     )
-    if ($Action -eq 'remove') {
-        Write-Output "Removing registry entries from file: $Path"
-        # For .reg files with entries like [-HKEY_...], reg import handles deletion
-        $proc = Start-Process -FilePath "reg.exe" -ArgumentList @('import', $Path) -NoNewWindow -Wait -PassThru
+    try {
+        if ($Action -eq 'remove') {
+            Write-Output "Removing registry entries from file: $Path"
+            # For .reg files with entries like [-HKEY_...], reg import handles deletion
+            $proc = Start-Process -FilePath "reg.exe" -ArgumentList @('import', $Path) -NoNewWindow -Wait -PassThru -ErrorAction Stop
+        }
+        else {
+            Write-Output "Importing registry file: $Path"
+            $proc = Start-Process -FilePath "reg.exe" -ArgumentList @('import', $Path) -NoNewWindow -Wait -PassThru -ErrorAction Stop
+        }
+        return $proc
     }
-    else {
-        Write-Output "Importing registry file: $Path"
-        $proc = Start-Process -FilePath "reg.exe" -ArgumentList @('import', $Path) -NoNewWindow -Wait -PassThru
+    catch {
+        Write-Error "Failed to execute registry action on $($Path): $($_.Exception.Message)"
+        return $null
     }
-    return $proc
 }
 
 # If called with -ImportAdminOnly, import only admin entries and exit
@@ -165,6 +171,7 @@ if ($ImportAdminOnly) {
     foreach ($item in $adminEntries) {
         Write-Output "(elevated) $($Action)ing admin registry file: $($item.Path)"
         $proc = Invoke-RegistryAction -Path $item.Path -Action $Action
+        if ($null -eq $proc) { Write-Warning "Operation skipped for $($item.Path)."; continue }
         if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
     }
     exit 0
@@ -183,6 +190,7 @@ if ($adminEntries.Count -gt 0 -and -not $isAdmin) {
     # After elevated helper finishes, apply action to non-admin entries in this (non-elevated) process
     foreach ($item in $nonAdminEntries) {
         $proc = Invoke-RegistryAction -Path $item.Path -Action $Action
+        if ($null -eq $proc) { Write-Warning "Operation skipped for $($item.Path)."; continue }
         if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
     }
 
@@ -192,10 +200,12 @@ if ($adminEntries.Count -gt 0 -and -not $isAdmin) {
 # Otherwise (either elevated already or no admin entries): apply action to admin first, then non-admin
 foreach ($item in $adminEntries) {
     $proc = Invoke-RegistryAction -Path $item.Path -Action $Action
+    if ($null -eq $proc) { Write-Warning "Operation skipped for $($item.Path)."; continue }
     if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
 }
 
 foreach ($item in $nonAdminEntries) {
     $proc = Invoke-RegistryAction -Path $item.Path -Action $Action
+    if ($null -eq $proc) { Write-Warning "Operation skipped for $($item.Path)."; continue }
     if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
 }
