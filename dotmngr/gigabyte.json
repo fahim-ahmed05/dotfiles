@@ -639,16 +639,6 @@
 					"to": "%USERPROFILE%\\.spotdl\\config.json"
 				}
 			]
-		},
-		"vscode": {
-			"enabled": true,
-			"mode": "symlink",
-			"items": [
-				{
-					"from": "%USERPROFILE%\\.vscode-shared\\sharedStorage\\state.vscdb",
-					"to": "%APPDATA%\\Code\\User\\globalStorage\\state.vscdb"
-				}
-			]
 		}
 	}
 }
