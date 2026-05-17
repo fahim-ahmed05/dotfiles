@@ -56,7 +56,7 @@ function Install-Packages {
 
         else {
             Write-Host "`nInstalling $pkg via scoop...`n" -ForegroundColor Cyan
-            scoop update; scoop install "$pkg"
+            scoop install "$pkg"
         }
     }
 
