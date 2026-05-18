@@ -26,7 +26,7 @@ function Update-AllPackages {
     uv tool upgrade --all
 
     Write-Host "`nUpdating gitpkg packages...`n" -ForegroundColor Cyan
-    gitpkg pull
+    gitpkg pull all
 
     Write-Host "`nUpdating git repos...`n" -ForegroundColor Cyan
     & "$env:UserProfile\Git\dotfiles\powershell\scripts\Pull-GitRepos.ps1" -ConfigPath "$env:UserProfile\Git\dotfiles\powershell\configs\git_repos_$computer.json"
