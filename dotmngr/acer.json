@@ -466,6 +466,18 @@
 					"to": "%USERPROFILE%\\Links\\User_ Start Menu.lnk"
 				}
 			]
+		},
+		"windhawk": {
+			"enabled": true,
+			"items": [
+				{
+					"mode": "shortcut",
+					"from": "%USERPROFILE%\\scoop\\apps\\windhawk\\current\\windhawk.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\windhawk.lnk",
+					"workingDirectory": "%USERPROFILE%\\scoop\\apps\\windhawk\\current",
+					"arguments": "-tray-only"
+				}
+			]
 		}
 	}
 }
