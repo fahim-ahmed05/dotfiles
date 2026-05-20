@@ -1,0 +1,15 @@
+{
+    "indicatorMode": "number",
+    "markerSymbol": "⬤",
+    "inactiveMarkerOpacity": "20",
+    "activeIndicatorColor": "",
+    "inactiveMarkerColor": "",
+    "hideWhenSingleDesktop": "0",
+    "numberingFormat": "arabic",
+    "indicatorWeight": "normal",
+    "indicatorSize": "normal",
+    "indicatorCharacterSpacing": "1",
+    "leftPadding": "6",
+    "rightPadding": "0",
+    "pollIntervalMs": "0"
+}
