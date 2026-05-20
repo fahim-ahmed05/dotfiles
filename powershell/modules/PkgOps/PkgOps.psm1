@@ -46,12 +46,12 @@ function Install-Packages {
 
         if ($digitCount -gt 1) {
             Write-Host "`nInstalling $pkg via winget...`n" -ForegroundColor Cyan
-            winget install "$pkg" --source msstore --accept-package-agreements --accept-source-agreements
+            winget install -e --id "$pkg" --source msstore --accept-package-agreements --accept-source-agreements
         }
 
         elseif ($pkg -match '\.') {
             Write-Host "`nInstalling $pkg via winget...`n" -ForegroundColor Cyan
-            winget install "$pkg" --source winget --accept-package-agreements --accept-source-agreements
+            winget install -e --id "$pkg" --source winget --accept-package-agreements --accept-source-agreements
         }
 
         else {
