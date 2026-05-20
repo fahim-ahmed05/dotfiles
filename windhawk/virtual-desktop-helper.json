@@ -1,0 +1,16 @@
+{
+    "WindowsVersion": "win11_26100",
+    "EnableSwitchDesktop": "1",
+    "SwitchDesktopModifier": "alt",
+    "EnableMoveWindow": "1",
+    "MoveWindowModifier": "alt+shift",
+    "FollowMovedWindow": "0",
+    "MaxDesktops": "9",
+    "EnablePrevNextDesktop": "1",
+    "UtilityModifier": "alt",
+    "PrevDesktopKey": "Z",
+    "NextDesktopKey": "X",
+    "LastDesktopKey": "~",
+    "EnablePinWindow": "1",
+    "PinKey": "P"
+}
