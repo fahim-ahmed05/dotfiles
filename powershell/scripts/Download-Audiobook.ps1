@@ -104,7 +104,6 @@ function Invoke-Download ([string[]]$Urls, $Meta, [bool]$IsMulti, [int]$StartNum
         
         $ytdlpArgs += $url
 
-        # Fixed parsing issue by breaking the ternary operator out of the string
         $statusMsg = if ($IsMulti) { "`nDownloading Part $trackNum..." } else { "`nDownloading..." }
         Write-Host $statusMsg -ForegroundColor Cyan
         
@@ -170,7 +169,10 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
     
     $fzfOut = @($fzfInput | fzf --print-query --prompt="$Type URL (ESC to go back)> ")
     
-    $rawSelection = Format-CleanString (if ($fzfOut.Count -gt 1) { $fzfOut[1] } elseif ($fzfOut.Count -gt 0) { $fzfOut[0] } else { "" })
+    # FIX: Extracted the if statement to avoid PowerShell parser panic
+    $rawSelection = if ($fzfOut.Count -gt 1) { $fzfOut[1] } elseif ($fzfOut.Count -gt 0) { $fzfOut[0] } else { "" }
+    $rawSelection = Format-CleanString $rawSelection
+    
     if (-not $rawSelection) { return }
     
     $targetUrl = if ($rawSelection -match " \| (https?://.+)$") { $matches[1] } else { $rawSelection }
