@@ -426,6 +426,10 @@
 				{
 					"from": "D:\\Fahim\\Others",
 					"to": "%USERPROFILE%\\Others"
+				},
+				{
+					"from": "D:\\Fahim\\Music",
+					"to": "%USERPROFILE%\\Music"
 				}
 			]
 		},
