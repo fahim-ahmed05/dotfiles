@@ -5,7 +5,7 @@
         "WeekdayFormat": "dddd",
         "WeekdayFormatCustom": "Sun, Mon, Tue, Wed, Thu, Fri, Sat",
         "TopLine": "%date%  %time%",
-        "BottomLine": "%upload_speed% %download_speed%   %cpu% %ram%   %weather%",
+        "BottomLine": "%upload_speed% %download_speed%  %cpu% %ram%  %weather%",
         "MiddleLine": "%weekday%",
         "TooltipLine": "",
         "TooltipLineMode": "append",
