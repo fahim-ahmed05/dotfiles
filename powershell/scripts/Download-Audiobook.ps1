@@ -79,16 +79,22 @@ function Invoke-Download ([string[]]$Urls, $Meta, [bool]$IsMulti, [int]$StartNum
     $SafeTitle = $Meta.Title.Replace('\', '\\')
     $SafeAuthor = $Meta.Author.Replace('\', '\\')
 
+    if (-not (Test-Path $DestPath)) { New-Item -ItemType Directory -Path $DestPath | Out-Null }
+
     $baseArgs = @(
         "--extract-audio", "--audio-format", "opus", "--force-ipv4", 
         "--sponsorblock-remove", "sponsor,intro,outro,selfpromo,interaction",
-        "--embed-metadata", "--embed-thumbnail",
+        "--embed-metadata", "--embed-thumbnail", "--convert-thumbnails", "jpg",
+        
+        # CORE METADATA INITIALIZATION
         "--parse-metadata", "title:%(album)s", "--parse-metadata", "title:%(artist)s",
         "--parse-metadata", "title:%(album_artist)s", "--parse-metadata", "title:%(track_number)s",
+        
+        # OVERWRITE WITH CLEAN DATA
         "--replace-in-metadata", "album", "^.*$", $SafeTitle,
         "--replace-in-metadata", "artist", "^.*$", $SafeAuthor,
         "--replace-in-metadata", "album_artist", "^.*$", $SafeAuthor,
-        "--replace-in-metadata", "title", "^.*$", $SafeTitle,
+        
         "--ppa", "ThumbnailsConvertor+ffmpeg_o:-vf crop='min(iw\,ih):min(iw\,ih)'"
     )
 
@@ -96,10 +102,14 @@ function Invoke-Download ([string[]]$Urls, $Meta, [bool]$IsMulti, [int]$StartNum
     foreach ($url in $Urls) {
         $ytdlpArgs = $baseArgs + "--replace-in-metadata", "track_number", "^.*$", "$trackNum"
         
-        if ($IsMulti) { 
-            $ytdlpArgs += "-o", "$DestPath/Part $("{0:D2}" -f $trackNum).%(ext)s" 
+        if ($IsMulti) {
+            $partMetaTitle = "$SafeTitle - Part $("{0:D2}" -f $trackNum)"
+            
+            $ytdlpArgs += "--replace-in-metadata", "title", "^.*$", $partMetaTitle
+            $ytdlpArgs += "-o", "$DestPath/$partMetaTitle.%(ext)s" 
         } else { 
-            $ytdlpArgs += "-o", "$DestPath.%(ext)s" 
+            $ytdlpArgs += "--replace-in-metadata", "title", "^.*$", $SafeTitle
+            $ytdlpArgs += "-o", "$DestPath/$SafeTitle.%(ext)s" 
         }
         
         $ytdlpArgs += $url
@@ -116,8 +126,8 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti) {
     if (-not $IsMulti) {
         foreach ($u in $Urls) {
             $meta = Get-Metadata $u
-            $outPath = Join-Path $OutDir "$(Get-SafeName $meta.Author) - $(Get-SafeName $meta.Title)"
-            Invoke-Download -Urls @($u) -Meta $meta -IsMulti:$false -DestPath $outPath
+            $destPath = Join-Path (Join-Path $OutDir (Get-SafeName $meta.Author)) (Get-SafeName $meta.Title)
+            Invoke-Download -Urls @($u) -Meta $meta -IsMulti:$false -DestPath $destPath
         }
         return
     }
@@ -128,17 +138,34 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti) {
     $meta = $null
     
     if ($appendChoice -eq '2') {
-        $folders = @(Get-ChildItem -Path $OutDir -Directory)
+        $folders = @()
+        if (Test-Path $OutDir) {
+            $authors = Get-ChildItem -Path $OutDir -Directory
+            foreach ($a in $authors) {
+                $books = Get-ChildItem -Path $a.FullName -Directory
+                foreach ($b in $books) {
+                    $folders += [PSCustomObject]@{
+                        Author = $a.Name
+                        Title = $b.Name
+                        Path = $b.FullName
+                        Display = "$($a.Name) / $($b.Name)"
+                    }
+                }
+            }
+        }
+
         if ($folders.Count -eq 0) {
             Write-Host "No existing folders found. Treating as new book." -ForegroundColor Yellow
             $appendChoice = '1'
         } else {
-            $selectedFolder = @($folders.Name | fzf --prompt="Select existing folder (ESC to cancel): ")
-            if (-not $selectedFolder) { return }
+            $fzfInput = $folders.Display
+            $selectedDisplay = @($fzfInput | fzf --prompt="Select existing folder (ESC to cancel): ")
+            if (-not $selectedDisplay) { return }
             
-            $cleanName = Format-CleanString $selectedFolder[0]
-            $destPath = Join-Path $OutDir $cleanName
-            $meta = @{ Author = ($cleanName -split " - ")[0]; Title = $cleanName -replace "^.*?\s-\s", "" }
+            $selected = $folders | Where-Object Display -eq $selectedDisplay[0]
+            $destPath = $selected.Path
+            $meta = @{ Author = $selected.Author; Title = $selected.Title }
+            
             $startNum = (Get-ChildItem -Path $destPath -File).Count + 1
             Write-Host "Appending starting at Part $startNum" -ForegroundColor Green
         }
@@ -146,7 +173,7 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti) {
     
     if ($appendChoice -eq '1') {
         $meta = Get-Metadata $Urls[0]
-        $destPath = Join-Path $OutDir "$(Get-SafeName $meta.Author) - $(Get-SafeName $meta.Title)"
+        $destPath = Join-Path (Join-Path $OutDir (Get-SafeName $meta.Author)) (Get-SafeName $meta.Title)
     }
     
     Invoke-Download -Urls $Urls -Meta $meta -IsMulti:$true -StartNum $startNum -DestPath $destPath
@@ -169,7 +196,6 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
     
     $fzfOut = @($fzfInput | fzf --print-query --prompt="$Type URL (ESC to go back)> ")
     
-    # FIX: Extracted the if statement to avoid PowerShell parser panic
     $rawSelection = if ($fzfOut.Count -gt 1) { $fzfOut[1] } elseif ($fzfOut.Count -gt 0) { $fzfOut[0] } else { "" }
     $rawSelection = Format-CleanString $rawSelection
     
@@ -187,27 +213,45 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
         return 
     }
 
-    $targetName = ($rawCache[0] -split ':::', 2)[0]
+    # Scrub " - Videos" (case insensitive, flexible spacing) from the target name before saving
+    $targetName = ($rawCache[0] -split ':::', 2)[0] -replace '(?i)\s*-\s*videos$', ''
     Update-History -Url $targetUrl -Name $targetName -Type $Type
 
     $playlistCache = $rawCache | ForEach-Object { ($_ -split ':::', 2)[1] }
 
     if ($IsChannel) {
+        $lastQuery = ""
         while ($true) {
-            $selected = @($playlistCache | fzf -m --delimiter="\|" --with-nth=2.. --prompt="Select videos (TAB: multi, ESC: Main Menu)> ")
-            if (-not $selected -or $selected.Count -eq 0) { break }
+            $fzfOut = @($playlistCache | fzf -m --delimiter="\|" --with-nth=2.. --print-query --query="$lastQuery" --prompt="Select videos (TAB: multi, ESC: Main Menu)> ")
+            
+            # If nothing is selected or user pressed ESC, break the loop
+            if (-not $fzfOut -or $fzfOut.Count -le 1) { break }
+            
+            $lastQuery = $fzfOut[0]
+            $selected = $fzfOut[1..($fzfOut.Count - 1)]
             
             $urls = @($selected | ForEach-Object { "https://youtu.be/" + (Format-CleanString ($_ -split '\|')[0]) })
             Confirm-And-Process -Urls $urls
         }
     } else {
         $dlType = Read-Host "`n[1] Download All ($($playlistCache.Count) videos)`n[2] Select specific videos (fzf)`nChoice"
-        $selected = if ($dlType -eq '1') { $playlistCache } 
-                    elseif ($dlType -eq '2') { @($playlistCache | fzf -m --delimiter="\|" --with-nth=2.. --prompt="Select videos (TAB: multi, ESC: Main Menu)> ") }
-        
-        if ($selected -and $selected.Count -gt 0) {
-            $urls = @($selected | ForEach-Object { "https://youtu.be/" + (Format-CleanString ($_ -split '\|')[0]) })
+        if ($dlType -eq '1') {
+            $urls = @($playlistCache | ForEach-Object { "https://youtu.be/" + (Format-CleanString ($_ -split '\|')[0]) })
             Confirm-And-Process -Urls $urls
+        } elseif ($dlType -eq '2') {
+            $lastQuery = ""
+            while ($true) {
+                $fzfOut = @($playlistCache | fzf -m --delimiter="\|" --with-nth=2.. --print-query --query="$lastQuery" --prompt="Select videos (TAB: multi, ESC: Main Menu)> ")
+                
+                # If nothing is selected or user pressed ESC, break the loop
+                if (-not $fzfOut -or $fzfOut.Count -le 1) { break }
+                
+                $lastQuery = $fzfOut[0]
+                $selected = $fzfOut[1..($fzfOut.Count - 1)]
+                
+                $urls = @($selected | ForEach-Object { "https://youtu.be/" + (Format-CleanString ($_ -split '\|')[0]) })
+                Confirm-And-Process -Urls $urls
+            }
         }
     }
 }
@@ -218,7 +262,7 @@ while ($true) {
     Write-Host "      Interactive Audiobook Downloader       " -ForegroundColor Cyan
     Write-Host "=============================================" -ForegroundColor Cyan
     
-    $mode = Read-Host "`n[1] Single`n[2] Multi`n[3] Channel (fzf)`n[4] Playlist (fzf)`n[ENTER] Exit`nSelect mode"
+    $mode = Read-Host "`n[1] Single`n[2] Multi`n[3] Channel (fzf)`n[4] Playlist (fzf)`n`nSelect mode (Enter to exit)"
 
     if ([string]::IsNullOrWhiteSpace($mode)) { break }
 
