@@ -471,6 +471,20 @@
 				}
 			]
 		},
+		"qbittorrent": {
+			"enabled": true,
+			"mode": "junction",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Configs\\qbittorrent\\roaming",
+					"to": "%APPDATA%\\qBittorrent"
+				},
+				{
+					"from": "%USERPROFILE%\\Configs\\qbittorrent\\local",
+					"to": "%LOCALAPPDATA%\\qBittorrent"
+				}
+			]
+		},
 		"windhawk": {
 			"enabled": true,
 			"items": [
