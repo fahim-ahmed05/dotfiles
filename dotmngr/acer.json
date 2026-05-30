@@ -496,6 +496,17 @@
 					"arguments": "-tray-only"
 				}
 			]
+		},
+		"anydesk": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Apps\\AnyDesk\\AnyDesk.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps\\AnyDesk.lnk",
+					"WorkingDirectory": "%USERPROFILE%\\Apps\\AnyDesk"
+				}
+			]
 		}
 	}
 }
