@@ -507,6 +507,16 @@
 					"WorkingDirectory": "%USERPROFILE%\\Apps\\AnyDesk"
 				}
 			]
+		},
+		"ytmusic": {
+			"enabled": true,
+			"mode": "seed",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\th-ch_ytm\\config.json",
+					"to": "%APPDATA%\\YouTube Music\\config.json"
+				}
+			]
 		}
 	}
 }
