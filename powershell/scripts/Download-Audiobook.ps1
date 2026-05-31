@@ -52,7 +52,7 @@ function Get-TrackTitle ([hashtable]$Meta, [bool]$IsMulti, [int]$TrackNumber) {
 }
 
 function Get-OutputFilePath ([string]$DestPath, [string]$BaseName) {
-    return Join-Path $DestPath "$BaseName.opus"
+    return Join-Path $DestPath "$BaseName.m4a"
 }
 
 function Convert-ToYoutubeUrls ([string[]]$Items) {
@@ -140,8 +140,8 @@ function Write-AudioMetadata ([string]$FilePath, [hashtable]$Meta, [int]$TrackNu
     $ffmpegArgs = @(
         "-y",
         "-i", $FilePath,
-        "-map", "0:a",
-        "-c:a", "copy",
+        "-map", "0",
+        "-c", "copy",
         "-map_metadata", "0",
         "-metadata", "title=$($Meta.TrackTitle)",
         "-metadata", "album=$($Meta.Title)",
@@ -166,7 +166,7 @@ function Invoke-Download ([string[]]$Urls, $Meta, [bool]$IsMulti, [int]$StartNum
     if (-not (Test-Path $DestPath)) { New-Item -ItemType Directory -Path $DestPath | Out-Null }
 
     $baseArgs = @(
-        "--extract-audio", "--audio-format", "opus", "--force-ipv4", 
+        "--extract-audio", "--audio-format", "m4a", "--force-ipv4", 
         "--sponsorblock-remove", "sponsor,intro,outro,selfpromo,interaction",
         "--no-embed-chapters", "--embed-thumbnail", "--convert-thumbnails", "jpg",
 
