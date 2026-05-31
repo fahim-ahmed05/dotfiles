@@ -9,8 +9,8 @@ $ErrorActionPreference = "Stop"
 # --- Globals & Encoding ---
 $global:utf8NoBom = New-Object System.Text.UTF8Encoding $false
 [Console]::OutputEncoding = $global:utf8NoBom
-[Console]::InputEncoding  = $global:utf8NoBom
-$OutputEncoding           = $global:utf8NoBom
+[Console]::InputEncoding = $global:utf8NoBom
+$OutputEncoding = $global:utf8NoBom
 
 $HistoryFile = "$env:USERPROFILE\Configs\audiobook-dl\history.json"
 if (-not (Test-Path (Split-Path $HistoryFile))) { New-Item -ItemType Directory -Path (Split-Path $HistoryFile) | Out-Null }
@@ -25,7 +25,8 @@ if (Test-Path $HistoryFile) {
             if ($null -ne $parsed.Channels) { $global:Hist.Channels = @($parsed.Channels) }
             if ($null -ne $parsed.Playlists) { $global:Hist.Playlists = @($parsed.Playlists) }
         }
-    } catch {}
+    }
+    catch {}
 }
 
 # --- Dependencies Check ---
@@ -41,6 +42,59 @@ function Get-SafeName ([string]$name) {
     return ($name -replace $regex, '_').Trim()
 }
 
+function Get-BookDestPath ([hashtable]$Meta) {
+    return Join-Path (Join-Path $OutDir (Get-SafeName $Meta.Author)) (Get-SafeName $Meta.Title)
+}
+
+function Get-TrackTitle ([hashtable]$Meta, [bool]$IsMulti, [int]$TrackNumber) {
+    if ($IsMulti) { return "$($Meta.Title) - Part $("{0:D2}" -f $TrackNumber)" }
+    return $Meta.Title
+}
+
+function Get-OutputFilePath ([string]$DestPath, [string]$BaseName) {
+    return Join-Path $DestPath "$BaseName.opus"
+}
+
+function Convert-ToYoutubeUrls ([string[]]$Items) {
+    return @($Items | ForEach-Object { "https://youtu.be/" + (Format-CleanString ($_ -split '\|')[0]) })
+}
+
+function Invoke-FzfSelect ([string[]]$Items, [string]$Prompt, [string]$Query = "") {
+    return @($Items | fzf -m --delimiter="\|" --with-nth=2.. --print-query --query=$Query --prompt=$Prompt)
+}
+
+function Get-ExistingBookFolders ([string]$RootPath) {
+    if (-not (Test-Path $RootPath)) { return @() }
+
+    return @(
+        Get-ChildItem -Path $RootPath -Directory | ForEach-Object {
+            $author = $_
+            Get-ChildItem -Path $author.FullName -Directory | ForEach-Object {
+                [PSCustomObject]@{
+                    Author  = $author.Name
+                    Title   = $_.Name
+                    Path    = $_.FullName
+                    Display = "$($author.Name) / $($_.Name)"
+                }
+            }
+        }
+    )
+}
+
+function Invoke-SelectionLoop ([string[]]$Items, [string]$Prompt) {
+    $lastQuery = ""
+
+    while ($true) {
+        $fzfOut = @(Invoke-FzfSelect -Items $Items -Prompt $Prompt -Query $lastQuery)
+        if (-not $fzfOut -or $fzfOut.Count -le 1) { break }
+
+        $lastQuery = $fzfOut[0]
+        $selected = $fzfOut[1..($fzfOut.Count - 1)]
+        $urls = Convert-ToYoutubeUrls $selected
+        Confirm-And-Process -Urls $urls
+    }
+}
+
 function Update-History ([string]$Url, [string]$Name, [string]$Type) {
     $list = $global:Hist.$Type
     $existing = $list | Where-Object { $_.Url -eq $Url }
@@ -48,7 +102,8 @@ function Update-History ([string]$Url, [string]$Name, [string]$Type) {
     if ($existing) {
         $existing.Count++
         $existing.Name = $Name
-    } else {
+    }
+    else {
         $newItem = [PSCustomObject]@{ Name = $Name; Url = $Url; Count = 1 }
         $list += $newItem
     }
@@ -74,41 +129,60 @@ function Get-Metadata ($url) {
     return @{ Title = Format-CleanString $Title; Author = Format-CleanString $Author }
 }
 
+function Write-AudioMetadata ([string]$FilePath, [hashtable]$Meta, [int]$TrackNumber) {
+    if (-not (Test-Path $FilePath)) { throw "Expected audio file not found: $FilePath" }
+
+    $tempFile = [IO.Path]::Combine(
+        [IO.Path]::GetDirectoryName($FilePath),
+        ([IO.Path]::GetFileNameWithoutExtension($FilePath) + ".metadata" + [IO.Path]::GetExtension($FilePath))
+    )
+
+    $ffmpegArgs = @(
+        "-y",
+        "-i", $FilePath,
+        "-map", "0:a",
+        "-c:a", "copy",
+        "-map_metadata", "0",
+        "-metadata", "title=$($Meta.TrackTitle)",
+        "-metadata", "album=$($Meta.Title)",
+        "-metadata", "artist=$($Meta.Author)",
+        "-metadata", "album_artist=$($Meta.Author)",
+        "-metadata", "albumartist=$($Meta.Author)",
+        "-metadata", "track=$TrackNumber",
+        "-metadata", "track_number=$TrackNumber",
+        $tempFile
+    )
+
+    & ffmpeg @ffmpegArgs
+    if ($LASTEXITCODE -ne 0 -or -not (Test-Path $tempFile)) { throw "ffmpeg failed while writing metadata for $FilePath" }
+
+    Move-Item -Force $tempFile $FilePath
+}
+
 # --- Core Download & Processing Logic ---
 function Invoke-Download ([string[]]$Urls, $Meta, [bool]$IsMulti, [int]$StartNum = 1, [string]$DestPath) {
-    $SafeTitle = $Meta.Title.Replace('\', '\\')
-    $SafeAuthor = $Meta.Author.Replace('\', '\\')
+    $SafeTitle = Get-SafeName $Meta.Title
 
     if (-not (Test-Path $DestPath)) { New-Item -ItemType Directory -Path $DestPath | Out-Null }
 
     $baseArgs = @(
         "--extract-audio", "--audio-format", "opus", "--force-ipv4", 
         "--sponsorblock-remove", "sponsor,intro,outro,selfpromo,interaction",
-        "--embed-metadata", "--embed-thumbnail", "--convert-thumbnails", "jpg",
-        
-        # CORE METADATA INITIALIZATION
-        "--parse-metadata", "title:%(album)s", "--parse-metadata", "title:%(artist)s",
-        "--parse-metadata", "title:%(album_artist)s", "--parse-metadata", "title:%(track_number)s",
-        
-        # OVERWRITE WITH CLEAN DATA
-        "--replace-in-metadata", "album", "^.*$", $SafeTitle,
-        "--replace-in-metadata", "artist", "^.*$", $SafeAuthor,
-        "--replace-in-metadata", "album_artist", "^.*$", $SafeAuthor,
-        
+        "--no-embed-chapters", "--embed-thumbnail", "--convert-thumbnails", "jpg",
+
         "--ppa", "ThumbnailsConvertor+ffmpeg_o:-vf crop='min(iw\,ih):min(iw\,ih)'"
     )
 
     $trackNum = $StartNum
     foreach ($url in $Urls) {
-        $ytdlpArgs = $baseArgs + "--replace-in-metadata", "track_number", "^.*$", "$trackNum"
+        $trackTitle = Get-TrackTitle -Meta $Meta -IsMulti:$IsMulti -TrackNumber $trackNum
+        $safeTrackTitle = Get-SafeName $trackTitle
+        $ytdlpArgs = $baseArgs
         
         if ($IsMulti) {
-            $partMetaTitle = "$SafeTitle - Part $("{0:D2}" -f $trackNum)"
-            
-            $ytdlpArgs += "--replace-in-metadata", "title", "^.*$", $partMetaTitle
-            $ytdlpArgs += "-o", "$DestPath/$partMetaTitle.%(ext)s" 
-        } else { 
-            $ytdlpArgs += "--replace-in-metadata", "title", "^.*$", $SafeTitle
+            $ytdlpArgs += "-o", "$DestPath/$safeTrackTitle.%(ext)s" 
+        }
+        else { 
             $ytdlpArgs += "-o", "$DestPath/$SafeTitle.%(ext)s" 
         }
         
@@ -118,6 +192,15 @@ function Invoke-Download ([string[]]$Urls, $Meta, [bool]$IsMulti, [int]$StartNum
         Write-Host $statusMsg -ForegroundColor Cyan
         
         & yt-dlp $ytdlpArgs
+
+        $outputBaseName = if ($IsMulti) { $safeTrackTitle } else { $SafeTitle }
+        $outputFile = Get-OutputFilePath -DestPath $DestPath -BaseName $outputBaseName
+        $metaToWrite = @{
+            Title      = $Meta.Title
+            Author     = $Meta.Author
+            TrackTitle = $trackTitle
+        }
+        Write-AudioMetadata -FilePath $outputFile -Meta $metaToWrite -TrackNumber $trackNum
         $trackNum++
     }
 }
@@ -126,7 +209,7 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti) {
     if (-not $IsMulti) {
         foreach ($u in $Urls) {
             $meta = Get-Metadata $u
-            $destPath = Join-Path (Join-Path $OutDir (Get-SafeName $meta.Author)) (Get-SafeName $meta.Title)
+            $destPath = Get-BookDestPath $meta
             Invoke-Download -Urls @($u) -Meta $meta -IsMulti:$false -DestPath $destPath
         }
         return
@@ -138,26 +221,13 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti) {
     $meta = $null
     
     if ($appendChoice -eq '2') {
-        $folders = @()
-        if (Test-Path $OutDir) {
-            $authors = Get-ChildItem -Path $OutDir -Directory
-            foreach ($a in $authors) {
-                $books = Get-ChildItem -Path $a.FullName -Directory
-                foreach ($b in $books) {
-                    $folders += [PSCustomObject]@{
-                        Author = $a.Name
-                        Title = $b.Name
-                        Path = $b.FullName
-                        Display = "$($a.Name) / $($b.Name)"
-                    }
-                }
-            }
-        }
+        $folders = Get-ExistingBookFolders $OutDir
 
         if ($folders.Count -eq 0) {
             Write-Host "No existing folders found. Treating as new book." -ForegroundColor Yellow
             $appendChoice = '1'
-        } else {
+        }
+        else {
             $fzfInput = $folders.Display
             $selectedDisplay = @($fzfInput | fzf --prompt="Select existing folder (ESC to cancel): ")
             if (-not $selectedDisplay) { return }
@@ -173,7 +243,7 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti) {
     
     if ($appendChoice -eq '1') {
         $meta = Get-Metadata $Urls[0]
-        $destPath = Join-Path (Join-Path $OutDir (Get-SafeName $meta.Author)) (Get-SafeName $meta.Title)
+        $destPath = Get-BookDestPath $meta
     }
     
     Invoke-Download -Urls $Urls -Meta $meta -IsMulti:$true -StartNum $startNum -DestPath $destPath
@@ -182,7 +252,7 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti) {
 function Confirm-And-Process ([string[]]$Urls) {
     if (-not $Urls) { return }
     $prompt = if ($Urls.Count -eq 1) { "`nIs this [1] A Single Book or [2] Part of a Multi-part Book? (1/2)" } 
-              else { "`nAre these [1] Multiple Single Books or [2] Parts of ONE Book? (1/2)" }
+    else { "`nAre these [1] Multiple Single Books or [2] Parts of ONE Book? (1/2)" }
     $q = Read-Host $prompt
     Start-AudiobookDownload -Urls $Urls -IsMulti ($q -eq '2')
 }
@@ -220,38 +290,16 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
     $playlistCache = $rawCache | ForEach-Object { ($_ -split ':::', 2)[1] }
 
     if ($IsChannel) {
-        $lastQuery = ""
-        while ($true) {
-            $fzfOut = @($playlistCache | fzf -m --delimiter="\|" --with-nth=2.. --print-query --query="$lastQuery" --prompt="Select videos (TAB: multi, ESC: Main Menu)> ")
-            
-            # If nothing is selected or user pressed ESC, break the loop
-            if (-not $fzfOut -or $fzfOut.Count -le 1) { break }
-            
-            $lastQuery = $fzfOut[0]
-            $selected = $fzfOut[1..($fzfOut.Count - 1)]
-            
-            $urls = @($selected | ForEach-Object { "https://youtu.be/" + (Format-CleanString ($_ -split '\|')[0]) })
-            Confirm-And-Process -Urls $urls
-        }
-    } else {
+        Invoke-SelectionLoop -Items $playlistCache -Prompt "Select videos (TAB: multi, ESC: Main Menu)> "
+    }
+    else {
         $dlType = Read-Host "`n[1] Download All ($($playlistCache.Count) videos)`n[2] Select specific videos (fzf)`nChoice"
         if ($dlType -eq '1') {
-            $urls = @($playlistCache | ForEach-Object { "https://youtu.be/" + (Format-CleanString ($_ -split '\|')[0]) })
+            $urls = Convert-ToYoutubeUrls $playlistCache
             Confirm-And-Process -Urls $urls
-        } elseif ($dlType -eq '2') {
-            $lastQuery = ""
-            while ($true) {
-                $fzfOut = @($playlistCache | fzf -m --delimiter="\|" --with-nth=2.. --print-query --query="$lastQuery" --prompt="Select videos (TAB: multi, ESC: Main Menu)> ")
-                
-                # If nothing is selected or user pressed ESC, break the loop
-                if (-not $fzfOut -or $fzfOut.Count -le 1) { break }
-                
-                $lastQuery = $fzfOut[0]
-                $selected = $fzfOut[1..($fzfOut.Count - 1)]
-                
-                $urls = @($selected | ForEach-Object { "https://youtu.be/" + (Format-CleanString ($_ -split '\|')[0]) })
-                Confirm-And-Process -Urls $urls
-            }
+        }
+        elseif ($dlType -eq '2') {
+            Invoke-SelectionLoop -Items $playlistCache -Prompt "Select videos (TAB: multi, ESC: Main Menu)> "
         }
     }
 }
@@ -270,18 +318,22 @@ while ($true) {
         $urlInput = Read-Host "URL"
         if ($urlInput) { Start-AudiobookDownload -Urls @($urlInput) -IsMulti:$false }
 
-    } elseif ($mode -eq '2') { 
+    }
+    elseif ($mode -eq '2') { 
         $urlInput = Read-Host "URLs (space-separated)"
         $urls = @($urlInput -split '\s+' | Where-Object { $_ })
         if ($urls) { Start-AudiobookDownload -Urls $urls -IsMulti:$true }
 
-    } elseif ($mode -eq '3') {
+    }
+    elseif ($mode -eq '3') {
         Invoke-PlaylistMenu -IsChannel
 
-    } elseif ($mode -eq '4') {
+    }
+    elseif ($mode -eq '4') {
         Invoke-PlaylistMenu
 
-    } else { 
+    }
+    else { 
         Write-Host "Invalid mode." -ForegroundColor Red
     }
 }
