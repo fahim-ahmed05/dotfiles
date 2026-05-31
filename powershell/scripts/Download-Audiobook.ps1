@@ -59,6 +59,16 @@ function Convert-ToYoutubeUrls ([string[]]$Items) {
     return @($Items | ForEach-Object { "https://youtu.be/" + (Format-CleanString ($_ -split '\|')[0]) })
 }
 
+function Convert-ToSelectionObjects ([string[]]$Items) {
+    return @($Items | ForEach-Object {
+            $parts = (Format-CleanString $_) -split '\|', 2
+            [PSCustomObject]@{
+                Url   = "https://youtu.be/$($parts[0])"
+                Title = if ($parts.Count -gt 1) { $parts[1].Trim() } else { "" }
+            }
+        })
+}
+
 function Invoke-FzfSelect ([string[]]$Items, [string]$Prompt, [string]$Query = "") {
     return @($Items | fzf -m --delimiter="\|" --with-nth=2.. --print-query --query=$Query --prompt=$Prompt)
 }
@@ -90,8 +100,8 @@ function Invoke-SelectionLoop ([string[]]$Items, [string]$Prompt) {
 
         $lastQuery = $fzfOut[0]
         $selected = $fzfOut[1..($fzfOut.Count - 1)]
-        $urls = Convert-ToYoutubeUrls $selected
-        Confirm-And-Process -Urls $urls
+        $selections = Convert-ToSelectionObjects $selected
+        Confirm-And-Process -Selections $selections
     }
 }
 
@@ -113,12 +123,15 @@ function Update-History ([string]$Url, [string]$Name, [string]$Type) {
     [System.IO.File]::WriteAllText($HistoryFile, $jsonOut, $global:utf8NoBom)
 }
 
-function Get-Metadata ($url) {
-    Write-Host "`nFetching metadata..." -ForegroundColor DarkGray
-    $meta = yt-dlp --dump-json --no-warnings $url 2>$null | ConvertFrom-Json
-    if (-not $meta) { throw "Failed to fetch data for $url" }
+function Get-Metadata ($url, [string]$VideoTitle = "") {
+    if ([string]::IsNullOrWhiteSpace($VideoTitle)) {
+        Write-Host "`nFetching metadata..." -ForegroundColor DarkGray
+        $meta = yt-dlp --dump-json --no-warnings $url 2>$null | ConvertFrom-Json
+        if (-not $meta) { throw "Failed to fetch data for $url" }
+        $VideoTitle = $meta.title
+    }
 
-    Write-Host "`nFull Video Title: $($meta.title)" -ForegroundColor Green
+    Write-Host "`nFull Video Title: $VideoTitle" -ForegroundColor Green
     
     $Title = Read-Host "Enter Book Title"
     while ([string]::IsNullOrWhiteSpace($Title)) { $Title = Read-Host "Enter Book Title (Required)" }
@@ -205,12 +218,15 @@ function Invoke-Download ([string[]]$Urls, $Meta, [bool]$IsMulti, [int]$StartNum
     }
 }
 
-function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti) {
+function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$VideoTitles) {
     if (-not $IsMulti) {
+        $index = 0
         foreach ($u in $Urls) {
-            $meta = Get-Metadata $u
+            $videoTitle = if ($VideoTitles -and $index -lt $VideoTitles.Count) { $VideoTitles[$index] } else { "" }
+            $meta = Get-Metadata $u -VideoTitle $videoTitle
             $destPath = Get-BookDestPath $meta
             Invoke-Download -Urls @($u) -Meta $meta -IsMulti:$false -DestPath $destPath
+            $index++
         }
         return
     }
@@ -242,19 +258,22 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti) {
     } 
     
     if ($appendChoice -eq '1') {
-        $meta = Get-Metadata $Urls[0]
+        $videoTitle = if ($VideoTitles -and $VideoTitles.Count -gt 0) { $VideoTitles[0] } else { "" }
+        $meta = Get-Metadata $Urls[0] -VideoTitle $videoTitle
         $destPath = Get-BookDestPath $meta
     }
     
     Invoke-Download -Urls $Urls -Meta $meta -IsMulti:$true -StartNum $startNum -DestPath $destPath
 }
 
-function Confirm-And-Process ([string[]]$Urls) {
-    if (-not $Urls) { return }
+function Confirm-And-Process ([object[]]$Selections) {
+    if (-not $Selections) { return }
+    $Urls = @($Selections | ForEach-Object { $_.Url })
+    $VideoTitles = @($Selections | ForEach-Object { $_.Title })
     $prompt = if ($Urls.Count -eq 1) { "`nIs this [1] A Single Book or [2] Part of a Multi-part Book? (1/2)" } 
     else { "`nAre these [1] Multiple Single Books or [2] Parts of ONE Book? (1/2)" }
     $q = Read-Host $prompt
-    Start-AudiobookDownload -Urls $Urls -IsMulti ($q -eq '2')
+    Start-AudiobookDownload -Urls $Urls -VideoTitles $VideoTitles -IsMulti ($q -eq '2')
 }
 
 function Invoke-PlaylistMenu ([switch]$IsChannel) {
@@ -295,8 +314,8 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
     else {
         $dlType = Read-Host "`n[1] Download All ($($playlistCache.Count) videos)`n[2] Select specific videos (fzf)`nChoice"
         if ($dlType -eq '1') {
-            $urls = Convert-ToYoutubeUrls $playlistCache
-            Confirm-And-Process -Urls $urls
+            $selections = Convert-ToSelectionObjects $playlistCache
+            Confirm-And-Process -Selections $selections
         }
         elseif ($dlType -eq '2') {
             Invoke-SelectionLoop -Items $playlistCache -Prompt "Select videos (TAB: multi, ESC: Main Menu)> "
