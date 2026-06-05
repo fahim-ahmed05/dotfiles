@@ -1,6 +1,17 @@
 {
+  "status_bar": {
+    "show_active_file": false,
+    "cursor_position_button": true,
+    "line_endings_button": true,
+    "active_encoding_button": "enabled",
+  },
+  "git": {
+    "inline_blame": {},
+    "enable_diff": true,
+    "enable_status": true,
+  },
   "sticky_scroll": {
-    "enabled": true
+    "enabled": true,
   },
   "show_wrap_guides": true,
   "soft_wrap": "editor_width",
@@ -9,80 +20,83 @@
     "dock": "right",
     "sidebar_side": "right",
     "favorite_models": [],
-    "model_parameters": []
+    "model_parameters": [],
   },
   "project_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "icon_theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha"
+    "dark": "Catppuccin Mocha",
   },
   "use_system_window_tabs": false,
   "bottom_dock_layout": "contained",
   "tabs": {
-    "file_icons": false,
-    "git_status": false
+    "file_icons": true,
+    "git_status": true,
   },
   "scrollbar": {
-    "show": "system"
+    "show": "system",
   },
   "toolbar": {
     "quick_actions": true,
     "breadcrumbs": true,
-    "selections_menu": true
+    "selections_menu": true,
   },
   "debugger": {
-    "button": true
+    "button": true,
   },
   "tab_bar": {
+    "show_pinned_tabs_in_separate_row": false,
     "show_tab_bar_buttons": true,
     "show_nav_history_buttons": true,
-    "show": true
+    "show": true,
   },
   "title_bar": {
+    "show_branch_name": true,
     "show_branch_status_icon": true,
     "show_user_menu": false,
     "show_menus": false,
     "show_project_items": true,
     "show_onboarding_banner": false,
     "show_user_picture": false,
-    "show_sign_in": false
+    "show_sign_in": false,
   },
   "auto_update": false,
   "disable_ai": false,
   "terminal": {
+    "show_count_badge": false,
+    "blinking": "off",
     "toolbar": {
-      "breadcrumbs": false
+      "breadcrumbs": false,
     },
     "cursor_shape": "bar",
     "font_weight": 400.0,
     "font_family": "JetBrainsMono Nerd Font",
     "shell": {
       "with_arguments": {
+        "title_override": "PowerShell",
         "program": "pwsh.exe",
-        "args": [
-          "-NoLogo"
-        ]
-      }
-    }
+        "args": ["-NoLogo"],
+      },
+    },
   },
   "autosave": {
     "after_delay": {
-      "milliseconds": 1000
-    }
+      "milliseconds": 1000,
+    },
   },
   "ui_font_family": "JetBrainsMono Nerd Font",
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "ui_font_size": 16.0,
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha"
-  }
+    "dark": "Catppuccin Mocha",
+  },
 }
