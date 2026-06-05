@@ -25,7 +25,7 @@
         "MediaPlayer.RemoveBrackets": "0",
         "WebContentWeatherLocation": "dhaka",
         "WebContentWeatherFormat": "%c %t",
-        "WebContentWeatherUnits": "metricMsWind",
+        "WebContentWeatherUnits": "metric",
         "WebContentsUpdateInterval": "10",
         "TimeZones[0]": "Eastern Standard Time",
         "TimeStyle.Hidden": "0",
