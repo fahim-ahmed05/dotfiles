@@ -1,4 +1,5 @@
 {
+  "proxy": "",
   "agent": {
     "dock": "right",
     "sidebar_side": "right",
@@ -48,7 +49,9 @@
   "auto_update": false,
   "disable_ai": false,
   "terminal": {
-    "font_size": 14.0,
+    "toolbar": {
+      "breadcrumbs": false
+    },
     "cursor_shape": "bar",
     "font_weight": 400.0,
     "font_family": "JetBrainsMono Nerd Font",
