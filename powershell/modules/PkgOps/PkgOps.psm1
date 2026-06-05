@@ -1,14 +1,28 @@
 Set-Alias gitpkg "$env:UserProfile\Git\gitpkg\gitpkg.ps1"
 
 function Search-Packages {
-    $query = $args -join ' '
-    $scoopQuery = ($query -replace '\s+', '-')
+    param(
+        [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true)]
+        [string[]]$Query
+    )
 
-    Write-Host "`nSearching winget packages...`n" -ForegroundColor Cyan
-    winget search $query
+    $wingetQuery = $Query -join ' '
+    $scoopQuery = $Query -join '-'
+
+    Write-Host "`nSearching winget packages for '$wingetQuery'...`n" -ForegroundColor Cyan
+    winget search "$wingetQuery"
     
-    Write-Host "`nSearching scoop packages..." -ForegroundColor Cyan
-    & "$env:UserProfile\Git\fast-scoop-search\Scoop-Search.ps1" $scoopQuery
+    Write-Host "`nSearching scoop packages for '$scoopQuery'...`n" -ForegroundColor Cyan
+    
+    $scoopSearchPath = "$env:UserProfile\Git\fast-scoop-search\Scoop-Search.ps1"
+    
+    if (Test-Path $scoopSearchPath) {
+        & $scoopSearchPath "$scoopQuery"
+    }
+    else {
+        Write-Host "Fast search script missing. Falling back to native scoop search..." -ForegroundColor Yellow
+        scoop search "$scoopQuery"
+    }
 }
 
 function Update-AllPackages {
@@ -35,7 +49,8 @@ function Update-AllPackages {
 
     if ((Test-Path $gitScriptPath) -and (Test-Path $gitConfigPath)) {
         & $gitScriptPath -ConfigPath $gitConfigPath
-    } else {
+    }
+    else {
         Write-Host "Git pull script or config for '$computer' not found. Skipping repository updates..." -ForegroundColor Yellow
     }
 
