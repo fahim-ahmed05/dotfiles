@@ -1,4 +1,10 @@
 {
+  "agent": {
+    "dock": "right",
+    "sidebar_side": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
   "project_panel": {
     "dock": "left"
   },
@@ -40,7 +46,7 @@
     "show_sign_in": false
   },
   "auto_update": false,
-  "disable_ai": true,
+  "disable_ai": false,
   "terminal": {
     "font_size": 14.0,
     "cursor_shape": "bar",
