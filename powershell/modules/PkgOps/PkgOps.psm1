@@ -12,12 +12,12 @@ function Search-Packages {
 }
 
 function Update-AllPackages {
+    Write-Host "`nUpdating winget binary...`n" -ForegroundColor Cyan
+    winget upgrade Microsoft.AppInstaller --accept-package-agreements --accept-source-agreements
+
     Write-Host "`nUpdating winget packages...`n" -ForegroundColor Cyan
     winget source update
     winget upgrade --all --accept-package-agreements --accept-source-agreements
-
-    Write-Host "`nUpdating winget...`n" -ForegroundColor Cyan
-    winget upgrade winget --accept-package-agreements --accept-source-agreements
 
     Write-Host "`nUpdating scoop packages...`n" -ForegroundColor Cyan
     scoop update; scoop update -a; scoop status
@@ -29,7 +29,15 @@ function Update-AllPackages {
     gitpkg pull all
 
     Write-Host "`nUpdating git repos...`n" -ForegroundColor Cyan
-    & "$env:UserProfile\Git\dotfiles\powershell\scripts\Pull-GitRepos.ps1" -ConfigPath "$env:UserProfile\Git\dotfiles\powershell\configs\git_repos_$computer.json"
+    
+    $gitScriptPath = "$env:UserProfile\Git\dotfiles\powershell\scripts\Pull-GitRepos.ps1"
+    $gitConfigPath = "$env:UserProfile\Git\dotfiles\powershell\configs\git_repos_$computer.json"
+
+    if ((Test-Path $gitScriptPath) -and (Test-Path $gitConfigPath)) {
+        & $gitScriptPath -ConfigPath $gitConfigPath
+    } else {
+        Write-Host "Git pull script or config for '$computer' not found. Skipping repository updates..." -ForegroundColor Yellow
+    }
 
     Write-Host "`nRemoving desktop icons...`n" -ForegroundColor Cyan
     Remove-DesktopIcons
