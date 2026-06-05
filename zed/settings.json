@@ -1,4 +1,7 @@
 {
+  "sticky_scroll": {
+    "enabled": true
+  },
   "show_wrap_guides": true,
   "soft_wrap": "editor_width",
   "proxy": "",
