@@ -26,6 +26,7 @@
     "model_parameters": [],
   },
   "project_panel": {
+    "button": true,
     "dock": "left",
   },
   "buffer_font_family": "JetBrainsMono Nerd Font",
