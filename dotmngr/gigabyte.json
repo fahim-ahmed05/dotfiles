@@ -432,10 +432,11 @@
 			]
 		},
 		"zed": {
-			"enabled": false,
+			"enabled": true,
+			"mode": "symlink",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\editor\\zed\\settings.json",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\zed\\settings.json",
 					"to": "%APPDATA%\\Zed\\settings.json"
 				}
 			]

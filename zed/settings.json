@@ -20,13 +20,13 @@
     "show": true
   },
   "title_bar": {
+    "show_branch_status_icon": true,
     "show_user_menu": false,
     "show_menus": false,
     "show_project_items": true,
     "show_onboarding_banner": false,
     "show_user_picture": false,
-    "show_sign_in": false,
-    "show_branch_icon": true
+    "show_sign_in": false
   },
   "auto_update": false,
   "disable_ai": true,
