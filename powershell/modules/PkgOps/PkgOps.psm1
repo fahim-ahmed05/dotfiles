@@ -65,11 +65,13 @@ function Install-Packages {
     )
 
     foreach ($pkg in $Packages) {
+        # MS Store ID: Exactly 12 characters, mix of letters and numbers
         if ($pkg -match '^(?=.*\d)[A-Za-z0-9]{12}$') {
             Write-Host "`nInstalling $pkg via winget (MS Store)...`n" -ForegroundColor Cyan
             winget install -e --id "$pkg" --source msstore --accept-package-agreements --accept-source-agreements
         }
-        
+
+        # Winget ID: Contains a dot with characters on both sides (e.g., Publisher.App)
         elseif ($pkg -match '^[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$') {
             Write-Host "`nInstalling $pkg via winget...`n" -ForegroundColor Cyan
             winget install -e --id "$pkg" --source winget --accept-package-agreements --accept-source-agreements
