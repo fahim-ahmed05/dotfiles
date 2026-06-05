@@ -1,4 +1,13 @@
 {
+  "project_panel": {
+    "dock": "left"
+  },
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "icon_theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
   "use_system_window_tabs": false,
   "bottom_dock_layout": "contained",
   "tabs": {
@@ -9,6 +18,8 @@
     "show": "system"
   },
   "toolbar": {
+    "quick_actions": true,
+    "breadcrumbs": true,
     "selections_menu": true
   },
   "debugger": {
@@ -34,7 +45,7 @@
     "font_size": 14.0,
     "cursor_shape": "bar",
     "font_weight": 400.0,
-    "font_family": "CaskaydiaMono Nerd Font",
+    "font_family": "JetBrainsMono Nerd Font",
     "shell": {
       "with_arguments": {
         "program": "pwsh.exe",
@@ -49,17 +60,15 @@
       "milliseconds": 1000
     }
   },
-  "ui_font_family": "Inter",
-  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "ui_font_family": "JetBrainsMono Nerd Font",
   "telemetry": {
     "diagnostics": false,
     "metrics": false
   },
   "ui_font_size": 16.0,
-  "buffer_font_size": 14.0,
   "theme": {
     "mode": "system",
-    "light": "One Light",
-    "dark": "One Dark"
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
   }
 }
