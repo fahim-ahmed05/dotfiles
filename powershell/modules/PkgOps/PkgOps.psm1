@@ -42,18 +42,16 @@ function Install-Packages {
     )
 
     foreach ($pkg in $Packages) {
-        $digitCount = ([regex]::Matches($pkg, '\d')).Count
-
-        if ($digitCount -gt 1) {
-            Write-Host "`nInstalling $pkg via winget...`n" -ForegroundColor Cyan
+        if ($pkg -match '^(?=.*\d)[A-Za-z0-9]{12}$') {
+            Write-Host "`nInstalling $pkg via winget (MS Store)...`n" -ForegroundColor Cyan
             winget install -e --id "$pkg" --source msstore --accept-package-agreements --accept-source-agreements
         }
-
-        elseif ($pkg -match '\.') {
+        
+        elseif ($pkg -match '^[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$') {
             Write-Host "`nInstalling $pkg via winget...`n" -ForegroundColor Cyan
             winget install -e --id "$pkg" --source winget --accept-package-agreements --accept-source-agreements
         }
-
+        
         else {
             Write-Host "`nInstalling $pkg via scoop...`n" -ForegroundColor Cyan
             scoop install "$pkg"
@@ -63,4 +61,26 @@ function Install-Packages {
     Remove-DesktopIcons
 }
 
+function Uninstall-Packages {
+    param(
+        [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true)]
+        [string[]]$Packages
+    )
 
+    foreach ($pkg in $Packages) {
+        if ($pkg -match '^(?=.*\d)[A-Za-z0-9]{12}$') {
+            Write-Host "`nUninstalling $pkg via winget (MS Store)...`n" -ForegroundColor Yellow
+            winget uninstall -e --id "$pkg"
+        }
+        
+        elseif ($pkg -match '^[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$') {
+            Write-Host "`nUninstalling $pkg via winget...`n" -ForegroundColor Yellow
+            winget uninstall -e --id "$pkg"
+        }
+        
+        else {
+            Write-Host "`nUninstalling $pkg via scoop...`n" -ForegroundColor Yellow
+            scoop uninstall "$pkg"
+        }
+    }
+}
