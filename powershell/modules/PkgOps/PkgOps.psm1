@@ -1,7 +1,6 @@
 Set-Alias gitpkg "$env:UserProfile\Git\gitpkg\gitpkg.ps1"
 
-function Search-Packages
-{
+function Search-Packages {
     param(
         [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true)]
         [string[]]$Query
@@ -17,18 +16,16 @@ function Search-Packages
 
     $scoopSearchPath = "$env:UserProfile\Git\fast-scoop-search\Scoop-Search.ps1"
 
-    if (Test-Path $scoopSearchPath)
-    {
+    if (Test-Path $scoopSearchPath) {
         & $scoopSearchPath "$scoopQuery"
-    } else
-    {
+    }
+    else {
         Write-Host "Fast search script missing. Falling back to native scoop search..." -ForegroundColor Yellow
         scoop search "$scoopQuery"
     }
 }
 
-function Update-AllPackages
-{
+function Update-AllPackages {
     Write-Host "`nUpdating winget sources and binary...`n" -ForegroundColor Cyan
     winget source update
     winget upgrade Microsoft.AppInstaller --accept-package-agreements --accept-source-agreements
@@ -50,11 +47,10 @@ function Update-AllPackages
     $gitScriptPath = "$env:UserProfile\Git\dotfiles\powershell\scripts\Pull-GitRepos.ps1"
     $gitConfigPath = "$env:UserProfile\Git\dotfiles\powershell\configs\git_repos_$computer.json"
 
-    if ((Test-Path $gitScriptPath) -and (Test-Path $gitConfigPath))
-    {
+    if ((Test-Path $gitScriptPath) -and (Test-Path $gitConfigPath)) {
         & $gitScriptPath -ConfigPath $gitConfigPath
-    } else
-    {
+    }
+    else {
         Write-Host "Git pull script or config for '$computer' not found. Skipping repository updates..." -ForegroundColor Yellow
     }
 
@@ -62,31 +58,26 @@ function Update-AllPackages
     Remove-DesktopIcons
 }
 
-function Install-Packages
-{
+function Install-Packages {
     param(
         [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true)]
         [string[]]$Packages
     )
 
-    foreach ($pkg in $Packages)
-    {
+    foreach ($pkg in $Packages) {
         # MS Store ID: Exactly 12 characters, mix of letters and numbers
-        if ($pkg -match '^(?=.*\d)[A-Za-z0-9]{12}$')
-        {
+        if ($pkg -match '^(?=.*\d)[A-Za-z0-9]{12}$') {
             Write-Host "`nInstalling $pkg via winget (MS Store)...`n" -ForegroundColor Cyan
             winget install -e --id "$pkg" --source msstore --accept-package-agreements --accept-source-agreements
         }
 
         # Winget ID: Contains a dot with characters on both sides (e.g., Publisher.App)
-        elseif ($pkg -match '^[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
-        {
+        elseif ($pkg -match '^[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$') {
             Write-Host "`nInstalling $pkg via winget...`n" -ForegroundColor Cyan
             winget install -e --id "$pkg" --source winget --accept-package-agreements --accept-source-agreements
         }
 
-        else
-        {
+        else {
             Write-Host "`nInstalling $pkg via scoop...`n" -ForegroundColor Cyan
             scoop install "$pkg"
         }
@@ -95,29 +86,24 @@ function Install-Packages
     Remove-DesktopIcons
 }
 
-function Uninstall-Packages
-{
+function Uninstall-Packages {
     param(
         [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true)]
         [string[]]$Packages
     )
 
-    foreach ($pkg in $Packages)
-    {
-        if ($pkg -match '^(?=.*\d)[A-Za-z0-9]{12}$')
-        {
+    foreach ($pkg in $Packages) {
+        if ($pkg -match '^(?=.*\d)[A-Za-z0-9]{12}$') {
             Write-Host "`nUninstalling $pkg via winget (MS Store)...`n" -ForegroundColor Yellow
             winget uninstall -e --id "$pkg"
         }
 
-        elseif ($pkg -match '^[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
-        {
+        elseif ($pkg -match '^[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$') {
             Write-Host "`nUninstalling $pkg via winget...`n" -ForegroundColor Yellow
             winget uninstall -e --id "$pkg"
         }
 
-        else
-        {
+        else {
             Write-Host "`nUninstalling $pkg via scoop...`n" -ForegroundColor Yellow
             scoop uninstall "$pkg"
         }
