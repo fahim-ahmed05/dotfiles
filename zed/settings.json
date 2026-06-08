@@ -1,4 +1,15 @@
 {
+  "agent_servers": {},
+  "language_models": {},
+  "edit_predictions": {
+    "mode": "subtle",
+    "codestral": {
+      "api_url": "https://codestral.mistral.ai",
+    },
+    "provider": "codestral",
+    "open_ai_compatible_api": {},
+    "allow_data_collection": "no",
+  },
   "file_finder": {
     "file_icons": true,
   },
@@ -20,6 +31,13 @@
   "soft_wrap": "editor_width",
   "proxy": "",
   "agent": {
+    "default_profile": "write",
+    "default_model": {
+      "effort": "high",
+      "provider": "copilot_chat",
+      "model": "gpt-5-mini",
+      "enable_thinking": true,
+    },
     "dock": "right",
     "sidebar_side": "right",
     "favorite_models": [],
