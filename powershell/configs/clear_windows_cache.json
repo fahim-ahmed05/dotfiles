@@ -1,17 +1,14 @@
 {
-    "paths": [
-        "%SYSTEMROOT%\\Prefetch",
-        "%SYSTEMROOT%\\Temp",
-        "%LOCALAPPDATA%\\Temp",
-        "%LOCALAPPDATA%\\Package Cache",
-        "%ProgramData%\\Package Cache",
-        "%LOCALAPPDATA%\\pip\\cache",
-        "%APPDATA%\\stremio\\stremio-server\\stremio-cache",
-        "%APPDATA%\\FlowLauncher\\Settings\\Plugins\\Flow.Launcher.Plugin.ClipboardPlus\\CachedImages"
-    ],
-    "commands": [
-        "scoop cache rm -a",
-        "scoop cleanup -a",
-        "uv cache clean"
-    ]
+  "paths": [
+    "%SYSTEMROOT%\\Prefetch",
+    "%SYSTEMROOT%\\Temp",
+    "%LOCALAPPDATA%\\Temp",
+    "%LOCALAPPDATA%\\Package Cache",
+    "%ProgramData%\\Package Cache",
+    "%LOCALAPPDATA%\\pip\\cache",
+    "%APPDATA%\\stremio\\stremio-server\\stremio-cache",
+    "%APPDATA%\\FlowLauncher\\Settings\\Plugins\\Flow.Launcher.Plugin.ClipboardPlus\\CachedImages",
+    "%APPDATA%\\FlowLauncher\\Settings\\Plugins\\Browser History V2\\Cache"
+  ],
+  "commands": ["scoop cache rm -a", "scoop cleanup -a", "uv cache clean"]
 }
