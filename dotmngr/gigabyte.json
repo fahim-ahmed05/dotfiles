@@ -656,16 +656,16 @@
 			"items": [
 				{
 					"mode": "junction",
-					"from": "%LOCALAPPDATA%\\app.harbor\\EBWebView",
-					"to": "%USERPROFILE%\\Configs\\harbor\\data"
+					"from": "%USERPROFILE%\\Configs\\harbor\\data",
+					"to": "%LOCALAPPDATA%\\app.harbor\\EBWebView"
 				},
 				{
-					"from": "%APPDATA%\\app.harbor\\settings.json",
-					"to": "%USERPROFILE%\\Configs\\harbor\\settings.json"
+					"from": "%USERPROFILE%\\Configs\\harbor\\settings.json",
+					"to": "%APPDATA%\\app.harbor\\settings.json"
 				},
 				{
-					"from": "%APPDATA%\\app.harbor\\.window-state.json",
-					"to": "%USERPROFILE%\\Configs\\harbor\\.window-state.json"
+					"from": "%USERPROFILE%\\Configs\\harbor\\.window-state.json",
+					"to": "%APPDATA%\\app.harbor\\.window-state.json"
 				}
 			]
 		}
