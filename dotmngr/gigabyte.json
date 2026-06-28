@@ -660,10 +660,12 @@
 					"to": "%LOCALAPPDATA%\\app.harbor\\EBWebView"
 				},
 				{
+					"mode": "symlink",
 					"from": "%USERPROFILE%\\Configs\\harbor\\settings.json",
 					"to": "%APPDATA%\\app.harbor\\settings.json"
 				},
 				{
+					"mode": "symlink",
 					"from": "%USERPROFILE%\\Configs\\harbor\\.window-state.json",
 					"to": "%APPDATA%\\app.harbor\\.window-state.json"
 				}
