@@ -2,7 +2,11 @@
 .SYNOPSIS
 Highly Optimized Interactive Audiobook Downloader using yt-dlp, fzf, and ffmpeg.
 #>
-param ([string]$OutDir = "$env:USERPROFILE\Music\Audiobooks")
+param (
+    [string]$OutDir = "$env:USERPROFILE\Music\Audiobooks",
+    [string]$HistoryFile = "$env:USERPROFILE\Configs\audiobook-dl\history.json",
+    [int]$ParallelLimit = 2
+)
 
 $ErrorActionPreference = "Stop"
 
@@ -12,7 +16,6 @@ $global:utf8NoBom = New-Object System.Text.UTF8Encoding $false
 [Console]::InputEncoding = $global:utf8NoBom
 $OutputEncoding = $global:utf8NoBom
 
-$HistoryFile = "$env:USERPROFILE\Configs\audiobook-dl\history.json"
 if (-not (Test-Path (Split-Path $HistoryFile))) { New-Item -ItemType Directory -Path (Split-Path $HistoryFile) | Out-Null }
 if (-not (Test-Path $OutDir)) { New-Item -ItemType Directory -Path $OutDir | Out-Null }
 
@@ -173,7 +176,7 @@ function Write-AudioMetadata ([string]$FilePath, [hashtable]$Meta, [int]$TrackNu
 }
 
 # --- Core Download & Processing Logic ---
-function Invoke-Download ([string[]]$Urls, $Meta, [bool]$IsMulti, [int]$StartNum = 1, [string]$DestPath) {
+function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber = 1, [string]$DestPath) {
     $SafeTitle = Get-SafeName $Meta.Title
 
     if (-not (Test-Path $DestPath)) { New-Item -ItemType Directory -Path $DestPath | Out-Null }
@@ -186,89 +189,153 @@ function Invoke-Download ([string[]]$Urls, $Meta, [bool]$IsMulti, [int]$StartNum
         "--ppa", "ThumbnailsConvertor+ffmpeg_o:-vf crop='min(iw\,ih):min(iw\,ih)'"
     )
 
-    $trackNum = $StartNum
-    foreach ($url in $Urls) {
-        $trackTitle = Get-TrackTitle -Meta $Meta -IsMulti:$IsMulti -TrackNumber $trackNum
-        $safeTrackTitle = Get-SafeName $trackTitle
-        $ytdlpArgs = $baseArgs
-        
-        if ($IsMulti) {
-            $ytdlpArgs += "-o", "$DestPath/$safeTrackTitle.%(ext)s" 
-        }
-        else { 
-            $ytdlpArgs += "-o", "$DestPath/$SafeTitle.%(ext)s" 
-        }
-        
-        $ytdlpArgs += $url
+    $trackTitle = Get-TrackTitle -Meta $Meta -IsMulti:$IsMulti -TrackNumber $TrackNumber
+    $safeTrackTitle = Get-SafeName $trackTitle
+    $ytdlpArgs = $baseArgs
+    
+    if ($IsMulti) {
+        $ytdlpArgs += "-o", "$DestPath/$safeTrackTitle.%(ext)s" 
+    }
+    else { 
+        $ytdlpArgs += "-o", "$DestPath/$SafeTitle.%(ext)s" 
+    }
+    
+    $ytdlpArgs += $Url
 
-        $statusMsg = if ($IsMulti) { "`nDownloading Part $trackNum..." } else { "`nDownloading..." }
-        Write-Host $statusMsg -ForegroundColor Cyan
-        
+    $statusMsg = if ($IsMulti) { "`nDownloading Part $TrackNumber..." } else { "`nDownloading..." }
+    Write-Host $statusMsg -ForegroundColor Cyan
+    
+    try {
         & yt-dlp $ytdlpArgs
+
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "`n[ERROR] yt-dlp failed for $Url" -ForegroundColor Red
+            return $false
+        }
 
         $outputBaseName = if ($IsMulti) { $safeTrackTitle } else { $SafeTitle }
         $outputFile = Get-OutputFilePath -DestPath $DestPath -BaseName $outputBaseName
+        
+        if (-not (Test-Path $outputFile)) {
+            Write-Host "`n[ERROR] Downloaded file not found: $outputFile" -ForegroundColor Red
+            return $false
+        }
+
         $metaToWrite = @{
             Title      = $Meta.Title
             Author     = $Meta.Author
             TrackTitle = $trackTitle
         }
-        Write-AudioMetadata -FilePath $outputFile -Meta $metaToWrite -TrackNumber $trackNum
-        $trackNum++
+        Write-AudioMetadata -FilePath $outputFile -Meta $metaToWrite -TrackNumber $TrackNumber
+        return $true
+    }
+    catch {
+        Write-Host "`n[ERROR] Failed processing $Url : $_" -ForegroundColor Red
+        return $false
     }
 }
 
 function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$VideoTitles) {
+    $downloadJobs = @()
+
     if (-not $IsMulti) {
         $index = 0
-        $downloadJobs = @()
         foreach ($u in $Urls) {
             $videoTitle = if ($VideoTitles -and $index -lt $VideoTitles.Count) { $VideoTitles[$index] } else { "" }
             $meta = Get-Metadata $u -VideoTitle $videoTitle
             $destPath = Get-BookDestPath $meta
-            $downloadJobs += [PSCustomObject]@{ Url = $u; Meta = $meta; DestPath = $destPath }
+            $downloadJobs += [PSCustomObject]@{ Url = $u; Meta = $meta; DestPath = $destPath; TrackNum = 1; IsMulti = $false }
             $index++
         }
+    }
+    else {
+        $appendChoice = Read-Host "`n[1] New Book`n[2] Append to Existing`nChoice"
+        $startNum = 1
+        $destPath = ""
+        $meta = $null
         
-        foreach ($job in $downloadJobs) {
-            Invoke-Download -Urls @($job.Url) -Meta $job.Meta -IsMulti:$false -DestPath $job.DestPath
+        if ($appendChoice -eq '2') {
+            $folders = Get-ExistingBookFolders $OutDir
+
+            if ($folders.Count -eq 0) {
+                Write-Host "No existing folders found. Treating as new book." -ForegroundColor Yellow
+                $appendChoice = '1'
+            }
+            else {
+                $fzfInput = $folders.Display
+                $selectedDisplay = @($fzfInput | fzf --prompt="Select existing folder (ESC to cancel): ")
+                if (-not $selectedDisplay) { return }
+                
+                $selected = $folders | Where-Object Display -eq $selectedDisplay[0]
+                $destPath = $selected.Path
+                $meta = @{ Author = $selected.Author; Title = $selected.Title }
+                
+                $startNum = (Get-ChildItem -Path $destPath -File).Count + 1
+                Write-Host "Appending starting at Part $startNum" -ForegroundColor Green
+            }
+        } 
+        
+        if ($appendChoice -eq '1') {
+            $videoTitle = if ($VideoTitles -and $VideoTitles.Count -gt 0) { $VideoTitles[0] } else { "" }
+            $meta = Get-Metadata $Urls[0] -VideoTitle $videoTitle
+            $destPath = Get-BookDestPath $meta
         }
-        return
+        
+        $trackNum = $startNum
+        foreach ($u in $Urls) {
+            $downloadJobs += [PSCustomObject]@{ Url = $u; Meta = $meta; DestPath = $destPath; TrackNum = $trackNum; IsMulti = $true }
+            $trackNum++
+        }
     }
 
-    $appendChoice = Read-Host "`n[1] New Book`n[2] Append to Existing`nChoice"
-    $startNum = 1
-    $destPath = ""
-    $meta = $null
+    $scriptPath = $PSCommandPath
     
-    if ($appendChoice -eq '2') {
-        $folders = Get-ExistingBookFolders $OutDir
+    while ($downloadJobs.Count -gt 0) {
+        $failedJobs = @()
+        
+        $results = $downloadJobs | ForEach-Object -Parallel {
+            . $using:scriptPath
+            $success = Invoke-Download -Url $_.Url -Meta $_.Meta -IsMulti $_.IsMulti -TrackNumber $_.TrackNum -DestPath $_.DestPath
+            if (-not $success) { return $_ }
+        } -ThrottleLimit $using:ParallelLimit
+        
+        if ($results) {
+            $failedJobs = @($results)
+        }
 
-        if ($folders.Count -eq 0) {
-            Write-Host "No existing folders found. Treating as new book." -ForegroundColor Yellow
-            $appendChoice = '1'
+        if ($failedJobs.Count -gt 0) {
+            Write-Host "`n=============================================" -ForegroundColor Red
+            Write-Host "             FAILED DOWNLOADS                " -ForegroundColor Red
+            Write-Host "=============================================" -ForegroundColor Red
+            
+            for ($i = 0; $i -lt $failedJobs.Count; $i++) {
+                $fj = $failedJobs[$i]
+                $titleDisplay = if ($fj.IsMulti) { "$($fj.Meta.Title) - Part $($fj.TrackNum)" } else { $fj.Meta.Title }
+                Write-Host "[$($i + 1)] $titleDisplay - $($fj.Url)" -ForegroundColor Yellow
+            }
+            
+            $retryInput = Read-Host "`nEnter numbers to retry (comma separated), or press Enter to continue"
+            if ([string]::IsNullOrWhiteSpace($retryInput)) {
+                break
+            }
+            
+            $retryIndices = $retryInput -split ',' | ForEach-Object { $_.Trim() } | Where-Object { $_ -match '^\d+$' } | ForEach-Object { [int]$_ - 1 }
+            $downloadJobs = @()
+            foreach ($idx in $retryIndices) {
+                if ($idx -ge 0 -and $idx -lt $failedJobs.Count) {
+                    $downloadJobs += $failedJobs[$idx]
+                }
+            }
+            
+            if ($downloadJobs.Count -eq 0) {
+                Write-Host "No valid selections to retry." -ForegroundColor Yellow
+                break
+            }
         }
         else {
-            $fzfInput = $folders.Display
-            $selectedDisplay = @($fzfInput | fzf --prompt="Select existing folder (ESC to cancel): ")
-            if (-not $selectedDisplay) { return }
-            
-            $selected = $folders | Where-Object Display -eq $selectedDisplay[0]
-            $destPath = $selected.Path
-            $meta = @{ Author = $selected.Author; Title = $selected.Title }
-            
-            $startNum = (Get-ChildItem -Path $destPath -File).Count + 1
-            Write-Host "Appending starting at Part $startNum" -ForegroundColor Green
+            break
         }
-    } 
-    
-    if ($appendChoice -eq '1') {
-        $videoTitle = if ($VideoTitles -and $VideoTitles.Count -gt 0) { $VideoTitles[0] } else { "" }
-        $meta = Get-Metadata $Urls[0] -VideoTitle $videoTitle
-        $destPath = Get-BookDestPath $meta
     }
-    
-    Invoke-Download -Urls $Urls -Meta $meta -IsMulti:$true -StartNum $startNum -DestPath $destPath
 }
 
 function Confirm-And-Process ([object[]]$Selections) {
@@ -329,35 +396,41 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
 }
 
 # --- Main Application Loop ---
-while ($true) {
-    Write-Host "`n=============================================" -ForegroundColor Cyan
-    Write-Host "      Interactive Audiobook Downloader       " -ForegroundColor Cyan
-    Write-Host "=============================================" -ForegroundColor Cyan
-    
-    $mode = Read-Host "`n[1] Single`n[2] Multi`n[3] Channel (fzf)`n[4] Playlist (fzf)`n`nSelect mode (Enter to exit)"
+function Start-InteractiveMode {
+    while ($true) {
+        Write-Host "`n=============================================" -ForegroundColor Cyan
+        Write-Host "      Interactive Audiobook Downloader       " -ForegroundColor Cyan
+        Write-Host "=============================================" -ForegroundColor Cyan
+        
+        $mode = Read-Host "`n[1] Single`n[2] Multi`n[3] Channel (fzf)`n[4] Playlist (fzf)`n`nSelect mode (Enter to exit)"
 
-    if ([string]::IsNullOrWhiteSpace($mode)) { break }
+        if ([string]::IsNullOrWhiteSpace($mode)) { break }
 
-    if ($mode -eq '1') { 
-        $urlInput = Read-Host "URL"
-        if ($urlInput) { Start-AudiobookDownload -Urls @($urlInput) -IsMulti:$false }
+        if ($mode -eq '1') { 
+            $urlInput = Read-Host "URL"
+            if ($urlInput) { Start-AudiobookDownload -Urls @($urlInput) -IsMulti:$false }
 
+        }
+        elseif ($mode -eq '2') { 
+            $urlInput = Read-Host "URLs (space-separated)"
+            $urls = @($urlInput -split '\s+' | Where-Object { $_ })
+            if ($urls) { Start-AudiobookDownload -Urls $urls -IsMulti:$true }
+
+        }
+        elseif ($mode -eq '3') {
+            Invoke-PlaylistMenu -IsChannel
+
+        }
+        elseif ($mode -eq '4') {
+            Invoke-PlaylistMenu
+
+        }
+        else { 
+            Write-Host "Invalid mode." -ForegroundColor Red
+        }
     }
-    elseif ($mode -eq '2') { 
-        $urlInput = Read-Host "URLs (space-separated)"
-        $urls = @($urlInput -split '\s+' | Where-Object { $_ })
-        if ($urls) { Start-AudiobookDownload -Urls $urls -IsMulti:$true }
+}
 
-    }
-    elseif ($mode -eq '3') {
-        Invoke-PlaylistMenu -IsChannel
-
-    }
-    elseif ($mode -eq '4') {
-        Invoke-PlaylistMenu
-
-    }
-    else { 
-        Write-Host "Invalid mode." -ForegroundColor Red
-    }
+if ($MyInvocation.InvocationName -ne '.') {
+    Start-InteractiveMode
 }
