@@ -207,7 +207,7 @@ function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber
     Write-Host "`n[START] Downloading: $titleDisplay..." -ForegroundColor Cyan
     
     try {
-        $null | & yt-dlp $ytdlpArgs
+        $null | & yt-dlp $ytdlpArgs 2>$null
 
         if ($LASTEXITCODE -ne 0) {
             Write-Host "`n[ERROR] yt-dlp failed for $titleDisplay ($Url)" -ForegroundColor Red
