@@ -21,11 +21,11 @@
     - "C:\Folder\*.lnk" : move only .lnk files from that folder to Trash.
     - "%ENV%\path"      : env vars are expanded; same rules apply.
 
-.PARAMETER Empty
+.PARAMETER EmptyTrash
     Empties the Trash only. Cannot be combined with -All.
 
 .PARAMETER All
-    Cleans all sources then empties the Trash. Cannot be combined with -Empty.
+    Cleans all sources then empties the Trash. Cannot be combined with -EmptyTrash.
 
 .PARAMETER RemoveEmptyDirs
     Optional. Recursively searches processed source directories for empty folders and deletes them.
@@ -36,7 +36,7 @@ param(
     [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromRemainingArguments = $true)]
     [string[]]$Source = @(),
     
-    [switch]$Empty,
+    [switch]$EmptyTrash,
     [switch]$All,
     [switch]$RemoveEmptyDirs
 )
@@ -164,7 +164,7 @@ function Remove-EmptyDirectories {
 
 # 3. Main Logic execution
 $dirsToClean = @()
-if (-not $Empty) {
+if (-not $EmptyTrash) {
     if ($Source.Count -gt 0) {
         foreach ($s in $Source) {
             $isPathLike = [System.IO.Path]::IsPathRooted($s) -or $s -match '^\.' -or $s -match '%' -or $s -match '\*' -or $s -match '[\\/]'
@@ -225,6 +225,6 @@ if (-not $Empty) {
     }
 }
 
-if ($Empty -or $All) {
+if ($EmptyTrash -or $All) {
     Clear-Trash -Exclude $config.trashExclude
 }
