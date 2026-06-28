@@ -154,6 +154,7 @@ function Write-AudioMetadata ([string]$FilePath, [hashtable]$Meta, [int]$TrackNu
     )
 
     $ffmpegArgs = @(
+        "-nostdin",
         "-y",
         "-i", $FilePath,
         "-map", "0",
@@ -169,7 +170,7 @@ function Write-AudioMetadata ([string]$FilePath, [hashtable]$Meta, [int]$TrackNu
         $tempFile
     )
 
-    & ffmpeg @ffmpegArgs
+    $null | & ffmpeg @ffmpegArgs 2>&1 | Out-Null
     if ($LASTEXITCODE -ne 0 -or -not (Test-Path $tempFile)) { throw "ffmpeg failed while writing metadata for $FilePath" }
 
     Move-Item -Force $tempFile $FilePath
