@@ -221,12 +221,17 @@ function Invoke-Download ([string[]]$Urls, $Meta, [bool]$IsMulti, [int]$StartNum
 function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$VideoTitles) {
     if (-not $IsMulti) {
         $index = 0
+        $downloadJobs = @()
         foreach ($u in $Urls) {
             $videoTitle = if ($VideoTitles -and $index -lt $VideoTitles.Count) { $VideoTitles[$index] } else { "" }
             $meta = Get-Metadata $u -VideoTitle $videoTitle
             $destPath = Get-BookDestPath $meta
-            Invoke-Download -Urls @($u) -Meta $meta -IsMulti:$false -DestPath $destPath
+            $downloadJobs += [PSCustomObject]@{ Url = $u; Meta = $meta; DestPath = $destPath }
             $index++
+        }
+        
+        foreach ($job in $downloadJobs) {
+            Invoke-Download -Urls @($job.Url) -Meta $job.Meta -IsMulti:$false -DestPath $job.DestPath
         }
         return
     }
