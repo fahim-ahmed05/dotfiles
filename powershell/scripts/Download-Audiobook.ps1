@@ -297,7 +297,7 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
             . $using:scriptPath
             $success = Invoke-Download -Url $_.Url -Meta $_.Meta -IsMulti $_.IsMulti -TrackNumber $_.TrackNum -DestPath $_.DestPath
             if (-not $success) { return $_ }
-        } -ThrottleLimit $using:ParallelLimit
+        } -ThrottleLimit $ParallelLimit
         
         if ($results) {
             $failedJobs = @($results)
