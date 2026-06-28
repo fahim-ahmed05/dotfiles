@@ -308,28 +308,23 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
             Write-Host "             FAILED DOWNLOADS                " -ForegroundColor Red
             Write-Host "=============================================" -ForegroundColor Red
             
+            $fzfInput = @()
             for ($i = 0; $i -lt $failedJobs.Count; $i++) {
                 $fj = $failedJobs[$i]
                 $titleDisplay = if ($fj.IsMulti) { "$($fj.Meta.Title) - Part $($fj.TrackNum)" } else { $fj.Meta.Title }
-                Write-Host "[$($i + 1)] $titleDisplay - $($fj.Url)" -ForegroundColor Yellow
+                $fzfInput += "$i|$titleDisplay - $($fj.Url)"
             }
             
-            $retryInput = Read-Host "`nEnter numbers to retry (comma separated), or press Enter to continue"
-            if ([string]::IsNullOrWhiteSpace($retryInput)) {
+            $fzfOut = @($fzfInput | fzf -m --delimiter="\|" --with-nth=2.. --prompt="Select jobs to retry (TAB: multi, ESC: continue)> ")
+            
+            if (-not $fzfOut -or $fzfOut.Count -eq 0) {
                 break
             }
             
-            $retryIndices = $retryInput -split ',' | ForEach-Object { $_.Trim() } | Where-Object { $_ -match '^\d+$' } | ForEach-Object { [int]$_ - 1 }
             $downloadJobs = @()
-            foreach ($idx in $retryIndices) {
-                if ($idx -ge 0 -and $idx -lt $failedJobs.Count) {
-                    $downloadJobs += $failedJobs[$idx]
-                }
-            }
-            
-            if ($downloadJobs.Count -eq 0) {
-                Write-Host "No valid selections to retry." -ForegroundColor Yellow
-                break
+            foreach ($selection in $fzfOut) {
+                $idx = [int]($selection -split '\|')[0]
+                $downloadJobs += $failedJobs[$idx]
             }
         }
         else {
