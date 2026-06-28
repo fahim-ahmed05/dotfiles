@@ -28,7 +28,7 @@
     Cleans all sources then empties the Trash. Cannot be combined with -EmptyTrash.
 
 .PARAMETER RemoveEmptyDirs
-    Optional. Recursively searches processed source directories for empty folders and deletes them.
+    Optional. If specified, ONLY recursively searches the provided sources for empty folders and moves them to the Trash. Normal file clearing is skipped.
 #>
 param(
     [string]$ConfigPath = (Join-Path $PSScriptRoot "..\configs\clear_folders.json"),
@@ -175,9 +175,11 @@ if (-not $EmptyTrash) {
                     foreach ($src in $matchedSources) {
                         $expanded = [System.Environment]::ExpandEnvironmentVariables($src.path)
                         if (Test-Path -LiteralPath $expanded) {
-                            $items = Get-ChildItem -LiteralPath $expanded -Force
-                            foreach ($item in $items) {
-                                Move-ItemToTrash -Item $item -Exclude $src.exclude
+                            if (-not $RemoveEmptyDirs) {
+                                $items = Get-ChildItem -LiteralPath $expanded -Force
+                                foreach ($item in $items) {
+                                    Move-ItemToTrash -Item $item -Exclude $src.exclude
+                                }
                             }
                             $dirsToClean += $expanded
                         }
@@ -188,9 +190,11 @@ if (-not $EmptyTrash) {
 
             $expanded = [System.Environment]::ExpandEnvironmentVariables($s)
             try {
-                $items = Get-Item -Path $expanded -Force -ErrorAction Stop
-                foreach ($item in $items) {
-                    Move-ItemToTrash -Item $item -Exclude @()
+                if (-not $RemoveEmptyDirs) {
+                    $items = Get-Item -Path $expanded -Force -ErrorAction Stop
+                    foreach ($item in $items) {
+                        Move-ItemToTrash -Item $item -Exclude @()
+                    }
                 }
                 if ($expanded -match '\*') {
                     $baseDir = Split-Path $expanded -Parent
@@ -209,9 +213,11 @@ if (-not $EmptyTrash) {
         foreach ($src in $config.sources) {
             $expanded = [System.Environment]::ExpandEnvironmentVariables($src.path)
             if (Test-Path -LiteralPath $expanded) {
-                $items = Get-ChildItem -LiteralPath $expanded -Force
-                foreach ($item in $items) {
-                    Move-ItemToTrash -Item $item -Exclude $src.exclude
+                if (-not $RemoveEmptyDirs) {
+                    $items = Get-ChildItem -LiteralPath $expanded -Force
+                    foreach ($item in $items) {
+                        Move-ItemToTrash -Item $item -Exclude $src.exclude
+                    }
                 }
                 $dirsToClean += $expanded
             }
