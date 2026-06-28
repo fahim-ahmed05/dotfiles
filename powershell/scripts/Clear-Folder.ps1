@@ -26,15 +26,19 @@
 
 .PARAMETER All
     Cleans all sources then empties the Trash. Cannot be combined with -Empty.
+
+.PARAMETER RemoveEmptyDirs
+    Optional. Recursively searches processed source directories for empty folders and deletes them.
 #>
 param(
     [string]$ConfigPath = (Join-Path $PSScriptRoot "..\configs\clear_folders.json"),
     
-    [Parameter(Position=0, ValueFromPipeline=$true, ValueFromRemainingArguments=$true)]
+    [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromRemainingArguments = $true)]
     [string[]]$Source = @(),
     
     [switch]$Empty,
-    [switch]$All
+    [switch]$All,
+    [switch]$RemoveEmptyDirs
 )
 
 # 1. Load Configuration
@@ -60,7 +64,7 @@ function Assert-SafePath {
     return $true
 }
 
-function Process-ItemToTrash {
+function Move-ItemToTrash {
     param(
         [System.IO.FileSystemInfo]$Item,
         [string[]]$Exclude
@@ -89,7 +93,8 @@ function Process-ItemToTrash {
             $baseName = [System.IO.Path]::GetFileNameWithoutExtension($Item.Name)
             $ext = [System.IO.Path]::GetExtension($Item.Name)
             $dest = Join-Path $trashPath "${baseName}_${timestamp}${ext}"
-        } else {
+        }
+        else {
             $dest = Join-Path $trashPath "$($Item.Name)_$timestamp"
         }
         
@@ -97,7 +102,8 @@ function Process-ItemToTrash {
         while (Test-Path -LiteralPath $dest) {
             if ($Item -is [System.IO.FileInfo]) {
                 $dest = Join-Path $trashPath "${baseName}_${timestamp}_${counter}${ext}"
-            } else {
+            }
+            else {
                 $dest = Join-Path $trashPath "$($Item.Name)_${timestamp}_${counter}"
             }
             $counter++
@@ -107,7 +113,8 @@ function Process-ItemToTrash {
     try {
         Move-Item -LiteralPath $Item.FullName -Destination $dest -Force -ErrorAction Stop
         Write-Host "Moved: $($Item.FullName) -> $dest" -ForegroundColor Green
-    } catch {
+    }
+    catch {
         Write-Warning "Failed: $($Item.FullName). Error: $($_.Exception.Message)"
     }
 }
@@ -133,14 +140,30 @@ function Clear-Trash {
         try {
             Remove-Item -LiteralPath $item.FullName -Recurse -Force -ErrorAction Stop
             Write-Host "Deleted: $($item.FullName)" -ForegroundColor Green
-        } catch {
+        }
+        catch {
             Write-Warning "Failed: $($item.FullName). Error: $($_.Exception.Message)"
         }
     }
     Write-Host "`nTrash emptied." -ForegroundColor Cyan
 }
 
+function Remove-EmptyDirectories {
+    param([string]$Path)
+    if (-not (Test-Path -LiteralPath $Path -PathType Container)) { return }
+    
+    # Bottom-up approach
+    $dirs = Get-ChildItem -LiteralPath $Path -Recurse -Directory -Force | Sort-Object -Property @{Expression = { $_.FullName.Length }; Descending = $true }
+    foreach ($dir in $dirs) {
+        $items = Get-ChildItem -LiteralPath $dir.FullName -Force
+        if ($items.Count -eq 0) {
+            Move-ItemToTrash -Item $dir -Exclude @()
+        }
+    }
+}
+
 # 3. Main Logic execution
+$dirsToClean = @()
 if (-not $Empty) {
     if ($Source.Count -gt 0) {
         foreach ($s in $Source) {
@@ -154,8 +177,9 @@ if (-not $Empty) {
                         if (Test-Path -LiteralPath $expanded) {
                             $items = Get-ChildItem -LiteralPath $expanded -Force
                             foreach ($item in $items) {
-                                Process-ItemToTrash -Item $item -Exclude $src.exclude
+                                Move-ItemToTrash -Item $item -Exclude $src.exclude
                             }
+                            $dirsToClean += $expanded
                         }
                     }
                     continue
@@ -166,21 +190,37 @@ if (-not $Empty) {
             try {
                 $items = Get-Item -Path $expanded -Force -ErrorAction Stop
                 foreach ($item in $items) {
-                    Process-ItemToTrash -Item $item -Exclude @()
+                    Move-ItemToTrash -Item $item -Exclude @()
                 }
-            } catch {
+                if ($expanded -match '\*') {
+                    $baseDir = Split-Path $expanded -Parent
+                    if ($baseDir) { $dirsToClean += $baseDir }
+                }
+                else {
+                    $dirsToClean += $expanded
+                }
+            }
+            catch {
                 Write-Warning "Path not found or invalid: $expanded"
             }
         }
-    } else {
+    }
+    else {
         foreach ($src in $config.sources) {
             $expanded = [System.Environment]::ExpandEnvironmentVariables($src.path)
             if (Test-Path -LiteralPath $expanded) {
                 $items = Get-ChildItem -LiteralPath $expanded -Force
                 foreach ($item in $items) {
-                    Process-ItemToTrash -Item $item -Exclude $src.exclude
+                    Move-ItemToTrash -Item $item -Exclude $src.exclude
                 }
+                $dirsToClean += $expanded
             }
+        }
+    }
+
+    if ($RemoveEmptyDirs) {
+        $dirsToClean | Select-Object -Unique | ForEach-Object {
+            Remove-EmptyDirectories -Path $_
         }
     }
 }
