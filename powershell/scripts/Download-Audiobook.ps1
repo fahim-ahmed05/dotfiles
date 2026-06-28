@@ -202,14 +202,14 @@ function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber
     
     $ytdlpArgs += $Url
 
-    $statusMsg = if ($IsMulti) { "`nDownloading Part $TrackNumber..." } else { "`nDownloading..." }
-    Write-Host $statusMsg -ForegroundColor Cyan
+    $titleDisplay = if ($IsMulti) { "$($Meta.Title) - Part $TrackNumber" } else { $Meta.Title }
+    Write-Host "`n[START] Downloading: $titleDisplay..." -ForegroundColor Cyan
     
     try {
         & yt-dlp $ytdlpArgs
 
         if ($LASTEXITCODE -ne 0) {
-            Write-Host "`n[ERROR] yt-dlp failed for $Url" -ForegroundColor Red
+            Write-Host "`n[ERROR] yt-dlp failed for $titleDisplay ($Url)" -ForegroundColor Red
             return $false
         }
 
@@ -217,7 +217,7 @@ function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber
         $outputFile = Get-OutputFilePath -DestPath $DestPath -BaseName $outputBaseName
         
         if (-not (Test-Path $outputFile)) {
-            Write-Host "`n[ERROR] Downloaded file not found: $outputFile" -ForegroundColor Red
+            Write-Host "`n[ERROR] Downloaded file not found for $($titleDisplay): $outputFile" -ForegroundColor Red
             return $false
         }
 
@@ -227,6 +227,7 @@ function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber
             TrackTitle = $trackTitle
         }
         Write-AudioMetadata -FilePath $outputFile -Meta $metaToWrite -TrackNumber $TrackNumber
+        Write-Host "`n[DONE] Finished: $titleDisplay" -ForegroundColor Green
         return $true
     }
     catch {
