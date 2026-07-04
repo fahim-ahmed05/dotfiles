@@ -78,6 +78,18 @@
                 "hidden": true,
                 "name": "Git Bash",
                 "source": "Git"
+            },
+            {
+                "guid": "{0227bed5-d5c4-55a2-88b8-5e614c3bccac}",
+                "hidden": false,
+                "name": "Ubuntu",
+                "source": "Microsoft.WSL"
+            },
+            {
+                "guid": "{374048ba-e075-50db-b23c-221789d6cef0}",
+                "hidden": false,
+                "name": "Ubuntu",
+                "source": "Microsoft.WSL"
             }
         ]
     },
