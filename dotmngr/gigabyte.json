@@ -676,13 +676,13 @@
 			"items": [
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\librewolf\\qozq5m39.default",
-					"to": "%USERPROFILE%\\scoop\\persist\\librewolf\\Profiles\\qozq5m39.default"
+					"from": "%USERPROFILE%\\Configs\\librewolf\\zl3nxifd.default",
+					"to": "%USERPROFILE%\\scoop\\persist\\librewolf\\Profiles\\zl3nxifd.default"
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\librewolf\\qozq5m39.default",
-					"to": "%APPDATA%\\librewolf\\Profiles\\qozq5m39.default"
+					"from": "%USERPROFILE%\\Configs\\librewolf\\zl3nxifd.default",
+					"to": "%APPDATA%\\librewolf\\Profiles\\zl3nxifd.default"
 				},
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\librewolf\\policies.json",
@@ -690,7 +690,7 @@
 				},
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\librewolf\\user.js",
-					"to": "%USERPROFILE%\\Configs\\librewolf\\qozq5m39.default\\user.js"
+					"to": "%USERPROFILE%\\Configs\\librewolf\\zl3nxifd.default\\user.js"
 				}
 			]
 		}
