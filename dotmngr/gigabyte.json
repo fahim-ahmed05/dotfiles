@@ -680,12 +680,17 @@
 					"to": "%USERPROFILE%\\scoop\\persist\\librewolf\\Profiles\\qozq5m39.default"
 				},
 				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Configs\\librewolf\\qozq5m39.default",
+					"to": "%APPDATA%\\librewolf\\Profiles\\qozq5m39.default"
+				},
+				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\librewolf\\policies.json",
 					"to": "%USERPROFILE%\\scoop\\persist\\librewolf\\LibreWolf\\distribution\\policies.json"
 				},
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\librewolf\\user.js",
-					"to": "%USERPROFILE%\\scoop\\persist\\librewolf\\LibreWolf\\Profiles\\c2ipkr4o.personal\\user.js"
+					"to": "%USERPROFILE%\\Configs\\librewolf\\qozq5m39.default\\user.js"
 				}
 			]
 		}
