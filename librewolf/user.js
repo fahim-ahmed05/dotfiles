@@ -44,6 +44,9 @@ user_pref("permissions.default.microphone", 2);
 user_pref("permissions.manager.defaultsUrl", "");
 user_pref("media.autoplay.default", 5);
 
+// DOWNLOADS
+user_pref("browser.download.alwaysOpenPanel", false);
+
 // PICTURE-IN-PICTURE
 user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled", true);
 
