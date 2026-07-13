@@ -1,0 +1,9 @@
+{
+    "policies": {
+        "HardwareAcceleration": true,
+        "PictureInPicture": {
+            "Enabled": true,
+            "Locked": true
+        }
+    }
+}
