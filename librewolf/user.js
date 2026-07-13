@@ -50,6 +50,9 @@ user_pref("browser.download.alwaysOpenPanel", false);
 // PICTURE-IN-PICTURE
 user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled", true);
 
+// AI INTEGRATION
+user_pref("browser.ml.linkPreview.enabled", false);
+
 // FONT RENDERING
 user_pref("gfx.content.skia-font-cache-size", 32);
 user_pref("gfx.font_rendering.cleartype_params.rendering_mode", 5);
