@@ -8,7 +8,12 @@
     "%LOCALAPPDATA%\\pip\\cache",
     "%APPDATA%\\stremio\\stremio-server\\stremio-cache",
     "%APPDATA%\\FlowLauncher\\Settings\\Plugins\\Flow.Launcher.Plugin.ClipboardPlus\\CachedImages",
-    "%APPDATA%\\FlowLauncher\\Settings\\Plugins\\Browser History V2\\Cache"
+    "%APPDATA%\\FlowLauncher\\Settings\\Plugins\\Browser History V2\\Cache",
+    "%LOCALAPPDATA%\\app.harbor\\engine"
   ],
-  "commands": ["scoop cache rm -a", "scoop cleanup -a", "uv cache clean"]
+  "commands": [
+    "scoop cache rm -a",
+    "scoop cleanup -a",
+    "uv cache clean"
+  ]
 }
