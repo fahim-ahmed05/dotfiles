@@ -91,7 +91,7 @@ scoop install 7zip aria2 fastfetch nodejs aimp python quicklook revouninstaller 
 #### Optional Scoop Packages
 
 ```
-scoop install uv mpv-git alacritty telegram ayugram foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste personal/winhance vivetool umpv 
+scoop install uv mpv-git luajit alacritty telegram ayugram foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste personal/winhance vivetool umpv 
 ```
 
 ### Python
