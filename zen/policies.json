@@ -1,0 +1,23 @@
+{
+  "policies": {
+    "DisableAppUpdate": true,
+    "NoDefaultBookmarks": true,
+    "OverrideFirstRunPage": "",
+    "OverridePostUpdatePage": "",
+    "DNSOverHTTPS": {
+      "Enabled": true,
+      "ProviderURL": "https://dns.adguard-dns.com/dns-query",
+      "Fallback": false,
+      "Locked": false
+    },
+    "DontCheckDefaultBrowser": true,
+    "HardwareAcceleration": true,
+    "HttpsOnlyMode": "enabled",
+    "PictureInPicture": {
+      "Enabled": true,
+      "Locked": false
+    },
+    "SkipTermsOfUse": true,
+    "StartDownloadsInTempDirectory": true
+  }
+}

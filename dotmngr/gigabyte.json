@@ -693,6 +693,25 @@
 					"to": "%USERPROFILE%\\Configs\\librewolf\\zl3nxifd.default\\user.js"
 				}
 			]
+		},
+		"zen": {
+			"enabled": true,
+			"items": [
+				{
+					"admin": true,
+					"from": "%USERPROFILE%\\Git\\dotfiles\\zen\\policies.json",
+					"to": "C:\\Program Files\\Zen Browser\\distribution\\policies.json"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\zen\\user.js",
+					"to": "%APPDATA%\\zen\\Profiles\\bdgvipq6.personal\\user.js"
+				},
+				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Configs\\zen\\bdgvipq6.personal",
+					"to": "%APPDATA%\\zen\\Profiles\\bdgvipq6.personal"
+				}
+			]
 		}
 	}
 }
