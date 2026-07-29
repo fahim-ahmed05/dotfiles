@@ -112,17 +112,15 @@ user_pref("browser.menu.showViewImageInfo", true);
 user_pref("browser.tabs.warnOnClose", false);
 user_pref("browser.translations.automaticallyPopup", false);
 user_pref("browser.startup.homepage_override.mstone", "ignore");
-user_pref("widget.windows.mica", false);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("svg.context-properties.content.enabled", true);
 user_pref("layout.css.color-mix.enabled", true);
 user_pref("layout.css.light-dark.enabled", true);
 user_pref("widget.transparent-windows", true);
-user_pref("browser.urlbar.groupLabels.enabled", false);
 user_pref("browser.newtabpage.activity-stream.newtabLayouts.variant-a", false);
 user_pref("browser.newtabpage.activity-stream.newtabLayouts.variant-b", false);
 user_pref("browser.startup.blankWindow", false);
-user_pref("sidebar.revamp.round-content-area", false);
+user_perf("browser.sessionstore.restore_pinned_tabs_on_demand", true);
 
 // FULLSCREEN BEHAVIOR
 user_pref("full-screen-api.transition-duration.enter", "0 0");
@@ -263,9 +261,6 @@ user_pref("browser.ml.linkPreview.enabled", false);
 // CONTAINERS
 user_pref("privacy.userContext.enabled", true);
 user_pref("privacy.userContext.ui.enabled", true);
-
-// SIDEBAR
-user_pref("sidebar.position_start", false);
 
 // FONT RENDERING
 user_pref("gfx.content.skia-font-cache-size", 32);
