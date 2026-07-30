@@ -68,6 +68,29 @@
 				}
 			]
 		},
+		"floorp": {
+			"enabled": true,
+			"items": [
+				{
+					"admin": true,
+					"from": "%USERPROFILE%\\Git\\dotfiles\\floorp\\policies.json",
+					"to": "C:\\Program Files\\Ablaze Floorp\\distribution\\policies.json"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\floorp\\user.js",
+					"to": "%APPDATA%\\Floorp\\Profiles\\tt8tmf6y.personal\\user.js"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\floorp\\userChrome.css",
+					"to": "%APPDATA%\\Floorp\\Profiles\\tt8tmf6y.personal\\chrome\\userChrome.css"
+				},
+				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Configs\\floorp\\tt8tmf6y.personal",
+					"to": "%APPDATA%\\Floorp\\Profiles\\tt8tmf6y.personal"
+				}
+			]
+		},
 		"autohotkey": {
 			"enabled": false,
 			"mode": "shortcut",
