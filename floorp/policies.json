@@ -28,7 +28,6 @@
       "ImproveSuggest": false,
       "Locked": false
     },
-    "DisableFormHistory": true,
     "HardwareAcceleration": true,
     "HttpsOnlyMode": "enabled",
     "NetworkPrediction": false,
