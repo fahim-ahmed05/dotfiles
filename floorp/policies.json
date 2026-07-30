@@ -34,7 +34,7 @@
     "NetworkPrediction": false,
     "PictureInPicture": {
       "Enabled": true,
-      "Locked": true
+      "Locked": false
     },
     "SearchSuggestEnabled": true,
     "SkipTermsOfUse": true,

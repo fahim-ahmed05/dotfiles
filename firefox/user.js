@@ -120,7 +120,7 @@ user_pref("widget.transparent-windows", true);
 user_pref("browser.newtabpage.activity-stream.newtabLayouts.variant-a", false);
 user_pref("browser.newtabpage.activity-stream.newtabLayouts.variant-b", false);
 user_pref("browser.startup.blankWindow", false);
-user_perf("browser.sessionstore.restore_pinned_tabs_on_demand", true);
+user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
 
 // FULLSCREEN BEHAVIOR
 user_pref("full-screen-api.transition-duration.enter", "0 0");

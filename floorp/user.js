@@ -112,6 +112,7 @@ user_pref("browser.newtabpage.activity-stream.showSearch", false);
 
 /*** Session ***/
 user_pref("browser.sessionstore.interval", 60000);
+user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
 
 /*** Crash Reports ***/
 user_pref("browser.tabs.crashReporting.sendReport", false);
@@ -125,3 +126,6 @@ user_pref("security.tls.enable_0rtt_data", false);
 
 /*** Mixed Content ***/
 user_pref("security.mixed_content.block_display_content", true);
+
+/*** Picture-in-Picture ***/
+user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled", true);
