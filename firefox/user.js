@@ -248,6 +248,9 @@ user_pref("browser.urlbar.groupLabels.enabled", false);
 user_pref("browser.urlbar.trending.featureGate", false);
 user_pref("browser.urlbar.quicksuggest.enabled", false);
 
+// SIDEBAR
+user_pref("sidebar.position_start", false);
+
 // PICTURE-IN-PICTURE
 user_pref("media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled", true);
 
