@@ -268,7 +268,7 @@
 			"mode": "shortcut",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\scoop\\shims\\alacritty.exe",
+					"from": "%USERPROFILE%\\scoop\\apps\\alacritty\\current\\alacritty.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Windows Utility.lnk",
 					"arguments": "-e pwsh -noprofile -command \"irm https://christitus.com/win | iex\"",
 					"iconLocation": "%USERPROFILE%\\Configs\\icon\\ctt-winutils.ico",
