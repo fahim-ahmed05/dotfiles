@@ -358,8 +358,14 @@
 					"mode": "shortcut",
 					"from": "%USERPROFILE%\\scoop\\apps\\syncthing\\current\\syncthing.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Syncthing.lnk",
-					"arguments": "--home \"%USERPROFILE%\\scoop\\apps\\syncthing\\current\\config\" --no-upgrade",
-					"windowStyle": "minimized"
+					"arguments": "--home \"%USERPROFILE%\\scoop\\apps\\syncthing\\current\\config\" --no-upgrade"
+				},
+				{
+					"mode": "shortcut",
+					"from": "%USERPROFILE%\\scoop\\shims\\alacritty.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Syncthing (CLI).lnk",
+					"arguments": "-e pwsh -noprofile -command \"syncthing --home \\\"%USERPROFILE%\\scoop\\apps\\syncthing\\current\\config\\\" --no-upgrade\"",
+					"iconLocation": "%USERPROFILE%\\Configs\\icon\\syncthing-dark.ico"
 				}
 			]
 		},
