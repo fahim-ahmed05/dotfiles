@@ -728,7 +728,7 @@
 			]
 		},
 		"zen": {
-			"enabled": true,
+			"enabled": false,
 			"items": [
 				{
 					"admin": true,
