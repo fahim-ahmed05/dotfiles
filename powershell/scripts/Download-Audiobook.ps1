@@ -38,14 +38,6 @@ foreach ($dep in "yt-dlp", "ffmpeg", "fzf") {
 }
 
 # --- Helper Functions ---
-function Get-EscapedArgs ([string[]]$Arguments) {
-    $out = @()
-    foreach ($arg in $Arguments) {
-        if ($arg -match '\s') { $out += '"{0}"' -f ($arg -replace '"', '\"') } else { $out += $arg }
-    }
-    return $out -join ' '
-}
-
 function Format-CleanString ([string]$str) { return $str.Trim(" `t`n`r$([char]0xFEFF)") }
 
 function Get-SafeName ([string]$name) {
@@ -178,8 +170,7 @@ function Write-AudioMetadata ([string]$FilePath, [hashtable]$Meta, [int]$TrackNu
         $tempFile
     )
 
-    $escapedFfmpegArgs = Get-EscapedArgs $ffmpegArgs
-    $proc = Start-Process -FilePath "ffmpeg" -ArgumentList $escapedFfmpegArgs -NoNewWindow -Wait -PassThru
+    $proc = Start-Process -FilePath "ffmpeg" -ArgumentList ($ffmpegArgs | ForEach-Object { '"{0}"' -f ($_ -replace '"', '\"') }) -NoNewWindow -Wait -PassThru
     if ($proc.ExitCode -ne 0 -or -not (Test-Path $tempFile)) { throw "ffmpeg failed while writing metadata for $FilePath" }
 
     Move-Item -Force $tempFile $FilePath
@@ -216,8 +207,7 @@ function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber
     Write-Host "`n[START] Downloading: $titleDisplay..." -ForegroundColor Cyan
     
     try {
-        $escapedYtdlpArgs = Get-EscapedArgs $ytdlpArgs
-        $proc = Start-Process -FilePath "yt-dlp" -ArgumentList $escapedYtdlpArgs -NoNewWindow -Wait -PassThru
+        $proc = Start-Process -FilePath "yt-dlp" -ArgumentList ($ytdlpArgs | ForEach-Object { '"{0}"' -f ($_ -replace '"', '\"') }) -NoNewWindow -Wait -PassThru
 
         if ($proc.ExitCode -ne 0) {
             Write-Host "`n[ERROR] yt-dlp failed for $titleDisplay ($Url)" -ForegroundColor Red
