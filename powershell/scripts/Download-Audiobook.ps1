@@ -170,8 +170,8 @@ function Write-AudioMetadata ([string]$FilePath, [hashtable]$Meta, [int]$TrackNu
         $tempFile
     )
 
-    $null | & ffmpeg @ffmpegArgs 2>&1 | Out-Null
-    if ($LASTEXITCODE -ne 0 -or -not (Test-Path $tempFile)) { throw "ffmpeg failed while writing metadata for $FilePath" }
+    $proc = Start-Process -FilePath "ffmpeg" -ArgumentList $ffmpegArgs -NoNewWindow -Wait -PassThru
+    if ($proc.ExitCode -ne 0 -or -not (Test-Path $tempFile)) { throw "ffmpeg failed while writing metadata for $FilePath" }
 
     Move-Item -Force $tempFile $FilePath
 }
@@ -207,9 +207,9 @@ function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber
     Write-Host "`n[START] Downloading: $titleDisplay..." -ForegroundColor Cyan
     
     try {
-        $null | & yt-dlp $ytdlpArgs 2>$null
+        $proc = Start-Process -FilePath "yt-dlp" -ArgumentList $ytdlpArgs -NoNewWindow -Wait -PassThru
 
-        if ($LASTEXITCODE -ne 0) {
+        if ($proc.ExitCode -ne 0) {
             Write-Host "`n[ERROR] yt-dlp failed for $titleDisplay ($Url)" -ForegroundColor Red
             return $false
         }
