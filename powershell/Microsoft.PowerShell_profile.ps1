@@ -172,7 +172,7 @@ function RebootToBIOS { param([switch]$y) Invoke-PowerAction -Action Firmware -F
 
 function ip {
     $publicIP = (Invoke-RestMethod http://ifconfig.me/ip).Trim()
-    $privateIP = (Get-NetIPAddress -AddressFamily IPv4 -ErrorAction SilentlyContinue | Where-Object { $_.InterfaceAlias -notmatch 'Loopback|vEthernet|WSL|Pseudo' }).IPAddress -join ', '
+    $privateIP = (Get-NetIPConfiguration | Where-Object { $_.IPv4DefaultGateway -ne $null -and $_.NetAdapter.Status -eq 'Up' } | Select-Object -ExpandProperty IPv4Address | Select-Object -ExpandProperty IPAddress) -join ', '
     Write-Host "Public IP : $publicIP" -ForegroundColor Green
     Write-Host "Private IP: $privateIP" -ForegroundColor Cyan
 }
