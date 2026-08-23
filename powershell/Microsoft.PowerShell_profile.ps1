@@ -152,6 +152,7 @@ function Invoke-PowerAction {
             default    { "See you soon!" }
         }
         Write-Host $farewell
+        Start-Sleep -Seconds 2
         
         switch ($Action) {
             'Shutdown' { shutdown /s /f /t 0 }
