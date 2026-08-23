@@ -134,10 +134,10 @@ function Invoke-PowerAction {
 
     if ($doAction) {
         $verb = switch ($Action) {
-            'Firmware'  { "Rebooting to BIOS" }
-            'Shutdown'  { "Shutting down" }
-            'Reboot'    { "Rebooting" }
-            'Suspend'   { "Suspending" }
+            'Firmware' { "Rebooting to BIOS" }
+            'Shutdown' { "Shutting down" }
+            'Reboot' { "Rebooting" }
+            'Suspend' { "Suspending" }
             'Hibernate' { "Hibernating" }
         }
         Write-Host -NoNewline "$verb in "
@@ -149,7 +149,7 @@ function Invoke-PowerAction {
         $farewell = switch ($Action) {
             'Shutdown' { "Good bye!" }
             'Firmware' { "Happy tinkering!" }
-            default    { "See you soon!" }
+            default { "See you soon!" }
         }
         Write-Host $farewell
         Start-Sleep -Seconds 2
@@ -171,19 +171,20 @@ function Hibernate { param([switch]$y) Invoke-PowerAction -Action Hibernate -For
 function RebootToBIOS { param([switch]$y) Invoke-PowerAction -Action Firmware -Force:$y }
 
 function ip {
+    $publicIP = (Invoke-RestMethod http://ifconfig.me/ip -UseBasicParsing).Trim()
+    Write-Host "Public  IP: $publicIP" -ForegroundColor Green
+
     $socket = New-Object System.Net.Sockets.UdpClient
     try {
         $socket.Connect('8.8.8.8', 53)
         $privateIP = $socket.Client.LocalEndPoint.Address.ToString()
-    } catch {
+    }
+    catch {
         $privateIP = "Unknown"
-    } finally {
+    }
+    finally {
         $socket.Close()
     }
-
-    $publicIP = (Invoke-RestMethod http://ifconfig.me/ip -UseBasicParsing).Trim()
-    
-    Write-Host "Public  IP: $publicIP" -ForegroundColor Green
     Write-Host "Private IP: $privateIP" -ForegroundColor Cyan
 }
 
