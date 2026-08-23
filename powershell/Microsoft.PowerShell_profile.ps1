@@ -170,7 +170,12 @@ function Suspend { param([switch]$y) Invoke-PowerAction -Action Suspend -Force:$
 function Hibernate { param([switch]$y) Invoke-PowerAction -Action Hibernate -Force:$y }
 function RebootToBIOS { param([switch]$y) Invoke-PowerAction -Action Firmware -Force:$y }
 
-function pubip { (Invoke-WebRequest http://ifconfig.me/ip).Content }
+function ip {
+    $publicIP = (Invoke-RestMethod http://ifconfig.me/ip).Trim()
+    $privateIP = (Get-NetIPAddress -AddressFamily IPv4 -ErrorAction SilentlyContinue | Where-Object { $_.InterfaceAlias -notmatch 'Loopback|vEthernet|WSL|Pseudo' }).IPAddress -join ', '
+    Write-Host "Public IP : $publicIP" -ForegroundColor Green
+    Write-Host "Private IP: $privateIP" -ForegroundColor Cyan
+}
 
 # Restart Terminal
 function rt {
