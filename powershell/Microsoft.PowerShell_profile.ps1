@@ -171,9 +171,19 @@ function Hibernate { param([switch]$y) Invoke-PowerAction -Action Hibernate -For
 function RebootToBIOS { param([switch]$y) Invoke-PowerAction -Action Firmware -Force:$y }
 
 function ip {
-    $publicIP = (Invoke-RestMethod http://ifconfig.me/ip).Trim()
-    $privateIP = (Get-NetIPConfiguration | Where-Object { $_.IPv4DefaultGateway -ne $null -and $_.NetAdapter.Status -eq 'Up' } | Select-Object -ExpandProperty IPv4Address | Select-Object -ExpandProperty IPAddress) -join ', '
-    Write-Host "Public IP : $publicIP" -ForegroundColor Green
+    $socket = New-Object System.Net.Sockets.UdpClient
+    try {
+        $socket.Connect('8.8.8.8', 53)
+        $privateIP = $socket.Client.LocalEndPoint.Address.ToString()
+    } catch {
+        $privateIP = "Unknown"
+    } finally {
+        $socket.Close()
+    }
+
+    $publicIP = (Invoke-RestMethod http://ifconfig.me/ip -UseBasicParsing).Trim()
+    
+    Write-Host "Public  IP: $publicIP" -ForegroundColor Green
     Write-Host "Private IP: $privateIP" -ForegroundColor Cyan
 }
 
