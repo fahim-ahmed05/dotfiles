@@ -109,43 +109,65 @@ function su {
     }
 }
 
-function PowerOff {
+function Invoke-PowerAction {
     param(
-        [switch]$y
+        [Parameter(Mandatory = $true)]
+        [ValidateSet('Shutdown', 'Reboot', 'Suspend', 'Hibernate', 'Firmware')]
+        [string]$Action,
+        [switch]$Force
     )
 
-    if ($y) {
-        shutdown /s /f /t 0
+    $doAction = $false
+    if ($Force) {
+        $doAction = $true
     }
     else {
-        $answer = Read-Host "Are you sure you want to shutdown the computer? (y/n)"
+        $verb = if ($Action -eq 'Firmware') { "reboot to BIOS" } else { $Action.ToLower() }
+        $answer = Read-Host "Are you sure you want to $verb the computer? (y/n)"
         if ($answer -eq "y") {
-            shutdown /s /f /t 0
+            $doAction = $true
         }
         else {
-            Write-Host "Shutdown cancelled."
+            Write-Host "$Action cancelled."
+        }
+    }
+
+    if ($doAction) {
+        $verb = switch ($Action) {
+            'Firmware'  { "Rebooting to BIOS" }
+            'Shutdown'  { "Shutting down" }
+            'Reboot'    { "Rebooting" }
+            'Suspend'   { "Suspending" }
+            'Hibernate' { "Hibernating" }
+        }
+        Write-Host -NoNewline "$verb in "
+        foreach ($i in 5..1) {
+            Write-Host -NoNewline "$i.. "
+            Start-Sleep -Seconds 1
+        }
+        
+        $farewell = switch ($Action) {
+            'Shutdown' { "Good bye!" }
+            'Firmware' { "Happy tinkering!" }
+            default    { "See you soon!" }
+        }
+        Write-Host $farewell
+        
+        switch ($Action) {
+            'Shutdown' { shutdown /s /f /t 0 }
+            'Reboot' { shutdown /r /f /t 0 }
+            'Firmware' { shutdown /r /fw /f /t 0 }
+            'Suspend' { Add-Type -AssemblyName System.Windows.Forms; [void][System.Windows.Forms.Application]::SetSuspendState('Suspend', $false, $false) }
+            'Hibernate' { Add-Type -AssemblyName System.Windows.Forms; [void][System.Windows.Forms.Application]::SetSuspendState('Hibernate', $false, $false) }
         }
     }
 }
 
-function Reboot {
-    param(
-        [switch]$y
-    )
-
-    if ($y) {
-        shutdown /r /f /t 0
-    }
-    else {
-        $answer = Read-Host "Are you sure you want to reboot the computer? (y/n)"
-        if ($answer -eq "y") {
-            shutdown /r /f /t 0
-        }
-        else {
-            Write-Host "Reboot cancelled."
-        }
-    }
-}
+function PowerOff { param([switch]$y) Invoke-PowerAction -Action Shutdown -Force:$y }
+function Reboot { param([switch]$y) Invoke-PowerAction -Action Reboot -Force:$y }
+function Suspend { param([switch]$y) Invoke-PowerAction -Action Suspend -Force:$y }
+function Hibernate { param([switch]$y) Invoke-PowerAction -Action Hibernate -Force:$y }
+function RebootToBIOS { param([switch]$y) Invoke-PowerAction -Action Firmware -Force:$y }
 
 function pubip { (Invoke-WebRequest http://ifconfig.me/ip).Content }
 
