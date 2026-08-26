@@ -1,16 +1,14 @@
 {
   "policies": {
-    "DisableAppUpdate": true,
     "NoDefaultBookmarks": true,
     "OverrideFirstRunPage": "",
     "OverridePostUpdatePage": "",
     "DisableFirefoxStudies": true,
-    "DisableSetDesktopBackground": true,
     "DisableTelemetry": true,
     "DisplayMenuBar": "never",
     "DNSOverHTTPS": {
       "Enabled": true,
-      "ProviderURL": "https://dns.adguard-dns.com/dns-query",
+      "ProviderURL": "https://dns.quad9.net/dns-query",
       "Fallback": false,
       "Locked": false
     },
@@ -37,7 +35,7 @@
     },
     "PictureInPicture": {
       "Enabled": true,
-      "Locked": true
+      "Locked": false
     },
     "SearchSuggestEnabled": true,
     "SkipTermsOfUse": true,
@@ -49,7 +47,7 @@
       "SkipOnboarding": true,
       "MoreFromMozilla": false,
       "FirefoxLabs": true,
-      "Locked": true
+      "Locked": false
     },
     "ExtensionSettings": {
       "uBlock0@raymondhill.net": {
