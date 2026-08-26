@@ -51,53 +51,16 @@
 				{
 					"admin": true,
 					"from": "%USERPROFILE%\\Git\\dotfiles\\firefox\\policies.json",
-					"to": "C:\\Program Files\\Mozilla Firefox\\distribution\\policies.json"
+					"to": "C:\\Program Files\\Firefox Nightly\\distribution\\policies.json"
 				},
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\firefox\\user.js",
-					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\c2ipkr4o.personal\\user.js"
-				},
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\firefox\\userChrome.css",
-					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\c2ipkr4o.personal\\chrome\\userChrome.css"
+					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\hhfvopxw.personal\\user.js"
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\firefox\\c2ipkr4o.personal",
-					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\c2ipkr4o.personal"
-				}
-			]
-		},
-		"floorp": {
-			"enabled": false,
-			"items": [
-				{
-					"admin": true,
-					"from": "%USERPROFILE%\\Git\\dotfiles\\floorp\\policies.json",
-					"to": "C:\\Program Files\\Ablaze Floorp\\distribution\\policies.json"
-				},
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\floorp\\user.js",
-					"to": "%APPDATA%\\Floorp\\Profiles\\tt8tmf6y.personal\\user.js"
-				},
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\floorp\\userChrome.css",
-					"to": "%APPDATA%\\Floorp\\Profiles\\tt8tmf6y.personal\\chrome\\userChrome.css"
-				},
-				{
-					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\floorp\\tt8tmf6y.personal",
-					"to": "%APPDATA%\\Floorp\\Profiles\\tt8tmf6y.personal"
-				}
-			]
-		},
-		"autohotkey": {
-			"enabled": false,
-			"mode": "shortcut",
-			"items": [
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\ahk\\main.ahk",
-					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\autohotkey.lnk"
+					"from": "%USERPROFILE%\\Configs\\firefox\\hhfvopxw.personal",
+					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\hhfvopxw.personal"
 				}
 			]
 		},
@@ -129,15 +92,15 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\gitpkg\\ModernZ@main-fb59a1a4\\modernz.lua",
+					"from": "%USERPROFILE%\\Git\\ModernZ\\modernz.lua",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\modernz.lua"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\ModernZ@main-fb59a1a4\\modernz-icons.ttf",
+					"from": "%USERPROFILE%\\Git\\ModernZ\\modernz-icons.ttf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\fonts\\modernz-icons.ttf"
 				},
 				{
-					"from": "%USERPROFILE%\\gitpkg\\thumbfast@master-c46790bd\\thumbfast.lua",
+					"from": "%USERPROFILE%\\Git\\thumbfast\\thumbfast.lua",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\thumbfast.lua"
 				},
 				{
@@ -166,47 +129,6 @@
 				}
 			]
 		},
-		"jellyfinmpv": {
-			"enabled": true,
-			"items": [
-				{
-					"from": "%USERPROFILE%\\gitpkg\\ModernZ@main-fb59a1a4\\modernz.lua",
-					"to": "%APPDATA%\\jellyfin-mpv-shim\\scripts\\modernz.lua"
-				},
-				{
-					"from": "%USERPROFILE%\\gitpkg\\ModernZ@main-fb59a1a4\\modernz-icons.ttf",
-					"to": "%APPDATA%\\jellyfin-mpv-shim\\fonts\\modernz-icons.ttf"
-				},
-				{
-					"from": "%USERPROFILE%\\gitpkg\\thumbfast@master-c46790bd\\thumbfast.lua",
-					"to": "%APPDATA%\\jellyfin-mpv-shim\\scripts\\thumbfast.lua"
-				},
-				{
-					"from": "%USERPROFILE%\\Git\\mpv-autosub\\autosub.lua",
-					"to": "%APPDATA%\\jellyfin-mpv-shim\\scripts\\autosub.lua"
-				},
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\input.conf",
-					"to": "%APPDATA%\\jellyfin-mpv-shim\\input.conf"
-				},
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\mpv.conf",
-					"to": "%APPDATA%\\jellyfin-mpv-shim\\mpv.conf"
-				},
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\autosub.conf",
-					"to": "%APPDATA%\\jellyfin-mpv-shim\\script-opts\\autosub.conf"
-				},
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\thumbfast.conf",
-					"to": "%APPDATA%\\jellyfin-mpv-shim\\script-opts\\thumbfast.conf"
-				},
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\modernz.conf",
-					"to": "%APPDATA%\\jellyfin-mpv-shim\\script-opts\\modernz.conf"
-				}
-			]
-		},
 		"cineindex": {
 			"enabled": true,
 			"items": [
@@ -221,19 +143,6 @@
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\CineIndex.lnk",
 					"arguments": "-e pwsh -noprofile -command cineindex",
 					"iconLocation": "%USERPROFILE%\\Configs\\icon\\cineindex.ico"
-				}
-			]
-		},
-		"logisim": {
-			"enabled": true,
-			"mode": "shortcut",
-			"items": [
-				{
-					"from": "%USERPROFILE%\\scoop\\apps\\microsoft-jdk\\current\\bin\\java.exe",
-					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps\\Logisim.lnk",
-					"arguments": "-jar \"%USERPROFILE%\\Apps\\logisim\\logisim-generic-2.7.1.jar\"",
-					"iconLocation": "%USERPROFILE%\\Configs\\icon\\logisim.ico",
-					"windowStyle": "minimized"
 				}
 			]
 		},
@@ -296,16 +205,6 @@
 				}
 			]
 		},
-		"ayugram": {
-			"enabled": true,
-			"mode": "junction",
-			"items": [
-				{
-					"from": "%USERPROFILE%\\Configs\\ayugram",
-					"to": "%USERPROFILE%\\scoop\\persist\\ayugram\\tdata"
-				}
-			]
-		},
 		"bt": {
 			"enabled": true,
 			"mode": "junction",
@@ -326,18 +225,8 @@
 				}
 			]
 		},
-		"freetube": {
-			"enabled": true,
-			"mode": "junction",
-			"items": [
-				{
-					"from": "%USERPROFILE%\\Configs\\freetube",
-					"to": "%APPDATA%\\FreeTube"
-				}
-			]
-		},
 		"stremiokai": {
-			"enabled": true,
+			"enabled": false,
 			"mode": "junction",
 			"items": [
 				{
@@ -427,7 +316,7 @@
 			]
 		},
 		"mumuplayer": {
-			"enabled": true,
+			"enabled": false,
 			"mode": "shortcut",
 			"items": [
 				{
@@ -453,29 +342,8 @@
 				}
 			]
 		},
-		"ghosttoolbox": {
-			"enabled": false,
-			"mode": "shortcut",
-			"items": [
-				{
-					"from": "C:\\Ghost Toolbox\\toolbox.updater.x64.exe",
-					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Ghost Toolbox.lnk",
-					"workingDirectory": "C:\\Ghost Toolbox"
-				}
-			]
-		},
-		"zed": {
-			"enabled": true,
-			"mode": "symlink",
-			"items": [
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\zed\\settings.json",
-					"to": "%APPDATA%\\Zed\\settings.json"
-				}
-			]
-		},
 		"filepilot": {
-			"enabled": true,
+			"enabled": false,
 			"items": [
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\fpilot\\FPilot-Config.json",
@@ -512,7 +380,7 @@
 			]
 		},
 		"ytmusic": {
-			"enabled": true,
+			"enabled": false,
 			"mode": "seed",
 			"items": [
 				{
@@ -522,7 +390,7 @@
 			]
 		},
 		"brave": {
-			"enabled": true,
+			"enabled": false,
 			"mode": "shortcut",
 			"items": [
 				{
@@ -534,7 +402,7 @@
 			]
 		},
 		"linksfolder": {
-			"enabled": true,
+			"enabled": false,
 			"mode": "shortcut",
 			"items": [
 				{
@@ -577,18 +445,6 @@
 				}
 			]
 		},
-		"grayjay": {
-			"enabled": true,
-			"mode": "shortcut",
-			"items": [
-				{
-					"from": "%USERPROFILE%\\Apps\\grayjay\\Grayjay.exe",
-					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps\\GrayJay.lnk",
-					"iconLocation": "%USERPROFILE%\\Apps\\Grayjay\\logo.ico",
-					"workingDirectory": "%USERPROFILE%\\Apps\\grayjay"
-				}
-			]
-		},
 		"rdp": {
 			"enabled": true,
 			"mode": "shortcut",
@@ -611,18 +467,8 @@
 				}
 			]
 		},
-		"vacuumtube": {
-			"enabled": true,
-			"mode": "junction",
-			"items": [
-				{
-					"from": "%USERPROFILE%\\Configs\\vacuumtube",
-					"to": "%USERPROFILE%\\scoop\\persist\\vacuumtube"
-				}
-			]
-		},
 		"sandbox": {
-			"enabled": true,
+			"enabled": false,
 			"items": [
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\windows_sandbox\\SandboxStartup.ps1",
@@ -653,18 +499,8 @@
 				}
 			]
 		},
-		"antigravity": {
-			"enabled": true,
-			"mode": "junction",
-			"items": [
-				{
-					"from": "%USERPROFILE%\\Configs\\antigravity",
-					"to": "%APPDATA%\\Antigravity"
-				}
-			]
-		},
 		"ungoogled-chromium": {
-			"enabled": true,
+			"enabled": false,
 			"mode": "shortcut",
 			"items": [
 				{
@@ -672,15 +508,6 @@
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Apps\\Ungoogled Chromium (Sandbox).lnk",
 					"arguments": "--user-data-dir=\"%USERPROFILE%\\WinsbSharedFolder\\SandboxFiles\\UngoogledChromium\\UserData\" --no-default-browser-check --disable-logging --disable-breakpad --disable-machine-id --disable-encryption-win",
 					"workingDirectory": "%USERPROFILE%\\WinsbSharedFolder\\SandboxFiles\\UngoogledChromium"
-				}
-			]
-		},
-		"spotdl": {
-			"enabled": false,
-			"items": [
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\spotdl\\config.json",
-					"to": "%USERPROFILE%\\.spotdl\\config.json"
 				}
 			]
 		},
@@ -701,48 +528,6 @@
 					"mode": "symlink",
 					"from": "%USERPROFILE%\\Configs\\harbor\\.window-state.json",
 					"to": "%APPDATA%\\app.harbor\\.window-state.json"
-				}
-			]
-		},
-		"librewolf": {
-			"enabled": true,
-			"items": [
-				{
-					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\librewolf\\zl3nxifd.default",
-					"to": "%USERPROFILE%\\scoop\\persist\\librewolf\\Profiles\\zl3nxifd.default"
-				},
-				{
-					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\librewolf\\zl3nxifd.default",
-					"to": "%APPDATA%\\librewolf\\Profiles\\zl3nxifd.default"
-				},
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\librewolf\\policies.json",
-					"to": "%USERPROFILE%\\scoop\\persist\\librewolf\\LibreWolf\\distribution\\policies.json"
-				},
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\librewolf\\user.js",
-					"to": "%USERPROFILE%\\Configs\\librewolf\\zl3nxifd.default\\user.js"
-				}
-			]
-		},
-		"zen": {
-			"enabled": false,
-			"items": [
-				{
-					"admin": true,
-					"from": "%USERPROFILE%\\Git\\dotfiles\\zen\\policies.json",
-					"to": "C:\\Program Files\\Zen Browser\\distribution\\policies.json"
-				},
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\zen\\user.js",
-					"to": "%APPDATA%\\zen\\Profiles\\bdgvipq6.personal\\user.js"
-				},
-				{
-					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\zen\\bdgvipq6.personal",
-					"to": "%APPDATA%\\zen\\Profiles\\bdgvipq6.personal"
 				}
 			]
 		}
