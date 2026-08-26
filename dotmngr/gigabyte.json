@@ -8,6 +8,11 @@
 			"enabled": true,
 			"items": [
 				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Configs\\ssh",
+					"to": "%USERPROFILE%\\.ssh"
+				},
+				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\ssh\\config",
 					"to": "%USERPROFILE%\\.ssh\\config"
 				}
