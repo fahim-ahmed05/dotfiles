@@ -69,16 +69,19 @@ if ($null -ne $WinSetupConfig.pre_install_commands) {
 }
 
 # Winget
-if ($null -ne $WinSetupConfig.winget -and $WinSetupConfig.winget.enabled -ne $false) {
+if ($null -ne $WinSetupConfig.winget) {
     Write-Host "`n--- Installing Winget Packages ---" -ForegroundColor Cyan
-    winget source update 
+    & winget source update 
     $wingetArgs = if ($WinSetupConfig.settings.winget_args) { $WinSetupConfig.settings.winget_args } else { "" }
+    
+    $argsList = $wingetArgs -split ' ' | Where-Object { $_ -ne '' }
 
     foreach ($group in $WinSetupConfig.winget) {
         if ($group.enabled -eq $false) { continue }
         foreach ($pkg in $group.packages) {
             Write-Host "Installing $pkg from $($group.source)..."
-            Invoke-Expression "winget install --id $pkg --source $($group.source) $wingetArgs"
+            $cmdArgs = @("install", "--id", $pkg, "--source", $group.source) + $argsList
+            & winget @cmdArgs
         }
     }
 }
@@ -100,13 +103,28 @@ if ($null -ne $WinSetupConfig.scoop -and $WinSetupConfig.scoop.enabled -ne $fals
         if ($null -ne $WinSetupConfig.scoop.buckets) {
             foreach ($bucket in $WinSetupConfig.scoop.buckets) {
                 if ($bucket.enabled -eq $false) { continue }
-                if ($bucket.url) { scoop bucket add $bucket.name $bucket.url } else { scoop bucket add $bucket.name }
+                if ($bucket.url) { & scoop bucket add $bucket.name $bucket.url } else { & scoop bucket add $bucket.name }
             }
         }
         if ($null -ne $WinSetupConfig.scoop.packages) {
-            scoop update; scoop update -a
-            foreach ($pkg in $WinSetupConfig.scoop.packages) { scoop install $pkg }
+            & scoop update; & scoop update -a
+            foreach ($pkg in $WinSetupConfig.scoop.packages) { & scoop install $pkg }
         }
+    }
+}
+
+# mise tools
+if ($null -ne $WinSetupConfig.mise -and $WinSetupConfig.mise.enabled -ne $false) {
+    Write-Host "`n--- Configuring Tools via mise ---" -ForegroundColor Cyan
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+    
+    if (Get-Command mise -ErrorAction SilentlyContinue) {
+        foreach ($tool in $WinSetupConfig.mise.tools) { 
+            Write-Host "  -> Setting up $tool via mise..." -ForegroundColor Gray
+            & mise use -g $tool
+        }
+    } else {
+        Write-Host "  [SKIPPED] mise is not installed or not found in PATH." -ForegroundColor Yellow
     }
 }
 
@@ -114,10 +132,12 @@ if ($null -ne $WinSetupConfig.scoop -and $WinSetupConfig.scoop.enabled -ne $fals
 if ($null -ne $WinSetupConfig.uv -and $WinSetupConfig.uv.enabled -ne $false) {
     Write-Host "`n--- Installing Python Tools via uv ---" -ForegroundColor Cyan
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
-    uv tool update-shell
-
+    
     if (Get-Command uv -ErrorAction SilentlyContinue) {
-        foreach ($tool in $WinSetupConfig.uv.tools) { uv tool install $tool }
+        & uv tool update-shell
+        foreach ($tool in $WinSetupConfig.uv.tools) { & uv tool install $tool }
+    } else {
+        Write-Host "  [SKIPPED] uv is not installed or not found in PATH." -ForegroundColor Yellow
     }
 }
 
@@ -138,6 +158,8 @@ if ($null -ne $WinSetupConfig.post_install_commands) {
                 $resolvedPath = Resolve-ExternalPath -Path $fileEntry.path
                 if ($null -ne $resolvedPath) {
                     $finalCmd = $finalCmd.Replace($fileEntry.var, $resolvedPath)
+                } else {
+                    Write-Warning "Failed to resolve path for $($fileEntry.var). Skipping substitution."
                 }
             }
         }
