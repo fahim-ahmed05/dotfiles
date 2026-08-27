@@ -129,7 +129,7 @@ mise use -g node@lts
 ### Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 
 ```
-scoop bucket add nerd-fonts; scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
+scoop bucket add nerd-fonts; scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF personal/inter-font nerd-fonts/UbuntuMono-NF
 ```
 
 ## PowerShell
