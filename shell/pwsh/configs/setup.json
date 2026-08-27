@@ -122,7 +122,7 @@
                 },
                 {
                     "var": "{{config}}",
-                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/other/dotmngr/gigabyte.json"
+                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/dotmngr/gigabyte.json"
                 }
             ],
             "command": "& '{{script}}' -ConfigPath '{{config}}'"
@@ -167,7 +167,7 @@
             "files": [
                 {
                     "var": "{{file}}",
-                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/other/mpc-hc/mpc-hc-settings.reg"
+                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/media_player/mpc-hc/mpc-hc-settings.reg"
                 }
             ],
             "command": "reg.exe import '{{file}}'"
@@ -181,7 +181,7 @@
             "files": [
                 {
                     "var": "{{file}}",
-                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/windows/registry/DisableOneDrivePersonal.reg"
+                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/windows/onedrive/disable_personal_account_sync.reg"
                 }
             ],
             "command": "reg.exe import '{{file}}'"
@@ -191,7 +191,7 @@
             "files": [
                 {
                     "var": "{{file}}",
-                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/windows/registry/SilentWindowsUpdate.reg"
+                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/main/windows/update/silent_windows_update.reg"
                 }
             ],
             "command": "reg.exe import '{{file}}'"
