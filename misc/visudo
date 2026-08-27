@@ -1,5 +1,0 @@
-# sudo visudo
-# Add the following line to the file
-
-# No password for these commands
-fahim ALL=(ALL) NOPASSWD: /usr/bin/apt update, /usr/bin/apt upgrade -y, /usr/bin/apt autoremove -y

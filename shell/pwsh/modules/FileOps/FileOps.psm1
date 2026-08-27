@@ -1,5 +1,5 @@
 function Clear-WindowsCache {
-    $ConfigPath = "$env:UserProfile\Git\dotfiles\powershell\configs\clear_windows_cache.json"
+    $ConfigPath = "$env:UserProfile\Git\dotfiles\shell\pwsh\configs\clear_windows_cache.json"
 
     if (-not (Test-Path $ConfigPath)) {
         Write-Error "Config file not found: $ConfigPath"
@@ -21,11 +21,11 @@ function Clear-WindowsCache {
 }
 
 function Clear-Folder {
-    & "$env:UserProfile\Git\dotfiles\powershell\scripts\Clear-Folder.ps1" -ConfigPath "$env:UserProfile\Git\dotfiles\powershell\configs\clear_folders_$computer.json" @args
+    & "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Clear-Folder.ps1" -ConfigPath "$env:UserProfile\Git\dotfiles\shell\pwsh\configs\clear_folders_$computer.json" @args
 }
 
 function Add-RemoveRegFiles {
-    & "$env:UserProfile\Git\dotfiles\powershell\scripts\Add-RemoveRegFiles.ps1" -Config "$env:UserProfile\Git\dotfiles\powershell\configs\reg_files.json" @args
+    & "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Add-RemoveRegFiles.ps1" -Config "$env:UserProfile\Git\dotfiles\shell\pwsh\configs\reg_files.json" @args
 }
 
 function Remove-DesktopIcons { Clear-Folder "$env:UserProfile\Desktop\*.lnk" "$env:PUBLIC\Desktop\*.lnk" }

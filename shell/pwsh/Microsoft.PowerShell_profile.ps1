@@ -244,7 +244,7 @@ function whereis ($command) {
     
 }
 
-Set-Alias audiobook-dl "$env:UserProfile\Git\dotfiles\powershell\scripts\Download-Audiobook.ps1"
+Set-Alias audiobook-dl "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Download-Audiobook.ps1"
 
 # Zoxide Initialization
 . ([ScriptBlock]::Create((zoxide init powershell | Out-String)))

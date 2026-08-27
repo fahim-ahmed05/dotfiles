@@ -31,21 +31,21 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\powershell\\Microsoft.PowerShell_profile.ps1",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\pwsh\\Microsoft.PowerShell_profile.ps1",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\powershell\\Microsoft.PowerShell_profile.ps1",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\pwsh\\Microsoft.PowerShell_profile.ps1",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Microsoft.VSCode_profile.ps1"
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Git\\dotfiles\\powershell\\modules\\PkgOps",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\pwsh\\modules\\PkgOps",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\PkgOps"
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Git\\dotfiles\\powershell\\modules\\FileOps",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\pwsh\\modules\\FileOps",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\FileOps"
 				}
 			]
@@ -55,11 +55,11 @@
 			"items": [
 				{
 					"admin": true,
-					"from": "%USERPROFILE%\\Git\\dotfiles\\firefox\\policies.json",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\browser\\firefox\\policies.json",
 					"to": "C:\\Program Files\\Mozilla Firefox\\distribution\\policies.json"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\firefox\\user.js",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\browser\\firefox\\user.js",
 					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\hhfvopxw.personal\\user.js"
 				},
 				{
@@ -113,23 +113,23 @@
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\scripts\\autosub.lua"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\input.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\media_player\\mpv\\input.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\input.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\mpv.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\media_player\\mpv\\mpv.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\mpv.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\autosub.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\media_player\\mpv\\script-opts\\autosub.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\autosub.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\thumbfast.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\media_player\\mpv\\script-opts\\thumbfast.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\thumbfast.conf"
 				},
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\mpv\\script-opts\\modernz.conf",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\media_player\\mpv\\script-opts\\modernz.conf",
 					"to": "%USERPROFILE%\\scoop\\persist\\mpv-git\\portable_config\\script-opts\\modernz.conf"
 				}
 			]
@@ -296,7 +296,7 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\winget\\settings.json",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\pkg_mngr\\winget\\settings.json",
 					"to": "%LOCALAPPDATA%\\Packages\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\\LocalState\\settings.json"
 				}
 			]
@@ -306,7 +306,7 @@
 			"mode": "symlink",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\wt\\settings.json",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\terminal\\wt\\settings.json",
 					"to": "%LOCALAPPDATA%\\Packages\\Microsoft.WindowsTerminal_8wekyb3d8bbwe\\LocalState\\settings.json"
 				}
 			]
@@ -315,7 +315,7 @@
 			"enabled": true,
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\alacritty\\alacritty.toml",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\terminal\\alacritty\\alacritty.toml",
 					"to": "%APPDATA%\\alacritty\\alacritty.toml"
 				}
 			]

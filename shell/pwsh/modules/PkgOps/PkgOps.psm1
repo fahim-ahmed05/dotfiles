@@ -1,5 +1,3 @@
-Set-Alias gitpkg "$env:UserProfile\Git\gitpkg\gitpkg.ps1"
-
 function Search-Packages {
     param(
         [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true)]
@@ -44,8 +42,8 @@ function Update-AllPackages {
 
     Write-Host "`nUpdating git repos...`n" -ForegroundColor Cyan
 
-    $gitScriptPath = "$env:UserProfile\Git\dotfiles\powershell\scripts\Pull-GitRepos.ps1"
-    $gitConfigPath = "$env:UserProfile\Git\dotfiles\powershell\configs\git_repos_$computer.json"
+    $gitScriptPath = "$env:UserProfile\Git\dotfiles\shell\pwsh\configs\scripts\Pull-GitRepos.ps1"
+    $gitConfigPath = "$env:UserProfile\Git\dotfiles\shell\pwsh\configs\git_repos_$computer.json"
 
     if ((Test-Path $gitScriptPath) -and (Test-Path $gitConfigPath)) {
         & $gitScriptPath -ConfigPath $gitConfigPath
