@@ -214,7 +214,7 @@ irm "https://christitus.com/win" | iex
 mkdir ~/Git -force; cd ~/Git; git clone https://github.com/Samillion/ModernZ.git; git clone https://github.com/po5/thumbfast.git; git clone git@github.com:fahim-ahmed05/mpv-autosub.git
 ```
 
-### Git Repositories
+## Git Repositories
 
 > [!IMPORTANT]
 > [Git](https://git-scm.com/download/win) is required!
