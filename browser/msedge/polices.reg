@@ -2,4 +2,4 @@ Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge]
 "DnsOverHttpsMode"="secure"
-"DnsOverHttpsTemplates"="https://dns.adguard-dns.com/dns-query"
+"DnsOverHttpsTemplates"="https://dns.quad9.net/dns-query"

@@ -14,4 +14,4 @@ Windows Registry Editor Version 5.00
 "SafeBrowsingExtendedReportingEnabled"=dword:00000000
 "MetricsReportingEnabled"=dword:00000000
 "DnsOverHttpsMode"="secure"
-"DnsOverHttpsTemplates"="https://dns.adguard-dns.com/dns-query"
+"DnsOverHttpsTemplates"="https://dns.quad9.net/dns-query"
