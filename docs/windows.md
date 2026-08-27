@@ -94,7 +94,7 @@ scoop install scoop install pear-desktop mrrss trafficmonitor-lite
 ### [Python](https://www.python.org/)
 
 > [!IMPORTANT]
-> [Python](#scoop-packages) and [uv](#scoop-packages) are required!
+> [uv](#scoop-packages) is required!
 
 #### Install Python
 
@@ -111,7 +111,7 @@ uv tool install internetarchive; uv tool install subliminal; uv tool install git
 ### Node.js
 
 > [!IMPORTANT]
-> [Mise](#scoop-packages) is required!
+> [mise](#scoop-packages) is required!
 
 #### Install Node.js
 
@@ -207,11 +207,17 @@ irm "https://christitus.com/win" | iex
 - [thumbfast](https://github.com/po5/thumbfast)
 - [mpv-autosub](https://github.com/fahim-ahmed05/mpv-autosub)
 
+> [!IMPORTANT]
+> [Git](https://git-scm.com/download/win) is required!
+
 ```
 mkdir ~/Git -force; cd ~/Git; git clone https://github.com/Samillion/ModernZ.git; git clone https://github.com/po5/thumbfast.git; git clone git@github.com:fahim-ahmed05/mpv-autosub.git
 ```
 
 ### Git Repositories
+
+> [!IMPORTANT]
+> [Git](https://git-scm.com/download/win) is required!
 
 ```
 mkdir ~/Git -force; cd ~/Git; git clone git@github.com:fahim-ahmed05/fast-scoop-search.git; git clone git@github.com:fahim-ahmed05/dotmngr.git; git clone git@github.com:fahim-ahmed05/scoop-bucket.git
