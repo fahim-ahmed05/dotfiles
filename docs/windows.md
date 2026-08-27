@@ -39,22 +39,21 @@ Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/d
 #### Winget Packages (Source: Microsoft Store)
 
 ```
-winget install 9nksqgp7f2nh   --source msstore --accept-package-agreements --accept-source-agreements   # WhatsApp
-winget install xpfftq032ptphf --source msstore --accept-package-agreements --accept-source-agreements   # UniGetUI
-winget install 9n45nsm4tnbp   --source msstore --accept-package-agreements --accept-source-agreements   # FluentFlyout
-winget install 9p8ltpgcbzxd   --source msstore --accept-package-agreements --accept-source-agreements   # Wintoys
+# winget install UniGetUI FluentFlyout Wintoys --source msstore --accept-package-agreements --accept-source-agreements
+
+winget install xpfftq032ptphf 9n45nsm4tnbp 9p8ltpgcbzxd --source msstore --accept-package-agreements --accept-source-agreements
 ```
 
 #### Winget Packages (Source: Winget)
 
 ```
-winget install Brave.Brave Mozilla.Firefox xanderfrangos.twinkletray HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything.Alpha qBittorrent.qBittorrent Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF Obsidian.Obsidian AdrienAllard.FileConverter Microsoft.PowerToys ente-io.auth-desktop Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
+winget install Brave.Brave Mozilla.Firefox xanderfrangos.twinkletray HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything.Alpha qBittorrent.qBittorrent Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AdrienAllard.FileConverter Microsoft.PowerToys ente-io.auth-desktop Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 #### Optional Winget Packages (Source: Winget)
 
 ```
-winget install ONLYOFFICE.DesktopEditors eMClient.eMClient AutoHotkey.AutoHotkey th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
+winget install ONLYOFFICE.DesktopEditors eMClient.eMClient th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### [Scoop](https://scoop.sh/)
@@ -77,21 +76,19 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 #### Add Scoop Buckets
 
 ```
-scoop bucket add extras
-scoop bucket add versions
-scoop bucket add personal https://github.com/fahim-ahmed05/scoop-bucket
+scoop bucket add extras; scoop bucket add versions; scoop bucket add personal https://github.com/fahim-ahmed05/scoop-bucket
 ```
 
 #### Scoop Packages
 
 ```
-scoop install 7zip aria2 fastfetch nodejs aimp python quicklook revouninstaller mrrss syncthing trafficmonitor-lite winaero-tweaker yt-dlp zed versions/ffmpeg-yt-dlp-nightly
+scoop install 7zip aria2 fastfetch bt aimp mise quicklook revouninstaller uv mpv-git luajit alacritty telegram syncthing winaero-tweaker versions/yt-dlp-nightly versions/ffmpeg-yt-dlp-nightly foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste personal/winhance antigravity-ide
 ```
 
 #### Optional Scoop Packages
 
 ```
-scoop install uv mpv-git luajit alacritty telegram ayugram foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste personal/winhance vivetool umpv 
+scoop install mrrss trafficmonitor-lite
 ```
 
 ### Python
@@ -102,8 +99,7 @@ scoop install uv mpv-git luajit alacritty telegram ayugram foobar2000 foobar2000
 #### Python Packages
 
 ```
-uv tool install internetarchive
-uv tool install subliminal
+uv tool install internetarchive; uv tool install subliminal
 ```
 
 ## Fonts
@@ -116,8 +112,7 @@ uv tool install subliminal
 ### Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 
 ```
-scoop bucket add nerd-fonts
-scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
+scoop bucket add nerd-fonts; scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
 ```
 
 ## PowerShell
@@ -125,7 +120,7 @@ scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/
 ### Install PowerShell
 
 ```
-winget install Microsoft.PowerShell
+scoop install pwsh
 ```
 
 ### Install PowerShell Packages
@@ -183,12 +178,6 @@ oh-my-posh disable notice
 
 ## Tweak Tools
 
-### [Winhance](https://github.com/memstechtips/Winhance)
-
-```powershell
-irm "https://get.winhance.net" | iex
-```
-
 ### [Windows Utility](https://github.com/ChrisTitusTech/winutil)
 
 ```powershell
@@ -201,11 +190,9 @@ irm "https://christitus.com/win" | iex
 - [thumbfast](https://github.com/po5/thumbfast)
 - [mpv-autosub](https://github.com/fahim-ahmed05/mpv-autosub)
 
-## Media Foundation Codecs
-
-- [Download](https://www.codecguide.com/media_foundation_codecs.htm) the codecs zip file.
-- Open terminal inside the extracted folder and run
-
+```pwsh
+mkdir Git; cd Git;
+git clone https://github.com/Samillion/ModernZ.git; git clone https://github.com/po5/thumbfast.git; git clone https://github.com/fahim-ahmed05/mpv-autosub.git
 ```
-Add-AppxPackage *.AppxBundle
-```
+
+
