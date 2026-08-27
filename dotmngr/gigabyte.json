@@ -8,13 +8,13 @@
 			"enabled": true,
 			"items": [
 				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\ssh\\config",
+					"to": "%USERPROFILE%\\Configs\\ssh\\config"
+				},
+				{
 					"mode": "junction",
 					"from": "%USERPROFILE%\\Configs\\ssh",
 					"to": "%USERPROFILE%\\.ssh"
-				},
-				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\ssh\\config",
-					"to": "%USERPROFILE%\\.ssh\\config"
 				}
 			]
 		},
@@ -56,7 +56,7 @@
 				{
 					"admin": true,
 					"from": "%USERPROFILE%\\Git\\dotfiles\\firefox\\policies.json",
-					"to": "C:\\Program Files\\Firefox Nightly\\distribution\\policies.json"
+					"to": "C:\\Program Files\\Mozilla Firefox\\distribution\\policies.json"
 				},
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\firefox\\user.js",
@@ -395,7 +395,7 @@
 			]
 		},
 		"brave": {
-			"enabled": false,
+			"enabled": true,
 			"mode": "shortcut",
 			"items": [
 				{
