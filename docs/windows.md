@@ -191,8 +191,7 @@ irm "https://christitus.com/win" | iex
 - [mpv-autosub](https://github.com/fahim-ahmed05/mpv-autosub)
 
 ```pwsh
-mkdir Git; cd Git;
-git clone https://github.com/Samillion/ModernZ.git; git clone https://github.com/po5/thumbfast.git; git clone https://github.com/fahim-ahmed05/mpv-autosub.git
+mkdir ~/Git -force; cd ~/Git; git clone https://github.com/Samillion/ModernZ.git; git clone https://github.com/po5/thumbfast.git; git clone https://github.com/fahim-ahmed05/mpv-autosub.git
 ```
 
 
