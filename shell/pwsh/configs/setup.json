@@ -6,8 +6,13 @@
     "pre_install_commands": [
         {
             "enabled": true,
+            "name": "Create Git Directory",
+            "command": "$target = Join-Path $env:USERPROFILE 'Git'; if (-not (Test-Path $target)) { New-Item -Path $target -ItemType Directory -Force | Out-Null }"
+        },
+        {
+            "enabled": true,
             "name": "Clone dotfiles Repository",
-            "command": "$target = Join-Path $env:USERPROFILE 'Git'; if (-not (Test-Path $target)) { New-Item -Path $target -ItemType Directory -Force | Out-Null }; Push-Location $target; git clone git@github.com:fahim-ahmed05/dotfiles.git; Pop-Location"
+            "command": "$target = Join-Path $env:USERPROFILE 'Git'; Push-Location $target; git clone git@github.com:fahim-ahmed05/dotfiles.git; Pop-Location"
         }
     ],
     "winget": [
@@ -210,11 +215,11 @@
         },
         {
             "name": "Clone MPV Plugins",
-            "command": "$target = Join-Path $env:USERPROFILE 'Git'; if (-not (Test-Path $target)) { New-Item -Path $target -ItemType Directory -Force | Out-Null }; Push-Location $target; git clone https://github.com/Samillion/ModernZ.git; git clone https://github.com/po5/thumbfast.git; git clone git@github.com:fahim-ahmed05/mpv-autosub.git; Pop-Location"
+            "command": "$target = Join-Path $env:USERPROFILE 'Git'; Push-Location $target; git clone https://github.com/Samillion/ModernZ.git; git clone https://github.com/po5/thumbfast.git; git clone git@github.com:fahim-ahmed05/mpv-autosub.git; Pop-Location"
         },
         {
             "name": "Clone Personal Git Repositories",
-            "command": "$target = Join-Path $env:USERPROFILE 'Git'; if (-not (Test-Path $target)) { New-Item -Path $target -ItemType Directory -Force | Out-Null }; Push-Location $target; git clone git@github.com:fahim-ahmed05/fast-scoop-search.git; git clone git@github.com:fahim-ahmed05/dotmngr.git; git clone git@github.com:fahim-ahmed05/scoop-bucket.git; Pop-Location"
+            "command": "$target = Join-Path $env:USERPROFILE 'Git'; Push-Location $target; git clone git@github.com:fahim-ahmed05/fast-scoop-search.git; git clone git@github.com:fahim-ahmed05/dotmngr.git; git clone git@github.com:fahim-ahmed05/scoop-bucket.git; Pop-Location"
         }
     ]
 }
