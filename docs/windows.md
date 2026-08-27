@@ -15,7 +15,7 @@
 
 ## [Activate Windows](https://github.com/massgravel/Microsoft-Activation-Scripts)
 
-```powershell
+```
 irm "https://get.activated.win" | iex
 ```
 
@@ -28,7 +28,7 @@ irm "https://get.activated.win" | iex
 
 ### Winget
 
-```powershell
+```
 # Winget
 winget update winget
 
@@ -53,7 +53,7 @@ winget install Brave.Brave Mozilla.Firefox xanderfrangos.twinkletray HermannSchi
 #### Optional Winget Packages (Source: Winget)
 
 ```
-winget install ONLYOFFICE.DesktopEditors eMClient.eMClient th-ch.YouTubeMusic --source winget --accept-package-agreements --accept-source-agreements
+winget install ONLYOFFICE.DesktopEditors eMClient.eMClient --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 ### [Scoop](https://scoop.sh/)
@@ -82,24 +82,41 @@ scoop bucket add extras; scoop bucket add versions; scoop bucket add personal ht
 #### Scoop Packages
 
 ```
-scoop install 7zip aria2 fastfetch bt aimp mise quicklook revouninstaller uv mpv-git luajit alacritty telegram syncthing winaero-tweaker versions/yt-dlp-nightly versions/ffmpeg-yt-dlp-nightly foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste personal/winhance antigravity-ide
+scoop install 7zip aria2 fastfetch bt aimp quicklook revouninstaller uv mise mpv-git luajit alacritty telegram syncthing winaero-tweaker versions/yt-dlp-nightly versions/ffmpeg-yt-dlp-nightly foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste personal/winhance antigravity-ide
 ```
 
 #### Optional Scoop Packages
 
 ```
-scoop install mrrss trafficmonitor-lite
+scoop install scoop install pear-desktop mrrss trafficmonitor-lite
 ```
 
-### Python
+### [Python](https://www.python.org/)
 
 > [!IMPORTANT]
-> [Python](#scoop-packages) and [uv](#optional-scoop-packages) are required!
+> [Python](#scoop-packages) and [uv](#scoop-packages) are required!
+
+#### Install Python
+
+```
+uv python install --default
+```
 
 #### Python Packages
 
 ```
-uv tool install internetarchive; uv tool install subliminal
+uv tool install internetarchive; uv tool install subliminal; uv tool install git+https://github.com/fahim-ahmed05/cineindex.git
+```
+
+### Node.js
+
+> [!IMPORTANT]
+> [Mise](#scoop-packages) is required!
+
+#### Install Node.js
+
+```
+mise use -g node@lts
 ```
 
 ## Fonts
@@ -180,7 +197,7 @@ oh-my-posh disable notice
 
 ### [Windows Utility](https://github.com/ChrisTitusTech/winutil)
 
-```powershell
+```
 irm "https://christitus.com/win" | iex
 ```
 
@@ -190,8 +207,12 @@ irm "https://christitus.com/win" | iex
 - [thumbfast](https://github.com/po5/thumbfast)
 - [mpv-autosub](https://github.com/fahim-ahmed05/mpv-autosub)
 
-```pwsh
-mkdir ~/Git -force; cd ~/Git; git clone https://github.com/Samillion/ModernZ.git; git clone https://github.com/po5/thumbfast.git; git clone https://github.com/fahim-ahmed05/mpv-autosub.git
+```
+mkdir ~/Git -force; cd ~/Git; git clone https://github.com/Samillion/ModernZ.git; git clone https://github.com/po5/thumbfast.git; git clone git@github.com:fahim-ahmed05/mpv-autosub.git
 ```
 
+### Git Repositories
 
+```
+mkdir ~/Git -force; cd ~/Git; git clone git@github.com:fahim-ahmed05/fast-scoop-search.git; git clone git@github.com:fahim-ahmed05/dotmngr.git; git clone git@github.com:fahim-ahmed05/scoop-bucket.git
+```
