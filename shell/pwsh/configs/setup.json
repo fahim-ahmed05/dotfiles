@@ -6,15 +6,14 @@
     "pre_install_commands": [
         {
             "enabled": true,
-            "name": "Upgrade Winget to Latest Version",
-            "command": "winget upgrade winget --accept-package-agreements --accept-source-agreements"
+            "name": "Clone dotfiles Repository",
+            "command": "$target = Join-Path $env:USERPROFILE 'Git'; if (-not (Test-Path $target)) { New-Item -Path $target -ItemType Directory -Force | Out-Null }; Push-Location $target; git clone git@github.com:fahim-ahmed05/dotfiles.git; Pop-Location"
         }
     ],
     "winget": [
         {
             "source": "msstore",
             "packages": [
-                "9nksqgp7f2nh",
                 "xpfftq032ptphf",
                 "9n45nsm4tnbp",
                 "9p8ltpgcbzxd"
@@ -29,21 +28,16 @@
                 "HermannSchinagl.LinkShellExtension",
                 "Notepad++.Notepad++",
                 "voidtools.Everything.Alpha",
-                "CodeSector.TeraCopy",
                 "qBittorrent.qBittorrent",
                 "Flow-Launcher.Flow-Launcher",
                 "SumatraPDF.SumatraPDF",
-                "Obsidian.Obsidian",
                 "AdrienAllard.FileConverter",
                 "Microsoft.PowerToys",
                 "ente-io.auth-desktop",
                 "Cloudflare.Warp",
                 "Tonec.InternetDownloadManager",
                 "ONLYOFFICE.DesktopEditors",
-                "eMClient.eMClient",
-                "th-ch.YouTubeMusic",
-                "Microsoft.PowerShell",
-                "Notion.Notion"
+                "eMClient.eMClient"
             ]
         }
     ],
@@ -59,9 +53,6 @@
                 "name": "nerd-fonts"
             },
             {
-                "name": "java"
-            },
-            {
                 "name": "personal",
                 "url": "https://github.com/fahim-ahmed05/scoop-bucket"
             }
@@ -70,64 +61,53 @@
             "7zip",
             "aria2",
             "fastfetch",
-            "nodejs",
+            "bt",
             "aimp",
-            "python",
             "quicklook",
             "revouninstaller",
-            "mrrss",
-            "syncthing",
-            "trafficmonitor-lite",
-            "winaero-tweaker",
-            "yt-dlp",
-            "versions/ffmpeg-yt-dlp-nightly",
-            "uv",
             "mpv-git",
+            "luajit",
             "alacritty",
             "telegram",
-            "ayugram",
+            "syncthing",
+            "winaero-tweaker",
+            "versions/yt-dlp-nightly",
+            "versions/ffmpeg-yt-dlp-nightly",
             "foobar2000",
             "foobar2000-encoders",
             "localsend",
             "logitech-omm",
             "personal/clickpaste",
             "personal/winhance",
-            "personal/stremio-kai",
-            "personal/inter-font",
-            "nerd-fonts/JetBrainsMono-NF",
-            "nerd-fonts/CascadiaMono-NF",
+            "antigravity-ide",
+            "pear-desktop",
+            "mrrss",
+            "personal/windhawk",
             "oh-my-posh",
             "eza",
             "fzf",
             "zoxide",
-            "microsoft-jdk",
-            "musicbee"
+            "nerd-fonts/JetBrainsMono-NF",
+            "nerd-fonts/CascadiaMono-NF",
+            "personal/inter-font",
+            "nerd-fonts/UbuntuMono-NF"
+        ]
+    },
+    "mise": {
+        "tools": [
+            "node@lts"
         ]
     },
     "uv": {
         "tools": [
             "internetarchive",
-            "subliminal"
+            "subliminal",
+            "git+https://github.com/fahim-ahmed05/cineindex.git"
         ]
     },
     "post_install_commands": [
         {
-            "name": "Import Git Package List",
-            "pwsh": true,
-            "files": [
-                {
-                    "var": "{{script}}",
-                    "path": "https://raw.githubusercontent.com/fahim-ahmed05/gitpkg/main/gitpkg.ps1"
-                },
-                {
-                    "var": "{{file}}",
-                    "path": "D:\\Backups\\Gigabyte A520M\\Configs\\gitpkg\\gitpkg.json"
-                }
-            ],
-            "command": "& '{{script}}' import '{{file}}'"
-        },
-        {
-            "name": "Link dotfiles",
+            "name": "Link dotfiles (dotmngr)",
             "admin": true,
             "pwsh": true,
             "files": [
@@ -192,10 +172,6 @@
             "command": "reg import '%USERPROFILE%\\scoop\\apps\\7zip\\current\\install-context.reg'"
         },
         {
-            "name": "Apply Registry Fix: Make Python Available to System",
-            "command": "reg import '%USERPROFILE%\\scoop\\apps\\python\\current\\install-pep-514.reg'"
-        },
-        {
             "name": "Apply Registry Fix: Disable OneDrive Personal",
             "files": [
                 {
@@ -224,13 +200,8 @@
             "command": "oh-my-posh disable notice"
         },
         {
-            "name": "Activate Windows",
-            "command": "irm 'https://get.activated.win' | iex"
-        },
-        {
-            "name": "Chris Titus WinUtil",
-            "admin": true,
-            "command": "irm https://christitus.com/win | iex"
+            "name": "Disable Aria2 Warning in Scoop",
+            "command": "scoop config aria2-warning-enabled false"
         },
         {
             "name": "Clean Up Desktop Shortcuts",
@@ -238,12 +209,12 @@
             "command": "Remove-Item -Path $env:USERPROFILE\\Desktop\\*.lnk, $env:PUBLIC\\Desktop\\*.lnk, $env:USERPROFILE\\Desktop\\*.url, $env:PUBLIC\\Desktop\\*.url -Force -ErrorAction SilentlyContinue"
         },
         {
-            "name": "Install CineIndex",
-            "command": "uv tool install git+https://github.com/fahim-ahmed05/cineindex.git"
+            "name": "Clone MPV Plugins",
+            "command": "$target = Join-Path $env:USERPROFILE 'Git'; if (-not (Test-Path $target)) { New-Item -Path $target -ItemType Directory -Force | Out-Null }; Push-Location $target; git clone https://github.com/Samillion/ModernZ.git; git clone https://github.com/po5/thumbfast.git; git clone git@github.com:fahim-ahmed05/mpv-autosub.git; Pop-Location"
         },
         {
-            "name": "Disable Aria2 Warning in Scoop",
-            "command": "scoop config aria2-warning-enabled false"
+            "name": "Clone Personal Git Repositories",
+            "command": "$target = Join-Path $env:USERPROFILE 'Git'; if (-not (Test-Path $target)) { New-Item -Path $target -ItemType Directory -Force | Out-Null }; Push-Location $target; git clone git@github.com:fahim-ahmed05/fast-scoop-search.git; git clone git@github.com:fahim-ahmed05/dotmngr.git; git clone git@github.com:fahim-ahmed05/scoop-bucket.git; Pop-Location"
         }
     ]
 }
