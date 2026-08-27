@@ -3,8 +3,8 @@ SETLOCAL EnableDelayedExpansion
 TITLE Windows Automated Setup Bootstrapper
 
 :: 1. Define Base GitHub Raw URLs
-set "BASE_CONFIG_URL=https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/shell/powershell/configs/"
-set "URL_SCRIPT=https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/shell/powershell/scripts/Setup-Windows.ps1"
+set "BASE_CONFIG_URL=https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/shell/pwsh/configs/"
+set "URL_SCRIPT=https://raw.githubusercontent.com/fahim-ahmed05/dotfiles/refs/heads/main/shell/pwsh/scripts/Setup-Windows.ps1"
 
 :: 2. Set up the unified temporary working directory
 set "SETUP_DIR=%TEMP%\WinSetup"
