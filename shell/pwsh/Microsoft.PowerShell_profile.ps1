@@ -248,3 +248,7 @@ Set-Alias audiobook-dl "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Downloa
 
 # Zoxide Initialization
 . ([ScriptBlock]::Create((zoxide init powershell | Out-String)))
+
+# Mise Initialization
+Invoke-Expression (&mise activate pwsh | Out-String)
+
