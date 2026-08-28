@@ -76,7 +76,9 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 #### Add Scoop Buckets
 
 ```
-scoop bucket add extras; scoop bucket add versions; scoop bucket add personal https://github.com/fahim-ahmed05/scoop-bucket
+scoop bucket add extras
+scoop bucket add versions
+scoop bucket add personal https://github.com/fahim-ahmed05/scoop-bucket
 ```
 
 #### Scoop Packages
@@ -105,7 +107,9 @@ uv python install --default
 #### Python Packages
 
 ```
-uv tool install internetarchive; uv tool install subliminal; uv tool install git+https://github.com/fahim-ahmed05/cineindex.git
+uv tool install internetarchive
+uv tool install subliminal
+uv tool install git+https://github.com/fahim-ahmed05/cineindex.git
 ```
 
 ### Node.js
@@ -121,18 +125,26 @@ mise use -g node@lts
 
 ## Fonts
 
-- [Inter](https://rsms.me/inter/download/)
-
 > [!IMPORTANT]
 > [Scoop](#scoop) is required!
+
+### Install [Inter](https://rsms.me/inter/download/) font
+
+```
+scoop install personal/inter-font 
+```
 
 ### Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 
 ```
-scoop bucket add nerd-fonts; scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF personal/inter-font nerd-fonts/UbuntuMono-NF
+scoop bucket add nerd-fonts
+scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
 ```
 
 ## PowerShell
+
+> [!IMPORTANT]
+> [Git](https://git-scm.com/download/win) and [Scoop](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/windows.md#scoop) are required!
 
 ### Install PowerShell
 
@@ -141,9 +153,6 @@ scoop install pwsh
 ```
 
 ### Install PowerShell Packages
-
-> [!IMPORTANT]
-> [Git](https://git-scm.com/download/win) and [Scoop](https://github.com/fahim-ahmed05/dotfiles/blob/main/wiki/windows.md#scoop) are required!
 
 ```
 scoop install oh-my-posh eza fzf zoxide
@@ -211,7 +220,11 @@ irm "https://christitus.com/win" | iex
 > [Git](https://git-scm.com/download/win) is required!
 
 ```
-mkdir ~/Git -force; cd ~/Git; git clone https://github.com/Samillion/ModernZ.git; git clone https://github.com/po5/thumbfast.git; git clone git@github.com:fahim-ahmed05/mpv-autosub.git
+mkdir ~/Git -force
+cd ~/Git
+git clone https://github.com/Samillion/ModernZ.git
+git clone https://github.com/po5/thumbfast.git
+git clone git@github.com:fahim-ahmed05/mpv-autosub.git
 ```
 
 ## Git Repositories
@@ -220,5 +233,9 @@ mkdir ~/Git -force; cd ~/Git; git clone https://github.com/Samillion/ModernZ.git
 > [Git](https://git-scm.com/download/win) is required!
 
 ```
-mkdir ~/Git -force; cd ~/Git; git clone git@github.com:fahim-ahmed05/fast-scoop-search.git; git clone git@github.com:fahim-ahmed05/dotmngr.git; git clone git@github.com:fahim-ahmed05/scoop-bucket.git
+mkdir ~/Git -force
+cd ~/Git
+git clone git@github.com:fahim-ahmed05/fast-scoop-search.git
+git clone git@github.com:fahim-ahmed05/dotmngr.git
+git clone git@github.com:fahim-ahmed05/scoop-bucket.git
 ```
