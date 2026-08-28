@@ -60,12 +60,12 @@
 				},
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\browser\\firefox\\user.js",
-					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\hhfvopxw.personal\\user.js"
+					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\kw8z6mpc.personal\\user.js"
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\firefox\\hhfvopxw.personal",
-					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\hhfvopxw.personal"
+					"from": "%USERPROFILE%\\Configs\\firefox\\kw8z6mpc.personal",
+					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\kw8z6mpc.personal"
 				}
 			]
 		},
