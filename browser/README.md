@@ -1,7 +1,6 @@
 # Browser
 
 - [Firefox](https://www.firefox.com/)
-- [Zen Browser](https://zen-browser.app/)
 - [Brave Browser](https://brave.com/)
 - [IceRaven OLED](https://github.com/GoodyOG/Iceraven-OLED)
 
