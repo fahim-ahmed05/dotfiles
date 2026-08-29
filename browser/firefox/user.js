@@ -77,6 +77,8 @@ user_pref("permissions.default.camera", 2);
 user_pref("permissions.default.microphone", 2);
 user_pref("permissions.manager.defaultsUrl", "");
 user_pref("media.autoplay.default", 5);
+user_pref("permissions.default.local-network", 2);
+user_pref("permissions.default.loopback-network", 2);
 
 // NEW TAB PAGE & HOMEPAGE
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
