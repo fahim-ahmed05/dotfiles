@@ -4,8 +4,8 @@ I use these daily! 👀
 
 ## Wiki
 
-- [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/browser/readme.md)
-- [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/windows/readme.md)
+- [Browser](https://github.com/fahim-ahmed05/dotfiles/blob/main/browser/README.md)
+- [Windows](https://github.com/fahim-ahmed05/dotfiles/blob/main/windows/README.md)
 - [Android](https://github.com/fahim-ahmed05/dotfiles/blob/main/docs/android.md)
 
 ## Credit
