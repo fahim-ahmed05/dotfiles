@@ -62,6 +62,7 @@ user_pref("browser.newtabpage.activity-stream.newtabLayouts.variant-b", false);
 user_pref("browser.startup.blankWindow", false);
 user_pref("findbar.highlightAll", true);
 user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
+user_pref("widget.non-native-theme.win11.scrollbar.force-overlay-style", true);
 
 // BROWSING HISTORY
 user_pref("browser.formfill.enable", false);
