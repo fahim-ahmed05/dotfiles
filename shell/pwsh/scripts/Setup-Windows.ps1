@@ -165,7 +165,7 @@ Write-Host "`n--- Upgrading Winget ---" -ForegroundColor Cyan
 
 if ($null -ne $WinSetupConfig.winget) {
     Write-Host "`n--- Installing Winget Packages ---" -ForegroundColor Cyan
-    & winget source update 
+    & winget update source
     $wingetArgs = if ($WinSetupConfig.settings.winget_args) { $WinSetupConfig.settings.winget_args } else { "" }
     $argsList = $wingetArgs -split ' ' | Where-Object { $_ -ne '' }
 
