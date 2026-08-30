@@ -385,12 +385,12 @@
 			]
 		},
 		"ytmusic": {
-			"enabled": false,
-			"mode": "seed",
+			"enabled": true,
+			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Git\\dotfiles\\th-ch_ytm\\config.json",
-					"to": "%APPDATA%\\YouTube Music\\config.json"
+					"from": "%USERPROFILE%\\Configs\\ytmusic",
+					"to": "%APPDATA%\\YouTube Music"
 				}
 			]
 		},
