@@ -24,7 +24,7 @@ function Search-Packages {
 }
 
 function Update-AllPackages {
-    Write-Host "`nChecking for pwsh updates...`n" -ForegroundColor Cyan
+    Write-Host "`nChecking for pwsh update...`n" -ForegroundColor Cyan
     scoop update
     $pwshUpdate = scoop status | Select-String "^\s*pwsh:"
 
@@ -34,17 +34,17 @@ function Update-AllPackages {
         $encodedPath = [Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($currentPath))
         
         $scriptTemplate = '
-scoop update pwsh
-$path = [System.Text.Encoding]::Unicode.GetString([Convert]::FromBase64String("{0}"))
-if ($env:WT_SESSION) {
-    wt --profile "$env:WT_PROFILE_ID" -d "$path" pwsh -NoExit -Command Update-AllPackages
-} elseif ($env:ALACRITTY_LOG) {
-    Start-Process alacritty -ArgumentList "--working-directory `"$path`" -e pwsh -NoExit -Command Update-AllPackages"
-} else {
-    Write-Warning "Terminal not recognized. Update applied but please restart your terminal manually."
-    Start-Sleep -Seconds 5
-}
-'
+                            scoop update pwsh
+                            $path = [System.Text.Encoding]::Unicode.GetString([Convert]::FromBase64String("{0}"))
+                            if ($env:WT_SESSION) {
+                                wt --profile "$env:WT_PROFILE_ID" -d "$path" pwsh -NoExit -Command Update-AllPackages
+                            } elseif ($env:ALACRITTY_LOG) {
+                                Start-Process alacritty -ArgumentList "--working-directory `"$path`" -e pwsh -NoExit -Command Update-AllPackages"
+                            } else {
+                                Write-Warning "Terminal not recognized. Update applied but please restart your terminal manually."
+                                Start-Sleep -Seconds 5
+                            }
+                            '
         $script = $scriptTemplate -f $encodedPath
         $encodedScript = [Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($script))
         
@@ -67,7 +67,7 @@ if ($env:WT_SESSION) {
 
     Write-Host "`nUpdating git repos...`n" -ForegroundColor Cyan
 
-    $gitScriptPath = "$env:UserProfile\Git\dotfiles\shell\pwsh\configs\scripts\Pull-GitRepos.ps1"
+    $gitScriptPath = "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Pull-GitRepos.ps1"
     $gitConfigPath = "$env:UserProfile\Git\dotfiles\shell\pwsh\configs\git_repos_$computer.json"
 
     if ((Test-Path $gitScriptPath) -and (Test-Path $gitConfigPath)) {
