@@ -163,9 +163,9 @@ user_pref("breakpad.reportURL", "");
 user_pref("browser.tabs.crashReporting.sendReport", false);
 
 /** CAPTIVE PORTAL ***/
-user_pref("captivedetect.canonicalURL", ""); 
-user_pref("network.captive-portal-service.enabled", false); 
-user_pref("network.connectivity-service.enabled", false); 
+user_pref("captivedetect.canonicalURL", "");
+user_pref("network.captive-portal-service.enabled", false);
+user_pref("network.connectivity-service.enabled", false);
 
 /****************************************************************************
  * SECTION: PESKYFOX                                                        *
@@ -206,6 +206,7 @@ user_pref("browser.ml.chat.enabled", false);
 user_pref("browser.ml.chat.menu", false);
 user_pref("browser.tabs.groups.smart.enabled", false);
 user_pref("browser.ml.linkPreview.enabled", false);
+user_pref("browser.ai.control.translations", "available");
 
 /** FULLSCREEN NOTICE ***/
 user_pref("full-screen-api.transition-duration.enter", "0 0");

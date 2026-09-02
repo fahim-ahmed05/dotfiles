@@ -13,6 +13,7 @@
       "Fallback": false,
       "Locked": false
     },
+    "TranslateEnabled": true,
     "DontCheckDefaultBrowser": true,
     "GenerativeAI": {
       "Enabled": false,
