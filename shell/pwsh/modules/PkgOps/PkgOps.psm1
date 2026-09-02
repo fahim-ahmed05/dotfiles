@@ -60,7 +60,7 @@ function Update-AllPackages {
     winget upgrade --all --accept-package-agreements --accept-source-agreements
 
     Write-Host "`nUpdating scoop packages...`n" -ForegroundColor Cyan
-    scoop update; scoop update -a; scoop status
+    scoop update -a; scoop status
 
     Write-Host "`nUpdating uv packages...`n" -ForegroundColor Cyan
     uv tool upgrade --all
