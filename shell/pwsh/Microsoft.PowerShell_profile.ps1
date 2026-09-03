@@ -46,7 +46,6 @@ function curl {
 Set-Alias -Name ls -Value eza
 Set-Alias -Name ff -Value fzf
 Set-Alias -Name cd -Value z -Option AllScope
-Set-Alias -Name grep -Value rg
 
 # Prompt
 oh-my-posh init pwsh --config 'robbyrussell' | Invoke-Expression
