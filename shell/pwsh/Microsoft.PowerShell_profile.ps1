@@ -28,17 +28,17 @@ function sort {
 function expand {
     & "$env:USERPROFILE\scoop\shims\expand.exe" @args
 }
-
 function more {
     & "$env:USERPROFILE\scoop\shims\more.exe" @args
 }
-
 function timeout {
     & "$env:USERPROFILE\scoop\shims\timeout.exe" @args
 }
-
 function whoami {
     & "$env:USERPROFILE\scoop\shims\whoami.exe" @args
+}
+function curl {
+    & "$env:USERPROFILE\scoop\shims\curl.exe" @args
 }
 
 # Aliases
