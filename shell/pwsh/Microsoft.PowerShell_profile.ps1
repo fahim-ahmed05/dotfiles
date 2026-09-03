@@ -5,6 +5,24 @@ $global:computer = $env:COMPUTERNAME.ToLowerInvariant()
 Import-Module -Name PkgOps -Force -ErrorAction SilentlyContinue
 Import-Module -Name FileOps -Force -ErrorAction SilentlyContinue
 
+# Coreutils
+@(
+    'cat'
+    'cp'
+    'mv'
+    'rm'
+    'rmdir'
+    'tee'
+) | ForEach-Object {
+    Remove-Alias $_ -Force -ErrorAction SilentlyContinue
+}
+
+Remove-Item Function:\mkdir -Force -ErrorAction SilentlyContinue
+function sort {
+    & "$env:USERPROFILE\scoop\shims\sort.exe" @args
+}
+
+
 # Aliases
 Set-Alias -Name ls -Value eza
 Set-Alias -Name ff -Value fzf
@@ -47,21 +65,6 @@ Set-PSReadLineOption -AddToHistoryHandler {
 # Improved prediction settings
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -MaximumHistoryCount 10000
-
-function touch {
-    param(
-        [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true)]
-        [string[]]$names
-    )
-    foreach ($name in $names) {
-        if (Test-Path $name) {
-            (Get-Item $name).LastWriteTime = Get-Date
-        }
-        else {
-            New-Item -ItemType File -Path $name -Force | Out-Null
-        }
-    }
-}
 
 function mkcd {
     param(
