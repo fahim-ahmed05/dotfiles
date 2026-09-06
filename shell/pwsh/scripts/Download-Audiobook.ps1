@@ -265,6 +265,7 @@ function Invoke-Download (
 
         $proc = [System.Diagnostics.Process]::Start($psi)
         $stderrTask = $proc.StandardError.ReadToEndAsync()
+        Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content "$e[36m[START]$e[0m   $shortTitle  $e[90m(Connecting...)$e[0m"
 
         $recentStdout = [System.Collections.Generic.List[string]]::new()
 
@@ -299,7 +300,7 @@ function Invoke-Download (
             elseif ($line -match '^\[(ExtractAudio|ThumbnailsConvertor|EmbedThumbnail|ffmpeg|MoveFiles)\]') {
                 if ($sw.ElapsedMilliseconds -gt 150) {
                     $sw.Restart()
-                    $content = "$e[33m[TAGS]$e[0m  $shortTitle  $e[90m(Converting audio & embedding artwork...)$e[0m"
+                    $content = "$e[33m[TAGS]$e[0m    $shortTitle  $e[90m(Converting audio & embedding artwork...)$e[0m"
                     Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
                 }
             }
@@ -312,7 +313,7 @@ function Invoke-Download (
         $stderr = $stderrTask.GetAwaiter().GetResult()
 
         if ($proc.ExitCode -ne 0) {
-            $content = "$e[31m[FAIL]$e[0m  $titleDisplay"
+            $content = "$e[31m[FAIL]$e[0m    $titleDisplay"
             Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
             if ($stderr) {
                 Write-Host $stderr.Trim() -ForegroundColor DarkRed
@@ -332,7 +333,7 @@ function Invoke-Download (
             return $false
         }
 
-        $content = "$e[33m[TAGS]$e[0m  $shortTitle  $e[90m(Writing metadata...)$e[0m"
+        $content = "$e[33m[TAGS]$e[0m    $shortTitle  $e[90m(Writing metadata...)$e[0m"
         Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
 
         $metaToWrite = @{
@@ -343,7 +344,7 @@ function Invoke-Download (
         Write-AudioMetadata -FilePath $outputFile -Meta $metaToWrite -TrackNumber $TrackNumber
 
         # Final DONE line for this track
-        $content = "$e[32m[DONE]$e[0m  $titleDisplay"
+        $content = "$e[32m[DONE]$e[0m    $titleDisplay"
         Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
         return $true
     }
@@ -423,7 +424,7 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
             } else { 
                 $downloadJobs[$i].Meta.Title 
             }
-            [Console]::WriteLine("$e[36m[START]$e[0m Downloading: $titleDisp...")
+            [Console]::WriteLine("$e[90m[QUEUED]$e[0m  $titleDisp...")
         }
         
         $results = $downloadJobs | ForEach-Object -Parallel {
