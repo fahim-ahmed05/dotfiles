@@ -155,6 +155,7 @@ function Write-AudioMetadata ([string]$FilePath, [hashtable]$Meta, [int]$TrackNu
 
     $ffmpegArgs = @(
         "-nostdin",
+        "-loglevel", "error",
         "-y",
         "-i", $FilePath,
         "-map", "0",
@@ -182,35 +183,96 @@ function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber
 
     if (-not (Test-Path $DestPath)) { New-Item -ItemType Directory -Path $DestPath | Out-Null }
 
+    $trackTitle = Get-TrackTitle -Meta $Meta -IsMulti:$IsMulti -TrackNumber $TrackNumber
+    $safeTrackTitle = Get-SafeName $trackTitle
+    $titleDisplay = if ($IsMulti) { $trackTitle } else { $Meta.Title }
+    $progressId = [Math]::Max(1, $TrackNumber)
+
     $baseArgs = @(
         "--extract-audio", "--audio-format", "m4a", "--force-ipv4", 
         "--sponsorblock-remove", "sponsor,intro,outro,selfpromo,interaction",
         "--no-embed-chapters", "--embed-thumbnail", "--convert-thumbnails", "jpg",
-
-        "--ppa", "ThumbnailsConvertor+ffmpeg_o:-vf crop='min(iw\,ih):min(iw\,ih)'"
+        "--ppa", "ThumbnailsConvertor+ffmpeg_o:-vf crop='min(iw\,ih):min(iw\,ih)'",
+        "--newline",
+        "--no-warnings",
+        "--progress-template", "PROGRESS:%(progress._percent_str)s|%(progress._speed_str)s|%(progress._eta_str)s|%(progress._total_bytes_str|progress._total_bytes_estimate_str)s"
     )
 
-    $trackTitle = Get-TrackTitle -Meta $Meta -IsMulti:$IsMulti -TrackNumber $TrackNumber
-    $safeTrackTitle = Get-SafeName $trackTitle
-    $ytdlpArgs = $baseArgs
-    
+    $ytdlpArgs = [System.Collections.Generic.List[string]]::new()
+    foreach ($arg in $baseArgs) { $ytdlpArgs.Add($arg) }
+
+    $ytdlpArgs.Add("-P")
+    $ytdlpArgs.Add($DestPath)
+
+    $ytdlpArgs.Add("-o")
     if ($IsMulti) {
-        $ytdlpArgs += "-o", "$DestPath/$safeTrackTitle.%(ext)s" 
+        $ytdlpArgs.Add("$safeTrackTitle.%(ext)s") 
     }
     else { 
-        $ytdlpArgs += "-o", "$DestPath/$SafeTitle.%(ext)s" 
+        $ytdlpArgs.Add("$SafeTitle.%(ext)s") 
     }
     
-    $ytdlpArgs += $Url
+    $ytdlpArgs.Add($Url)
 
-    $titleDisplay = if ($IsMulti) { "$($Meta.Title) - Part $TrackNumber" } else { $Meta.Title }
-    Write-Host "`n[START] Downloading: $titleDisplay..." -ForegroundColor Cyan
+    Write-Host "[START] Downloading: $titleDisplay..." -ForegroundColor Cyan
+    Write-Progress -Id $progressId -Activity $titleDisplay -Status "Connecting & fetching info..." -PercentComplete 0
     
     try {
-        $proc = Start-Process -FilePath "yt-dlp" -ArgumentList ($ytdlpArgs | ForEach-Object { '"{0}"' -f ($_ -replace '"', '\"') }) -NoNewWindow -Wait -PassThru
+        $psi = [System.Diagnostics.ProcessStartInfo]::new()
+        $psi.FileName = "yt-dlp"
+        foreach ($arg in $ytdlpArgs) {
+            $psi.ArgumentList.Add($arg)
+        }
+        $psi.RedirectStandardOutput = $true
+        $psi.RedirectStandardError = $true
+        $psi.UseShellExecute = $false
+        $psi.CreateNoWindow = $true
+
+        $proc = [System.Diagnostics.Process]::Start($psi)
+        $stderrTask = $proc.StandardError.ReadToEndAsync()
+
+        $recentStdout = [System.Collections.Generic.List[string]]::new()
+
+        while (-not $proc.StandardOutput.EndOfStream) {
+            $line = $proc.StandardOutput.ReadLine()
+            if ([string]::IsNullOrWhiteSpace($line)) { continue }
+
+            if ($line -match '^PROGRESS:\s*(?<pct>[\d\.]+)%\|(?<spd>[^|]*)\|(?<eta>[^|]*)\|(?<tot>.*)$') {
+                $pctNum = 0.0
+                if ([double]::TryParse($matches['pct'], [ref]$pctNum)) {
+                    $spd = $matches['spd'].Trim()
+                    $eta = $matches['eta'].Trim()
+                    $tot = $matches['tot'].Trim()
+
+                    $statusParts = @()
+                    if ($spd -and $spd -ne 'NA') { $statusParts += $spd }
+                    if ($eta -and $eta -ne 'NA') { $statusParts += "ETA $eta" }
+                    if ($tot -and $tot -ne 'NA') { $statusParts += "($tot)" }
+                    $status = if ($statusParts.Count -gt 0) { $statusParts -join " | " } else { "Downloading..." }
+
+                    $effectivePct = [Math]::Min(90.0, $pctNum * 0.9)
+                    Write-Progress -Id $progressId -Activity $titleDisplay -Status $status -PercentComplete $effectivePct
+                }
+            }
+            elseif ($line -match '^\[(ExtractAudio|ThumbnailsConvertor|EmbedThumbnail|ffmpeg|MoveFiles)\]') {
+                Write-Progress -Id $progressId -Activity $titleDisplay -Status "Converting audio & embedding artwork..." -PercentComplete 92
+            }
+
+            if ($recentStdout.Count -ge 20) { $recentStdout.RemoveAt(0) }
+            $recentStdout.Add($line)
+        }
+
+        $proc.WaitForExit()
+        $stderr = $stderrTask.GetAwaiter().GetResult()
 
         if ($proc.ExitCode -ne 0) {
             Write-Host "`n[ERROR] yt-dlp failed for $titleDisplay ($Url)" -ForegroundColor Red
+            if ($stderr) {
+                Write-Host $stderr.Trim() -ForegroundColor DarkRed
+            }
+            elseif ($recentStdout.Count -gt 0) {
+                Write-Host ($recentStdout -join "`n") -ForegroundColor DarkRed
+            }
             return $false
         }
 
@@ -222,18 +284,23 @@ function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber
             return $false
         }
 
+        Write-Progress -Id $progressId -Activity $titleDisplay -Status "Writing tags & metadata..." -PercentComplete 96
+
         $metaToWrite = @{
             Title      = $Meta.Title
             Author     = $Meta.Author
             TrackTitle = $trackTitle
         }
         Write-AudioMetadata -FilePath $outputFile -Meta $metaToWrite -TrackNumber $TrackNumber
-        Write-Host "`n[DONE] Finished: $titleDisplay" -ForegroundColor Green
+        Write-Host "[DONE] Finished: $titleDisplay" -ForegroundColor Green
         return $true
     }
     catch {
         Write-Host "`n[ERROR] Failed processing $Url : $_" -ForegroundColor Red
         return $false
+    }
+    finally {
+        Write-Progress -Id $progressId -Activity $titleDisplay -Completed
     }
 }
 
@@ -313,7 +380,7 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
             $fzfInput = @()
             for ($i = 0; $i -lt $failedJobs.Count; $i++) {
                 $fj = $failedJobs[$i]
-                $titleDisplay = if ($fj.IsMulti) { "$($fj.Meta.Title) - Part $($fj.TrackNum)" } else { $fj.Meta.Title }
+                $titleDisplay = if ($fj.IsMulti) { Get-TrackTitle -Meta $fj.Meta -IsMulti:$fj.IsMulti -TrackNumber $fj.TrackNum } else { $fj.Meta.Title }
                 $fzfInput += "$i|$titleDisplay - $($fj.Url)"
             }
             
