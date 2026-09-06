@@ -229,6 +229,7 @@ function Invoke-Download (
 
     $baseArgs = @(
         "--encoding", "utf-8",
+        "-f", "ba[ext=m4a]/ba",
         "--extract-audio", "--audio-format", "m4a", "--force-ipv4", 
         "--sponsorblock-remove", "sponsor,intro,outro,selfpromo,interaction",
         "--no-embed-chapters", "--embed-thumbnail", "--convert-thumbnails", "jpg",
@@ -329,7 +330,7 @@ function Invoke-Download (
                     Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
                 }
             }
-            elseif ($line -match '^\[(ExtractAudio|ThumbnailsConvertor|EmbedThumbnail|ffmpeg|MoveFiles)\]') {
+            elseif ($line -match '^\[(FixupM4a|ExtractAudio|ThumbnailsConvertor|EmbedThumbnail|ffmpeg|MoveFiles)\]') {
                 if ($sw.ElapsedMilliseconds -gt 150) {
                     $sw.Restart()
                     $content = "$e[33m[PROCESSING]$e[0m  $shortTitle  $e[90m(Converting audio & embedding artwork...)$e[0m"
