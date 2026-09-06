@@ -11,6 +11,9 @@ param (
 $ErrorActionPreference = "Stop"
 
 # --- Globals & Encoding ---
+chcp 65001 >$null
+$env:PYTHONIOENCODING = "utf-8"
+$env:PYTHONUTF8 = "1"
 $global:utf8NoBom = New-Object System.Text.UTF8Encoding $false
 [Console]::OutputEncoding = $global:utf8NoBom
 [Console]::InputEncoding = $global:utf8NoBom
@@ -129,7 +132,7 @@ function Update-History ([string]$Url, [string]$Name, [string]$Type) {
 function Get-Metadata ($url, [string]$VideoTitle = "") {
     if ([string]::IsNullOrWhiteSpace($VideoTitle)) {
         Write-Host "`nFetching metadata..." -ForegroundColor DarkGray
-        $meta = yt-dlp --dump-json --no-warnings $url 2>$null | ConvertFrom-Json
+        $meta = yt-dlp --encoding utf-8 --dump-json --no-warnings $url 2>$null | ConvertFrom-Json
         if (-not $meta) { throw "Failed to fetch data for $url" }
         $VideoTitle = $meta.title
     }
@@ -221,6 +224,7 @@ function Invoke-Download (
     $emptyChar  = [char]0x2591 # ░
 
     $baseArgs = @(
+        "--encoding", "utf-8",
         "--extract-audio", "--audio-format", "m4a", "--force-ipv4", 
         "--sponsorblock-remove", "sponsor,intro,outro,selfpromo,interaction",
         "--no-embed-chapters", "--embed-thumbnail", "--convert-thumbnails", "jpg",
@@ -491,7 +495,7 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
 
     Write-Host "`nFetching list..." -ForegroundColor DarkGray
     
-    $rawCache = @(yt-dlp --flat-playlist --print "%(playlist_title|channel|uploader)s:::%(id)s|%(title)s" $targetUrl)
+    $rawCache = @(yt-dlp --encoding utf-8 --flat-playlist --print "%(playlist_title|channel|uploader)s:::%(id)s|%(title)s" $targetUrl)
     
     if (-not $rawCache -or $rawCache.Count -eq 0) { 
         Write-Host "Failed to fetch videos or list is empty." -ForegroundColor Red

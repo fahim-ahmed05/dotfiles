@@ -1,6 +1,15 @@
 # Global variables
 $global:computer = $env:COMPUTERNAME.ToLowerInvariant()
 
+# Encoding / UTF-8 Unicode Support
+chcp 65001 >$null
+$global:utf8NoBom = [System.Text.UTF8Encoding]::new($false)
+[Console]::OutputEncoding = $global:utf8NoBom
+[Console]::InputEncoding  = $global:utf8NoBom
+$OutputEncoding           = $global:utf8NoBom
+$env:PYTHONIOENCODING     = "utf-8"
+$env:PYTHONUTF8           = "1"
+
 # Modules
 Import-Module -Name PkgOps -Force -ErrorAction SilentlyContinue
 Import-Module -Name FileOps -Force -ErrorAction SilentlyContinue
