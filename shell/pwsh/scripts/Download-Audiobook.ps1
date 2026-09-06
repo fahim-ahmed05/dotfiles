@@ -216,12 +216,16 @@ function Invoke-Download (
     $titleDisplay = if ($IsMulti) { $trackTitle } else { $Meta.Title }
 
     # Truncate title for display if needed so line never wraps
-    $maxTitleLen = 42
+    $winWidth = 80
+    try { $winWidth = [Console]::WindowWidth } catch {}
+    if ($winWidth -le 0) { $winWidth = 80 }
+    $maxTitleLen = [Math]::Max(25, [Math]::Min(38, $winWidth - 42))
     $shortTitle = if ($titleDisplay.Length -gt $maxTitleLen) { $titleDisplay.Substring(0, $maxTitleLen - 3) + "..." } else { $titleDisplay }
 
     $e = [char]27
     $filledChar = [char]0x2588 # █
     $emptyChar  = [char]0x2591 # ░
+    $barWidth   = 10
 
     $baseArgs = @(
         "--encoding", "utf-8",
@@ -231,7 +235,7 @@ function Invoke-Download (
         "--ppa", "ThumbnailsConvertor+ffmpeg_o:-vf crop='min(iw\,ih):min(iw\,ih)'",
         "--newline",
         "--no-warnings",
-        "--progress-template", "PROGRESS:%(progress._percent_str)s|%(progress._speed_str)s|%(progress._eta_str)s|%(progress._total_bytes_str|progress._total_bytes_estimate_str)s"
+        "--progress-template", "download:PROGRESS:%(progress._percent_str)s|%(progress._speed_str)s|%(progress._eta_str)s|%(progress._total_bytes_str|progress._total_bytes_estimate_str)s"
     )
 
     $ytdlpArgs = [System.Collections.Generic.List[string]]::new()
@@ -265,7 +269,10 @@ function Invoke-Download (
 
         $proc = [System.Diagnostics.Process]::Start($psi)
         $stderrTask = $proc.StandardError.ReadToEndAsync()
-        Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content "$e[36m[START]$e[0m   $shortTitle  $e[90m(Connecting...)$e[0m"
+
+        $barEmpty = "$emptyChar" * $barWidth
+        $initialContent = "$e[36m[DOWNLOADING]$e[0m [$e[34m$barEmpty$e[0m]   0%  $shortTitle  $e[90m(Connecting...)$e[0m"
+        Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $initialContent
 
         $recentStdout = [System.Collections.Generic.List[string]]::new()
 
@@ -273,34 +280,59 @@ function Invoke-Download (
             $line = $proc.StandardOutput.ReadLine()
             if ([string]::IsNullOrWhiteSpace($line)) { continue }
 
+            $matched = $false
+            $pctNum = 0.0
+            $spd = ""
+            $eta = ""
+
+            # 1. yt-dlp custom template: PROGRESS: 45.0%| 2.4MiB/s|00:15| 10MiB
             if ($line -match '^PROGRESS:\s*(?<pct>[\d\.]+)%\|(?<spd>[^|]*)\|(?<eta>[^|]*)\|(?<tot>.*)$') {
-                $pctNum = 0.0
                 if ([double]::TryParse($matches['pct'], [ref]$pctNum)) {
-                    # Throttle display updates to ~80ms intervals
-                    if ($sw.ElapsedMilliseconds -gt 80 -or $pctNum -ge 100.0) {
-                        $sw.Restart()
-                        $spd = $matches['spd'].Trim()
-                        $eta = $matches['eta'].Trim()
+                    $spd = $matches['spd'].Trim()
+                    $eta = $matches['eta'].Trim()
+                    $matched = $true
+                }
+            }
+            # 2. aria2c external downloader: [#hex down/tot(pct%) CN:n DL:speed ETA:time]
+            elseif ($line -match '\[#\w+\s+(?<down>[^\/\s]+)\/(?<tot>[^\(\s]+)(\((?<pct>\d+)%\))?(\s+CN:\d+)?(\s+DL:(?<spd>[^\s\]]+))?(\s+ETA:(?<eta>[^\]]+))?') {
+                $rawPct = if ($matches['pct']) { $matches['pct'] } else { '0' }
+                if ([double]::TryParse($rawPct, [ref]$pctNum)) {
+                    $spdRaw = if ($matches['spd']) { $matches['spd'].Trim() } else { '' }
+                    $spd = if ($spdRaw -and $spdRaw -notmatch '/s$') { "$spdRaw/s" } else { $spdRaw }
+                    $eta = if ($matches['eta']) { $matches['eta'].Trim() } else { '' }
+                    $matched = $true
+                }
+            }
+            # 3. yt-dlp native fallback: [download]  45.0% of ... at 2.4MiB/s ETA 00:15
+            elseif ($line -match '^\[download\]\s+(?<pct>[\d\.]+)%\s+of\s+.*?(?:\s+at\s+(?<spd>[^\s]+))?(?:\s+ETA\s+(?<eta>[^\s]+))?$') {
+                if ([double]::TryParse($matches['pct'], [ref]$pctNum)) {
+                    $spd = if ($matches['spd']) { $matches['spd'].Trim() } else { '' }
+                    $eta = if ($matches['eta']) { $matches['eta'].Trim() } else { '' }
+                    $matched = $true
+                }
+            }
 
-                        $barWidth = 14
-                        $effectivePct = [Math]::Min(90.0, $pctNum * 0.9)
-                        $filled = [Math]::Max(0, [Math]::Min($barWidth, [int](($effectivePct / 100.0) * $barWidth)))
-                        $empty = $barWidth - $filled
-                        $barStr = ("$filledChar" * $filled) + ("$emptyChar" * $empty)
-                        $pctStr = "{0,3}%" -f [int]$effectivePct
+            if ($matched) {
+                # Throttle display updates to ~80ms intervals
+                if ($sw.ElapsedMilliseconds -gt 80 -or $pctNum -ge 100.0) {
+                    $sw.Restart()
 
-                        $info = if ($spd -and $spd -ne 'NA') { "$spd" } else { "" }
-                        if ($eta -and $eta -ne 'NA') { $info += "  ETA $eta" }
+                    $filled = [Math]::Max(0, [Math]::Min($barWidth, [int](($pctNum / 100.0) * $barWidth)))
+                    $empty = $barWidth - $filled
+                    $barStr = ("$filledChar" * $filled) + ("$emptyChar" * $empty)
+                    $pctStr = "{0,3}%" -f [int]$pctNum
 
-                        $content = "$e[34m[$barStr]$e[0m $pctStr  $shortTitle  $e[90m$info$e[0m"
-                        Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
-                    }
+                    $info = if ($spd -and $spd -ne 'NA') { "$spd" } else { "" }
+                    if ($eta -and $eta -ne 'NA') { $info += "  ETA $eta" }
+
+                    $content = "$e[36m[DOWNLOADING]$e[0m [$e[34m$barStr$e[0m] $pctStr  $shortTitle  $e[90m$info$e[0m"
+                    Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
                 }
             }
             elseif ($line -match '^\[(ExtractAudio|ThumbnailsConvertor|EmbedThumbnail|ffmpeg|MoveFiles)\]') {
                 if ($sw.ElapsedMilliseconds -gt 150) {
                     $sw.Restart()
-                    $content = "$e[33m[TAGS]$e[0m    $shortTitle  $e[90m(Converting audio & embedding artwork...)$e[0m"
+                    $content = "$e[33m[PROCESSING]$e[0m  $shortTitle  $e[90m(Converting audio & embedding artwork...)$e[0m"
                     Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
                 }
             }
@@ -313,7 +345,7 @@ function Invoke-Download (
         $stderr = $stderrTask.GetAwaiter().GetResult()
 
         if ($proc.ExitCode -ne 0) {
-            $content = "$e[31m[FAIL]$e[0m    $titleDisplay"
+            $content = "$e[31m[FAIL]$e[0m        $titleDisplay"
             Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
             if ($stderr) {
                 Write-Host $stderr.Trim() -ForegroundColor DarkRed
@@ -328,12 +360,12 @@ function Invoke-Download (
         $outputFile = Get-OutputFilePath -DestPath $DestPath -BaseName $outputBaseName
         
         if (-not (Test-Path $outputFile)) {
-            $content = "$e[31m[FAIL]$e[0m  $titleDisplay (File not found)"
+            $content = "$e[31m[FAIL]$e[0m        $titleDisplay (File not found)"
             Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
             return $false
         }
 
-        $content = "$e[33m[TAGS]$e[0m    $shortTitle  $e[90m(Writing metadata...)$e[0m"
+        $content = "$e[33m[PROCESSING]$e[0m  $shortTitle  $e[90m(Writing metadata...)$e[0m"
         Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
 
         $metaToWrite = @{
@@ -344,12 +376,12 @@ function Invoke-Download (
         Write-AudioMetadata -FilePath $outputFile -Meta $metaToWrite -TrackNumber $TrackNumber
 
         # Final DONE line for this track
-        $content = "$e[32m[DONE]$e[0m    $titleDisplay"
+        $content = "$e[32m[DONE]$e[0m        $titleDisplay"
         Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
         return $true
     }
     catch {
-        $content = "$e[31m[FAIL]$e[0m  $titleDisplay ($_)"
+        $content = "$e[31m[FAIL]$e[0m        $titleDisplay ($_)"
         Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
         return $false
     }
@@ -424,7 +456,7 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
             } else { 
                 $downloadJobs[$i].Meta.Title 
             }
-            [Console]::WriteLine("$e[90m[QUEUED]$e[0m  $titleDisp...")
+            [Console]::WriteLine("$e[90m[QUEUED]$e[0m      $titleDisp...")
         }
         
         $results = $downloadJobs | ForEach-Object -Parallel {
@@ -478,7 +510,7 @@ function Confirm-And-Process ([object[]]$Selections) {
 }
 
 function Invoke-PlaylistMenu ([switch]$IsChannel) {
-    $Type = $IsChannel ? "Channels" : "Playlists"
+    $Type = if ($IsChannel) { "Channels" } else { "Playlists" }
 
     Write-Host "`nSelect from history or paste a new $Type URL" -ForegroundColor Yellow
     $historyItems = $global:Hist.$Type
