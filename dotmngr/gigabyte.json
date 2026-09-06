@@ -518,21 +518,20 @@
 		},
 		"harbor": {
 			"enabled": true,
+			"mode": "junction",
 			"items": [
 				{
-					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\harbor\\data",
-					"to": "%LOCALAPPDATA%\\app.harbor\\EBWebView"
+					"from": "%USERPROFILE%\\Configs\\harbor\\local",
+					"to": "%LOCALAPPDATA%\\app.harbor"
 				},
 				{
-					"mode": "symlink",
-					"from": "%USERPROFILE%\\Configs\\harbor\\settings.json",
-					"to": "%APPDATA%\\app.harbor\\settings.json"
+					"from": "%USERPROFILE%\\Configs\\harbor\\roaming",
+					"to": "%APPDATA%\\app.harbor"
 				},
 				{
-					"mode": "symlink",
-					"from": "%USERPROFILE%\\Configs\\harbor\\.window-state.json",
-					"to": "%APPDATA%\\app.harbor\\.window-state.json"
+					"mode": "seed",
+					"from": "%USERPROFILE%\\Configs\\harbor\\harbor_center_window_powertoys.lnk",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Harbor (PowerToys).lnk"
 				}
 			]
 		}
