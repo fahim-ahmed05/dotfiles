@@ -178,7 +178,32 @@ function Write-AudioMetadata ([string]$FilePath, [hashtable]$Meta, [int]$TrackNu
 }
 
 # --- Core Download & Processing Logic ---
-function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber = 1, [string]$DestPath) {
+function Update-TerminalLine ([int]$SlotIndex, [int]$TotalSlots, [object]$ConsoleLock, [string]$Content) {
+    if ($null -eq $ConsoleLock -or $TotalSlots -le 0) { return }
+    $e = [char]27
+    $dist = $TotalSlots - $SlotIndex
+    if ($dist -le 0) { return }
+
+    [System.Threading.Monitor]::Enter($ConsoleLock)
+    try {
+        [Console]::Write("$e[${dist}A`r$e[2K$Content$e[${dist}B`r")
+    }
+    finally {
+        [System.Threading.Monitor]::Exit($ConsoleLock)
+    }
+}
+
+# --- Core Download & Processing Logic ---
+function Invoke-Download (
+    [string]$Url, 
+    $Meta, 
+    [bool]$IsMulti, 
+    [int]$TrackNumber = 1, 
+    [string]$DestPath,
+    [int]$SlotIndex = 0,
+    [int]$TotalSlots = 1,
+    [object]$ConsoleLock = $null
+) {
     $SafeTitle = Get-SafeName $Meta.Title
 
     if (-not (Test-Path $DestPath)) { New-Item -ItemType Directory -Path $DestPath | Out-Null }
@@ -186,7 +211,14 @@ function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber
     $trackTitle = Get-TrackTitle -Meta $Meta -IsMulti:$IsMulti -TrackNumber $TrackNumber
     $safeTrackTitle = Get-SafeName $trackTitle
     $titleDisplay = if ($IsMulti) { $trackTitle } else { $Meta.Title }
-    $progressId = [Math]::Max(1, $TrackNumber)
+
+    # Truncate title for display if needed so line never wraps
+    $maxTitleLen = 42
+    $shortTitle = if ($titleDisplay.Length -gt $maxTitleLen) { $titleDisplay.Substring(0, $maxTitleLen - 3) + "..." } else { $titleDisplay }
+
+    $e = [char]27
+    $filledChar = [char]0x2588 # █
+    $emptyChar  = [char]0x2591 # ░
 
     $baseArgs = @(
         "--extract-audio", "--audio-format", "m4a", "--force-ipv4", 
@@ -214,8 +246,7 @@ function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber
     
     $ytdlpArgs.Add($Url)
 
-    Write-Host "[START] Downloading: $titleDisplay..." -ForegroundColor Cyan
-    Write-Progress -Id $progressId -Activity $titleDisplay -Status "Connecting & fetching info..." -PercentComplete 0
+    $sw = [System.Diagnostics.Stopwatch]::StartNew()
     
     try {
         $psi = [System.Diagnostics.ProcessStartInfo]::new()
@@ -240,22 +271,33 @@ function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber
             if ($line -match '^PROGRESS:\s*(?<pct>[\d\.]+)%\|(?<spd>[^|]*)\|(?<eta>[^|]*)\|(?<tot>.*)$') {
                 $pctNum = 0.0
                 if ([double]::TryParse($matches['pct'], [ref]$pctNum)) {
-                    $spd = $matches['spd'].Trim()
-                    $eta = $matches['eta'].Trim()
-                    $tot = $matches['tot'].Trim()
+                    # Throttle display updates to ~80ms intervals
+                    if ($sw.ElapsedMilliseconds -gt 80 -or $pctNum -ge 100.0) {
+                        $sw.Restart()
+                        $spd = $matches['spd'].Trim()
+                        $eta = $matches['eta'].Trim()
 
-                    $statusParts = @()
-                    if ($spd -and $spd -ne 'NA') { $statusParts += $spd }
-                    if ($eta -and $eta -ne 'NA') { $statusParts += "ETA $eta" }
-                    if ($tot -and $tot -ne 'NA') { $statusParts += "($tot)" }
-                    $status = if ($statusParts.Count -gt 0) { $statusParts -join " | " } else { "Downloading..." }
+                        $barWidth = 14
+                        $effectivePct = [Math]::Min(90.0, $pctNum * 0.9)
+                        $filled = [Math]::Max(0, [Math]::Min($barWidth, [int](($effectivePct / 100.0) * $barWidth)))
+                        $empty = $barWidth - $filled
+                        $barStr = ("$filledChar" * $filled) + ("$emptyChar" * $empty)
+                        $pctStr = "{0,3}%" -f [int]$effectivePct
 
-                    $effectivePct = [Math]::Min(90.0, $pctNum * 0.9)
-                    Write-Progress -Id $progressId -Activity $titleDisplay -Status $status -PercentComplete $effectivePct
+                        $info = if ($spd -and $spd -ne 'NA') { "$spd" } else { "" }
+                        if ($eta -and $eta -ne 'NA') { $info += "  ETA $eta" }
+
+                        $content = "$e[34m[$barStr]$e[0m $pctStr  $shortTitle  $e[90m$info$e[0m"
+                        Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
+                    }
                 }
             }
             elseif ($line -match '^\[(ExtractAudio|ThumbnailsConvertor|EmbedThumbnail|ffmpeg|MoveFiles)\]') {
-                Write-Progress -Id $progressId -Activity $titleDisplay -Status "Converting audio & embedding artwork..." -PercentComplete 92
+                if ($sw.ElapsedMilliseconds -gt 150) {
+                    $sw.Restart()
+                    $content = "$e[33m[TAGS]$e[0m  $shortTitle  $e[90m(Converting audio & embedding artwork...)$e[0m"
+                    Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
+                }
             }
 
             if ($recentStdout.Count -ge 20) { $recentStdout.RemoveAt(0) }
@@ -266,7 +308,8 @@ function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber
         $stderr = $stderrTask.GetAwaiter().GetResult()
 
         if ($proc.ExitCode -ne 0) {
-            Write-Host "`n[ERROR] yt-dlp failed for $titleDisplay ($Url)" -ForegroundColor Red
+            $content = "$e[31m[FAIL]$e[0m  $titleDisplay"
+            Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
             if ($stderr) {
                 Write-Host $stderr.Trim() -ForegroundColor DarkRed
             }
@@ -280,11 +323,13 @@ function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber
         $outputFile = Get-OutputFilePath -DestPath $DestPath -BaseName $outputBaseName
         
         if (-not (Test-Path $outputFile)) {
-            Write-Host "`n[ERROR] Downloaded file not found for $($titleDisplay): $outputFile" -ForegroundColor Red
+            $content = "$e[31m[FAIL]$e[0m  $titleDisplay (File not found)"
+            Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
             return $false
         }
 
-        Write-Progress -Id $progressId -Activity $titleDisplay -Status "Writing tags & metadata..." -PercentComplete 96
+        $content = "$e[33m[TAGS]$e[0m  $shortTitle  $e[90m(Writing metadata...)$e[0m"
+        Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
 
         $metaToWrite = @{
             Title      = $Meta.Title
@@ -292,15 +337,16 @@ function Invoke-Download ([string]$Url, $Meta, [bool]$IsMulti, [int]$TrackNumber
             TrackTitle = $trackTitle
         }
         Write-AudioMetadata -FilePath $outputFile -Meta $metaToWrite -TrackNumber $TrackNumber
-        Write-Host "[DONE] Finished: $titleDisplay" -ForegroundColor Green
+
+        # Final DONE line for this track
+        $content = "$e[32m[DONE]$e[0m  $titleDisplay"
+        Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
         return $true
     }
     catch {
-        Write-Host "`n[ERROR] Failed processing $Url : $_" -ForegroundColor Red
+        $content = "$e[31m[FAIL]$e[0m  $titleDisplay ($_)"
+        Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
         return $false
-    }
-    finally {
-        Write-Progress -Id $progressId -Activity $titleDisplay -Completed
     }
 }
 
@@ -358,13 +404,27 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
     }
 
     $scriptPath = $PSCommandPath
+    $consoleLock = [object]::new()
     
     while ($downloadJobs.Count -gt 0) {
         $failedJobs = @()
+        $totalSlots = $downloadJobs.Count
+        
+        # Attach SlotIndex to each job and print initial [START] lines
+        $e = [char]27
+        for ($i = 0; $i -lt $totalSlots; $i++) {
+            $downloadJobs[$i] | Add-Member -NotePropertyName SlotIndex -NotePropertyValue $i -Force
+            $titleDisp = if ($downloadJobs[$i].IsMulti) { 
+                Get-TrackTitle -Meta $downloadJobs[$i].Meta -IsMulti:$downloadJobs[$i].IsMulti -TrackNumber $downloadJobs[$i].TrackNum 
+            } else { 
+                $downloadJobs[$i].Meta.Title 
+            }
+            [Console]::WriteLine("$e[36m[START]$e[0m Downloading: $titleDisp...")
+        }
         
         $results = $downloadJobs | ForEach-Object -Parallel {
             . $using:scriptPath
-            $success = Invoke-Download -Url $_.Url -Meta $_.Meta -IsMulti $_.IsMulti -TrackNumber $_.TrackNum -DestPath $_.DestPath
+            $success = Invoke-Download -Url $_.Url -Meta $_.Meta -IsMulti $_.IsMulti -TrackNumber $_.TrackNum -DestPath $_.DestPath -SlotIndex $_.SlotIndex -TotalSlots $using:totalSlots -ConsoleLock $using:consoleLock
             if (-not $success) { return $_ }
         } -ThrottleLimit $ParallelLimit
         
@@ -397,11 +457,11 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
             }
         }
         else {
+            Write-Host "`nFinished: All parts downloaded and tagged successfully.`n" -ForegroundColor Green
             break
         }
     }
 }
-
 function Confirm-And-Process ([object[]]$Selections) {
     if (-not $Selections) { return }
     $Urls = @($Selections | ForEach-Object { $_.Url })
