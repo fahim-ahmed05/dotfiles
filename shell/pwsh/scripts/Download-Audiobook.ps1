@@ -276,10 +276,13 @@ function Invoke-Download (
         Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $initialContent
 
         $recentStdout = [System.Collections.Generic.List[string]]::new()
+        $hasDownloaded = $false
 
         while (-not $proc.StandardOutput.EndOfStream) {
             $line = $proc.StandardOutput.ReadLine()
             if ([string]::IsNullOrWhiteSpace($line)) { continue }
+
+            if ($line -match '^\[download\]') { $hasDownloaded = $true }
 
             $matched = $false
             $pctNum = 0.0
@@ -314,6 +317,7 @@ function Invoke-Download (
             }
 
             if ($matched) {
+                $hasDownloaded = $true
                 # Throttle display updates to ~80ms intervals
                 if ($sw.ElapsedMilliseconds -gt 80 -or $pctNum -ge 100.0) {
                     $sw.Restart()
@@ -330,7 +334,7 @@ function Invoke-Download (
                     Update-TerminalLine -SlotIndex $SlotIndex -TotalSlots $TotalSlots -ConsoleLock $ConsoleLock -Content $content
                 }
             }
-            elseif ($line -match '^\[(FixupM4a|ExtractAudio|ThumbnailsConvertor|EmbedThumbnail|ffmpeg|MoveFiles)\]') {
+            elseif ($hasDownloaded -and $line -match '^\[(FixupM4a|ExtractAudio|EmbedThumbnail|ffmpeg|MoveFiles)\]') {
                 if ($sw.ElapsedMilliseconds -gt 150) {
                     $sw.Restart()
                     $content = "$e[33m[PROCESSING]$e[0m  $shortTitle  $e[90m(Converting audio & embedding artwork...)$e[0m"
