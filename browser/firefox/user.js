@@ -20,12 +20,6 @@ user_pref("media.cache_resume_threshold", 1800);
 user_pref("image.mem.decode_bytes_at_a_time", 32768);
 
 /** NETWORKING ***/
-user_pref("network.buffer.cache.size", 65535);
-user_pref("network.buffer.cache.count", 48);
-user_pref("network.http.max-connections", 1800);
-user_pref("network.http.max-persistent-connections-per-server", 10);
-user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5);
-user_pref("network.http.request.max-start-delay", 5);
 user_pref("network.dnsCacheExpiration", 3600);
 
 /****************************************************************************
@@ -53,7 +47,6 @@ user_pref("browser.xul.error_pages.expert_bad_cert", true);
 user_pref("security.tls.enable_0rtt_data", false);
 
 /** DISK AVOIDANCE ***/
-user_pref("browser.cache.disk.enable", false);
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true);
 user_pref("media.memory_cache_max_size", 65536);
 user_pref("browser.sessionstore.interval", 60000);
