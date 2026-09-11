@@ -28,6 +28,7 @@ Import-Module -Name FileOps -Force -ErrorAction SilentlyContinue
     'pwd'
     'sleep'
     'diff'
+    'sort'
 ) | ForEach-Object {
     Remove-Alias $_ -Force -ErrorAction SilentlyContinue
 }
@@ -49,6 +50,12 @@ function whoami {
 }
 function curl {
     & "$env:USERPROFILE\scoop\shims\curl.exe" @args
+}
+function find {
+    & "$env:USERPROFILE\scoop\shims\find.exe" @args
+}
+function hostname {
+    & "$env:USERPROFILE\scoop\shims\hostname.exe" @args
 }
 
 # Aliases
