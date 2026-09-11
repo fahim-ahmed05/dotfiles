@@ -9,11 +9,11 @@
 			"items": [
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\ssh\\config",
-					"to": "%USERPROFILE%\\Configs\\ssh\\config"
+					"to": "%USERPROFILE%\\Backups\\AppData\\SSH\\config"
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\ssh",
+					"from": "%USERPROFILE%\\Backups\\AppData\\SSH",
 					"to": "%USERPROFILE%\\.ssh"
 				}
 			]
@@ -60,12 +60,17 @@
 				},
 				{
 					"from": "%USERPROFILE%\\Git\\dotfiles\\browser\\firefox\\user.js",
-					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\kw8z6mpc.personal\\user.js"
+					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\orahs41m.Personal\\user.js"
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\firefox\\kw8z6mpc.personal",
-					"to": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\kw8z6mpc.personal"
+					"from": "%USERPROFILE%\\Backups\\AppData\\Firefox\\Roaming",
+					"to": "%APPDATA%\\Mozilla\\Firefox"
+				},
+				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Mozilla\\Firefox\\Local",
+					"to": "%LOCALAPPDATA%\\Mozilla\\Firefox"
 				}
 			]
 		},
@@ -74,11 +79,11 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\flowlauncher\\Plugins",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Flow Launcher\\Plugins",
 					"to": "%APPDATA%\\FlowLauncher\\Plugins"
 				},
 				{
-					"from": "%USERPROFILE%\\Configs\\flowlauncher\\Settings",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Flow Launcher\\Settings",
 					"to": "%APPDATA%\\FlowLauncher\\Settings"
 				}
 			]
@@ -88,7 +93,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\quicklook",
+					"from": "%USERPROFILE%\\Backups\\AppData\\QuickLook",
 					"to": "%USERPROFILE%\\scoop\\persist\\quicklook\\UserData"
 				}
 			]
@@ -139,7 +144,7 @@
 			"items": [
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\cineindex",
+					"from": "%USERPROFILE%\\Backups\\AppData\\CineIndex",
 					"to": "%LOCALAPPDATA%\\CineIndex\\CineIndex"
 				},
 				{
@@ -147,7 +152,7 @@
 					"from": "%USERPROFILE%\\scoop\\shims\\alacritty.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\CineIndex.lnk",
 					"arguments": "-e pwsh -noprofile -command cineindex",
-					"iconLocation": "%USERPROFILE%\\Configs\\icon\\cineindex.ico"
+					"iconLocation": "%USERPROFILE%\\Backups\\Icons\\cineindex.ico"
 				}
 			]
 		},
@@ -159,21 +164,21 @@
 					"from": "%SYSTEMROOT%\\System32\\shutdown.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Reboot.lnk",
 					"arguments": "/r /t 0",
-					"iconLocation": "%USERPROFILE%\\Configs\\icon\\power.ico",
+					"iconLocation": "%USERPROFILE%\\Backups\\Icons\\power.ico",
 					"windowStyle": "minimized"
 				},
 				{
 					"from": "%SYSTEMROOT%\\System32\\shutdown.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Reboot to BIOS.lnk",
 					"arguments": "/r /fw /t 0",
-					"iconLocation": "%USERPROFILE%\\Configs\\icon\\power.ico",
+					"iconLocation": "%USERPROFILE%\\Backups\\Icons\\power.ico",
 					"windowStyle": "minimized",
 					"runAsAdmin": true
 				},
 				{
 					"from": "%SYSTEMROOT%\\System32\\SlideToShutDown.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Slide to Shutdown.lnk",
-					"iconLocation": "%USERPROFILE%\\Configs\\icon\\power.ico"
+					"iconLocation": "%USERPROFILE%\\Backups\\Icons\\power.ico"
 				}
 			]
 		},
@@ -185,7 +190,7 @@
 					"from": "%USERPROFILE%\\scoop\\apps\\alacritty\\current\\alacritty.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Windows Utility.lnk",
 					"arguments": "-e pwsh -noprofile -command \"irm https://christitus.com/win | iex\"",
-					"iconLocation": "%USERPROFILE%\\Configs\\icon\\ctt-winutils.ico",
+					"iconLocation": "%USERPROFILE%\\Backups\\Icons\\ctt-winutils.ico",
 					"runAsAdmin": true
 				}
 			]
@@ -205,7 +210,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\aimp",
+					"from": "%USERPROFILE%\\Backups\\AppData\\AIMP",
 					"to": "%USERPROFILE%\\scoop\\persist\\aimp\\Profile"
 				}
 			]
@@ -215,8 +220,8 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\bt",
-					"to": "%USERPROFILE%\\scoop\\persist\\bt"
+					"from": "%USERPROFILE%\\Backups\\AppData\\Browser Tamer",
+					"to": "%APPDATA%\\Browser Tamer"
 				}
 			]
 		},
@@ -225,7 +230,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\foobar2k",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Foobar2000",
 					"to": "%USERPROFILE%\\scoop\\persist\\foobar2000\\profile"
 				}
 			]
@@ -235,7 +240,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\stremiokai",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Stremio Kai",
 					"to": "%USERPROFILE%\\scoop\\persist\\stremio-kai\\stremio.exe.WebView2\\EBWebView"
 				}
 			]
@@ -245,7 +250,7 @@
 			"items": [
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Configs\\syncthing",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Syncthing",
 					"to": "%USERPROFILE%\\scoop\\persist\\syncthing\\config"
 				},
 				{
@@ -259,7 +264,7 @@
 					"from": "%USERPROFILE%\\scoop\\shims\\alacritty.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Syncthing (CLI).lnk",
 					"arguments": "-e pwsh -noprofile -command \"syncthing --home \\\"%USERPROFILE%\\scoop\\apps\\syncthing\\current\\config\\\" --no-upgrade\"",
-					"iconLocation": "%USERPROFILE%\\Configs\\icon\\syncthing-dark.ico"
+					"iconLocation": "%USERPROFILE%\\Backups\\Icons\\syncthing-dark.ico"
 				}
 			]
 		},
@@ -268,7 +273,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\telegram",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Telegram",
 					"to": "%USERPROFILE%\\scoop\\persist\\telegram\\tdata"
 				}
 			]
@@ -278,7 +283,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\torbrowser",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Tor Browser",
 					"to": "%USERPROFILE%\\scoop\\persist\\tor-browser\\TorBrowser\\Data\\Browser\\profile.default"
 				}
 			]
@@ -336,14 +341,14 @@
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Android Apps\\Google Photos (Android 12).lnk",
 					"workingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
 					"arguments": "-p app.morphe.android.apps.photos -v 0",
-					"iconLocation": "%USERPROFILE%\\Configs\\icon\\google-photos.ico"
+					"iconLocation": "%USERPROFILE%\\Backups\\Icons\\google-photos.ico"
 				},
 				{
 					"from": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main\\MuMuNxMain.exe",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Android Apps\\HDO Box (Android 12).lnk",
 					"workingDirectory": "%ProgramFiles%\\Netease\\MuMuPlayer\\nx_main",
 					"arguments": "-p com.tv.hdobox -v 0",
-					"iconLocation": "%USERPROFILE%\\Configs\\icon\\hdo-box.ico"
+					"iconLocation": "%USERPROFILE%\\Backups\\Icons\\hdo-box.ico"
 				}
 			]
 		},
@@ -361,15 +366,15 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\musicbee\\AppData",
+					"from": "%USERPROFILE%\\Backups\\AppData\\MusicBee\\AppData",
 					"to": "%USERPROFILE%\\scoop\\persist\\musicbee\\AppData"
 				},
 				{
-					"from": "%USERPROFILE%\\Configs\\musicbee\\Library",
+					"from": "%USERPROFILE%\\Backups\\AppData\\MusicBee\\Library",
 					"to": "%USERPROFILE%\\scoop\\persist\\musicbee\\Library"
 				},
 				{
-					"from": "%USERPROFILE%\\Configs\\musicbee\\Plugins",
+					"from": "%USERPROFILE%\\Backups\\AppData\\MusicBee\\Plugins",
 					"to": "%USERPROFILE%\\scoop\\persist\\musicbee\\Plugins"
 				}
 			]
@@ -379,7 +384,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\twinkletray",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Twinkle Tray",
 					"to": "%APPDATA%\\twinkle-tray"
 				}
 			]
@@ -389,7 +394,7 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\ytmusic",
+					"from": "%USERPROFILE%\\Backups\\AppData\\YouTube Music",
 					"to": "%APPDATA%\\YouTube Music"
 				}
 			]
@@ -441,11 +446,11 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\qbittorrent\\roaming",
+					"from": "%USERPROFILE%\\Backups\\AppData\\qBittorrent\\Roaming",
 					"to": "%APPDATA%\\qBittorrent"
 				},
 				{
-					"from": "%USERPROFILE%\\Configs\\qbittorrent\\local",
+					"from": "%USERPROFILE%\\Backups\\AppData\\qBittorrent\\Local",
 					"to": "%LOCALAPPDATA%\\qBittorrent"
 				}
 			]
@@ -455,7 +460,7 @@
 			"mode": "shortcut",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\rdp\\ACER.rdp",
+					"from": "%USERPROFILE%\\Backups\\Configs\\RDP\\ACER.rdp",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Acer Nitro 5 (RDP).lnk"
 				}
 			]
@@ -487,19 +492,19 @@
 			]
 		},
 		"antigravity-ide": {
-			"enabled": true,
+			"enabled": false,
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\antigravity-ide",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Antigravity IDE",
 					"to": "%USERPROFILE%\\scoop\\persist\\antigravity-ide\\data"
 				},
 				{
-					"from": "%USERPROFILE%\\Configs\\antigravity-ide\\user-data",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Antigravity IDE\\user-data",
 					"to": "%APPDATA%\\Antigravity IDE\\User"
 				},
 				{
-					"from": "%USERPROFILE%\\Configs\\antigravity-ide\\extensions",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Antigravity IDE\\extensions",
 					"to": "%USERPROFILE%\\.antigravity-ide\\extensions"
 				}
 			]
@@ -521,16 +526,16 @@
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Configs\\harbor\\local",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Harbor\\Local",
 					"to": "%LOCALAPPDATA%\\app.harbor"
 				},
 				{
-					"from": "%USERPROFILE%\\Configs\\harbor\\roaming",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Harbor\\Roaming",
 					"to": "%APPDATA%\\app.harbor"
 				},
 				{
 					"mode": "seed",
-					"from": "%USERPROFILE%\\Configs\\harbor\\harbor_center_window_powertoys.lnk",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Harbor\\Harbor (PowerToys).lnk",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Harbor (PowerToys).lnk"
 				}
 			]
