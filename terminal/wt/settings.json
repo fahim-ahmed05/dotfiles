@@ -40,17 +40,21 @@
         "defaults": 
         {
             "bellStyle": "none",
-            "colorScheme": "One Half Dark",
-            "font": 
+            "colorScheme": 
             {
-                "face": "CaskaydiaMono Nerd Font"
+                "light": "Campbell"
             },
             "suppressApplicationTitle": true
         },
         "list": 
         [
             {
+                "colorScheme": "One Half Dark",
                 "commandline": "pwsh.exe -NoLogo",
+                "font": 
+                {
+                    "face": "CaskaydiaMono Nerd Font"
+                },
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
                 "name": "PowerShell",
