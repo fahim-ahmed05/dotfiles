@@ -24,34 +24,6 @@ function Search-Packages {
 }
 
 function Update-AllPackages {
-    Write-Host "`nChecking for pwsh update...`n" -ForegroundColor Cyan
-    scoop update
-    $pwshUpdate = scoop status | Select-String "^\s*pwsh:"
-
-    if ($pwshUpdate) {
-        Write-Host "Update found for pwsh. Restarting terminal to apply update..." -ForegroundColor Yellow
-        $currentPath = (Get-Location).Path
-        $encodedPath = [Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($currentPath))
-        
-        $scriptTemplate = '
-                            scoop update pwsh
-                            $path = [System.Text.Encoding]::Unicode.GetString([Convert]::FromBase64String("{0}"))
-                            if ($env:WT_SESSION) {
-                                wt --profile "$env:WT_PROFILE_ID" -d "$path" pwsh -NoExit -Command Update-AllPackages
-                            } elseif ($env:ALACRITTY_LOG) {
-                                Start-Process alacritty -ArgumentList "--working-directory `"$path`" -e pwsh -NoExit -Command Update-AllPackages"
-                            } else {
-                                Write-Warning "Terminal not recognized. Update applied but please restart your terminal manually."
-                                Start-Sleep -Seconds 5
-                            }
-                            '
-        $script = $scriptTemplate -f $encodedPath
-        $encodedScript = [Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($script))
-        
-        Start-Process powershell -ArgumentList "-NoProfile", "-EncodedCommand", $encodedScript
-        exit
-    }
-
     Write-Host "`nUpdating winget sources and binary...`n" -ForegroundColor Cyan
     winget source update
     winget upgrade Microsoft.AppInstaller --accept-package-agreements --accept-source-agreements
