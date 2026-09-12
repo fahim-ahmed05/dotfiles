@@ -203,13 +203,13 @@ if ($RunId -le 0) {
     }
 
     $selectedItem = $null
-    if (Get-Command gum -ErrorAction SilentlyContinue) {
-        Write-Host "`nSelect workflow run to cancel:" -ForegroundColor Cyan
-        $selectedItem = ($menuItems | gum choose)
+    if (Get-Command fzf -ErrorAction SilentlyContinue) {
+        $selectedItem = ($menuItems | fzf --prompt="Select workflow run to cancel: " --height=~40% --reverse --header="ENTER: cancel run | ESC: exit")
         Clear-ConsoleInput
     }
-    elseif (Get-Command fzf -ErrorAction SilentlyContinue) {
-        $selectedItem = ($menuItems | fzf --prompt="Select run to cancel: ")
+    elseif (Get-Command gum -ErrorAction SilentlyContinue) {
+        Write-Host "`nSelect workflow run to cancel:" -ForegroundColor Cyan
+        $selectedItem = ($menuItems | gum choose)
         Clear-ConsoleInput
     }
     else {
