@@ -218,12 +218,12 @@ function Invoke-PowerAction {
 
         1..2 | ForEach-Object {
             Write-Host -NoNewline $lineWithFarewell
-            Start-Sleep -Milliseconds 300
+            Start-Sleep -Milliseconds 550
             Write-Host -NoNewline $lineWithoutFarewell
-            Start-Sleep -Milliseconds 250
+            Start-Sleep -Milliseconds 350
         }
         Write-Host $lineWithFarewell
-        Start-Sleep -Milliseconds 500
+        Start-Sleep -Milliseconds 800
         
         switch ($Action) {
             'Shutdown'  { shutdown /s /f /t 0 }
