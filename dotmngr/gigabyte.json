@@ -47,6 +47,11 @@
 					"mode": "junction",
 					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\pwsh\\modules\\FileOps",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\FileOps"
+				},
+				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\pwsh\\modules\\PowerOps",
+					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\PowerOps"
 				}
 			]
 		},
