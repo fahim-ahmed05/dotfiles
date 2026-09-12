@@ -703,13 +703,13 @@ switch ($Action) {
             )
 
             $chosen = $null
-            if (Get-Command fzf -ErrorAction SilentlyContinue) {
-                $chosen = ($choices | fzf --prompt="Select Action: " --height=~35% --reverse --header="GitHub Actions Menu (ESC to exit)")
-                Clear-ConsoleInput
-            }
-            elseif (Get-Command gum -ErrorAction SilentlyContinue) {
+            if (Get-Command gum -ErrorAction SilentlyContinue) {
                 Write-Host "Select Action:" -ForegroundColor Cyan
                 $chosen = gum choose $choices
+                Clear-ConsoleInput
+            }
+            elseif (Get-Command fzf -ErrorAction SilentlyContinue) {
+                $chosen = ($choices | fzf --prompt="Select Action: " --height=~35% --reverse --header="GitHub Actions Menu (ESC to exit)")
                 Clear-ConsoleInput
             }
             else {
