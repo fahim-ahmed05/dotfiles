@@ -53,6 +53,15 @@ function Clear-ConsoleInput {
 
 function Format-CleanString ([string]$str) { return $str.Trim(" `t`n`r$([char]0xFEFF)") }
 
+function Show-HeaderCard ([string]$Title) {
+    if (Get-Command gum -ErrorAction SilentlyContinue) {
+        gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" $Title | Out-Host
+    }
+    else {
+        Write-Host "`n=== $Title ===" -ForegroundColor Cyan
+    }
+}
+
 function Invoke-WithSpinner ([string]$Title, [string]$Command, [string[]]$Arguments) {
     $psi = [System.Diagnostics.ProcessStartInfo]::new()
     $psi.FileName = $Command
@@ -87,11 +96,17 @@ function Get-SafeName ([string]$name) {
     return ($name -replace $regex, '_').Trim()
 }
 
-function Get-BookDestPath ([hashtable]$Meta) {
+function Get-BookDestPath ($Meta) {
+    if ($Meta -is [System.Array]) {
+        $Meta = $Meta | Where-Object { $_ -is [System.Collections.IDictionary] -or $_ -is [PSCustomObject] } | Select-Object -Last 1
+    }
     return Join-Path (Join-Path $OutDir (Get-SafeName $Meta.Author)) (Get-SafeName $Meta.Title)
 }
 
-function Get-TrackTitle ([hashtable]$Meta, [bool]$IsMulti, [int]$TrackNumber) {
+function Get-TrackTitle ($Meta, [bool]$IsMulti, [int]$TrackNumber) {
+    if ($Meta -is [System.Array]) {
+        $Meta = $Meta | Where-Object { $_ -is [System.Collections.IDictionary] -or $_ -is [PSCustomObject] } | Select-Object -Last 1
+    }
     if ($IsMulti) { return "$($Meta.Title) - Part $("{0:D2}" -f $TrackNumber)" }
     return $Meta.Title
 }
@@ -178,9 +193,7 @@ function Get-Metadata ($url, [string]$VideoTitle = "") {
     }
 
     Clear-Host
-    if (Get-Command gum -ErrorAction SilentlyContinue) {
-        gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Book Information"
-    }
+    Show-HeaderCard "Book Information"
     Write-Host "Full Video Title: $VideoTitle" -ForegroundColor Green
     Write-Host ""
     
@@ -208,7 +221,10 @@ function Get-Metadata ($url, [string]$VideoTitle = "") {
     return @{ Title = Format-CleanString $Title; Author = Format-CleanString $Author }
 }
 
-function Write-AudioMetadata ([string]$FilePath, [hashtable]$Meta, [int]$TrackNumber) {
+function Write-AudioMetadata ([string]$FilePath, $Meta, [int]$TrackNumber) {
+    if ($Meta -is [System.Array]) {
+        $Meta = $Meta | Where-Object { $_ -is [System.Collections.IDictionary] -or $_ -is [PSCustomObject] } | Select-Object -Last 1
+    }
     if (-not (Test-Path $FilePath)) { throw "Expected audio file not found: $FilePath" }
 
     $tempFile = [IO.Path]::Combine(
@@ -469,7 +485,7 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
         $appendChoice = '1'
         if (Get-Command gum -ErrorAction SilentlyContinue) {
             Clear-Host
-            gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Book Target"
+            Show-HeaderCard "Book Target"
             Write-Host "Select Book Target:" -ForegroundColor Cyan
             $chosen = gum choose "New Book" "Append to Existing"
             Clear-ConsoleInput
@@ -520,12 +536,7 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
     Clear-Host
     $bookHeader = if ($IsMulti -and $meta) { "$($meta.Title) - $($meta.Author)" } elseif ($meta) { "$($meta.Title) - $($meta.Author)" } else { "Audiobook Download" }
     $trackCountText = if ($downloadJobs.Count -gt 1) { "$($downloadJobs.Count) parts" } else { "1 part" }
-    if (Get-Command gum -ErrorAction SilentlyContinue) {
-        gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Downloading: $bookHeader ($trackCountText)"
-    }
-    else {
-        Write-Host "`n=== Downloading: $bookHeader ($trackCountText) ===" -ForegroundColor Cyan
-    }
+    Show-HeaderCard "Downloading: $bookHeader ($trackCountText)"
 
     $scriptPath = $PSCommandPath
     $consoleLock = [object]::new()
@@ -595,14 +606,14 @@ function Confirm-And-Process ([object[]]$Selections) {
     $VideoTitles = @($Selections | ForEach-Object { $_.Title })
 
     $isMulti = $false
+    Clear-Host
+    Show-HeaderCard "Download Setup ($($Selections.Count) selected)"
     if (Get-Command gum -ErrorAction SilentlyContinue) {
         $opts = if ($Urls.Count -eq 1) {
             @("Single Book", "Part of a Multi-part Book")
         } else {
             @("Multiple Individual Books", "Parts of ONE Book")
         }
-        Clear-Host
-        gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Download Setup ($($Selections.Count) selected)"
         Write-Host "Select Processing Mode:" -ForegroundColor Cyan
         $chosen = gum choose $opts
         Clear-ConsoleInput
@@ -625,9 +636,7 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
     $Type = if ($IsChannel) { "Channels" } else { "Playlists" }
 
     Clear-Host
-    if (Get-Command gum -ErrorAction SilentlyContinue) {
-        gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "$Type Browser"
-    }
+    Show-HeaderCard "$Type Browser"
     Write-Host "Select from history or paste a new $Type URL:" -ForegroundColor Yellow
     $historyItems = $global:Hist.$Type
     $fzfInput = $historyItems | ForEach-Object { "$($_.Name) | $($_.Url)" }
@@ -671,7 +680,7 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
         $dlChoice = "1"
         if (Get-Command gum -ErrorAction SilentlyContinue) {
             Clear-Host
-            gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Playlist: $targetName ($($playlistCache.Count) videos)"
+            Show-HeaderCard "Playlist: $targetName ($($playlistCache.Count) videos)"
             Write-Host "Playlist Download Mode:" -ForegroundColor Cyan
             $opts = @("Download All ($($playlistCache.Count) videos)", "Select specific videos (fzf)")
             $chosen = gum choose $opts
@@ -698,8 +707,8 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
 function Start-InteractiveMode {
     while ($true) {
         Clear-Host
+        Show-HeaderCard "Interactive Audiobook Downloader"
         if (Get-Command gum -ErrorAction SilentlyContinue) {
-            gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Interactive Audiobook Downloader"
             $menuOptions = @(
                 "Single (Download one book)"
                 "Multi (Download multi-part book)"
@@ -714,14 +723,14 @@ function Start-InteractiveMode {
 
             if ($selectedMode -like "Single*") {
                 Clear-Host
-                gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Single Book Download"
+                Show-HeaderCard "Single Book Download"
                 $urlInput = (gum input --prompt "Audiobook URL: " --placeholder "https://youtu.be/...").Trim()
                 Clear-ConsoleInput
                 if ($urlInput) { Start-AudiobookDownload -Urls @($urlInput) -IsMulti:$false }
             }
             elseif ($selectedMode -like "Multi*") {
                 Clear-Host
-                gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Multi-Part Book Download"
+                Show-HeaderCard "Multi-Part Book Download"
                 $urlInput = (gum input --prompt "URLs (space-separated): " --placeholder "https://... https://...").Trim()
                 Clear-ConsoleInput
                 $urls = @($urlInput -split '\s+' | Where-Object { $_ })
