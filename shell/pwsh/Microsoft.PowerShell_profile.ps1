@@ -212,8 +212,18 @@ function Invoke-PowerAction {
             Start-Sleep -Seconds 1
         }
         $fullBar = "$esc[38;5;${color}m" + ("█" * $barWidth) + "$esc[0m"
-        Write-Host "`r  $esc[1m$verb$esc[0m in 0s  [$fullBar]  $esc[38;5;${color}m$farewell$esc[0m    "
-        Start-Sleep -Seconds 1
+        $blank = " " * ($farewell.Length + 4)
+        $lineWithFarewell = "`r  $esc[1m$verb$esc[0m in 0s  [$fullBar]  $esc[38;5;${color}m$farewell$esc[0m    "
+        $lineWithoutFarewell = "`r  $esc[1m$verb$esc[0m in 0s  [$fullBar]  $blank"
+
+        1..2 | ForEach-Object {
+            Write-Host -NoNewline $lineWithFarewell
+            Start-Sleep -Milliseconds 300
+            Write-Host -NoNewline $lineWithoutFarewell
+            Start-Sleep -Milliseconds 250
+        }
+        Write-Host $lineWithFarewell
+        Start-Sleep -Milliseconds 500
         
         switch ($Action) {
             'Shutdown'  { shutdown /s /f /t 0 }
