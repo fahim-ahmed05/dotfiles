@@ -68,7 +68,7 @@ if (-not (Test-Path -LiteralPath $trashPath)) {
 }
 
 $hasGum = [bool](Get-Command gum -ErrorAction SilentlyContinue)
-$isInteractive = [Environment]::UserInteractive -and $hasGum -and -not [Console]::IsInputRedirected
+$isInteractive = $hasGum
 
 # Interactive Action Menu if no arguments passed
 if ($isInteractive -and $Source.Count -eq 0 -and -not $EmptyTrash -and -not $All -and -not $RemoveEmptyDirs -and -not $Force) {
@@ -78,9 +78,12 @@ if ($isInteractive -and $Source.Count -eq 0 -and -not $EmptyTrash -and -not $All
         "Clean Downloads only" `
         "Empty Trash permanently" `
         "Clean all sources and empty Trash" `
-        "Remove empty subdirectories" 2>$null
+        "Remove empty subdirectories"
     Flush-ConsoleInput
-    if ($LASTEXITCODE -ne 0 -or -not $menu) { return }
+    if ($LASTEXITCODE -ne 0 -or -not $menu) {
+        Write-Host "`e[1A`e[2K`r" -NoNewline
+        return
+    }
 
     switch -Wildcard ($menu) {
         "*Desktop, Downloads*" { } # default configured sources
@@ -94,7 +97,7 @@ if ($isInteractive -and $Source.Count -eq 0 -and -not $EmptyTrash -and -not $All
 
 # Confirmation before permanently emptying Trash
 if (($EmptyTrash -or $All) -and $isInteractive -and -not $Force) {
-    gum confirm --prompt.foreground="214" "Permanently delete all items in Trash?" 2>$null
+    gum confirm --prompt.foreground="214" "Permanently delete all items in Trash?"
     Flush-ConsoleInput
     if ($LASTEXITCODE -ne 0) { return }
 }

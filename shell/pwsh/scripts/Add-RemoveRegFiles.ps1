@@ -151,16 +151,19 @@ if ($configPath -and (Test-Path -LiteralPath $configPath)) {
 $hasExplicitGroups = $PSBoundParameters.ContainsKey('Groups') -and $Groups.Count -gt 0
 $hasExplicitAction = $PSBoundParameters.ContainsKey('Action')
 $hasGum = [bool](Get-Command gum -ErrorAction SilentlyContinue)
-$isInteractive = [Environment]::UserInteractive -and -not $ImportAdminOnly -and $hasGum -and -not [Console]::IsInputRedirected
+$isInteractive = -not $ImportAdminOnly -and $hasGum
 
 $selectedGroups = @{}
 
 if ($isInteractive -and -not $hasExplicitGroups -and -not $All) {
     # 1. Interactive Action Selection if not provided
     if (-not $hasExplicitAction) {
-        $actionChoice = gum choose --header="Select Action:" --header.foreground="39" --cursor="> " --cursor.foreground="39" "Add (Import to Registry)" "Remove (Revert from Registry)" 2>$null
+        $actionChoice = gum choose --header="Select Action:" --header.foreground="39" --cursor="> " --cursor.foreground="39" "Add (Import to Registry)" "Remove (Revert from Registry)"
         Flush-ConsoleInput
-        if ($LASTEXITCODE -ne 0 -or -not $actionChoice) { return }
+        if ($LASTEXITCODE -ne 0 -or -not $actionChoice) {
+            Write-Host "`e[1A`e[2K`r" -NoNewline
+            return
+        }
         $Action = if ($actionChoice -like "Add*") { "add" } else { "remove" }
     }
 
@@ -177,7 +180,7 @@ if ($isInteractive -and -not $hasExplicitGroups -and -not $All) {
         return
     }
 
-    # 3. Present multi-select menu via Gum
+    # 3. Present multi-select menu via Gum (all pre-selected by default)
     $menuOptions = @()
     foreach ($g in $availableGroups) {
         $fileNames = ($allGroups[$g].$Action | ForEach-Object { Split-Path $_ -Leaf }) -join ', '
@@ -185,9 +188,12 @@ if ($isInteractive -and -not $hasExplicitGroups -and -not $All) {
     }
 
     $headerText = if ($Action -eq 'add') { "Select registry tweaks to import (Space to toggle, Enter to confirm):" } else { "Select registry tweaks to revert (Space to toggle, Enter to confirm):" }
-    $chosen = gum choose --no-limit --header=$headerText --header.foreground="39" --cursor-prefix="> " --selected-prefix="[x] " --unselected-prefix="[ ] " --cursor.foreground="39" --selected.foreground="42" $menuOptions 2>$null
+    $chosen = gum choose --no-limit --selected=* --header=$headerText --header.foreground="39" --cursor-prefix="> " --selected-prefix="[x] " --unselected-prefix="[ ] " --cursor.foreground="39" --selected.foreground="42" $menuOptions
     Flush-ConsoleInput
-    if ($LASTEXITCODE -ne 0 -or -not $chosen -or $chosen.Count -eq 0) { return }
+    if ($LASTEXITCODE -ne 0 -or -not $chosen -or $chosen.Count -eq 0) {
+        Write-Host "`e[1A`e[2K`r" -NoNewline
+        return
+    }
 
     foreach ($c in $chosen) {
         if ($c -match '^(?<app>[^\s\(]+)') {

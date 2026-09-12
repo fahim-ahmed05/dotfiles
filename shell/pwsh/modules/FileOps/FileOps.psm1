@@ -11,10 +11,9 @@ function Clear-WindowsCache {
     }
 
     $hasGum = [bool](Get-Command gum -ErrorAction SilentlyContinue)
-    $isInteractive = [Environment]::UserInteractive -and $hasGum -and -not [Console]::IsInputRedirected
 
-    if ($isInteractive -and -not $Force) {
-        gum confirm --prompt.foreground="214" "Purge Windows caches and empty Recycle Bin?" 2>$null
+    if ($hasGum -and -not $Force) {
+        gum confirm --prompt.foreground="214" "Purge Windows caches and empty Recycle Bin?"
         try {
             if ($Host.UI.RawUI.KeyAvailable) {
                 while ($Host.UI.RawUI.KeyAvailable) { $null = [Console]::ReadKey($true) }
