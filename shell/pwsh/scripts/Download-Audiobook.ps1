@@ -4,7 +4,7 @@ Highly Optimized Interactive Audiobook Downloader using yt-dlp, fzf, and ffmpeg.
 #>
 param (
     [string]$OutDir = "$env:USERPROFILE\Music\Audiobooks",
-    [string]$HistoryFile = "$env:USERPROFILE\Configs\audiobook-dl\history.json",
+    [string]$HistoryFile = "$env:USERPROFILE\Backups\AppData\AudiobookDL\history.json",
     [int]$ParallelLimit = 2
 )
 
