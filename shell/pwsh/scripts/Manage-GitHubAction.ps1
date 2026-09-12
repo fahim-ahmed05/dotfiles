@@ -343,7 +343,8 @@ function Invoke-RunWorkflow {
 
     if ($workflows.Count -eq 0) {
         Write-Host "[-] No workflows found in $repoTarget." -ForegroundColor Yellow
-        return
+        Start-Sleep -Milliseconds 1200
+        return $false
     }
 
     $items = @()
@@ -354,7 +355,7 @@ function Invoke-RunWorkflow {
 
     $selected = $null
     if (Get-Command fzf -ErrorAction SilentlyContinue) {
-        $selected = ($items | fzf --prompt="Select workflow to run: " --height=~40% --reverse --header="ENTER: Run | ESC: Cancel")
+        $selected = ($items | fzf --prompt="Select workflow to run: " --height=~40% --reverse --header="ENTER: Run | ESC: Return to Menu")
         Clear-ConsoleInput
     }
     else {
@@ -362,8 +363,7 @@ function Invoke-RunWorkflow {
     }
 
     if (-not $selected) {
-        Write-Host "[*] Operation cancelled." -ForegroundColor DarkGray
-        return
+        return $false
     }
 
     $wfPath = ($selected -split '\|')[0].Trim()
@@ -401,42 +401,57 @@ function Invoke-RunWorkflow {
             Start-Sleep -Seconds 3
             gh run watch --repo $repoTarget
         }
+        return $true
     }
     else {
         Write-Host "[-] Failed to trigger workflow. Ensure 'workflow_dispatch' is declared in the workflow YAML." -ForegroundColor Red
+        return $true
     }
 }
 
 function Invoke-WatchRun {
     $runs = Get-WorkflowRuns -Limit 25
     $active = @($runs | Where-Object { $_.status -in @("in_progress", "queued", "waiting", "requested") })
-    $candidateRuns = if ($active.Count -gt 0) { $active } else { $runs }
 
-    if ($candidateRuns.Count -eq 0) {
-        Write-Host "[-] No active or recent runs to watch in $repoTarget." -ForegroundColor Yellow
-        return
+    if ($active.Count -eq 0) {
+        Write-Host "`n[!] No active or queued workflow runs to watch in $repoTarget." -ForegroundColor Yellow
+        Start-Sleep -Milliseconds 1200
+        return $false
     }
 
     $items = @()
-    foreach ($r in $candidateRuns) {
+    foreach ($r in $active) {
         $statusStr = if ($r.status -in @("in_progress", "queued")) { $r.status.ToUpper() } else { "$($r.status) ($($r.conclusion))" }
         $items += "$($r.databaseId) | [$statusStr] $($r.workflowName): $($r.displayTitle) ($($r.headBranch))"
     }
 
-    $selected = ($items | fzf --prompt="Select run to watch live: " --height=~40% --reverse --header="ENTER: Watch | ESC: Cancel")
-    Clear-ConsoleInput
-    if (-not $selected) { return }
+    $selected = $null
+    if (Get-Command fzf -ErrorAction SilentlyContinue) {
+        $selected = ($items | fzf --prompt="Select run to watch live: " --height=~40% --reverse --header="ENTER: Watch | ESC: Return to Menu")
+        Clear-ConsoleInput
+    }
+    elseif (Get-Command gum -ErrorAction SilentlyContinue) {
+        Write-Host "`nSelect run to watch live:" -ForegroundColor Cyan
+        $selected = gum choose $items
+        Clear-ConsoleInput
+    }
+    else {
+        $selected = $items[0]
+    }
+    if (-not $selected) { return $false }
 
     $targetRunId = [long]($selected -split '\|')[0].Trim()
     Write-Host "[*] Watching run $targetRunId in real-time (Press Ctrl+C to stop watching)..." -ForegroundColor Cyan
     gh run watch $targetRunId --repo $repoTarget
+    return $true
 }
 
 function Invoke-ViewRunLogs {
     $runs = Get-WorkflowRuns -Limit 25
     if ($runs.Count -eq 0) {
         Write-Host "[-] No workflow runs found in $repoTarget." -ForegroundColor Yellow
-        return
+        Start-Sleep -Milliseconds 1200
+        return $false
     }
 
     $items = @()
@@ -445,9 +460,20 @@ function Invoke-ViewRunLogs {
         $items += "$($r.databaseId) | [$concl] $($r.workflowName): $($r.displayTitle) ($($r.headBranch))"
     }
 
-    $selected = ($items | fzf --prompt="Select run to view: " --height=~40% --reverse --header="ENTER: Select | ESC: Cancel")
-    Clear-ConsoleInput
-    if (-not $selected) { return }
+    $selected = $null
+    if (Get-Command fzf -ErrorAction SilentlyContinue) {
+        $selected = ($items | fzf --prompt="Select run to view: " --height=~40% --reverse --header="ENTER: Select | ESC: Return to Menu")
+        Clear-ConsoleInput
+    }
+    elseif (Get-Command gum -ErrorAction SilentlyContinue) {
+        Write-Host "`nSelect run to view:" -ForegroundColor Cyan
+        $selected = gum choose $items
+        Clear-ConsoleInput
+    }
+    else {
+        $selected = $items[0]
+    }
+    if (-not $selected) { return $false }
 
     $targetRunId = [long]($selected -split '\|')[0].Trim()
 
@@ -458,13 +484,15 @@ function Invoke-ViewRunLogs {
     )
     $logMode = "Summary & Jobs"
     if (Get-Command fzf -ErrorAction SilentlyContinue) {
-        $logMode = ($logOptions | fzf --prompt="Select Log View Mode: " --height=~25% --reverse)
+        $logMode = ($logOptions | fzf --prompt="Select Log View Mode: " --height=~25% --reverse --header="ESC: Return to Menu")
         Clear-ConsoleInput
+        if (-not $logMode) { return $false }
     }
     elseif (Get-Command gum -ErrorAction SilentlyContinue) {
         Write-Host "`nSelect Log View Mode:" -ForegroundColor Cyan
         $logMode = gum choose $logOptions
         Clear-ConsoleInput
+        if (-not $logMode) { return $false }
     }
 
     switch -Wildcard ($logMode) {
@@ -478,27 +506,40 @@ function Invoke-ViewRunLogs {
             gh run view $targetRunId --repo $repoTarget
         }
     }
+    return $true
 }
 
 function Invoke-CancelRun {
-    $runs = Get-WorkflowRuns -Limit 25
+    $runs = Get-WorkflowRuns -Limit 50
     $activeRuns = @($runs | Where-Object { $_.status -in @("in_progress", "queued", "waiting", "requested") })
-    $displayRuns = if ($activeRuns.Count -gt 0) { $activeRuns } else { $runs }
 
-    if ($displayRuns.Count -eq 0) {
-        Write-Host "[-] No active or recent runs to cancel." -ForegroundColor Yellow
-        return
+    if ($activeRuns.Count -eq 0) {
+        Write-Host "`n[!] No active or queued workflow runs to cancel in $repoTarget." -ForegroundColor Yellow
+        Start-Sleep -Milliseconds 1200
+        return $false
     }
 
     $items = @()
-    foreach ($r in $displayRuns) {
+    foreach ($r in $activeRuns) {
         $statusStr = if ($r.status -in @("in_progress", "queued")) { $r.status.ToUpper() } else { "$($r.status) ($($r.conclusion))" }
         $items += "$($r.databaseId) | [$statusStr] $($r.workflowName): $($r.displayTitle) ($($r.headBranch))"
     }
 
-    $selected = ($items | fzf --prompt="Select workflow run to cancel: " --height=~40% --reverse --header="ENTER: Cancel Run | ESC: Exit")
-    Clear-ConsoleInput
-    if (-not $selected) { return }
+    $selected = $null
+    if (Get-Command fzf -ErrorAction SilentlyContinue) {
+        $selected = ($items | fzf --prompt="Select workflow run to cancel: " --height=~40% --reverse --header="ENTER: Cancel Run | ESC: Return to Menu")
+        Clear-ConsoleInput
+    }
+    elseif (Get-Command gum -ErrorAction SilentlyContinue) {
+        Write-Host "`nSelect workflow run to cancel:" -ForegroundColor Cyan
+        $selected = gum choose $items
+        Clear-ConsoleInput
+    }
+    else {
+        $selected = $items[0]
+    }
+
+    if (-not $selected) { return $false }
 
     $targetRunId = [long]($selected -split '\|')[0].Trim()
 
@@ -527,12 +568,15 @@ function Invoke-CancelRun {
         }
         catch {
             Write-Host "[-] Cancellation failed: $($_.Exception.Message)" -ForegroundColor Red
+            return $true
         }
     }
 
     if ($cancelled) {
         Show-Card -Title "Run Cancelled" -BorderColor "42" -Message "Run ID:     $targetRunId`nRepository: $repoTarget`nAction:     $endpoint"
+        return $true
     }
+    return $false
 }
 
 function Invoke-RerunWorkflow {
@@ -541,7 +585,8 @@ function Invoke-RerunWorkflow {
 
     if ($completed.Count -eq 0) {
         Write-Host "[-] No completed runs available to rerun." -ForegroundColor Yellow
-        return
+        Start-Sleep -Milliseconds 1200
+        return $false
     }
 
     $items = @()
@@ -550,9 +595,9 @@ function Invoke-RerunWorkflow {
         $items += "$($r.databaseId) | [$concl] $($r.workflowName): $($r.displayTitle) ($($r.headBranch))"
     }
 
-    $selected = ($items | fzf --prompt="Select workflow run to rerun: " --height=~40% --reverse --header="ENTER: Select | ESC: Cancel")
+    $selected = ($items | fzf --prompt="Select workflow run to rerun: " --height=~40% --reverse --header="ENTER: Select | ESC: Return to Menu")
     Clear-ConsoleInput
-    if (-not $selected) { return }
+    if (-not $selected) { return $false }
 
     $targetRunId = [long]($selected -split '\|')[0].Trim()
 
@@ -563,13 +608,15 @@ function Invoke-RerunWorkflow {
     $rerunChoice = "Failed jobs only"
     if (-not $FailedOnly) {
         if (Get-Command fzf -ErrorAction SilentlyContinue) {
-            $rerunChoice = ($rerunOptions | fzf --prompt="Select Rerun Mode: " --height=~20% --reverse)
+            $rerunChoice = ($rerunOptions | fzf --prompt="Select Rerun Mode: " --height=~20% --reverse --header="ESC: Return to Menu")
             Clear-ConsoleInput
+            if (-not $rerunChoice) { return $false }
         }
         elseif (Get-Command gum -ErrorAction SilentlyContinue) {
             Write-Host "`nRerun Mode:" -ForegroundColor Cyan
             $rerunChoice = gum choose $rerunOptions
             Clear-ConsoleInput
+            if (-not $rerunChoice) { return $false }
         }
     }
 
@@ -584,14 +631,17 @@ function Invoke-RerunWorkflow {
 
     if ($LASTEXITCODE -eq 0) {
         Show-Card -Title "Workflow Rerun Initiated" -BorderColor "42" -Message "Run ID:     $targetRunId`nRepository: $repoTarget"
+        return $true
     }
+    return $false
 }
 
 function Invoke-DownloadArtifacts {
     $runs = Get-WorkflowRuns -Limit 25
     if ($runs.Count -eq 0) {
         Write-Host "[-] No runs available in $repoTarget." -ForegroundColor Yellow
-        return
+        Start-Sleep -Milliseconds 1200
+        return $false
     }
 
     $items = @()
@@ -600,27 +650,40 @@ function Invoke-DownloadArtifacts {
         $items += "$($r.databaseId) | [$concl] $($r.workflowName): $($r.displayTitle) ($($r.headBranch))"
     }
 
-    $selected = ($items | fzf --prompt="Select run to download artifacts from: " --height=~40% --reverse --header="ENTER: Download | ESC: Cancel")
-    Clear-ConsoleInput
-    if (-not $selected) { return }
+    $selected = $null
+    if (Get-Command fzf -ErrorAction SilentlyContinue) {
+        $selected = ($items | fzf --prompt="Select run to download artifacts from: " --height=~40% --reverse --header="ENTER: Download | ESC: Return to Menu")
+        Clear-ConsoleInput
+    }
+    elseif (Get-Command gum -ErrorAction SilentlyContinue) {
+        Write-Host "`nSelect run to download artifacts from:" -ForegroundColor Cyan
+        $selected = gum choose $items
+        Clear-ConsoleInput
+    }
+    else {
+        $selected = $items[0]
+    }
+    if (-not $selected) { return $false }
 
     $targetRunId = [long]($selected -split '\|')[0].Trim()
     Write-Host "[*] Downloading artifacts for run $targetRunId..." -ForegroundColor Cyan
     gh run download $targetRunId --repo $repoTarget
     if ($LASTEXITCODE -eq 0) {
         Write-Host "[+] Artifacts downloaded to current directory." -ForegroundColor Green
+        return $true
     }
+    return $false
 }
 
 # --- Main Entry Point ---
 
 switch ($Action) {
-    "run"      { Invoke-RunWorkflow; exit }
-    "watch"    { Invoke-WatchRun; exit }
-    "view"     { Invoke-ViewRunLogs; exit }
-    "cancel"   { Invoke-CancelRun; exit }
-    "rerun"    { Invoke-RerunWorkflow; exit }
-    "download" { Invoke-DownloadArtifacts; exit }
+    "run"      { $null = Invoke-RunWorkflow; exit }
+    "watch"    { $null = Invoke-WatchRun; exit }
+    "view"     { $null = Invoke-ViewRunLogs; exit }
+    "cancel"   { $null = Invoke-CancelRun; exit }
+    "rerun"    { $null = Invoke-RerunWorkflow; exit }
+    "download" { $null = Invoke-DownloadArtifacts; exit }
     "list"     { Show-DashboardView; exit }
     default    {
         # Interactive Dashboard & Menu Loop
@@ -649,35 +712,35 @@ switch ($Action) {
                 $chosen = gum choose $choices
                 Clear-ConsoleInput
             }
-
-                if (-not $chosen -or $chosen -like "*Exit*") { break }
-
-                switch -Wildcard ($chosen) {
-                    "1.*" { Invoke-RunWorkflow }
-                    "2.*" { Invoke-WatchRun }
-                    "3.*" { Invoke-ViewRunLogs }
-                    "4.*" { Invoke-CancelRun }
-                    "5.*" { Invoke-RerunWorkflow }
-                    "6.*" { Invoke-DownloadArtifacts }
-                    "7.*" { continue }
-                }
-
-                Write-Host "`nPress any key to continue..." -ForegroundColor DarkGray
-                $null = [Console]::ReadKey($true)
-            }
             else {
                 Write-Host "`nActions: [1] Run [2] Watch [3] View Logs [4] Cancel [5] Rerun [6] Download [7] Refresh [8] Exit"
                 $choice = Read-Host "Select action"
-                switch ($choice) {
-                    "1" { Invoke-RunWorkflow }
-                    "2" { Invoke-WatchRun }
-                    "3" { Invoke-ViewRunLogs }
-                    "4" { Invoke-CancelRun }
-                    "5" { Invoke-RerunWorkflow }
-                    "6" { Invoke-DownloadArtifacts }
-                    "7" { continue }
-                    default { break }
+                if ([string]::IsNullOrWhiteSpace($choice)) { break }
+                $idx = [int]$choice - 1
+                if ($idx -ge 0 -and $idx -lt $choices.Count) {
+                    $chosen = $choices[$idx]
                 }
+                else {
+                    break
+                }
+            }
+
+            if (-not $chosen -or $chosen -like "*Exit*") { break }
+
+            $ran = $false
+            switch -Wildcard ($chosen) {
+                "1.*" { $ran = Invoke-RunWorkflow }
+                "2.*" { $ran = Invoke-WatchRun }
+                "3.*" { $ran = Invoke-ViewRunLogs }
+                "4.*" { $ran = Invoke-CancelRun }
+                "5.*" { $ran = Invoke-RerunWorkflow }
+                "6.*" { $ran = Invoke-DownloadArtifacts }
+                "7.*" { continue }
+            }
+
+            if ($ran) {
+                Write-Host "`nPress any key to return to menu..." -ForegroundColor DarkGray
+                $null = [Console]::ReadKey($true)
             }
         }
     }
