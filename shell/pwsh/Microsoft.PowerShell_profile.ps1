@@ -265,6 +265,29 @@ function whereis ($command) {
 
 Set-Alias audiobook-dl "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Download-Audiobook.ps1"
 
+function Stop-GitHubAction {
+    [CmdletBinding()]
+    param(
+        [string]$Owner,
+        [string]$Repo,
+        [long]$RunId,
+        [string]$Token,
+        [switch]$Force
+    )
+    & "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Stop-GitHubAction.ps1" @PSBoundParameters @args
+}
+
+function Pull-GitRepos {
+    [CmdletBinding()]
+    param(
+        [string]$ConfigPath,
+        [int]$Parallel,
+        [switch]$FetchOnly,
+        [switch]$DryRun
+    )
+    & "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Pull-GitRepos.ps1" @PSBoundParameters @args
+}
+
 # Zoxide Initialization
 . ([ScriptBlock]::Create((zoxide init powershell | Out-String)))
 
