@@ -194,19 +194,26 @@ function Invoke-PowerAction {
             default     { 39 }
         }
 
-        Write-Host -NoNewline "$verb in "
-        foreach ($i in 5..1) {
-            Write-Host -NoNewline "$i.. "
-            Start-Sleep -Seconds 1
-        }
-        
         $farewell = switch ($Action) {
             'Shutdown' { "Good bye!" }
             'Firmware' { "Happy tinkering!" }
             default    { "See you soon!" }
         }
-        Write-Host $farewell
-        Start-Sleep -Seconds 2
+
+        $esc = [char]27
+        $barWidth = 20
+
+        for ($i = 5; $i -gt 0; $i--) {
+            $pct = (5 - $i) / 5
+            $filled = [int]($pct * $barWidth)
+            $empty = $barWidth - $filled
+            $bar = "$esc[38;5;${color}m" + ("█" * $filled) + "$esc[38;5;238m" + ("░" * $empty) + "$esc[0m"
+            Write-Host -NoNewline "`r  $esc[1m$verb$esc[0m in ${i}s  [$bar] "
+            Start-Sleep -Seconds 1
+        }
+        $fullBar = "$esc[38;5;${color}m" + ("█" * $barWidth) + "$esc[0m"
+        Write-Host "`r  $esc[1m$verb$esc[0m in 0s  [$fullBar]  $esc[38;5;${color}m$farewell$esc[0m    "
+        Start-Sleep -Seconds 1
         
         switch ($Action) {
             'Shutdown'  { shutdown /s /f /t 0 }
