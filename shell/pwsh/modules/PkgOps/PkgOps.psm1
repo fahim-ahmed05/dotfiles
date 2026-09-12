@@ -362,6 +362,14 @@ function Uninstall-Packages {
         python "$helperScript" "$query"
     }
 
+    # Flush any unconsumed terminal query responses (e.g. \e[?2027;0$y emitted by gum/ultraviolet)
+    try {
+        $Host.UI.RawUI.FlushInputBuffer()
+        while ([Console]::KeyAvailable) {
+            [void][Console]::ReadKey($true)
+        }
+    } catch {}
+
     $installed = if ($json) { [System.Collections.Generic.List[PSCustomObject]]@($json | ConvertFrom-Json) } else { [System.Collections.Generic.List[PSCustomObject]]::new() }
 
     # Case 0: No installed packages match
@@ -435,7 +443,21 @@ function Uninstall-Packages {
         $fzfArgs += "--query=$query"
     }
 
+    try {
+        $Host.UI.RawUI.FlushInputBuffer()
+        while ([Console]::KeyAvailable) {
+            [void][Console]::ReadKey($true)
+        }
+    } catch {}
+
     $selectedLines = $fzfLines | fzf @fzfArgs
+
+    try {
+        $Host.UI.RawUI.FlushInputBuffer()
+        while ([Console]::KeyAvailable) {
+            [void][Console]::ReadKey($true)
+        }
+    } catch {}
 
     if (-not $selectedLines -or $selectedLines.Count -eq 0) {
         gum style --foreground 245 "[-] Uninstallation cancelled. No packages selected."
