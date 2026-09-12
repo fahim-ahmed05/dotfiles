@@ -2,8 +2,21 @@ Param(
     [string]$Config = (Join-Path $PSScriptRoot "..\configs\reg_files.json"),
     [string[]]$Groups,
     [ValidateSet('add', 'remove')][string]$Action = 'add',
+    [switch]$All,
     [switch]$ImportAdminOnly
 )
+
+function Flush-ConsoleInput {
+    try {
+        if ($Host.UI.RawUI.KeyAvailable) {
+            while ($Host.UI.RawUI.KeyAvailable) {
+                $null = [Console]::ReadKey($true)
+            }
+        }
+        $Host.UI.RawUI.FlushInputBuffer()
+    }
+    catch {}
+}
 
 function Expand-PercentVars {
     param([string]$s)
@@ -14,104 +27,211 @@ function Expand-PercentVars {
         })
 }
 
-# Check elevation
-$isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
-# Note: don't warn here unconditionally; warn only if admin-required files are found and elevation fails
+function Get-ScoopRegEntries {
+    $scoopDirs = @()
+    if ($env:SCOOP -and (Test-Path "$env:SCOOP\apps")) { $scoopDirs += "$env:SCOOP\apps" }
+    if (Test-Path "$env:USERPROFILE\scoop\apps") { $scoopDirs += "$env:USERPROFILE\scoop\apps" }
+    if ($env:SCOOP_GLOBAL -and (Test-Path "$env:SCOOP_GLOBAL\apps")) { $scoopDirs += "$env:SCOOP_GLOBAL\apps" }
+    if (Test-Path "$env:ProgramData\scoop\apps") { $scoopDirs += "$env:ProgramData\scoop\apps" }
+    $scoopDirs = $scoopDirs | Select-Object -Unique
 
-# Resolve config path
-try {
-    $configPath = Resolve-Path -LiteralPath $Config -ErrorAction Stop
-}
-catch {
-    $tryPath = Join-Path -Path (Split-Path -Path $MyInvocation.MyCommand.Path -Parent) -ChildPath $Config
-    try {
-        $configPath = Resolve-Path -LiteralPath $tryPath -ErrorAction Stop
-    }
-    catch {
-        Write-Error "Config file '$Config' not found. Provide a path or place 'registry-config.json' next to this script."
-        exit 1
-    }
-}
-
-$configDir = Split-Path $configPath -Parent
-
-$jsonText = Get-Content -Raw -Path $configPath
-try {
-    $json = $jsonText | ConvertFrom-Json -ErrorAction Stop
-}
-catch {
-    Write-Error "Failed to parse JSON in $($configPath): $($_.Exception.Message)"
-    exit 1
-}
-
-# Normalize entries: require object mapping group names to arrays or group objects
-if ($null -eq $json) { Write-Error "Config is empty"; exit 1 }
-if ($json -is [System.Array]) {
-    Write-Error "Array config is no longer supported. Use an object mapping group names to arrays."
-    exit 1
-}
-
-$obj = $json
-$selectedGroups = @{}
-if (-not $Groups -or $Groups.Count -eq 0) {
-    foreach ($prop in $obj.PSObject.Properties) {
-        $groupName = $prop.Name
-        $groupValue = $prop.Value
-        $isEnabled = $true
-
-        if ($groupValue -isnot [System.Array]) {
-            if ($groupValue.PSObject.Properties.Name -contains 'enabled' -and $groupValue.enabled -eq $false) {
-                $isEnabled = $false
+    $discovered = [ordered]@{}
+    foreach ($appsDir in $scoopDirs) {
+        $regFiles = Get-ChildItem -Path "$appsDir\*\current\*.reg" -ErrorAction SilentlyContinue
+        foreach ($file in $regFiles) {
+            $appName = $file.Directory.Parent.Name
+            if (-not $discovered.Contains($appName)) {
+                $discovered[$appName] = @{ add = @(); remove = @() }
+            }
+            if ($file.Name -match '(?i)uninstall|remove|disable') {
+                $discovered[$appName].remove += $file.FullName
+            }
+            else {
+                $discovered[$appName].add += $file.FullName
             }
         }
+    }
+    return $discovered
+}
 
-        if ($isEnabled) {
-            $selectedGroups[$groupName] = $true
+# Check elevation
+$isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
+
+# Resolve config path if provided
+$configPath = $null
+$configDir = $null
+if ($Config) {
+    if (Test-Path -LiteralPath $Config) {
+        $configPath = (Resolve-Path -LiteralPath $Config).Path
+    }
+    else {
+        $tryPath = Join-Path -Path (Split-Path -Path $MyInvocation.MyCommand.Path -Parent) -ChildPath $Config
+        if (Test-Path -LiteralPath $tryPath) {
+            $configPath = (Resolve-Path -LiteralPath $tryPath).Path
+        }
+    }
+    if ($configPath) {
+        $configDir = Split-Path $configPath -Parent
+    }
+}
+
+# 1. Initialize registry entries from Scoop discovery
+$allGroups = [ordered]@{}
+$scoopEntries = Get-ScoopRegEntries
+foreach ($app in $scoopEntries.Keys) {
+    $allGroups[$app] = [PSCustomObject]@{
+        enabled = $true
+        add     = [System.Collections.Generic.List[string]]::new([string[]]$scoopEntries[$app].add)
+        remove  = [System.Collections.Generic.List[string]]::new([string[]]$scoopEntries[$app].remove)
+    }
+}
+
+# 2. Merge JSON config file if present (for overrides or custom non-Scoop registry files)
+if ($configPath -and (Test-Path -LiteralPath $configPath)) {
+    try {
+        $json = Get-Content -Raw -LiteralPath $configPath -ErrorAction Stop | ConvertFrom-Json
+        if ($json -is [PSCustomObject]) {
+            foreach ($prop in $json.PSObject.Properties) {
+                $name = $prop.Name
+                $val = $prop.Value
+                $isEnabled = $true
+
+                if ($val -is [PSCustomObject]) {
+                    if ($val.PSObject.Properties.Name -contains 'enabled' -and $val.enabled -eq $false) {
+                        $isEnabled = $false
+                    }
+                }
+
+                if (-not $allGroups.Contains($name)) {
+                    $allGroups[$name] = [PSCustomObject]@{
+                        enabled = $isEnabled
+                        add     = [System.Collections.Generic.List[string]]::new()
+                        remove  = [System.Collections.Generic.List[string]]::new()
+                    }
+                }
+                else {
+                    $allGroups[$name].enabled = $isEnabled
+                }
+
+                if ($val -is [PSCustomObject]) {
+                    foreach ($act in @('add', 'remove')) {
+                        if ($val.PSObject.Properties.Name -contains $act -and $val.$act) {
+                            foreach ($p in $val.$act) {
+                                $expanded = Expand-PercentVars $p
+                                if (-not [System.IO.Path]::IsPathRooted($expanded)) { $expanded = Join-Path $configDir $expanded }
+                                $resolved = Resolve-Path -LiteralPath $expanded -ErrorAction SilentlyContinue
+                                $pathToAdd = if ($resolved) { $resolved.Path } else { $expanded }
+                                if (-not $allGroups[$name].$act.Contains($pathToAdd)) {
+                                    $allGroups[$name].$act.Add($pathToAdd)
+                                }
+                            }
+                        }
+                    }
+                }
+                elseif ($val -is [System.Array]) {
+                    foreach ($p in $val) {
+                        $expanded = Expand-PercentVars $p
+                        if (-not [System.IO.Path]::IsPathRooted($expanded)) { $expanded = Join-Path $configDir $expanded }
+                        $resolved = Resolve-Path -LiteralPath $expanded -ErrorAction SilentlyContinue
+                        $pathToAdd = if ($resolved) { $resolved.Path } else { $expanded }
+                        if (-not $allGroups[$name].add.Contains($pathToAdd)) {
+                            $allGroups[$name].add.Add($pathToAdd)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    catch {
+        Write-Warning "Failed to parse JSON in $($configPath): $($_.Exception.Message)"
+    }
+}
+
+# Determine execution mode: interactive vs scripted
+$hasExplicitGroups = $PSBoundParameters.ContainsKey('Groups') -and $Groups.Count -gt 0
+$hasExplicitAction = $PSBoundParameters.ContainsKey('Action')
+$hasGum = [bool](Get-Command gum -ErrorAction SilentlyContinue)
+$isInteractive = [Environment]::UserInteractive -and -not $ImportAdminOnly -and $hasGum -and -not [Console]::IsInputRedirected
+
+$selectedGroups = @{}
+
+if ($isInteractive -and -not $hasExplicitGroups -and -not $All) {
+    # 1. Interactive Action Selection if not provided
+    if (-not $hasExplicitAction) {
+        $actionChoice = gum choose --header="Select Action:" --header.foreground="39" --cursor="> " --cursor.foreground="39" "Add (Import to Registry)" "Remove (Revert from Registry)"
+        Flush-ConsoleInput
+        if (-not $actionChoice) { return }
+        $Action = if ($actionChoice -like "Add*") { "add" } else { "remove" }
+    }
+
+    # 2. Get available groups that have reg files for this action
+    $availableGroups = @()
+    foreach ($g in $allGroups.Keys) {
+        if ($allGroups[$g].enabled -ne $false -and $allGroups[$g].$Action.Count -gt 0) {
+            $availableGroups += $g
+        }
+    }
+
+    if ($availableGroups.Count -eq 0) {
+        Write-Host "[-] No registry files found for action: $Action" -ForegroundColor Yellow
+        return
+    }
+
+    # 3. Present multi-select menu via Gum
+    $menuOptions = @()
+    foreach ($g in $availableGroups) {
+        $fileNames = ($allGroups[$g].$Action | ForEach-Object { Split-Path $_ -Leaf }) -join ', '
+        $menuOptions += "$g ($fileNames)"
+    }
+
+    $headerText = if ($Action -eq 'add') { "Select registry tweaks to import (Space to toggle, Enter to confirm):" } else { "Select registry tweaks to revert (Space to toggle, Enter to confirm):" }
+    $chosen = gum choose --no-limit --header=$headerText --header.foreground="39" --cursor-prefix="> " --selected-prefix="[x] " --unselected-prefix="[ ] " --cursor.foreground="39" --selected.foreground="42" $menuOptions
+    Flush-ConsoleInput
+    if (-not $chosen -or $chosen.Count -eq 0) { return }
+
+    foreach ($c in $chosen) {
+        if ($c -match '^(?<app>[^\s\(]+)') {
+            $selectedGroups[$Matches['app']] = $true
         }
     }
 }
-else {
+elseif ($hasExplicitGroups) {
     foreach ($groupName in $Groups) {
         $selectedGroups[$groupName] = $true
     }
 }
-
-$entries = @()
-foreach ($g in $selectedGroups.Keys) {
-    if (-not ($obj.PSObject.Properties.Name -contains $g)) { Write-Warning "Group '$g' not found in config."; continue }
-    $val = $obj.$g
-    if ($val -is [System.Array]) {
-        foreach ($p in $val) { $entries += [pscustomobject]@{ Group = $g; Path = $p } }
-        continue
-    }
-
-    $actionKey = $Action  # 'add' or 'remove'
-    if ($val.PSObject.Properties.Name -contains $actionKey) {
-        if ($val.$actionKey -is [System.Array]) {
-            foreach ($p in $val.$actionKey) { $entries += [pscustomobject]@{ Group = $g; Path = $p } }
+else {
+    # Default non-interactive or -All: select all enabled groups for this action
+    foreach ($g in $allGroups.Keys) {
+        if ($allGroups[$g].enabled -ne $false -and $allGroups[$g].$Action.Count -gt 0) {
+            $selectedGroups[$g] = $true
         }
-        else {
-            Write-Warning "Group '$g' $actionKey value is not an array; skipping."
-        }
-        continue
     }
-
-    Write-Warning "Group '$g' has no '$actionKey' array; skipping."
 }
 
-# Resolve and categorize entries into admin-needed vs non-admin
+# Collect target entries to process
+$entries = @()
+foreach ($g in $selectedGroups.Keys) {
+    if (-not $allGroups.Contains($g)) {
+        Write-Warning "Group '$g' not found in discovered or configured registry entries."
+        continue
+    }
+    $val = $allGroups[$g]
+    foreach ($p in $val.$Action) {
+        $entries += [pscustomobject]@{ Group = $g; Path = $p }
+    }
+}
+
+# Categorize into admin-needed vs non-admin
 $adminEntries = @()
 $nonAdminEntries = @()
 foreach ($entry in $entries) {
     $p = $entry.Path
     $group = $entry.Group
-    if (-not $p) { Write-Warning "Skipping entry without 'path' value in group $group."; continue }
+    if (-not $p) { continue }
 
-    $expanded = Expand-PercentVars $p
-    if (-not [System.IO.Path]::IsPathRooted($expanded)) { $expanded = Join-Path $configDir $expanded }
-
-    $fileResolved = Resolve-Path -LiteralPath $expanded -ErrorAction SilentlyContinue
-    if (-not $fileResolved) { Write-Warning ".reg file not found: $expanded"; continue }
+    $fileResolved = Resolve-Path -LiteralPath $p -ErrorAction SilentlyContinue
+    if (-not $fileResolved) { Write-Warning ".reg file not found: $p"; continue }
     $fullPath = $fileResolved.Path
 
     $content = Get-Content -Raw -ErrorAction SilentlyContinue -Path $fullPath
@@ -126,7 +246,6 @@ foreach ($entry in $entries) {
     else { $nonAdminEntries += [pscustomobject]@{ Path = $fullPath; Content = $content; Group = $group } }
 }
 
-# Helper function to apply registry action
 function Invoke-RegistryAction {
     param(
         [string]$Path,
@@ -134,75 +253,109 @@ function Invoke-RegistryAction {
         [string]$Group = ''
     )
     try {
-        $proc = Start-Process -FilePath "reg.exe" -ArgumentList @('import', $Path) -NoNewWindow -Wait -PassThru -ErrorAction Stop
-        return $proc
+        & reg.exe import $Path *>$null
+        return [PSCustomObject]@{ ExitCode = $LASTEXITCODE }
     }
     catch {
         Write-Error "Failed to execute registry action on $($Path): $($_.Exception.Message)"
-        return $null
+        return [PSCustomObject]@{ ExitCode = 1 }
     }
 }
 
-# Helper function to display and process grouped entries
-function Show-GroupedEntries {
+function Apply-RegistryEntries {
     param(
         [pscustomobject[]]$Entries,
-        [string]$Action = 'add'
+        [string]$Action = 'add',
+        [bool]$Quiet = $false
     )
-    
-    if ($Entries.Count -eq 0) { return }
-    
-    # Group by group name
-    $grouped = @{}
-    foreach ($entry in $Entries) {
-        if (-not $grouped.ContainsKey($entry.Group)) {
-            $grouped[$entry.Group] = @()
-        }
-        $grouped[$entry.Group] += $entry
-    }
-    
-    # Display each group with color
-    $color = if ($Action -eq 'add') { 'Cyan' } else { 'Yellow' }
-    foreach ($groupName in ($grouped.Keys | Sort-Object)) {
-        Write-Host "$Action : $groupName" -ForegroundColor $color
-        foreach ($item in $grouped[$groupName]) {
-            $proc = Invoke-RegistryAction -Path $item.Path -Action $Action -Group $item.Group
-            if ($proc.ExitCode -ne 0) { Write-Warning "Operation failed for $($item.Path) (exit code $($proc.ExitCode))." }
+
+    if ($Entries.Count -eq 0) { return @() }
+
+    $results = @()
+    foreach ($item in $Entries) {
+        $proc = Invoke-RegistryAction -Path $item.Path -Action $Action -Group $item.Group
+        $fileName = Split-Path $item.Path -Leaf
+        $isOk = ($null -ne $proc -and $proc.ExitCode -eq 0)
+        $results += [PSCustomObject]@{
+            Group   = $item.Group
+            File    = $fileName
+            Success = $isOk
         }
     }
+    return $results
 }
 
-
-# If called with -ImportAdminOnly, import only admin entries and exit
+# If called with -ImportAdminOnly, import only admin entries and exit silently
 if ($ImportAdminOnly) {
-    Show-GroupedEntries -Entries $adminEntries -Action $Action
+    $null = Apply-RegistryEntries -Entries $adminEntries -Action $Action -Quiet $true
     exit 0
 }
 
-# If there are admin entries and we're not elevated, launch an elevated helper to import them, then import non-admin here
+$allResults = @()
+
+# If admin entries exist and we are not elevated, launch elevated helper for admin items
 if ($adminEntries.Count -gt 0 -and -not $isAdmin) {
-    Write-Output "Admin-needed .reg files detected; launching elevated helper to import them..."
+    Write-Output "Admin-needed .reg files detected; launching elevated helper..."
 
     $pwshCmd = Get-Command pwsh -ErrorAction SilentlyContinue
-    if ($pwshCmd) { $exe = $pwshCmd.Source } else { $exe = (Get-Command powershell).Source }
+    $exe = if ($pwshCmd) { $pwshCmd.Source } else { (Get-Command powershell).Source }
 
-    $argList = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', $PSCommandPath, '-Config', $configPath, '-Action', $Action, '-ImportAdminOnly')
+    $targetGroups = ($selectedGroups.Keys) -join ','
+    $argList = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', $PSCommandPath, '-Action', $Action, '-Groups', $targetGroups, '-ImportAdminOnly')
+    if ($configPath) { $argList += @('-Config', $configPath) }
+
     try {
         Start-Process -FilePath $exe -ArgumentList $argList -Verb RunAs -Wait
-        # After elevated helper finishes, apply action to non-admin entries in this (non-elevated) process
-        Show-GroupedEntries -Entries $nonAdminEntries -Action $Action
-        exit 0
+        foreach ($adm in $adminEntries) {
+            $allResults += [PSCustomObject]@{ Group = $adm.Group; File = (Split-Path $adm.Path -Leaf); Success = $true }
+        }
     }
     catch {
-        Write-Warning "Failed to launch elevated helper: $($_.Exception.Message)"
-        Write-Warning "Admin-required .reg files detected but elevation failed; skipping admin imports and continuing with non-admin entries."
+        Write-Warning "Elevation cancelled or failed: $($_.Exception.Message)"
+        foreach ($adm in $adminEntries) {
+            $allResults += [PSCustomObject]@{ Group = $adm.Group; File = (Split-Path $adm.Path -Leaf); Success = $false }
+        }
+    }
 
-        # Proceed directly to non-admin entries
-        Show-GroupedEntries -Entries $nonAdminEntries -Action $Action
+    # Now apply non-admin entries
+    $nonAdminResults = Apply-RegistryEntries -Entries $nonAdminEntries -Action $Action
+    $allResults += $nonAdminResults
+}
+else {
+    # Either elevated already or no admin entries
+    $targetAll = $adminEntries + $nonAdminEntries
+    $allResults = Apply-RegistryEntries -Entries $targetAll -Action $Action
+}
 
-        exit 0
+# Display results
+if ($allResults.Count -gt 0) {
+    $succeeded = $allResults | Where-Object { $_.Success }
+    $failed = $allResults | Where-Object { -not $_.Success }
+
+    if ($hasGum -and -not [Console]::IsOutputRedirected) {
+        $title = if ($Action -eq 'add') { "Registry Tweaks Applied" } else { "Registry Tweaks Reverted" }
+        $borderColor = if ($Action -eq 'add') { "42" } else { "214" }
+        $lines = @($title, [string]::new([char]0x2500, [Math]::Max($title.Length, 28)))
+        foreach ($s in $succeeded) {
+            $lines += "  [+] $($s.Group) ($($s.File))"
+        }
+        if ($failed.Count -gt 0) {
+            $lines += ""
+            $lines += "Failed:"
+            foreach ($f in $failed) {
+                $lines += "  [-] $($f.Group) ($($f.File))"
+            }
+        }
+        $cardContent = $lines -join "`n"
+        gum style --border normal --border-foreground $borderColor --padding "0 1" --margin "1 0" $cardContent
+    }
+    else {
+        $color = if ($Action -eq 'add') { 'Green' } else { 'Yellow' }
+        foreach ($s in $succeeded) {
+            Write-Host "[$($Action.ToUpper())] $($s.Group) ($($s.File))" -ForegroundColor $color
+        }
+        foreach ($f in $failed) {
+            Write-Warning "Failed: $($f.Group) ($($f.File))"
+        }
     }
 }
-# Otherwise (either elevated already or no admin entries): apply action to admin first, then non-admin
-$allEntries = $adminEntries + $nonAdminEntries
-Show-GroupedEntries -Entries $allEntries -Action $Action
