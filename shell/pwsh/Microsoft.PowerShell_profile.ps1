@@ -277,17 +277,6 @@ function Stop-GitHubAction {
     & "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Stop-GitHubAction.ps1" @PSBoundParameters @args
 }
 
-function Pull-GitRepos {
-    [CmdletBinding()]
-    param(
-        [string]$ConfigPath,
-        [int]$Parallel,
-        [switch]$FetchOnly,
-        [switch]$DryRun
-    )
-    & "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Pull-GitRepos.ps1" @PSBoundParameters @args
-}
-
 # Zoxide Initialization
 . ([ScriptBlock]::Create((zoxide init powershell | Out-String)))
 
