@@ -158,9 +158,9 @@ $selectedGroups = @{}
 if ($isInteractive -and -not $hasExplicitGroups -and -not $All) {
     # 1. Interactive Action Selection if not provided
     if (-not $hasExplicitAction) {
-        $actionChoice = gum choose --header="Select Action:" --header.foreground="39" --cursor="> " --cursor.foreground="39" "Add (Import to Registry)" "Remove (Revert from Registry)"
+        $actionChoice = gum choose --header="Select Action:" --header.foreground="39" --cursor="> " --cursor.foreground="39" "Add (Import to Registry)" "Remove (Revert from Registry)" 2>$null
         Flush-ConsoleInput
-        if (-not $actionChoice) { return }
+        if ($LASTEXITCODE -ne 0 -or -not $actionChoice) { return }
         $Action = if ($actionChoice -like "Add*") { "add" } else { "remove" }
     }
 
@@ -185,9 +185,9 @@ if ($isInteractive -and -not $hasExplicitGroups -and -not $All) {
     }
 
     $headerText = if ($Action -eq 'add') { "Select registry tweaks to import (Space to toggle, Enter to confirm):" } else { "Select registry tweaks to revert (Space to toggle, Enter to confirm):" }
-    $chosen = gum choose --no-limit --header=$headerText --header.foreground="39" --cursor-prefix="> " --selected-prefix="[x] " --unselected-prefix="[ ] " --cursor.foreground="39" --selected.foreground="42" $menuOptions
+    $chosen = gum choose --no-limit --header=$headerText --header.foreground="39" --cursor-prefix="> " --selected-prefix="[x] " --unselected-prefix="[ ] " --cursor.foreground="39" --selected.foreground="42" $menuOptions 2>$null
     Flush-ConsoleInput
-    if (-not $chosen -or $chosen.Count -eq 0) { return }
+    if ($LASTEXITCODE -ne 0 -or -not $chosen -or $chosen.Count -eq 0) { return }
 
     foreach ($c in $chosen) {
         if ($c -match '^(?<app>[^\s\(]+)') {
