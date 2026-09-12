@@ -185,7 +185,6 @@ function Install-Packages {
     $selectedLines = $catalog | fzf @fzfArgs
 
     if (-not $selectedLines -or $selectedLines.Count -eq 0) {
-        gum style --foreground 245 "[-] Installation cancelled. No packages selected."
         return
     }
 
@@ -460,7 +459,6 @@ function Uninstall-Packages {
     } catch {}
 
     if (-not $selectedLines -or $selectedLines.Count -eq 0) {
-        gum style --foreground 245 "[-] Uninstallation cancelled. No packages selected."
         return
     }
 
