@@ -7,11 +7,13 @@ A modern, high-performance package management module for PowerShell on Windows. 
 ## Highlights
 
 - **Complete Catalog Browsing**: Running `Install-Packages` without arguments instantly opens `fzf` with over **20,000+ packages** (from both Winget and Scoop) ready for real-time fuzzy filtering.
-- **Sub-Second Native Cache**: Directly reads Scoop's local `scoop-index.json` and Winget's native local SQLite database (`Microsoft.Winget.Source_*\Public\index.db`) in memory (~130ms), with zero background scraping daemons or slow network lookups.
+- **Sub-Second Native Cache**: Directly reads Scoop's local `scoop-index.json` and Winget's native SQLite database (`Microsoft.Winget.Source_*\Public\index.db`) in memory (~130ms), with zero background scraping daemons or slow network lookups.
+- **Animated Terminal Spinner**: `Uninstall-Packages` features an animated `gum spin` spinner while resolving installed applications across both package managers in parallel (<1s).
+- **Sub-20ms Scoop Reindexing**: Direct `.git` ref resolution eliminates child process overhead, powering instant incremental indexing (`-Reindex`) after updates.
 - **Zero-Guessing Installation**: Scoop packages preserve their exact bucket (`extras/tor-browser` -> `scoop install extras/tor-browser`), and Winget packages preserve their exact source (`winget install --id ... --source winget`).
-- **Interactive Info Preview (`Shift+?`)**: Pressing `Shift+?` (or `?`) in `fzf` toggles an on-demand preview pane displaying full metadata, licenses, homepages, and dependencies.
-- **Smart Uninstaller**: `Uninstall-Packages` concurrently queries installed packages across both Winget and Scoop. If multiple packages match a query, it launches `fzf`; if exactly one package matches, it prompts for immediate confirmation.
-- **System Update Pipeline**: `Update-AllPackages` automates updates for Winget sources, Winget packages, Scoop apps, UV Python tools, and local Git repositories.
+- **Interactive Info Preview (`Shift+?`)**: Pressing `Shift+?` (or `?`) in `fzf` toggles an on-demand preview pane displaying full metadata, licenses, homepages, and dependencies with instant caching for local MSIX/ARP packages.
+- **Clean Terminal State**: Automated console input buffer flushing discards terminal capability probes (`\e[?2027;0$y`), preventing phantom cancellations and prompt pollution.
+- **Minimal Square Styling**: Clean borders (`--border normal`, `--border=sharp`) paired with distinct component colors (Winget: cyan `39`, Scoop: gold `214`, UV: green `42`, Git: purple `212`, MS Store: violet `141`). Zero emojis.
 
 ---
 
@@ -21,10 +23,10 @@ Ensure the following tools are installed and accessible in your `PATH`:
 
 | Dependency | Purpose | Recommended Installation |
 |---|---|---|
-| **PowerShell 7+** | Core runtime engine (`ForEach-Object -Parallel`) | Pre-installed / `winget install Microsoft.PowerShell` |
+| **PowerShell 7+** | Core runtime engine (`ForEach-Object -Parallel`, RawUI buffer control) | Pre-installed / `winget install Microsoft.PowerShell` |
 | **fzf** | Interactive fuzzy finder & multi-selection TUI | `scoop install fzf` |
-| **gum** | Modern terminal cards, banners, and confirmation dialogs | `scoop install charm-gum` or `winget install charmbracelet.gum` |
-| **python** | Sub-millisecond SQLite index parser and preview runner | `scoop install python` |
+| **gum** | Modern terminal cards, animated spinners, and confirmation dialogs | `scoop install charm-gum` or `winget install charmbracelet.gum` |
+| **python** | High-speed SQLite index parser, installed resolver, and preview runner | `scoop install python` |
 | **fast-scoop-search** | Local indexer for Scoop buckets (`scoop-index.json`) | Placed in `$HOME\Git\fast-scoop-search` |
 
 ---
@@ -33,7 +35,7 @@ Ensure the following tools are installed and accessible in your `PATH`:
 
 ### 1. `Install-Packages`
 
-Unified command for searching, browsing, and installing packages.
+Unified command for searching, browsing, and installing packages across Winget and Scoop.
 
 ```powershell
 # 1. Open full catalog in fzf (~20,000 packages)
@@ -62,7 +64,7 @@ Install-Packages scoop:extras/tor-browser winget:Neovim.Neovim
 
 ### 2. `Uninstall-Packages`
 
-Intelligently queries your actual installed applications across both package managers.
+Queries installed applications across Winget and Scoop in parallel (<1s) with an animated `gum spin` spinner.
 
 ```powershell
 # 1. Open fzf displaying all currently installed programs
@@ -83,7 +85,21 @@ Uninstall-Packages scoop:tor-browser -Force
 
 ---
 
-### 3. `Update-AllPackages`
+### 3. `Update-PackageSources`
+
+Synchronizes upstream package manifests and rebuilds local search indices:
+
+```powershell
+Update-PackageSources
+```
+
+- Refreshes Winget source repositories (`winget source update`).
+- Synchronizes all Scoop buckets (`scoop update`).
+- Triggers high-speed incremental reindexing via `fast-scoop-search -Reindex` (<20ms).
+
+---
+
+### 4. `Update-AllPackages`
 
 Executes a full, visually styled system maintenance pipeline:
 
@@ -94,7 +110,7 @@ Update-AllPackages
 **Pipeline Stages:**
 1. Updates Winget sources and upgrades AppInstaller binary.
 2. Upgrades all installed Winget packages (`winget upgrade --all`).
-3. Updates Scoop buckets, upgrades all Scoop apps, and triggers `fast-scoop-search` reindexing.
+3. Updates Scoop buckets, upgrades all Scoop apps, and triggers `fast-scoop-search -Reindex`.
 4. Upgrades all global Python tools managed by UV (`uv tool upgrade --all`).
 5. Pulls latest changes for configured Git repositories (`Pull-GitRepos.ps1`).
 6. Removes unwanted shortcut `.lnk` icons from Desktop (`Remove-DesktopIcons`).
@@ -105,24 +121,41 @@ Update-AllPackages
 
 ```mermaid
 flowchart TD
-    subgraph Local Data Sources
-        W_DB[("Winget Native SQLite<br/>Microsoft.Winget.Source_*/Public/index.db")]
-        S_JSON[("Scoop Index JSON<br/>fast-scoop-search/scoop-index.json")]
+    subgraph Data Sources
+        W_DB[("Winget Native SQLite<br/>index.db (~100ms)")]
+        S_JSON[("Scoop Index JSON<br/>scoop-index.json (<30ms)")]
+        L_SCOOP[("Local Scoop Apps<br/>~/scoop/apps (<15ms)")]
+        W_LIST["winget list<br/>(Background Process)"]
     end
 
-    subgraph PkgOps Engine
+    subgraph Install Pipeline
         P_CAT["Get-CombinedCatalog<br/>(In-Memory Python Parse ~130ms)"]
-        FZF["fzf Interactive TUI<br/>--multi --ansi --query"]
+        FZF_I["fzf Interactive TUI<br/>--multi --ansi --query"]
         PREV["Get-PackageInfo.py<br/>(Shift+? on-demand preview)"]
-        CONF["gum confirm<br/>(Package Summary Card)"]
+        CONF_I["gum confirm<br/>(Package Summary Card)"]
+    end
+
+    subgraph Uninstall Pipeline
+        SPIN["gum spin<br/>(Animated Terminal Spinner)"]
+        P_INST["Get-InstalledPackages.py<br/>(Parallel Resolver <1s)"]
+        FZF_U["fzf Interactive TUI<br/>--multi --ansi --query"]
+        CONF_U["gum confirm<br/>(Destructive Prompt)"]
     end
 
     W_DB --> P_CAT
     S_JSON --> P_CAT
-    P_CAT --> FZF
-    FZF <-->|"Shift+?"| PREV
-    FZF -->|"Selection"| CONF
-    CONF -->|"Yes"| INST["Execute Install<br/>• scoop install [bucket]/[app]<br/>• winget install --id [id] --source [src]"]
+    P_CAT --> FZF_I
+    FZF_I <-->|"Shift+?"| PREV
+    FZF_I -->|"Selection"| CONF_I
+    CONF_I -->|"Yes"| EXEC_I["Execute Install<br/>• scoop install [bucket]/[app]<br/>• winget install --id [id] --source [src]"]
+
+    SPIN --- P_INST
+    L_SCOOP --> P_INST
+    W_LIST --> P_INST
+    P_INST --> FZF_U
+    FZF_U <-->|"Shift+?"| PREV
+    FZF_U -->|"Selection"| CONF_U
+    CONF_U -->|"Yes"| EXEC_U["Execute Uninstall<br/>• scoop uninstall [app]<br/>• winget uninstall --id [id]"]
 ```
 
 ---
@@ -131,7 +164,8 @@ flowchart TD
 
 ```
 shell/pwsh/modules/PkgOps/
-├── PkgOps.psm1          # Core PowerShell module containing all cmdlets
-├── Get-PackageInfo.py   # High-speed preview helper invoked by fzf on Shift+?
-└── README.md            # Module documentation
+├── PkgOps.psm1               # Core PowerShell module containing all cmdlets
+├── Get-InstalledPackages.py  # High-speed parallel resolver for Winget & Scoop packages
+├── Get-PackageInfo.py        # High-speed preview helper invoked by fzf on Shift+?
+└── README.md                 # Module documentation
 ```
