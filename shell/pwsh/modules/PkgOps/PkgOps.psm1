@@ -86,15 +86,9 @@ function Update-PackageSources {
     gum style --border normal --border-foreground 39 --padding "0 2" --bold "Updating Winget Sources..."
     winget source update
 
-    gum style --border normal --border-foreground 214 --padding "0 2" --bold "Updating Scoop & Index..."
+    gum style --border normal --border-foreground 214 --padding "0 2" --bold "Updating Scoop..."
     scoop update
     
-    $scoopSearchPath = "$env:UserProfile\Git\fast-scoop-search\Scoop-Search.ps1"
-    if (Test-Path $scoopSearchPath) {
-        # Trigger incremental index update in fast-scoop-search
-        & $scoopSearchPath "__force_reindex_check__" 2>$null | Out-Null
-    }
-
     gum style --border normal --border-foreground 42 --padding "0 2" --bold "Package sources updated successfully!"
 }
 
@@ -605,12 +599,6 @@ function Update-AllPackages {
     scoop update
     scoop update -a
     scoop status
-
-    # Refresh Scoop JSON index
-    $scoopSearchPath = "$env:UserProfile\Git\fast-scoop-search\Scoop-Search.ps1"
-    if (Test-Path $scoopSearchPath) {
-        & $scoopSearchPath "__force_reindex_check__" 2>$null | Out-Null
-    }
 
     gum style --border normal --border-foreground 42 --margin "1 0" --padding "0 2" --bold "Upgrading UV Tools"
     uv tool upgrade --all
