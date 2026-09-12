@@ -188,7 +188,7 @@ if ($isInteractive -and -not $hasExplicitGroups -and -not $All) {
     }
 
     $headerText = if ($Action -eq 'add') { "Select registry tweaks to import (Space to toggle, Enter to confirm):" } else { "Select registry tweaks to revert (Space to toggle, Enter to confirm):" }
-    $chosen = gum choose --no-limit --selected=* --header=$headerText --header.foreground="39" --cursor-prefix="> " --selected-prefix="[x] " --unselected-prefix="[ ] " --cursor.foreground="39" --selected.foreground="42" $menuOptions
+    $chosen = gum choose --no-limit --header=$headerText --header.foreground="39" --cursor-prefix="> " --selected-prefix="[x] " --unselected-prefix="[ ] " --cursor.foreground="39" --selected.foreground="42" $menuOptions
     Flush-ConsoleInput
     if ($LASTEXITCODE -ne 0 -or -not $chosen -or $chosen.Count -eq 0) {
         Write-Host "`e[1A`e[2K`r" -NoNewline
