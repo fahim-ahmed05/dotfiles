@@ -350,126 +350,19 @@ function Uninstall-Packages {
         return
     }
 
-    # Fetch installed packages across Winget and Scoop in parallel
+    # Fetch installed packages across Winget and Scoop with animated gum spinner
     $query = if ($Packages) { $Packages -join ' ' } else { "" }
+    $title = if ($query) { "Checking installed packages matching '$query'..." } else { "Fetching installed packages..." }
+    $helperScript = Join-Path $PSScriptRoot "Get-InstalledPackages.py"
 
-    if ($query) {
-        gum style --foreground 245 "Checking installed packages matching '$query'..."
+    $json = if (Get-Command gum -ErrorAction SilentlyContinue) {
+        gum spin --spinner dot --spinner.foreground 214 --title "$title" --title.foreground 245 --show-stdout -- python "$helperScript" "$query"
     } else {
-        gum style --foreground 245 "Fetching installed packages..."
+        Write-Host "$title" -ForegroundColor DarkGray
+        python "$helperScript" "$query"
     }
 
-    $rawItems = @('winget', 'scoop') | ForEach-Object -Parallel {
-        $q = $using:query
-        if ($_ -eq 'winget') {
-            $raw = if ($q) {
-                winget list "$q" --accept-source-agreements 2>$null
-            } else {
-                winget list --accept-source-agreements 2>$null
-            }
-            [PSCustomObject]@{ Source = 'winget'; Raw = $raw }
-        } else {
-            $raw = if ($q) {
-                scoop list "$q" 6>$null | Out-String -Stream
-            } else {
-                scoop list 6>$null | Out-String -Stream
-            }
-            [PSCustomObject]@{ Source = 'scoop'; Raw = $raw }
-        }
-    } -ThrottleLimit 2
-
-    $installed = [System.Collections.Generic.List[PSCustomObject]]::new()
-
-    foreach ($item in $rawItems) {
-        if ($item.Source -eq 'winget') {
-            $raw = $item.Raw
-            $headerIdx = -1
-            for ($i = 0; $i -lt $raw.Count; $i++) {
-                if ($raw[$i] -match '^Name\s+Id\s+') {
-                    $headerIdx = $i
-                    break
-                }
-            }
-            if ($headerIdx -ge 0) {
-                $header   = $raw[$headerIdx]
-                $idPos    = $header.IndexOf('Id')
-                $verPos   = $header.IndexOf('Version')
-                $srcPos   = $header.IndexOf('Source')
-
-                for ($i = $headerIdx + 2; $i -lt $raw.Count; $i++) {
-                    $line = $raw[$i]
-                    if ([string]::IsNullOrWhiteSpace($line)) { continue }
-                    $name = $line.Substring(0, [Math]::Min($line.Length, $idPos)).Trim()
-                    $id = if ($line.Length -gt $idPos) {
-                        $end = if ($verPos -gt $idPos) { [Math]::Min($line.Length, $verPos) } else { $line.Length }
-                        $line.Substring($idPos, $end - $idPos).Trim()
-                    } else { "" }
-                    if (-not $id) { continue }
-                    $ver = if ($verPos -gt 0 -and $line.Length -gt $verPos) {
-                        $end = if ($srcPos -gt $verPos) { [Math]::Min($line.Length, $srcPos) } else { $line.Length }
-                        $line.Substring($verPos, $end - $verPos).Trim()
-                    } else { "" }
-                    $src = if ($srcPos -gt 0 -and $line.Length -gt $srcPos) { $line.Substring($srcPos).Trim() } else { "" }
-                    $mgr = if ($src -match 'msstore') { 'msstore' } else { 'winget' }
-
-                    if (-not $query -or $name.Contains($query, [System.StringComparison]::OrdinalIgnoreCase) -or $id.Contains($query, [System.StringComparison]::OrdinalIgnoreCase)) {
-                        $installed.Add([PSCustomObject]@{
-                            Manager = $mgr
-                            Source  = $src
-                            Id      = $id
-                            Name    = $name
-                            Version = $ver
-                        })
-                    }
-                }
-            }
-        }
-        elseif ($item.Source -eq 'scoop') {
-            $raw = $item.Raw
-            $headerIdx = -1
-            for ($i = 0; $i -lt $raw.Count; $i++) {
-                if ($raw[$i] -match '^(Name|name)\s+(Version|version)\s+(Source|source)') {
-                    $headerIdx = $i
-                    break
-                }
-            }
-            if ($headerIdx -ge 0) {
-                $header = $raw[$headerIdx]
-                $verPos = [regex]::Match($header, 'Version', 'IgnoreCase').Index
-                $srcPos = [regex]::Match($header, 'Source', 'IgnoreCase').Index
-
-                $updMatch = [regex]::Match($header, 'Updated', 'IgnoreCase')
-                $updPos = if ($updMatch.Success) { $updMatch.Index } else { -1 }
-
-                for ($i = $headerIdx + 2; $i -lt $raw.Count; $i++) {
-                    $line = $raw[$i]
-                    if ([string]::IsNullOrWhiteSpace($line) -or $line -match '^-+') { continue }
-                    $name = $line.Substring(0, [Math]::Min($line.Length, $verPos)).Trim()
-                    if (-not $name) { continue }
-                    $ver = if ($line.Length -gt $verPos) {
-                        $end = if ($srcPos -gt $verPos) { [Math]::Min($line.Length, $srcPos) } else { $line.Length }
-                        $line.Substring($verPos, $end - $verPos).Trim()
-                    } else { "" }
-                    $bucket = if ($line.Length -gt $srcPos) {
-                        $end = if ($updPos -gt $srcPos) { [Math]::Min($line.Length, $updPos) } else { $line.Length }
-                        $line.Substring($srcPos, $end - $srcPos).Trim()
-                    } else { "main" }
-                    if (-not $bucket) { $bucket = "main" }
-
-                    if (-not $query -or $name.Contains($query, [System.StringComparison]::OrdinalIgnoreCase)) {
-                        $installed.Add([PSCustomObject]@{
-                            Manager = 'scoop'
-                            Bucket  = $bucket
-                            Source  = $bucket
-                            Id      = $name
-                            Name    = $name
-                            Version = $ver
-                        })
-                    }
-                }
-            }
-        }
-    }
+    $installed = if ($json) { [System.Collections.Generic.List[PSCustomObject]]@($json | ConvertFrom-Json) } else { [System.Collections.Generic.List[PSCustomObject]]::new() }
 
     # Case 0: No installed packages match
     if ($installed.Count -eq 0) {
