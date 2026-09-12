@@ -41,6 +41,16 @@ foreach ($dep in "yt-dlp", "ffmpeg", "fzf") {
 }
 
 # --- Helper Functions ---
+function Clear-ConsoleInput {
+    try {
+        if ($Host.UI.RawUI.KeyAvailable) {
+            while ($Host.UI.RawUI.KeyAvailable) { $null = [Console]::ReadKey($true) }
+        }
+        $Host.UI.RawUI.FlushInputBuffer()
+    }
+    catch {}
+}
+
 function Format-CleanString ([string]$str) { return $str.Trim(" `t`n`r$([char]0xFEFF)") }
 
 function Get-SafeName ([string]$name) {
@@ -139,11 +149,26 @@ function Get-Metadata ($url, [string]$VideoTitle = "") {
 
     Write-Host "`nFull Video Title: $VideoTitle" -ForegroundColor Green
     
-    $Title = Read-Host "Enter Book Title"
-    while ([string]::IsNullOrWhiteSpace($Title)) { $Title = Read-Host "Enter Book Title (Required)" }
+    $Title = ""
+    $Author = ""
+    if (Get-Command gum -ErrorAction SilentlyContinue) {
+        $Title = (gum input --prompt "Book Title: " --placeholder "Enter Book Title" --value $VideoTitle).Trim()
+        while ([string]::IsNullOrWhiteSpace($Title)) {
+            $Title = (gum input --prompt "Book Title (Required): " --placeholder "Enter Book Title").Trim()
+        }
+        $Author = (gum input --prompt "Author Name: " --placeholder "Enter Author Name").Trim()
+        while ([string]::IsNullOrWhiteSpace($Author)) {
+            $Author = (gum input --prompt "Author Name (Required): " --placeholder "Enter Author Name").Trim()
+        }
+        Clear-ConsoleInput
+    }
+    else {
+        $Title = Read-Host "Enter Book Title"
+        while ([string]::IsNullOrWhiteSpace($Title)) { $Title = Read-Host "Enter Book Title (Required)" }
 
-    $Author = Read-Host "Enter Author Name"
-    while ([string]::IsNullOrWhiteSpace($Author)) { $Author = Read-Host "Enter Author Name (Required)" }
+        $Author = Read-Host "Enter Author Name"
+        while ([string]::IsNullOrWhiteSpace($Author)) { $Author = Read-Host "Enter Author Name (Required)" }
+    }
 
     return @{ Title = Format-CleanString $Title; Author = Format-CleanString $Author }
 }
@@ -406,7 +431,16 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
         }
     }
     else {
-        $appendChoice = Read-Host "`n[1] New Book`n[2] Append to Existing`nChoice"
+        $appendChoice = '1'
+        if (Get-Command gum -ErrorAction SilentlyContinue) {
+            Write-Host "`nSelect Book Target:" -ForegroundColor Cyan
+            $chosen = @("New Book", "Append to Existing") | gum choose
+            Clear-ConsoleInput
+            if ($chosen -eq "Append to Existing") { $appendChoice = '2' }
+        }
+        else {
+            $appendChoice = Read-Host "`n[1] New Book`n[2] Append to Existing`nChoice"
+        }
         $startNum = 1
         $destPath = ""
         $meta = $null
@@ -508,10 +542,29 @@ function Confirm-And-Process ([object[]]$Selections) {
     if (-not $Selections) { return }
     $Urls = @($Selections | ForEach-Object { $_.Url })
     $VideoTitles = @($Selections | ForEach-Object { $_.Title })
-    $prompt = if ($Urls.Count -eq 1) { "`nIs this [1] A Single Book or [2] Part of a Multi-part Book? (1/2)" } 
-    else { "`nAre these [1] Multiple Single Books or [2] Parts of ONE Book? (1/2)" }
-    $q = Read-Host $prompt
-    Start-AudiobookDownload -Urls $Urls -VideoTitles $VideoTitles -IsMulti ($q -eq '2')
+
+    $isMulti = $false
+    if (Get-Command gum -ErrorAction SilentlyContinue) {
+        $opts = if ($Urls.Count -eq 1) {
+            @("Single Book", "Part of a Multi-part Book")
+        } else {
+            @("Multiple Individual Books", "Parts of ONE Book")
+        }
+        Write-Host "`nSelect Processing Mode:" -ForegroundColor Cyan
+        $chosen = $opts | gum choose
+        Clear-ConsoleInput
+        if ($chosen -in @("Part of a Multi-part Book", "Parts of ONE Book")) {
+            $isMulti = $true
+        }
+    }
+    else {
+        $prompt = if ($Urls.Count -eq 1) { "`nIs this [1] A Single Book or [2] Part of a Multi-part Book? (1/2)" } 
+        else { "`nAre these [1] Multiple Single Books or [2] Parts of ONE Book? (1/2)" }
+        $q = Read-Host $prompt
+        $isMulti = ($q -eq '2')
+    }
+
+    Start-AudiobookDownload -Urls $Urls -VideoTitles $VideoTitles -IsMulti $isMulti
 }
 
 function Invoke-PlaylistMenu ([switch]$IsChannel) {
@@ -550,12 +603,24 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
         Invoke-SelectionLoop -Items $playlistCache -Prompt "Select videos (TAB: multi, ESC: Main Menu)> "
     }
     else {
-        $dlType = Read-Host "`n[1] Download All ($($playlistCache.Count) videos)`n[2] Select specific videos (fzf)`nChoice"
-        if ($dlType -eq '1') {
+        $dlChoice = "1"
+        if (Get-Command gum -ErrorAction SilentlyContinue) {
+            Write-Host "`nPlaylist Download Mode:" -ForegroundColor Cyan
+            $opts = @("Download All ($($playlistCache.Count) videos)", "Select specific videos (fzf)")
+            $chosen = $opts | gum choose
+            Clear-ConsoleInput
+            if ($chosen -like "Select specific*") { $dlChoice = "2" }
+        }
+        else {
+            $dlType = Read-Host "`n[1] Download All ($($playlistCache.Count) videos)`n[2] Select specific videos (fzf)`nChoice"
+            $dlChoice = $dlType
+        }
+
+        if ($dlChoice -eq '1') {
             $selections = Convert-ToSelectionObjects $playlistCache
             Confirm-And-Process -Selections $selections
         }
-        elseif ($dlType -eq '2') {
+        elseif ($dlChoice -eq '2') {
             Invoke-SelectionLoop -Items $playlistCache -Prompt "Select videos (TAB: multi, ESC: Main Menu)> "
         }
     }
@@ -564,35 +629,65 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
 # --- Main Application Loop ---
 function Start-InteractiveMode {
     while ($true) {
-        Write-Host "`n=============================================" -ForegroundColor Cyan
-        Write-Host "      Interactive Audiobook Downloader       " -ForegroundColor Cyan
-        Write-Host "=============================================" -ForegroundColor Cyan
-        
-        $mode = Read-Host "`n[1] Single`n[2] Multi`n[3] Channel (fzf)`n[4] Playlist (fzf)`n`nSelect mode (Enter to exit)"
+        if (Get-Command gum -ErrorAction SilentlyContinue) {
+            gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Interactive Audiobook Downloader"
+            $menuOptions = @(
+                "Single (Download one book)"
+                "Multi (Download multi-part book)"
+                "Channel (Browse channel via fzf)"
+                "Playlist (Browse playlist via fzf)"
+                "Exit"
+            )
+            $selectedMode = ($menuOptions | gum choose)
+            Clear-ConsoleInput
 
-        if ([string]::IsNullOrWhiteSpace($mode)) { break }
+            if (-not $selectedMode -or $selectedMode -eq "Exit") { break }
 
-        if ($mode -eq '1') { 
-            $urlInput = Read-Host "URL"
-            if ($urlInput) { Start-AudiobookDownload -Urls @($urlInput) -IsMulti:$false }
-
+            if ($selectedMode -like "Single*") {
+                $urlInput = (gum input --prompt "Audiobook URL: " --placeholder "https://youtu.be/...").Trim()
+                Clear-ConsoleInput
+                if ($urlInput) { Start-AudiobookDownload -Urls @($urlInput) -IsMulti:$false }
+            }
+            elseif ($selectedMode -like "Multi*") {
+                $urlInput = (gum input --prompt "URLs (space-separated): " --placeholder "https://... https://...").Trim()
+                Clear-ConsoleInput
+                $urls = @($urlInput -split '\s+' | Where-Object { $_ })
+                if ($urls) { Start-AudiobookDownload -Urls $urls -IsMulti:$true }
+            }
+            elseif ($selectedMode -like "Channel*") {
+                Invoke-PlaylistMenu -IsChannel
+            }
+            elseif ($selectedMode -like "Playlist*") {
+                Invoke-PlaylistMenu
+            }
         }
-        elseif ($mode -eq '2') { 
-            $urlInput = Read-Host "URLs (space-separated)"
-            $urls = @($urlInput -split '\s+' | Where-Object { $_ })
-            if ($urls) { Start-AudiobookDownload -Urls $urls -IsMulti:$true }
+        else {
+            Write-Host "`n=============================================" -ForegroundColor Cyan
+            Write-Host "      Interactive Audiobook Downloader       " -ForegroundColor Cyan
+            Write-Host "=============================================" -ForegroundColor Cyan
+            
+            $mode = Read-Host "`n[1] Single`n[2] Multi`n[3] Channel (fzf)`n[4] Playlist (fzf)`n`nSelect mode (Enter to exit)"
 
-        }
-        elseif ($mode -eq '3') {
-            Invoke-PlaylistMenu -IsChannel
+            if ([string]::IsNullOrWhiteSpace($mode)) { break }
 
-        }
-        elseif ($mode -eq '4') {
-            Invoke-PlaylistMenu
-
-        }
-        else { 
-            Write-Host "Invalid mode." -ForegroundColor Red
+            if ($mode -eq '1') { 
+                $urlInput = Read-Host "URL"
+                if ($urlInput) { Start-AudiobookDownload -Urls @($urlInput) -IsMulti:$false }
+            }
+            elseif ($mode -eq '2') { 
+                $urlInput = Read-Host "URLs (space-separated)"
+                $urls = @($urlInput -split '\s+' | Where-Object { $_ })
+                if ($urls) { Start-AudiobookDownload -Urls $urls -IsMulti:$true }
+            }
+            elseif ($mode -eq '3') {
+                Invoke-PlaylistMenu -IsChannel
+            }
+            elseif ($mode -eq '4') {
+                Invoke-PlaylistMenu
+            }
+            else { 
+                Write-Host "Invalid mode." -ForegroundColor Red
+            }
         }
     }
 }

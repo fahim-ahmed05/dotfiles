@@ -131,3 +131,73 @@ pwsh -File Add-RemoveRegFiles.ps1 -Config registry-config.json
 ```powershell
 pwsh -File Add-RemoveRegFiles.ps1 -Config registry-config.json alacritty
 ```
+
+---
+
+## Stop-GitHubAction.ps1
+
+A context-aware tool to stop/cancel running or queued GitHub Actions workflows.
+
+### Features
+- **Git Context Awareness**: Automatically extracts the repository `Owner` and `Repo` name from `git remote get-url origin` when run inside a local repository.
+- **Automatic Token Resolution**: Resolves authentication automatically via `gh auth token`, `$env:GH_TOKEN`, or `$env:GITHUB_TOKEN`.
+- **Interactive Workflow Selector**: If `-RunId` is omitted, lists active/queued workflow runs and allows you to pick one with `gum choose` or `fzf`.
+- **Zero-Emoji Output**: Renders clean feedback in square-bordered Gum summary cards.
+
+### Usage
+```powershell
+# Interactive run picker for current repository
+pwsh Stop-GitHubAction.ps1
+
+# Cancel a specific run in current repository
+pwsh Stop-GitHubAction.ps1 -RunId 123456789
+
+# Explicit owner/repo and force cancel
+pwsh Stop-GitHubAction.ps1 -Owner octocat -Repo hello-world -RunId 123456789 -Force
+```
+
+> **Note**: The legacy `Cancel-GitHubAction.ps1` remains available for scripts that invoke it directly with mandatory parameters.
+
+---
+
+## Pull-GitRepos.ps1
+
+Pulls updates for multiple Git repositories in parallel with automatic machine configuration resolution and safety checks.
+
+### Features
+- **Machine Config Auto-Detection**: Automatically detects your computer name (e.g. `git_repos_acer.json`, `git_repos_gigabyte.json`), falling back to `git_repos.json` or scanning `$env:USERPROFILE\Git`.
+- **Parallel Pulling**: Performs `git pull --rebase` across multiple repositories concurrently (configurable `-Parallel`, default 4).
+- **Worktree Safety Guards**: Checks `git status --porcelain` and safely skips repos with uncommitted changes (`Skipped (Dirty)`), preventing merge/rebase conflicts.
+- **Remote Upstream Check**: Skips branches that do not have an upstream remote tracking branch.
+- **Summary Card**: Renders a square-bordered Gum status card summarizing total, updated, up-to-date, skipped, and failed repositories.
+
+### Usage
+```powershell
+# Auto-discover and pull all repos
+pwsh Pull-GitRepos.ps1
+
+# Dry-run to inspect repositories without pulling
+pwsh Pull-GitRepos.ps1 -DryRun
+
+# Custom parallelism and explicit config
+pwsh Pull-GitRepos.ps1 -Parallel 6 -ConfigPath "..\configs\git_repos_custom.json"
+```
+
+---
+
+## Download-Audiobook.ps1
+
+A high-performance interactive audiobook downloader and metadata processor utilizing `yt-dlp`, `fzf`, `ffmpeg`, and `gum`.
+
+### Features
+- **Interactive Navigation**: Powered by `gum choose` and `fzf` for selecting modes (Single, Multi-part, Channel, Playlist) and tracks.
+- **In-Place Progress Bars**: Custom multi-slot terminal engine (`Update-TerminalLine`) displaying live download speeds, percentages, and ETAs with ANSI block characters.
+- **Audio Conversion & Tagging**: Extracts audio to `.m4a`, crops thumbnails to square aspect ratio using ffmpeg, and injects complete ID3 metadata (Title, Artist, Album, Track Number).
+- **Resume & Retry**: Allows re-trying failed downloads interactively at the end of a batch.
+
+### Usage
+```powershell
+# Launch interactive mode
+pwsh Download-Audiobook.ps1
+```
+
