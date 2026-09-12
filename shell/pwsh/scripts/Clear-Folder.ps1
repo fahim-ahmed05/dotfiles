@@ -29,6 +29,9 @@
 
 .PARAMETER RemoveEmptyDirs
     Optional. If specified, ONLY recursively searches the provided sources for empty folders and moves them to the Trash. Normal file clearing is skipped.
+
+.PARAMETER Force
+    Bypasses interactive menus and confirmation prompts.
 #>
 param(
     [string]$ConfigPath = (Join-Path $PSScriptRoot "..\configs\clear_folders.json"),
@@ -38,8 +41,19 @@ param(
     
     [switch]$EmptyTrash,
     [switch]$All,
-    [switch]$RemoveEmptyDirs
+    [switch]$RemoveEmptyDirs,
+    [Alias('y')][switch]$Force
 )
+
+function Flush-ConsoleInput {
+    try {
+        if ($Host.UI.RawUI.KeyAvailable) {
+            while ($Host.UI.RawUI.KeyAvailable) { $null = [Console]::ReadKey($true) }
+        }
+        $Host.UI.RawUI.FlushInputBuffer()
+    }
+    catch {}
+}
 
 # 1. Load Configuration
 if (-not (Test-Path -LiteralPath $ConfigPath)) {
@@ -52,6 +66,43 @@ $trashPath = [System.Environment]::ExpandEnvironmentVariables($config.trashPath)
 if (-not (Test-Path -LiteralPath $trashPath)) {
     New-Item -ItemType Directory -Path $trashPath | Out-Null
 }
+
+$hasGum = [bool](Get-Command gum -ErrorAction SilentlyContinue)
+$isInteractive = [Environment]::UserInteractive -and $hasGum -and -not [Console]::IsInputRedirected
+
+# Interactive Action Menu if no arguments passed
+if ($isInteractive -and $Source.Count -eq 0 -and -not $EmptyTrash -and -not $All -and -not $RemoveEmptyDirs -and -not $Force) {
+    $menu = gum choose --header="Select Clear-Folder Action:" --header.foreground="39" --cursor="> " --cursor.foreground="39" `
+        "Clean configured sources (Desktop, Downloads)" `
+        "Clean Desktop only" `
+        "Clean Downloads only" `
+        "Empty Trash permanently" `
+        "Clean all sources and empty Trash" `
+        "Remove empty subdirectories" 2>$null
+    Flush-ConsoleInput
+    if ($LASTEXITCODE -ne 0 -or -not $menu) { return }
+
+    switch -Wildcard ($menu) {
+        "*Desktop, Downloads*" { } # default configured sources
+        "*Desktop only*"       { $Source = @("Desktop") }
+        "*Downloads only*"     { $Source = @("Downloads") }
+        "*Empty Trash perm*"   { $EmptyTrash = $true }
+        "*Clean all sources*"  { $All = $true }
+        "*Remove empty sub*"   { $RemoveEmptyDirs = $true }
+    }
+}
+
+# Confirmation before permanently emptying Trash
+if (($EmptyTrash -or $All) -and $isInteractive -and -not $Force) {
+    gum confirm --prompt.foreground="214" "Permanently delete all items in Trash?" 2>$null
+    Flush-ConsoleInput
+    if ($LASTEXITCODE -ne 0) { return }
+}
+
+# Tracking metrics
+$script:movedCount = 0
+$script:deletedCount = 0
+$script:skippedCount = 0
 
 # 2. Helper Functions
 function Assert-SafePath {
@@ -79,7 +130,10 @@ function Move-ItemToTrash {
     }
     
     if ($isExcluded) {
-        Write-Host "Skipped (Excluded): $($Item.FullName)" -ForegroundColor DarkGray
+        $script:skippedCount++
+        if (-not $isInteractive) {
+            Write-Host "Skipped (Excluded): $($Item.FullName)" -ForegroundColor DarkGray
+        }
         return
     }
 
@@ -112,7 +166,10 @@ function Move-ItemToTrash {
 
     try {
         Move-Item -LiteralPath $Item.FullName -Destination $dest -Force -ErrorAction Stop
-        Write-Host "Moved: $($Item.FullName) -> $dest" -ForegroundColor Green
+        $script:movedCount++
+        if (-not $isInteractive) {
+            Write-Host "Moved: $($Item.FullName) -> $dest" -ForegroundColor Green
+        }
     }
     catch {
         Write-Warning "Failed: $($Item.FullName). Error: $($_.Exception.Message)"
@@ -133,19 +190,27 @@ function Clear-Trash {
         }
 
         if ($isExcluded) {
-            Write-Host "Skipped: $($item.FullName)" -ForegroundColor DarkGray
+            $script:skippedCount++
+            if (-not $isInteractive) {
+                Write-Host "Skipped: $($item.FullName)" -ForegroundColor DarkGray
+            }
             continue
         }
         
         try {
             Remove-Item -LiteralPath $item.FullName -Recurse -Force -ErrorAction Stop
-            Write-Host "Deleted: $($item.FullName)" -ForegroundColor Green
+            $script:deletedCount++
+            if (-not $isInteractive) {
+                Write-Host "Deleted: $($item.FullName)" -ForegroundColor Green
+            }
         }
         catch {
             Write-Warning "Failed: $($item.FullName). Error: $($_.Exception.Message)"
         }
     }
-    Write-Host "`nTrash emptied." -ForegroundColor Cyan
+    if (-not $isInteractive) {
+        Write-Host "`nTrash emptied." -ForegroundColor Cyan
+    }
 }
 
 function Remove-EmptyDirectories {
@@ -233,4 +298,26 @@ if (-not $EmptyTrash) {
 
 if ($EmptyTrash -or $All) {
     Clear-Trash -Exclude $config.trashExclude
+}
+
+# 4. Results Display
+if ($isInteractive -and -not [Console]::IsOutputRedirected) {
+    $lines = @(
+        "Folder Cleanup Summary",
+        [string]::new([char]0x2500, 24)
+    )
+    if ($script:movedCount -gt 0) {
+        $lines += "  [+] Moved to Trash: $script:movedCount item$([string]$(if ($script:movedCount -ne 1) { 's' }))"
+    }
+    if ($script:deletedCount -gt 0) {
+        $lines += "  [-] Permanently deleted from Trash: $script:deletedCount item$([string]$(if ($script:deletedCount -ne 1) { 's' }))"
+    }
+    if ($script:skippedCount -gt 0) {
+        $lines += "  [*] Excluded: $script:skippedCount item$([string]$(if ($script:skippedCount -ne 1) { 's' }))"
+    }
+    if ($script:movedCount -eq 0 -and $script:deletedCount -eq 0) {
+        $lines += "  [+] All sources are clean"
+    }
+    $cardContent = $lines -join "`n"
+    gum style --border normal --border-foreground 39 --padding "0 1" --margin "1 0" $cardContent
 }

@@ -69,7 +69,20 @@ If you have custom `.reg` files outside Scoop, or want to explicitly disable a d
 
 ## 2. System Cache Cleanup (`Clear-WindowsCache`)
 
-Clears temporary files, caches, and empties the Recycle Bin according to `shell/pwsh/configs/clear_windows_cache.json`.
+Clears temporary files, package caches, and empties the Recycle Bin according to `shell/pwsh/configs/clear_windows_cache.json`.
+
+### Features
+- **Confirmation Guard**: Prompts via `gum confirm` prior to purging caches and emptying Recycle Bin (bypassed with `-Force` or `-y`).
+- **Summary Card**: Outputs a square-bordered Gum card with locations cleared.
+
+### Usage
+```powershell
+# Interactive mode (prompts confirmation)
+Clear-WindowsCache
+
+# Instant execution
+Clear-WindowsCache -y
+```
 
 ### Example Config (`clear_windows_cache.json`)
 ```json
@@ -99,6 +112,17 @@ Instead of permanently deleting files with `Remove-Item`, `Clear-Folder` moves i
 
 Configured via machine-specific files, e.g. `shell/pwsh/configs/clear_folders_gigabyte.json`.
 
+### Features
+- **Interactive Action Menu**: If run with no parameters, opens a `gum choose` menu:
+  - `Clean configured sources (Desktop, Downloads)`
+  - `Clean Desktop only`
+  - `Clean Downloads only`
+  - `Empty Trash permanently`
+  - `Clean all sources and empty Trash`
+  - `Remove empty subdirectories`
+- **Destructive Deletion Guard**: Prompts via `gum confirm` before permanently emptying the Trash (`-EmptyTrash` / `-All`), bypassable with `-Force` / `-y`.
+- **Summary Card**: Displays a square-bordered Gum summary showing items moved and permanently removed.
+
 ### Example Config (`clear_folders_<computer>.json`)
 ```json
 {
@@ -118,17 +142,20 @@ Configured via machine-specific files, e.g. `shell/pwsh/configs/clear_folders_gi
 
 ### Usage
 ```powershell
-# Clean configured sources (Desktop, Downloads) to Trash
+# Interactive menu (choose action)
 Clear-Folder
+
+# Clean configured sources immediately without menu
+Clear-Folder -Force
 
 # Clean only Downloads
 Clear-Folder "Downloads"
 
-# Permanently empty the Trash folder
+# Permanently empty the Trash folder (prompts confirmation)
 Clear-Folder -EmptyTrash
 
-# Clean sources and empty Trash in one command
-Clear-Folder -All
+# Clean sources and empty Trash immediately
+Clear-Folder -All -y
 
 # Remove empty subdirectories recursively
 Clear-Folder -RemoveEmptyDirs
