@@ -6,7 +6,7 @@ Param(
     [switch]$ImportAdminOnly
 )
 
-function Flush-ConsoleInput {
+function Clear-ConsoleInput {
     try {
         if ($Host.UI.RawUI.KeyAvailable) {
             while ($Host.UI.RawUI.KeyAvailable) {
@@ -150,7 +150,7 @@ if ($configPath -and (Test-Path -LiteralPath $configPath)) {
 # Determine execution mode: interactive vs scripted
 $hasExplicitGroups = $PSBoundParameters.ContainsKey('Groups') -and $Groups.Count -gt 0
 $hasExplicitAction = $PSBoundParameters.ContainsKey('Action')
-$hasGum = [bool](Get-Command gum -ErrorAction SilentlyContinue)
+$hasGum = $null -ne (Get-Command gum -ErrorAction SilentlyContinue)
 $isInteractive = -not $ImportAdminOnly -and $hasGum
 
 $selectedGroups = @{}
@@ -159,7 +159,7 @@ if ($isInteractive -and -not $hasExplicitGroups -and -not $All) {
     # 1. Interactive Action Selection if not provided
     if (-not $hasExplicitAction) {
         $actionChoice = gum choose --header="Select Action:" --header.foreground="39" --cursor="> " --cursor.foreground="39" "Add (Import to Registry)" "Remove (Revert from Registry)"
-        Flush-ConsoleInput
+        Clear-ConsoleInput
         if ($LASTEXITCODE -ne 0 -or -not $actionChoice) {
             Write-Host "`e[1A`e[2K`r" -NoNewline
             return
@@ -180,7 +180,7 @@ if ($isInteractive -and -not $hasExplicitGroups -and -not $All) {
         return
     }
 
-    # 3. Present multi-select menu via Gum (all pre-selected by default)
+    # 3. Present multi-select menu via Gum
     $menuOptions = @()
     foreach ($g in $availableGroups) {
         $fileNames = ($allGroups[$g].$Action | ForEach-Object { Split-Path $_ -Leaf }) -join ', '
@@ -189,7 +189,7 @@ if ($isInteractive -and -not $hasExplicitGroups -and -not $All) {
 
     $headerText = if ($Action -eq 'add') { "Select registry tweaks to import (Space to toggle, Enter to confirm):" } else { "Select registry tweaks to revert (Space to toggle, Enter to confirm):" }
     $chosen = gum choose --no-limit --header=$headerText --header.foreground="39" --cursor-prefix="> " --selected-prefix="[x] " --unselected-prefix="[ ] " --cursor.foreground="39" --selected.foreground="42" $menuOptions
-    Flush-ConsoleInput
+    Clear-ConsoleInput
     if ($LASTEXITCODE -ne 0 -or -not $chosen -or $chosen.Count -eq 0) {
         Write-Host "`e[1A`e[2K`r" -NoNewline
         return
@@ -268,7 +268,7 @@ function Invoke-RegistryAction {
     }
 }
 
-function Apply-RegistryEntries {
+function Invoke-RegistryEntries {
     param(
         [pscustomobject[]]$Entries,
         [string]$Action = 'add',
@@ -293,7 +293,7 @@ function Apply-RegistryEntries {
 
 # If called with -ImportAdminOnly, import only admin entries and exit silently
 if ($ImportAdminOnly) {
-    $null = Apply-RegistryEntries -Entries $adminEntries -Action $Action -Quiet $true
+    $null = Invoke-RegistryEntries -Entries $adminEntries -Action $Action -Quiet $true
     exit 0
 }
 
@@ -324,13 +324,13 @@ if ($adminEntries.Count -gt 0 -and -not $isAdmin) {
     }
 
     # Now apply non-admin entries
-    $nonAdminResults = Apply-RegistryEntries -Entries $nonAdminEntries -Action $Action
+    $nonAdminResults = Invoke-RegistryEntries -Entries $nonAdminEntries -Action $Action
     $allResults += $nonAdminResults
 }
 else {
     # Either elevated already or no admin entries
     $targetAll = $adminEntries + $nonAdminEntries
-    $allResults = Apply-RegistryEntries -Entries $targetAll -Action $Action
+    $allResults = Invoke-RegistryEntries -Entries $targetAll -Action $Action
 }
 
 # Display results

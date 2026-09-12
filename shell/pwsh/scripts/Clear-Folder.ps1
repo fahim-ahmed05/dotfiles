@@ -45,7 +45,7 @@ param(
     [Alias('y')][switch]$Force
 )
 
-function Flush-ConsoleInput {
+function Clear-ConsoleInput {
     try {
         if ($Host.UI.RawUI.KeyAvailable) {
             while ($Host.UI.RawUI.KeyAvailable) { $null = [Console]::ReadKey($true) }
@@ -67,19 +67,21 @@ if (-not (Test-Path -LiteralPath $trashPath)) {
     New-Item -ItemType Directory -Path $trashPath | Out-Null
 }
 
-$hasGum = [bool](Get-Command gum -ErrorAction SilentlyContinue)
+$hasGum = $null -ne (Get-Command gum -ErrorAction SilentlyContinue)
 $isInteractive = $hasGum
 
 # Interactive Action Menu if no arguments passed
 if ($isInteractive -and $Source.Count -eq 0 -and -not $EmptyTrash -and -not $All -and -not $RemoveEmptyDirs -and -not $Force) {
-    $menu = gum choose --header="Select Clear-Folder Action:" --header.foreground="39" --cursor="> " --cursor.foreground="39" `
-        "Clean configured sources (Desktop, Downloads)" `
-        "Clean Desktop only" `
-        "Clean Downloads only" `
-        "Empty Trash permanently" `
-        "Clean all sources and empty Trash" `
+    $menuOptions = @(
+        "Clean configured sources (Desktop, Downloads)",
+        "Clean Desktop only",
+        "Clean Downloads only",
+        "Empty Trash permanently",
+        "Clean all sources and empty Trash",
         "Remove empty subdirectories"
-    Flush-ConsoleInput
+    )
+    $menu = gum choose --header="Select Clear-Folder Action:" --header.foreground="39" --cursor="> " --cursor.foreground="39" $menuOptions
+    Clear-ConsoleInput
     if ($LASTEXITCODE -ne 0 -or -not $menu) {
         Write-Host "`e[1A`e[2K`r" -NoNewline
         return
@@ -98,7 +100,7 @@ if ($isInteractive -and $Source.Count -eq 0 -and -not $EmptyTrash -and -not $All
 # Confirmation before permanently emptying Trash
 if (($EmptyTrash -or $All) -and $isInteractive -and -not $Force) {
     gum confirm --prompt.foreground="214" "Permanently delete all items in Trash?"
-    Flush-ConsoleInput
+    Clear-ConsoleInput
     if ($LASTEXITCODE -ne 0) { return }
 }
 
