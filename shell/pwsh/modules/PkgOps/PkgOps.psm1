@@ -83,10 +83,10 @@ function Update-PackageSources {
     .SYNOPSIS
         Synchronizes upstream package manifests for Winget and Scoop.
     #>
-    gum style --border rounded --border-foreground 39 --padding "0 2" --bold "Updating Winget Sources..."
+    gum style --border normal --border-foreground 39 --padding "0 2" --bold "Updating Winget Sources..."
     winget source update
 
-    gum style --border rounded --border-foreground 214 --padding "0 2" --bold "Updating Scoop & Index..."
+    gum style --border normal --border-foreground 214 --padding "0 2" --bold "Updating Scoop & Index..."
     scoop update
     
     $scoopSearchPath = "$env:UserProfile\Git\fast-scoop-search\Scoop-Search.ps1"
@@ -95,7 +95,7 @@ function Update-PackageSources {
         & $scoopSearchPath "__force_reindex_check__" 2>$null | Out-Null
     }
 
-    gum style --border rounded --border-foreground 42 --padding "0 2" --bold "Package sources updated successfully!"
+    gum style --border normal --border-foreground 42 --padding "0 2" --bold "Package sources updated successfully!"
 }
 
 function Install-Packages {
@@ -172,7 +172,7 @@ function Install-Packages {
         '--pointer=▶',
         '--marker=✓',
         '--layout=reverse',
-        '--border=rounded',
+        '--border=sharp',
         '--preview-window=right:50%:hidden:wrap-word,<100(down:50%:hidden:wrap-word)',
         '--preview-wrap-sign=',
         "--preview=python `"$previewScript`" {1}",
@@ -217,7 +217,7 @@ function Install-Packages {
 
     # Confirm installation
     $summaryText = $summaryList -join "`n"
-    gum style --border rounded --border-foreground 212 --padding "0 2" --margin "1 0" `
+    gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" `
         "Packages To Install ($($selectedTargets.Count)):`n$summaryText"
 
     gum confirm "Proceed with installation?"
@@ -264,15 +264,15 @@ function Invoke-SingleInstall {
 
     switch ($manager) {
         'msstore' {
-            gum style --border rounded --border-foreground 141 --padding "0 2" --bold "Installing $targetId via Microsoft Store..."
+            gum style --border normal --border-foreground 141 --padding "0 2" --bold "Installing $targetId via Microsoft Store..."
             winget install -e --id "$targetId" --source msstore --accept-package-agreements --accept-source-agreements
         }
         'winget' {
-            gum style --border rounded --border-foreground 39 --padding "0 2" --bold "Installing $targetId via Winget..."
+            gum style --border normal --border-foreground 39 --padding "0 2" --bold "Installing $targetId via Winget..."
             winget install -e --id "$targetId" --source winget --accept-package-agreements --accept-source-agreements
         }
         'scoop' {
-            gum style --border rounded --border-foreground 214 --padding "0 2" --bold "Installing $targetId via Scoop..."
+            gum style --border normal --border-foreground 214 --padding "0 2" --bold "Installing $targetId via Scoop..."
             scoop install "$targetId"
         }
     }
@@ -291,7 +291,7 @@ function Invoke-PackageUninstall {
 
     switch ($Manager) {
         { $_ -in 'msstore', 'winget' } {
-            gum style --border rounded --border-foreground 39 --padding "0 2" --bold "Uninstalling $Id via Winget..."
+            gum style --border normal --border-foreground 39 --padding "0 2" --bold "Uninstalling $Id via Winget..."
             if ($Id -like 'MSIX\*') {
                 winget uninstall --id "$Id"
             } else {
@@ -299,7 +299,7 @@ function Invoke-PackageUninstall {
             }
         }
         'scoop' {
-            gum style --border rounded --border-foreground 214 --padding "0 2" --bold "Uninstalling $Id via Scoop..."
+            gum style --border normal --border-foreground 214 --padding "0 2" --bold "Uninstalling $Id via Scoop..."
             scoop uninstall "$Id"
         }
     }
@@ -532,7 +532,7 @@ function Uninstall-Packages {
         '--pointer=▶',
         '--marker=✓',
         '--layout=reverse',
-        '--border=rounded',
+        '--border=sharp',
         '--preview-window=right:50%:hidden:wrap-word,<100(down:50%:hidden:wrap-word)',
         '--preview-wrap-sign=',
         "--preview=python `"$previewScript`" {1}",
@@ -568,7 +568,7 @@ function Uninstall-Packages {
 
     if (-not $Force) {
         $summaryText = $summaryList -join "`n"
-        gum style --border rounded --border-foreground 203 --padding "0 2" --margin "1 0" `
+        gum style --border normal --border-foreground 203 --padding "0 2" --margin "1 0" `
             "Packages To Uninstall ($($toUninstall.Count)):`n$summaryText"
 
         gum confirm "Proceed with uninstallation?"
@@ -594,16 +594,14 @@ function Update-AllPackages {
     .EXAMPLE
         Update-AllPackages
     #>
-    gum style --border rounded --border-foreground 212 --padding "0 3" --margin "1 0" --bold "System Update Pipeline"
-
-    gum style --border rounded --border-foreground 39 --margin "1 0" --padding "0 2" --bold "Updating Winget Sources & Binary"
+    gum style --border normal --border-foreground 39 --margin "1 0" --padding "0 2" --bold "Updating Winget Sources & Binary"
     winget source update
     winget upgrade Microsoft.AppInstaller --accept-package-agreements --accept-source-agreements
 
-    gum style --border rounded --border-foreground 39 --margin "1 0" --padding "0 2" --bold "Upgrading Winget Packages"
+    gum style --border normal --border-foreground 39 --margin "1 0" --padding "0 2" --bold "Upgrading Winget Packages"
     winget upgrade --all --accept-package-agreements --accept-source-agreements
 
-    gum style --border rounded --border-foreground 214 --margin "1 0" --padding "0 2" --bold "Updating Scoop Packages"
+    gum style --border normal --border-foreground 214 --margin "1 0" --padding "0 2" --bold "Updating Scoop Packages"
     scoop update
     scoop update -a
     scoop status
@@ -614,10 +612,10 @@ function Update-AllPackages {
         & $scoopSearchPath "__force_reindex_check__" 2>$null | Out-Null
     }
 
-    gum style --border rounded --border-foreground 42 --margin "1 0" --padding "0 2" --bold "Upgrading UV Tools"
+    gum style --border normal --border-foreground 42 --margin "1 0" --padding "0 2" --bold "Upgrading UV Tools"
     uv tool upgrade --all
 
-    gum style --border rounded --border-foreground 212 --margin "1 0" --padding "0 2" --bold "Updating Git Repositories"
+    gum style --border normal --border-foreground 212 --margin "1 0" --padding "0 2" --bold "Updating Git Repositories"
 
     $comp = if ($global:computer) { $global:computer } else { $env:COMPUTERNAME.ToLowerInvariant() }
     $gitScriptPath = "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Pull-GitRepos.ps1"
@@ -630,10 +628,10 @@ function Update-AllPackages {
         gum style --foreground 214 "[-] Git pull script or config for '$comp' not found. Skipping repository updates..."
     }
 
-    gum style --border rounded --border-foreground 245 --margin "1 0" --padding "0 2" --bold "Removing Desktop Icons"
+    gum style --border normal --border-foreground 245 --margin "1 0" --padding "0 2" --bold "Removing Desktop Icons"
     if (Get-Command Remove-DesktopIcons -ErrorAction SilentlyContinue) {
         Remove-DesktopIcons
     }
 
-    gum style --border double --border-foreground 42 --margin "1 0" --padding "0 3" --bold "All packages and repositories updated successfully!"
+    gum style --border normal --border-foreground 42 --margin "1 0" --padding "0 3" --bold "All packages and repositories updated successfully!"
 }
