@@ -482,7 +482,7 @@
 			"items": [
 				{
 					"mode": "shortcut",
-					"from": "%USERPROFILE%\\Git\\emclient\\start_emclient_minimized.vbs",
+					"from": "%USERPROFILE%\\Git\\dotfiles\\emclient\\start_emclient_minimized.vbs",
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\emclient.lnk"
 				}
 			]
