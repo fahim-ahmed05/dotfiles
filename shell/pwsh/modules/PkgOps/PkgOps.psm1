@@ -370,9 +370,9 @@ function Uninstall-Packages {
             [PSCustomObject]@{ Source = 'winget'; Raw = $raw }
         } else {
             $raw = if ($q) {
-                scoop list "$q" | Out-String -Stream
+                scoop list "$q" 6>$null | Out-String -Stream
             } else {
-                scoop list | Out-String -Stream
+                scoop list 6>$null | Out-String -Stream
             }
             [PSCustomObject]@{ Source = 'scoop'; Raw = $raw }
         }
