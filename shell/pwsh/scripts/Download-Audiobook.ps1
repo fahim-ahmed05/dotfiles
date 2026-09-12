@@ -141,18 +141,29 @@ function Update-History ([string]$Url, [string]$Name, [string]$Type) {
 
 function Get-Metadata ($url, [string]$VideoTitle = "") {
     if ([string]::IsNullOrWhiteSpace($VideoTitle)) {
-        Write-Host "`nFetching metadata..." -ForegroundColor DarkGray
-        $meta = yt-dlp --encoding utf-8 --dump-json --no-warnings $url 2>$null | ConvertFrom-Json
+        if (Get-Command gum -ErrorAction SilentlyContinue) {
+            $json = gum spin --show-stdout --title "Fetching metadata..." -- yt-dlp --encoding utf-8 --dump-json --no-warnings $url 2>$null
+            if ($json) { $meta = $json | ConvertFrom-Json }
+        }
+        else {
+            Write-Host "`nFetching metadata..." -ForegroundColor DarkGray
+            $meta = yt-dlp --encoding utf-8 --dump-json --no-warnings $url 2>$null | ConvertFrom-Json
+        }
         if (-not $meta) { throw "Failed to fetch data for $url" }
         $VideoTitle = $meta.title
     }
 
-    Write-Host "`nFull Video Title: $VideoTitle" -ForegroundColor Green
+    Clear-Host
+    if (Get-Command gum -ErrorAction SilentlyContinue) {
+        gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Book Information"
+    }
+    Write-Host "Full Video Title: $VideoTitle" -ForegroundColor Green
+    Write-Host ""
     
     $Title = ""
     $Author = ""
     if (Get-Command gum -ErrorAction SilentlyContinue) {
-        $Title = (gum input --prompt "Book Title: " --placeholder "Enter Book Title" --value $VideoTitle).Trim()
+        $Title = (gum input --prompt "Book Title: " --placeholder "Enter Book Title").Trim()
         while ([string]::IsNullOrWhiteSpace($Title)) {
             $Title = (gum input --prompt "Book Title (Required): " --placeholder "Enter Book Title").Trim()
         }
@@ -433,9 +444,12 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
     else {
         $appendChoice = '1'
         if (Get-Command gum -ErrorAction SilentlyContinue) {
-            Write-Host "`nSelect Book Target:" -ForegroundColor Cyan
+            Clear-Host
+            gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Book Target"
+            Write-Host "Select Book Target:" -ForegroundColor Cyan
             $chosen = gum choose "New Book" "Append to Existing"
             Clear-ConsoleInput
+            if (-not $chosen) { return }
             if ($chosen -eq "Append to Existing") { $appendChoice = '2' }
         }
         else {
@@ -477,6 +491,16 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
             $downloadJobs += [PSCustomObject]@{ Url = $u; Meta = $meta; DestPath = $destPath; TrackNum = $trackNum; IsMulti = $true }
             $trackNum++
         }
+    }
+
+    Clear-Host
+    $bookHeader = if ($IsMulti -and $meta) { "$($meta.Title) - $($meta.Author)" } elseif ($meta) { "$($meta.Title) - $($meta.Author)" } else { "Audiobook Download" }
+    $trackCountText = if ($downloadJobs.Count -gt 1) { "$($downloadJobs.Count) parts" } else { "1 part" }
+    if (Get-Command gum -ErrorAction SilentlyContinue) {
+        gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Downloading: $bookHeader ($trackCountText)"
+    }
+    else {
+        Write-Host "`n=== Downloading: $bookHeader ($trackCountText) ===" -ForegroundColor Cyan
     }
 
     $scriptPath = $PSCommandPath
@@ -534,6 +558,9 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
         }
         else {
             Write-Host "`nFinished: All parts downloaded and tagged successfully.`n" -ForegroundColor Green
+            Write-Host "Press any key to return to menu..." -ForegroundColor DarkGray
+            Clear-ConsoleInput
+            $null = [Console]::ReadKey($true)
             break
         }
     }
@@ -550,9 +577,12 @@ function Confirm-And-Process ([object[]]$Selections) {
         } else {
             @("Multiple Individual Books", "Parts of ONE Book")
         }
-        Write-Host "`nSelect Processing Mode:" -ForegroundColor Cyan
+        Clear-Host
+        gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Download Setup ($($Selections.Count) selected)"
+        Write-Host "Select Processing Mode:" -ForegroundColor Cyan
         $chosen = gum choose $opts
         Clear-ConsoleInput
+        if (-not $chosen) { return }
         if ($chosen -in @("Part of a Multi-part Book", "Parts of ONE Book")) {
             $isMulti = $true
         }
@@ -570,7 +600,11 @@ function Confirm-And-Process ([object[]]$Selections) {
 function Invoke-PlaylistMenu ([switch]$IsChannel) {
     $Type = if ($IsChannel) { "Channels" } else { "Playlists" }
 
-    Write-Host "`nSelect from history or paste a new $Type URL" -ForegroundColor Yellow
+    Clear-Host
+    if (Get-Command gum -ErrorAction SilentlyContinue) {
+        gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "$Type Browser"
+    }
+    Write-Host "Select from history or paste a new $Type URL:" -ForegroundColor Yellow
     $historyItems = $global:Hist.$Type
     $fzfInput = $historyItems | ForEach-Object { "$($_.Name) | $($_.Url)" }
     
@@ -584,12 +618,18 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
     $targetUrl = if ($rawSelection -match " \| (https?://.+)$") { $matches[1] } else { $rawSelection }
     $targetUrl = $targetUrl -replace '/(videos|featured|shorts|streams|playlists)/?$', ''
 
-    Write-Host "`nFetching list..." -ForegroundColor DarkGray
-    
-    $rawCache = @(yt-dlp --encoding utf-8 --flat-playlist --print "%(playlist_title|channel|uploader)s:::%(id)s|%(title)s" $targetUrl)
+    $rawCache = @()
+    if (Get-Command gum -ErrorAction SilentlyContinue) {
+        $rawCache = @(gum spin --show-stdout --title "Fetching list..." -- yt-dlp --encoding utf-8 --no-warnings --flat-playlist --print "%(playlist_title|channel|uploader)s:::%(id)s|%(title)s" $targetUrl)
+    }
+    else {
+        Write-Host "`nFetching list..." -ForegroundColor DarkGray
+        $rawCache = @(yt-dlp --encoding utf-8 --no-warnings --flat-playlist --print "%(playlist_title|channel|uploader)s:::%(id)s|%(title)s" $targetUrl)
+    }
     
     if (-not $rawCache -or $rawCache.Count -eq 0) { 
         Write-Host "Failed to fetch videos or list is empty." -ForegroundColor Red
+        Start-Sleep -Seconds 2
         return 
     }
 
@@ -605,10 +645,13 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
     else {
         $dlChoice = "1"
         if (Get-Command gum -ErrorAction SilentlyContinue) {
-            Write-Host "`nPlaylist Download Mode:" -ForegroundColor Cyan
+            Clear-Host
+            gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Playlist: $targetName ($($playlistCache.Count) videos)"
+            Write-Host "Playlist Download Mode:" -ForegroundColor Cyan
             $opts = @("Download All ($($playlistCache.Count) videos)", "Select specific videos (fzf)")
             $chosen = gum choose $opts
             Clear-ConsoleInput
+            if (-not $chosen) { return }
             if ($chosen -like "Select specific*") { $dlChoice = "2" }
         }
         else {
@@ -629,6 +672,7 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
 # --- Main Application Loop ---
 function Start-InteractiveMode {
     while ($true) {
+        Clear-Host
         if (Get-Command gum -ErrorAction SilentlyContinue) {
             gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Interactive Audiobook Downloader"
             $menuOptions = @(
@@ -644,11 +688,15 @@ function Start-InteractiveMode {
             if (-not $selectedMode -or $selectedMode -eq "Exit") { break }
 
             if ($selectedMode -like "Single*") {
+                Clear-Host
+                gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Single Book Download"
                 $urlInput = (gum input --prompt "Audiobook URL: " --placeholder "https://youtu.be/...").Trim()
                 Clear-ConsoleInput
                 if ($urlInput) { Start-AudiobookDownload -Urls @($urlInput) -IsMulti:$false }
             }
             elseif ($selectedMode -like "Multi*") {
+                Clear-Host
+                gum style --border normal --border-foreground 212 --padding "0 2" --margin "1 0" "Multi-Part Book Download"
                 $urlInput = (gum input --prompt "URLs (space-separated): " --placeholder "https://... https://...").Trim()
                 Clear-ConsoleInput
                 $urls = @($urlInput -split '\s+' | Where-Object { $_ })
