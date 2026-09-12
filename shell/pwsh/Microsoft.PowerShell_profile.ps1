@@ -194,13 +194,19 @@ function Invoke-PowerAction {
             default     { 39 }
         }
 
-        if (Get-Command gum -ErrorAction SilentlyContinue) {
-            gum style --border normal --border-foreground $color --padding "0 2" --bold "$verb..."
+        Write-Host -NoNewline "$verb in "
+        foreach ($i in 5..1) {
+            Write-Host -NoNewline "$i.. "
+            Start-Sleep -Seconds 1
         }
-        else {
-            Write-Host "$verb..." -ForegroundColor Yellow
+        
+        $farewell = switch ($Action) {
+            'Shutdown' { "Good bye!" }
+            'Firmware' { "Happy tinkering!" }
+            default    { "See you soon!" }
         }
-        Start-Sleep -Seconds 1
+        Write-Host $farewell
+        Start-Sleep -Seconds 2
         
         switch ($Action) {
             'Shutdown'  { shutdown /s /f /t 0 }
