@@ -53,6 +53,35 @@ function Clear-ConsoleInput {
 
 function Format-CleanString ([string]$str) { return $str.Trim(" `t`n`r$([char]0xFEFF)") }
 
+function Invoke-WithSpinner ([string]$Title, [string]$Command, [string[]]$Arguments) {
+    $psi = [System.Diagnostics.ProcessStartInfo]::new()
+    $psi.FileName = $Command
+    foreach ($arg in $Arguments) {
+        $psi.ArgumentList.Add($arg)
+    }
+    $psi.RedirectStandardOutput = $true
+    $psi.RedirectStandardError = $true
+    $psi.UseShellExecute = $false
+    $psi.CreateNoWindow = $true
+
+    $proc = [System.Diagnostics.Process]::Start($psi)
+    $stdoutTask = $proc.StandardOutput.ReadToEndAsync()
+
+    $spinChars = @('⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏')
+    $i = 0
+    $e = [char]27
+
+    while (-not $proc.WaitForExit(80)) {
+        $frame = $spinChars[$i % $spinChars.Count]
+        [Console]::Write("`r$e[35m$frame$e[0m $Title")
+        $i++
+    }
+    [Console]::Write("`r$e[2K")
+    Clear-ConsoleInput
+
+    return $stdoutTask.GetAwaiter().GetResult()
+}
+
 function Get-SafeName ([string]$name) {
     $regex = "[{0}]" -f [Regex]::Escape(([IO.Path]::GetInvalidFileNameChars() -join ''))
     return ($name -replace $regex, '_').Trim()
@@ -141,14 +170,9 @@ function Update-History ([string]$Url, [string]$Name, [string]$Type) {
 
 function Get-Metadata ($url, [string]$VideoTitle = "") {
     if ([string]::IsNullOrWhiteSpace($VideoTitle)) {
-        if (Get-Command gum -ErrorAction SilentlyContinue) {
-            $json = gum spin --show-stdout --title "Fetching metadata..." -- yt-dlp --encoding utf-8 --dump-json --no-warnings $url 2>$null
-            if ($json) { $meta = $json | ConvertFrom-Json }
-        }
-        else {
-            Write-Host "`nFetching metadata..." -ForegroundColor DarkGray
-            $meta = yt-dlp --encoding utf-8 --dump-json --no-warnings $url 2>$null | ConvertFrom-Json
-        }
+        $metaArgs = @("--encoding", "utf-8", "--dump-json", "--no-warnings", $url)
+        $json = Invoke-WithSpinner -Title "Fetching metadata..." -Command "yt-dlp" -Arguments $metaArgs
+        if ($json) { $meta = $json | ConvertFrom-Json }
         if (-not $meta) { throw "Failed to fetch data for $url" }
         $VideoTitle = $meta.title
     }
@@ -618,14 +642,15 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
     $targetUrl = if ($rawSelection -match " \| (https?://.+)$") { $matches[1] } else { $rawSelection }
     $targetUrl = $targetUrl -replace '/(videos|featured|shorts|streams|playlists)/?$', ''
 
-    $rawCache = @()
-    if (Get-Command gum -ErrorAction SilentlyContinue) {
-        $rawCache = @(gum spin --show-stdout --title "Fetching list..." -- yt-dlp --encoding utf-8 --no-warnings --flat-playlist --print "%(playlist_title|channel|uploader)s:::%(id)s|%(title)s" $targetUrl)
-    }
-    else {
-        Write-Host "`nFetching list..." -ForegroundColor DarkGray
-        $rawCache = @(yt-dlp --encoding utf-8 --no-warnings --flat-playlist --print "%(playlist_title|channel|uploader)s:::%(id)s|%(title)s" $targetUrl)
-    }
+    $fetchArgs = @(
+        "--encoding", "utf-8",
+        "--no-warnings",
+        "--flat-playlist",
+        "--print", "%(playlist_title|channel|uploader)s:::%(id)s|%(title)s",
+        $targetUrl
+    )
+    $rawText = Invoke-WithSpinner -Title "Fetching list..." -Command "yt-dlp" -Arguments $fetchArgs
+    $rawCache = @($rawText -split "`r?`n" | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
     
     if (-not $rawCache -or $rawCache.Count -eq 0) { 
         Write-Host "Failed to fetch videos or list is empty." -ForegroundColor Red
