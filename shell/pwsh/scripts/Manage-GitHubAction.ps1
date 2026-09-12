@@ -388,9 +388,13 @@ function Invoke-RunWorkflow {
         Show-Card -Title "Workflow Dispatched" -BorderColor "42" -Message "Workflow: $wfPath`nBranch:   $targetRef`nStatus:   Queued on GitHub"
 
         $watchChoice = "No"
-        if (Get-Command gum -ErrorAction SilentlyContinue) {
+        if (Get-Command fzf -ErrorAction SilentlyContinue) {
+            $watchChoice = @("Yes", "No") | fzf --prompt="Watch execution live? " --height=~20% --reverse
+            Clear-ConsoleInput
+        }
+        elseif (Get-Command gum -ErrorAction SilentlyContinue) {
             Write-Host "`nWould you like to watch execution live?" -ForegroundColor Cyan
-            $watchChoice = @("Yes", "No") | gum choose
+            $watchChoice = gum choose "Yes" "No"
             Clear-ConsoleInput
         }
         if ($watchChoice -eq "Yes") {
@@ -447,14 +451,19 @@ function Invoke-ViewRunLogs {
 
     $targetRunId = [long]($selected -split '\|')[0].Trim()
 
+    $logOptions = @(
+        "Summary & Jobs (overview)"
+        "Failed Steps Only (--log-failed)"
+        "Full Execution Log (--log)"
+    )
     $logMode = "Summary & Jobs"
-    if (Get-Command gum -ErrorAction SilentlyContinue) {
+    if (Get-Command fzf -ErrorAction SilentlyContinue) {
+        $logMode = ($logOptions | fzf --prompt="Select Log View Mode: " --height=~25% --reverse)
+        Clear-ConsoleInput
+    }
+    elseif (Get-Command gum -ErrorAction SilentlyContinue) {
         Write-Host "`nSelect Log View Mode:" -ForegroundColor Cyan
-        $logMode = @(
-            "Summary & Jobs (overview)"
-            "Failed Steps Only (--log-failed)"
-            "Full Execution Log (--log)"
-        ) | gum choose
+        $logMode = gum choose $logOptions
         Clear-ConsoleInput
     }
 
@@ -547,14 +556,21 @@ function Invoke-RerunWorkflow {
 
     $targetRunId = [long]($selected -split '\|')[0].Trim()
 
+    $rerunOptions = @(
+        "Failed jobs only (--failed)"
+        "Entire workflow (all jobs)"
+    )
     $rerunChoice = "Failed jobs only"
-    if (-not $FailedOnly -and (Get-Command gum -ErrorAction SilentlyContinue)) {
-        Write-Host "`nRerun Mode:" -ForegroundColor Cyan
-        $rerunChoice = @(
-            "Failed jobs only (--failed)"
-            "Entire workflow (all jobs)"
-        ) | gum choose
-        Clear-ConsoleInput
+    if (-not $FailedOnly) {
+        if (Get-Command fzf -ErrorAction SilentlyContinue) {
+            $rerunChoice = ($rerunOptions | fzf --prompt="Select Rerun Mode: " --height=~20% --reverse)
+            Clear-ConsoleInput
+        }
+        elseif (Get-Command gum -ErrorAction SilentlyContinue) {
+            Write-Host "`nRerun Mode:" -ForegroundColor Cyan
+            $rerunChoice = gum choose $rerunOptions
+            Clear-ConsoleInput
+        }
     }
 
     if ($FailedOnly -or $rerunChoice -like "*Failed jobs*") {
@@ -612,20 +628,27 @@ switch ($Action) {
             Clear-Host
             Show-DashboardView
 
-            if (Get-Command gum -ErrorAction SilentlyContinue) {
-                Write-Host "Select Action:" -ForegroundColor Cyan
-                $choices = @(
-                    "1. Start / Run Workflow (gh workflow run)"
-                    "2. Watch Live Run (gh run watch)"
-                    "3. View Run Logs & Errors (gh run view)"
-                    "4. Cancel / Stop Run (gh run cancel)"
-                    "5. Rerun Workflow (gh run rerun)"
-                    "6. Download Run Artifacts (gh run download)"
-                    "7. Refresh Dashboard"
-                    "8. Exit"
-                )
-                $chosen = $choices | gum choose
+            $choices = @(
+                "1. Start / Run Workflow (gh workflow run)"
+                "2. Watch Live Run (gh run watch)"
+                "3. View Run Logs & Errors (gh run view)"
+                "4. Cancel / Stop Run (gh run cancel)"
+                "5. Rerun Workflow (gh run rerun)"
+                "6. Download Run Artifacts (gh run download)"
+                "7. Refresh Dashboard"
+                "8. Exit"
+            )
+
+            $chosen = $null
+            if (Get-Command fzf -ErrorAction SilentlyContinue) {
+                $chosen = ($choices | fzf --prompt="Select Action: " --height=~35% --reverse --header="GitHub Actions Menu (ESC to exit)")
                 Clear-ConsoleInput
+            }
+            elseif (Get-Command gum -ErrorAction SilentlyContinue) {
+                Write-Host "Select Action:" -ForegroundColor Cyan
+                $chosen = gum choose $choices
+                Clear-ConsoleInput
+            }
 
                 if (-not $chosen -or $chosen -like "*Exit*") { break }
 

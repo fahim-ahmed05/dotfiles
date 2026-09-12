@@ -434,7 +434,7 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
         $appendChoice = '1'
         if (Get-Command gum -ErrorAction SilentlyContinue) {
             Write-Host "`nSelect Book Target:" -ForegroundColor Cyan
-            $chosen = @("New Book", "Append to Existing") | gum choose
+            $chosen = gum choose "New Book" "Append to Existing"
             Clear-ConsoleInput
             if ($chosen -eq "Append to Existing") { $appendChoice = '2' }
         }
@@ -551,7 +551,7 @@ function Confirm-And-Process ([object[]]$Selections) {
             @("Multiple Individual Books", "Parts of ONE Book")
         }
         Write-Host "`nSelect Processing Mode:" -ForegroundColor Cyan
-        $chosen = $opts | gum choose
+        $chosen = gum choose $opts
         Clear-ConsoleInput
         if ($chosen -in @("Part of a Multi-part Book", "Parts of ONE Book")) {
             $isMulti = $true
@@ -607,7 +607,7 @@ function Invoke-PlaylistMenu ([switch]$IsChannel) {
         if (Get-Command gum -ErrorAction SilentlyContinue) {
             Write-Host "`nPlaylist Download Mode:" -ForegroundColor Cyan
             $opts = @("Download All ($($playlistCache.Count) videos)", "Select specific videos (fzf)")
-            $chosen = $opts | gum choose
+            $chosen = gum choose $opts
             Clear-ConsoleInput
             if ($chosen -like "Select specific*") { $dlChoice = "2" }
         }
@@ -638,7 +638,7 @@ function Start-InteractiveMode {
                 "Playlist (Browse playlist via fzf)"
                 "Exit"
             )
-            $selectedMode = ($menuOptions | gum choose)
+            $selectedMode = gum choose $menuOptions
             Clear-ConsoleInput
 
             if (-not $selectedMode -or $selectedMode -eq "Exit") { break }
