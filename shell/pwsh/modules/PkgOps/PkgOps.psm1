@@ -83,10 +83,10 @@ function Update-PackageSources {
     .SYNOPSIS
         Synchronizes upstream package manifests for Winget and Scoop.
     #>
-    gum style --foreground 204 --bold "`nUpdate Winget sources"
+    gum style --foreground 39 --bold "`nUpdate Winget sources"
     winget source update
 
-    gum style --foreground 204 --bold "`nUpdate Scoop & index"
+    gum style --foreground 214 --bold "`nUpdate Scoop & index"
     scoop update
     
     $scoopSearchPath = "$env:UserProfile\Git\fast-scoop-search\Scoop-Search.ps1"
@@ -264,15 +264,15 @@ function Invoke-SingleInstall {
 
     switch ($manager) {
         'msstore' {
-            gum style --foreground 204 --bold "`nInstall $targetId via Microsoft Store"
+            gum style --foreground 141 --bold "`nInstall $targetId via Microsoft Store"
             winget install -e --id "$targetId" --source msstore --accept-package-agreements --accept-source-agreements
         }
         'winget' {
-            gum style --foreground 204 --bold "`nInstall $targetId via Winget"
+            gum style --foreground 39 --bold "`nInstall $targetId via Winget"
             winget install -e --id "$targetId" --source winget --accept-package-agreements --accept-source-agreements
         }
         'scoop' {
-            gum style --foreground 204 --bold "`nInstall $targetId via Scoop"
+            gum style --foreground 214 --bold "`nInstall $targetId via Scoop"
             scoop install "$targetId"
         }
     }
@@ -291,7 +291,7 @@ function Invoke-PackageUninstall {
 
     switch ($Manager) {
         { $_ -in 'msstore', 'winget' } {
-            gum style --foreground 204 --bold "`nUninstall $Id via Winget"
+            gum style --foreground 39 --bold "`nUninstall $Id via Winget"
             if ($Id -like 'MSIX\*') {
                 winget uninstall --id "$Id"
             } else {
@@ -299,7 +299,7 @@ function Invoke-PackageUninstall {
             }
         }
         'scoop' {
-            gum style --foreground 204 --bold "`nUninstall $Id via Scoop"
+            gum style --foreground 214 --bold "`nUninstall $Id via Scoop"
             scoop uninstall "$Id"
         }
     }
@@ -594,17 +594,14 @@ function Update-AllPackages {
     .EXAMPLE
         Update-AllPackages
     #>
-    gum style --border normal --border-foreground 242 --padding "1 2" --margin "1 0" `
-        "Ready to update?`n`n• Updates Winget sources, binary, and all packages`n• Updates Scoop buckets and all apps`n• Upgrades UV Python tools and pulls Git repositories"
-
-    gum style --foreground 204 --bold "`nUpdate Winget sources & binary"
+    gum style --foreground 39 --bold "Update Winget sources & binary"
     winget source update
     winget upgrade Microsoft.AppInstaller --accept-package-agreements --accept-source-agreements
 
-    gum style --foreground 204 --bold "`nUpdate Winget packages"
+    gum style --foreground 39 --bold "`nUpdate Winget packages"
     winget upgrade --all --accept-package-agreements --accept-source-agreements
 
-    gum style --foreground 204 --bold "`nUpdate Scoop packages"
+    gum style --foreground 214 --bold "`nUpdate Scoop packages"
     scoop update
     scoop update -a
     scoop status
@@ -615,10 +612,10 @@ function Update-AllPackages {
         & $scoopSearchPath "__force_reindex_check__" 2>$null | Out-Null
     }
 
-    gum style --foreground 204 --bold "`nUpdate UV tools"
+    gum style --foreground 42 --bold "`nUpdate UV tools"
     uv tool upgrade --all
 
-    gum style --foreground 204 --bold "`nUpdate Git repositories"
+    gum style --foreground 212 --bold "`nUpdate Git repositories"
 
     $comp = if ($global:computer) { $global:computer } else { $env:COMPUTERNAME.ToLowerInvariant() }
     $gitScriptPath = "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Pull-GitRepos.ps1"
@@ -631,7 +628,7 @@ function Update-AllPackages {
         gum style --foreground 214 "[-] Git pull script or config for '$comp' not found. Skipping repository updates..."
     }
 
-    gum style --foreground 204 --bold "`nClean desktop icons"
+    gum style --foreground 245 --bold "`nClean desktop icons"
     if (Get-Command Remove-DesktopIcons -ErrorAction SilentlyContinue) {
         Remove-DesktopIcons
     }
