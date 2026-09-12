@@ -265,16 +265,23 @@ function whereis ($command) {
 
 Set-Alias audiobook-dl "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Download-Audiobook.ps1"
 
-function Stop-GitHubAction {
+function Manage-GitHubAction {
     [CmdletBinding()]
     param(
+        [Parameter(Position = 0)]
+        [ValidateSet("dashboard", "run", "watch", "view", "cancel", "rerun", "download", "list")]
+        [string]$Action = "dashboard",
+
         [string]$Owner,
         [string]$Repo,
         [long]$RunId,
+        [string]$Workflow,
+        [string]$Ref,
         [string]$Token,
+        [switch]$FailedOnly,
         [switch]$Force
     )
-    & "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Stop-GitHubAction.ps1" @PSBoundParameters @args
+    & "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Manage-GitHubAction.ps1" @PSBoundParameters @args
 }
 
 # Zoxide Initialization

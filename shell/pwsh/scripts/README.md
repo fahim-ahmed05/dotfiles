@@ -134,26 +134,32 @@ pwsh -File Add-RemoveRegFiles.ps1 -Config registry-config.json alacritty
 
 ---
 
-## Stop-GitHubAction.ps1
+## Manage-GitHubAction.ps1
 
-A context-aware tool to stop/cancel running or queued GitHub Actions workflows.
+Interactive terminal dashboard and manager for GitHub Actions workflows.
 
 ### Features
-- **Git Context Awareness**: Automatically extracts the repository `Owner` and `Repo` name from `git remote get-url origin` when run inside a local repository.
-- **Automatic Token Resolution**: Resolves authentication automatically via `gh auth token`, `$env:GH_TOKEN`, or `$env:GITHUB_TOKEN`.
-- **Interactive Workflow Selector**: If `-RunId` is omitted, lists active/queued workflow runs and allows you to pick one with `gum choose` or `fzf`.
-- **Zero-Emoji Output**: Renders clean feedback in square-bordered Gum summary cards.
+- **Real-Time Dashboard**: Displays active/running workflows with live elapsed time, recent run results (success/fail/cancel with duration and relative time), and summary stats.
+- **Run / Dispatch Workflows**: Pick workflows interactively via `fzf`, select branch/ref, and optionally start watching immediately.
+- **Live Watching**: Stream running steps in real time via `gh run watch`.
+- **View Logs & Error Debugging**: View run summaries or inspect failed steps only (`--log-failed`) to pinpoint bugs fast.
+- **Cancel & Force-Cancel**: Select active runs via `fzf` to stop them cleanly.
+- **Rerun Workflows**: Retry an entire workflow or only the failed jobs (`--failed`).
+- **Download Artifacts**: Download generated build outputs or logs directly.
+- **Zero-Emoji UI**: Clean square-bordered Gum cards (`--border normal`) and `fzf` interactive lists.
 
 ### Usage
 ```powershell
-# Interactive run picker for current repository
-pwsh Stop-GitHubAction.ps1
+# Open interactive dashboard and menu
+Manage-GitHubAction
 
-# Cancel a specific run in current repository
-pwsh Stop-GitHubAction.ps1 -RunId 123456789
-
-# Explicit owner/repo and force cancel
-pwsh Stop-GitHubAction.ps1 -Owner octocat -Repo hello-world -RunId 123456789 -Force
+# Direct command actions
+Manage-GitHubAction -Action run
+Manage-GitHubAction -Action watch
+Manage-GitHubAction -Action view -RunId 123456789
+Manage-GitHubAction -Action cancel -RunId 123456789 -Force
+Manage-GitHubAction -Action rerun -FailedOnly
+Manage-GitHubAction -Action download
 ```
 
 > **Note**: The legacy `Cancel-GitHubAction.ps1` remains available for scripts that invoke it directly with mandatory parameters.
