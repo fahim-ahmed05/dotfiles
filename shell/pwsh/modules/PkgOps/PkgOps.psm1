@@ -83,10 +83,10 @@ function Update-PackageSources {
     .SYNOPSIS
         Synchronizes upstream package manifests for Winget and Scoop.
     #>
-    gum style --foreground 39 --bold "`nUpdate Winget sources"
+    gum style --border rounded --border-foreground 39 --padding "0 2" --bold "Updating Winget Sources..."
     winget source update
 
-    gum style --foreground 214 --bold "`nUpdate Scoop & index"
+    gum style --border rounded --border-foreground 214 --padding "0 2" --bold "Updating Scoop & Index..."
     scoop update
     
     $scoopSearchPath = "$env:UserProfile\Git\fast-scoop-search\Scoop-Search.ps1"
@@ -95,7 +95,7 @@ function Update-PackageSources {
         & $scoopSearchPath "__force_reindex_check__" 2>$null | Out-Null
     }
 
-    gum style --foreground 39 "`nDone! Package sources updated."
+    gum style --border rounded --border-foreground 42 --padding "0 2" --bold "Package sources updated successfully!"
 }
 
 function Install-Packages {
@@ -217,8 +217,8 @@ function Install-Packages {
 
     # Confirm installation
     $summaryText = $summaryList -join "`n"
-    gum style --border normal --border-foreground 242 --padding "1 2" --margin "1 0" `
-        "Packages to install ($($selectedTargets.Count)):`n`n$summaryText"
+    gum style --border rounded --border-foreground 212 --padding "0 2" --margin "1 0" `
+        "Packages To Install ($($selectedTargets.Count)):`n$summaryText"
 
     gum confirm "Proceed with installation?"
     if ($LASTEXITCODE -ne 0) {
@@ -264,15 +264,15 @@ function Invoke-SingleInstall {
 
     switch ($manager) {
         'msstore' {
-            gum style --foreground 141 --bold "`nInstall $targetId via Microsoft Store"
+            gum style --border rounded --border-foreground 141 --padding "0 2" --bold "Installing $targetId via Microsoft Store..."
             winget install -e --id "$targetId" --source msstore --accept-package-agreements --accept-source-agreements
         }
         'winget' {
-            gum style --foreground 39 --bold "`nInstall $targetId via Winget"
+            gum style --border rounded --border-foreground 39 --padding "0 2" --bold "Installing $targetId via Winget..."
             winget install -e --id "$targetId" --source winget --accept-package-agreements --accept-source-agreements
         }
         'scoop' {
-            gum style --foreground 214 --bold "`nInstall $targetId via Scoop"
+            gum style --border rounded --border-foreground 214 --padding "0 2" --bold "Installing $targetId via Scoop..."
             scoop install "$targetId"
         }
     }
@@ -291,7 +291,7 @@ function Invoke-PackageUninstall {
 
     switch ($Manager) {
         { $_ -in 'msstore', 'winget' } {
-            gum style --foreground 39 --bold "`nUninstall $Id via Winget"
+            gum style --border rounded --border-foreground 39 --padding "0 2" --bold "Uninstalling $Id via Winget..."
             if ($Id -like 'MSIX\*') {
                 winget uninstall --id "$Id"
             } else {
@@ -299,7 +299,7 @@ function Invoke-PackageUninstall {
             }
         }
         'scoop' {
-            gum style --foreground 214 --bold "`nUninstall $Id via Scoop"
+            gum style --border rounded --border-foreground 214 --padding "0 2" --bold "Uninstalling $Id via Scoop..."
             scoop uninstall "$Id"
         }
     }
@@ -568,8 +568,8 @@ function Uninstall-Packages {
 
     if (-not $Force) {
         $summaryText = $summaryList -join "`n"
-        gum style --border normal --border-foreground 242 --padding "1 2" --margin "1 0" `
-            "Packages to uninstall ($($toUninstall.Count)):`n`n$summaryText"
+        gum style --border rounded --border-foreground 203 --padding "0 2" --margin "1 0" `
+            "Packages To Uninstall ($($toUninstall.Count)):`n$summaryText"
 
         gum confirm "Proceed with uninstallation?"
         if ($LASTEXITCODE -ne 0) {
@@ -594,14 +594,16 @@ function Update-AllPackages {
     .EXAMPLE
         Update-AllPackages
     #>
-    gum style --foreground 39 --bold "Update Winget sources & binary"
+    gum style --border rounded --border-foreground 212 --padding "0 3" --margin "1 0" --bold "System Update Pipeline"
+
+    gum style --border rounded --border-foreground 39 --margin "1 0" --padding "0 2" --bold "Updating Winget Sources & Binary"
     winget source update
     winget upgrade Microsoft.AppInstaller --accept-package-agreements --accept-source-agreements
 
-    gum style --foreground 39 --bold "`nUpdate Winget packages"
+    gum style --border rounded --border-foreground 39 --margin "1 0" --padding "0 2" --bold "Upgrading Winget Packages"
     winget upgrade --all --accept-package-agreements --accept-source-agreements
 
-    gum style --foreground 214 --bold "`nUpdate Scoop packages"
+    gum style --border rounded --border-foreground 214 --margin "1 0" --padding "0 2" --bold "Updating Scoop Packages"
     scoop update
     scoop update -a
     scoop status
@@ -612,10 +614,10 @@ function Update-AllPackages {
         & $scoopSearchPath "__force_reindex_check__" 2>$null | Out-Null
     }
 
-    gum style --foreground 42 --bold "`nUpdate UV tools"
+    gum style --border rounded --border-foreground 42 --margin "1 0" --padding "0 2" --bold "Upgrading UV Tools"
     uv tool upgrade --all
 
-    gum style --foreground 212 --bold "`nUpdate Git repositories"
+    gum style --border rounded --border-foreground 212 --margin "1 0" --padding "0 2" --bold "Updating Git Repositories"
 
     $comp = if ($global:computer) { $global:computer } else { $env:COMPUTERNAME.ToLowerInvariant() }
     $gitScriptPath = "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Pull-GitRepos.ps1"
@@ -628,10 +630,10 @@ function Update-AllPackages {
         gum style --foreground 214 "[-] Git pull script or config for '$comp' not found. Skipping repository updates..."
     }
 
-    gum style --foreground 245 --bold "`nClean desktop icons"
+    gum style --border rounded --border-foreground 245 --margin "1 0" --padding "0 2" --bold "Removing Desktop Icons"
     if (Get-Command Remove-DesktopIcons -ErrorAction SilentlyContinue) {
         Remove-DesktopIcons
     }
 
-    gum style --foreground 39 "`nDone! All packages and repositories updated."
+    gum style --border double --border-foreground 42 --margin "1 0" --padding "0 3" --bold "All packages and repositories updated successfully!"
 }
