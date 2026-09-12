@@ -25,7 +25,7 @@ function Clear-Folder {
 }
 
 function Add-RemoveRegFiles {
-    & "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Add-RemoveRegFiles.ps1" -Config "$env:UserProfile\Git\dotfiles\shell\pwsh\configs\reg_files.json" @args
+    & "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Add-RemoveRegFiles.ps1" @args
 }
 
 function Remove-DesktopIcons { Clear-Folder "$env:UserProfile\Desktop\*.lnk" "$env:PUBLIC\Desktop\*.lnk" }
