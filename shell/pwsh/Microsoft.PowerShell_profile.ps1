@@ -161,42 +161,52 @@ function Invoke-PowerAction {
     }
     else {
         $verb = if ($Action -eq 'Firmware') { "reboot to BIOS" } else { $Action.ToLower() }
-        $answer = Read-Host "Are you sure you want to $verb the computer? (y/n)"
-        if ($answer -eq "y") {
-            $doAction = $true
+        if (Get-Command gum -ErrorAction SilentlyContinue) {
+            gum confirm "Are you sure you want to $verb the computer?"
+            if ($LASTEXITCODE -eq 0) {
+                $doAction = $true
+            }
         }
         else {
-            Write-Host "$Action cancelled."
+            $answer = Read-Host "Are you sure you want to $verb the computer? (y/n)"
+            if ($answer -eq "y") {
+                $doAction = $true
+            }
+            else {
+                Write-Host "$Action cancelled."
+            }
         }
     }
 
     if ($doAction) {
         $verb = switch ($Action) {
-            'Firmware' { "Rebooting to BIOS" }
-            'Shutdown' { "Shutting down" }
-            'Reboot' { "Rebooting" }
-            'Suspend' { "Suspending" }
+            'Firmware'  { "Rebooting to BIOS" }
+            'Shutdown'  { "Shutting down" }
+            'Reboot'    { "Rebooting" }
+            'Suspend'   { "Suspending" }
             'Hibernate' { "Hibernating" }
         }
-        Write-Host -NoNewline "$verb in "
-        foreach ($i in 5..1) {
-            Write-Host -NoNewline "$i.. "
-            Start-Sleep -Seconds 1
+
+        $color = switch ($Action) {
+            'Shutdown'  { 203 }
+            'Reboot'    { 214 }
+            'Firmware'  { 141 }
+            default     { 39 }
         }
-        
-        $farewell = switch ($Action) {
-            'Shutdown' { "Good bye!" }
-            'Firmware' { "Happy tinkering!" }
-            default { "See you soon!" }
+
+        if (Get-Command gum -ErrorAction SilentlyContinue) {
+            gum style --border normal --border-foreground $color --padding "0 2" --bold "$verb..."
         }
-        Write-Host $farewell
-        Start-Sleep -Seconds 2
+        else {
+            Write-Host "$verb..." -ForegroundColor Yellow
+        }
+        Start-Sleep -Seconds 1
         
         switch ($Action) {
-            'Shutdown' { shutdown /s /f /t 0 }
-            'Reboot' { shutdown /r /f /t 0 }
-            'Firmware' { shutdown /r /fw /f /t 0 }
-            'Suspend' { Add-Type -AssemblyName System.Windows.Forms; [void][System.Windows.Forms.Application]::SetSuspendState('Suspend', $false, $false) }
+            'Shutdown'  { shutdown /s /f /t 0 }
+            'Reboot'    { shutdown /r /f /t 0 }
+            'Firmware'  { shutdown /r /fw /f /t 0 }
+            'Suspend'   { Add-Type -AssemblyName System.Windows.Forms; [void][System.Windows.Forms.Application]::SetSuspendState('Suspend', $false, $false) }
             'Hibernate' { Add-Type -AssemblyName System.Windows.Forms; [void][System.Windows.Forms.Application]::SetSuspendState('Hibernate', $false, $false) }
         }
     }
@@ -208,22 +218,56 @@ function Suspend { param([switch]$y) Invoke-PowerAction -Action Suspend -Force:$
 function Hibernate { param([switch]$y) Invoke-PowerAction -Action Hibernate -Force:$y }
 function RebootToBIOS { param([switch]$y) Invoke-PowerAction -Action Firmware -Force:$y }
 
-function ip {
-    $publicIP = (Invoke-RestMethod http://ifconfig.me/ip -UseBasicParsing).Trim()
-    Write-Host "Public  IP: $publicIP" -ForegroundColor Green
+function power {
+    <#
+    .SYNOPSIS
+        Interactive system power menu powered by gum.
+    #>
+    if (-not (Get-Command gum -ErrorAction SilentlyContinue)) {
+        Write-Host "gum is required for the interactive power menu." -ForegroundColor Red
+        return
+    }
 
-    $socket = New-Object System.Net.Sockets.UdpClient
-    try {
-        $socket.Connect('8.8.8.8', 53)
-        $privateIP = $socket.Client.LocalEndPoint.Address.ToString()
+    $choice = gum choose --cursor="▶ " --cursor.foreground 214 "Shutdown" "Reboot" "Suspend" "Hibernate" "Reboot to BIOS"
+    if (-not $choice) { return }
+
+    $action = if ($choice -eq "Reboot to BIOS") { "Firmware" } else { $choice }
+    Invoke-PowerAction -Action $action
+}
+
+function ip {
+    <#
+    .SYNOPSIS
+        Displays public and private IP addresses in a styled card.
+    #>
+    $publicIP = try {
+        (Invoke-RestMethod http://ifconfig.me/ip -UseBasicParsing -TimeoutSec 3).Trim()
     }
     catch {
-        $privateIP = "Unknown"
+        "Unavailable"
+    }
+
+    $socket = New-Object System.Net.Sockets.UdpClient
+    $privateIP = try {
+        $socket.Connect('8.8.8.8', 53)
+        $socket.Client.LocalEndPoint.Address.ToString()
+    }
+    catch {
+        "Unavailable"
     }
     finally {
         $socket.Close()
     }
-    Write-Host "Private IP: $privateIP" -ForegroundColor Cyan
+
+    if (Get-Command gum -ErrorAction SilentlyContinue) {
+        gum style --border normal --border-foreground 39 --padding "0 2" `
+            "Public  IP : $publicIP" `
+            "Private IP : $privateIP"
+    }
+    else {
+        Write-Host "Public  IP: $publicIP" -ForegroundColor Green
+        Write-Host "Private IP: $privateIP" -ForegroundColor Cyan
+    }
 }
 
 # Restart Terminal
@@ -246,7 +290,12 @@ function rt {
 # HasteBin
 function hb {
     if ($args.Length -eq 0) {
-        Write-Error "No file path specified."
+        if (Get-Command gum -ErrorAction SilentlyContinue) {
+            gum style --foreground 203 "[-] No file path specified."
+        }
+        else {
+            Write-Error "No file path specified."
+        }
         return
     }
 
@@ -256,20 +305,40 @@ function hb {
         $Content = Get-Content $FilePath -Raw
     }
     else {
-        Write-Error "File path does not exist."
+        if (Get-Command gum -ErrorAction SilentlyContinue) {
+            gum style --foreground 203 "[-] File path does not exist: $FilePath"
+        }
+        else {
+            Write-Error "File path does not exist."
+        }
         return
     }
 
     $uri = "http://bin.christitus.com/documents"
     try {
-        $response = Invoke-RestMethod -Uri $uri -Method Post -Body $Content -ErrorAction Stop
+        if (Get-Command gum -ErrorAction SilentlyContinue) {
+            gum style --foreground 245 "Uploading to Hastebin..."
+        }
+        $response = Invoke-RestMethod -Uri $uri -Method Post -Body $Content -TimeoutSec 10 -ErrorAction Stop
         $hasteKey = $response.key
         $url = "http://bin.christitus.com/$hasteKey"
         Set-Clipboard $url
-        Write-Output "$url copied to clipboard."
+        if (Get-Command gum -ErrorAction SilentlyContinue) {
+            gum style --border normal --border-foreground 42 --padding "0 2" `
+                "Uploaded to Hastebin!" `
+                "URL : $url (copied to clipboard)"
+        }
+        else {
+            Write-Output "$url copied to clipboard."
+        }
     }
     catch {
-        Write-Error "Failed to upload the document. Error: $_"
+        if (Get-Command gum -ErrorAction SilentlyContinue) {
+            gum style --foreground 203 "[-] Failed to upload document: $($_.Exception.Message)"
+        }
+        else {
+            Write-Error "Failed to upload the document. Error: $_"
+        }
     }
 }
 
