@@ -13,12 +13,6 @@
 - [Microsoft Update Catalog](https://www.catalog.update.microsoft.com/home.aspx)
 - [Generate autounattend.xml](https://schneegans.de/windows/unattend-generator/)
 
-## [Activate Windows](https://github.com/massgravel/Microsoft-Activation-Scripts)
-
-```
-irm "https://get.activated.win" | iex
-```
-
 ## Programs
 
 - [Git](https://git-scm.com/download/win)
@@ -28,7 +22,7 @@ irm "https://get.activated.win" | iex
 
 ### Winget
 
-```
+```pwsh
 # Winget
 winget update winget
 
@@ -38,7 +32,7 @@ Add-AppxPackage -Path "https://github.com/microsoft/winget-cli/releases/latest/d
 
 #### Winget Packages (Source: Microsoft Store)
 
-```
+```pwsh
 # winget install UniGetUI FluentFlyout Wintoys --source msstore --accept-package-agreements --accept-source-agreements
 
 winget install xpfftq032ptphf 9n45nsm4tnbp 9p8ltpgcbzxd --source msstore --accept-package-agreements --accept-source-agreements
@@ -46,13 +40,13 @@ winget install xpfftq032ptphf 9n45nsm4tnbp 9p8ltpgcbzxd --source msstore --accep
 
 #### Winget Packages (Source: Winget)
 
-```
+```pwsh
 winget install Brave.Brave Mozilla.Firefox xanderfrangos.twinkletray HermannSchinagl.LinkShellExtension Notepad++.Notepad++ voidtools.Everything.Alpha qBittorrent.qBittorrent Flow-Launcher.Flow-Launcher SumatraPDF.SumatraPDF AdrienAllard.FileConverter Microsoft.PowerToys ente-io.auth-desktop Cloudflare.Warp Tonec.InternetDownloadManager --source winget --accept-package-agreements --accept-source-agreements
 ```
 
 #### Optional Winget Packages (Source: Winget)
 
-```
+```pwsh
 winget install ONLYOFFICE.DesktopEditors eMClient.eMClient --source winget --accept-package-agreements --accept-source-agreements
 ```
 
@@ -63,19 +57,19 @@ winget install ONLYOFFICE.DesktopEditors eMClient.eMClient --source winget --acc
 
 #### Change Powershell Execution Policy
 
-```powershell
+```pwsh
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
 
 #### Install Scoop
 
-```powershell
+```pwsh
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 ```
 
 #### Add Scoop Buckets
 
-```
+```pwsh
 scoop bucket add extras
 scoop bucket add versions
 scoop bucket add personal https://github.com/fahim-ahmed05/scoop-bucket
@@ -83,30 +77,30 @@ scoop bucket add personal https://github.com/fahim-ahmed05/scoop-bucket
 
 #### Scoop Packages
 
-```
-scoop install 7zip aria2 fastfetch bt aimp quicklook revouninstaller uv mise mpv-git luajit alacritty telegram syncthing winaero-tweaker versions/yt-dlp-nightly versions/ffmpeg-yt-dlp-nightly foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste personal/winhance antigravity-ide
+```pwsh
+scoop install 7zip aria2 fastfetch bt aimp quicklook revouninstaller uv mise mpv-git luajit alacritty telegram syncthing winaero-tweaker versions/yt-dlp-nightly versions/ffmpeg-yt-dlp-nightly foobar2000 foobar2000-encoders localsend logitech-omm personal/clickpaste personal/winhance
 ```
 
 #### Optional Scoop Packages
 
-```
+```pwsh
 scoop install scoop install pear-desktop mrrss trafficmonitor-lite
 ```
 
 ### [Python](https://www.python.org/)
 
 > [!IMPORTANT]
-> [uv](#scoop-packages) is required!
+> [Scoop](###Scoop) is required!
 
-#### Install Python
+#### Install uv  & Python
 
-```
-uv python install --default
+```pwsh
+scoop install uv; scoop install python
 ```
 
 #### Python Packages
 
-```
+```pwsh
 uv tool install internetarchive
 uv tool install subliminal
 uv tool install git+https://github.com/fahim-ahmed05/cineindex.git
@@ -115,12 +109,12 @@ uv tool install git+https://github.com/fahim-ahmed05/cineindex.git
 ### Node.js
 
 > [!IMPORTANT]
-> [mise](#scoop-packages) is required!
+> [Scoop](###Scoop) is required!
 
 #### Install Node.js
 
-```
-mise use -g node@lts
+```pwsh
+scoop install nodejs
 ```
 
 ## Fonts
@@ -130,13 +124,13 @@ mise use -g node@lts
 
 ### Install [Inter](https://rsms.me/inter/download/) font
 
-```
+```pwsh
 scoop install personal/inter-font 
 ```
 
 ### Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
 
-```
+```pwsh
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/UbuntuMono-NF
 ```
@@ -148,13 +142,13 @@ scoop install nerd-fonts/JetBrainsMono-NF nerd-fonts/CascadiaMono-NF nerd-fonts/
 
 ### Install PowerShell
 
-```
+```pwsh
 scoop install pwsh
 ```
 
 ### Install PowerShell Packages
 
-```
+```pwsh
 scoop install oh-my-posh eza fzf zoxide
 ```
 
@@ -177,7 +171,7 @@ if (Test-Path $profile) { "Profile exists: $profile" } else { New-Item $profile 
 
 ### Disable Oh My Posh Update Notices
 
-```
+```pwsh
 oh-my-posh disable notice
 ```
 
@@ -206,8 +200,19 @@ oh-my-posh disable notice
 
 ### [Windows Utility](https://github.com/ChrisTitusTech/winutil)
 
-```
+```pwsh
 irm "https://christitus.com/win" | iex
+```
+
+### [Install Flag Emojis](https://github.com/Chasmical/flag-emojis-for-windows)
+
+```pwsh
+irm https://chsm.dev/get-flag-emojis | iex
+```
+## [Activate Windows](https://github.com/massgravel/Microsoft-Activation-Scripts)
+
+```pwsh
+irm "https://get.activated.win" | iex
 ```
 
 ## MPV Plugins
