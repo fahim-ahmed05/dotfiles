@@ -18,11 +18,11 @@
         },
         {
             "id": null,
-            "keys": "ctrl+shift+f"
+            "keys": "ctrl+v"
         },
         {
             "id": null,
-            "keys": "ctrl+v"
+            "keys": "ctrl+shift+f"
         },
         {
             "id": null,
@@ -70,6 +70,12 @@
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
+            },
+            {
+                "guid": "{09f205c2-5293-59d4-b31e-7cebea269733}",
+                "hidden": false,
+                "name": "Ubuntu",
+                "source": "Microsoft.WSL"
             }
         ]
     },

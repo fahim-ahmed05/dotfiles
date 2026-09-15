@@ -16,3 +16,8 @@ dimensions = { columns = 120, lines = 30 }
 position = { x = 450, y = 180 }
 padding = { x = 10, y = 10 }
 dynamic_title = false
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
