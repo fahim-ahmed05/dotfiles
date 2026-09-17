@@ -161,6 +161,18 @@
 				}
 			]
 		},
+		"omniroute": {
+			"enabled": true,
+			"items": [
+				{
+					"mode": "shortcut",
+					"from": "%USERPROFILE%\\scoop\\shims\\alacritty.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\OmniRoute.lnk",
+					"arguments": "-e pwsh -noprofile -command omniroute",
+					"iconLocation": "%USERPROFILE%\\Backups\\Icons\\omniroute.ico"
+				}
+			]
+		},
 		"power": {
 			"enabled": true,
 			"mode": "shortcut",

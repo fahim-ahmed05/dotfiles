@@ -72,6 +72,10 @@
                 "name": "Windows PowerShell"
             },
             {
+                "font": 
+                {
+                    "face": "UbuntuMono Nerd Font"
+                },
                 "guid": "{09f205c2-5293-59d4-b31e-7cebea269733}",
                 "hidden": false,
                 "name": "Ubuntu",
