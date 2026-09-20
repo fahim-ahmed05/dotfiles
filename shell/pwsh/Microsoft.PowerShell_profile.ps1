@@ -215,60 +215,8 @@ function rt {
     }
 }
 
-# HasteBin
-function hb {
-    if ($args.Length -eq 0) {
-        if (Get-Command gum -ErrorAction SilentlyContinue) {
-            gum style --foreground 203 "[-] No file path specified."
-        }
-        else {
-            Write-Error "No file path specified."
-        }
-        return
-    }
-
-    $FilePath = $args[0]
-
-    if (Test-Path $FilePath) {
-        $Content = Get-Content $FilePath -Raw
-    }
-    else {
-        if (Get-Command gum -ErrorAction SilentlyContinue) {
-            gum style --foreground 203 "[-] File path does not exist: $FilePath"
-        }
-        else {
-            Write-Error "File path does not exist."
-        }
-        return
-    }
-
-    $uri = "http://bin.christitus.com/documents"
-    try {
-        if (Get-Command gum -ErrorAction SilentlyContinue) {
-            gum style --foreground 245 "Uploading to Hastebin..."
-        }
-        $response = Invoke-RestMethod -Uri $uri -Method Post -Body $Content -TimeoutSec 10 -ErrorAction Stop
-        $hasteKey = $response.key
-        $url = "http://bin.christitus.com/$hasteKey"
-        Set-Clipboard $url
-        if (Get-Command gum -ErrorAction SilentlyContinue) {
-            gum style --border normal --border-foreground 42 --padding "0 2" `
-                "Uploaded to Hastebin!" `
-                "URL : $url (copied to clipboard)"
-        }
-        else {
-            Write-Output "$url copied to clipboard."
-        }
-    }
-    catch {
-        if (Get-Command gum -ErrorAction SilentlyContinue) {
-            gum style --foreground 203 "[-] Failed to upload document: $($_.Exception.Message)"
-        }
-        else {
-            Write-Error "Failed to upload the document. Error: $_"
-        }
-    }
-}
+# xi.pe pastebin client (create/view/download/info/delete)
+Set-Alias xipe "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Invoke-XiPaste.ps1"
 
 function dotmngr {
     & "$env:UserProfile\Git\dotmngr\dotmngr.ps1" -ConfigPath "$env:UserProfile\Git\dotfiles\dotmngr\$computer.json" @args
@@ -300,18 +248,8 @@ function Manage-GitHubAction {
     & "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Manage-GitHubAction.ps1" @PSBoundParameters @args
 }
 
-# pkgmngr - unified Scoop + Winget package manager (lazy-loaded on first use)
-function pkg {
-    Remove-Item Function:\pkg -Force
-    $pkgScript = "$env:UserProfile\Git\pkgmngr\pkg.ps1"
-    if (Test-Path $pkgScript) {
-        . $pkgScript
-        pkg @args
-    }
-    else {
-        Write-Error "pkgmngr not found: $pkgScript"
-    }
-}
+# pkgmngr - unified Scoop + Winget package manager
+. 'C:\Users\Fahim\Git\pkgmngr\pkg.ps1'
 
 function Update-AllPackages {
     pkg update; pkg upgrade
