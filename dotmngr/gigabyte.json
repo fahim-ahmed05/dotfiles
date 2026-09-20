@@ -40,11 +40,6 @@
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\pwsh\\modules\\PkgOps",
-					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\PkgOps"
-				},
-				{
-					"mode": "junction",
 					"from": "%USERPROFILE%\\Git\\dotfiles\\shell\\pwsh\\modules\\FileOps",
 					"to": "%USERPROFILE%\\Documents\\PowerShell\\Modules\\FileOps"
 				},
