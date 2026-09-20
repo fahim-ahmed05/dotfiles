@@ -2,7 +2,6 @@
 $global:computer = $env:COMPUTERNAME.ToLowerInvariant()
 
 # Encoding / UTF-8 Unicode Support
-chcp 65001 >$null
 $global:utf8NoBom = [System.Text.UTF8Encoding]::new($false)
 [Console]::OutputEncoding = $global:utf8NoBom
 [Console]::InputEncoding = $global:utf8NoBom
@@ -11,9 +10,8 @@ $env:PYTHONIOENCODING = "utf-8"
 $env:PYTHONUTF8 = "1"
 
 # Modules
-Import-Module -Name PkgOps -Force -ErrorAction SilentlyContinue
-Import-Module -Name FileOps -Force -ErrorAction SilentlyContinue
-Import-Module -Name PowerOps -Force -ErrorAction SilentlyContinue
+Import-Module -Name FileOps -ErrorAction SilentlyContinue
+Import-Module -Name PowerOps -ErrorAction SilentlyContinue
 
 # Coreutils
 @(
@@ -64,43 +62,61 @@ Set-Alias -Name ls -Value eza
 Set-Alias -Name ff -Value fzf
 Set-Alias -Name cd -Value z -Option AllScope
 
-# Prompt
-oh-my-posh init pwsh --config 'robbyrussell' | Invoke-Expression
+# Non-interactive / redirected shells: skip prompt, PSReadLine and zoxide init
+$global:isInteractiveTerminal = -not [Console]::IsOutputRedirected
+
+# Cache folder for generated init scripts (avoids spawning oh-my-posh/zoxide on every launch)
+$global:profileCacheDir = Join-Path (Split-Path $PROFILE) 'Cache'
+if ($global:isInteractiveTerminal -and -not (Test-Path $global:profileCacheDir)) {
+    New-Item -ItemType Directory -Path $global:profileCacheDir -Force | Out-Null
+}
+
+# Prompt (cached to avoid spawning oh-my-posh on every launch)
+if ($global:isInteractiveTerminal) {
+    $ompBin = (Get-Command oh-my-posh -ErrorAction SilentlyContinue).Source
+    $ompCache = Join-Path $global:profileCacheDir 'omp-init.ps1'
+    if ($ompBin -and (-not (Test-Path $ompCache) -or (Get-Item $ompBin).LastWriteTime -gt (Get-Item $ompCache).LastWriteTime)) {
+        oh-my-posh init pwsh --config 'robbyrussell' | Out-File $ompCache -Encoding utf8
+    }
+    if (Test-Path $ompCache) { . $ompCache }
+}
 
 # Enhanced PSReadLine Configuration
-$PSReadLineOptions = @{
-    EditMode                      = 'Windows'
-    HistoryNoDuplicates           = $true
-    HistorySearchCursorMovesToEnd = $true
-    Colors                        = @{
-        Command   = '#61afef'  # Blue
-        Parameter = '#98c379'  # Green
-        Operator  = '#56b6c2'  # Cyan
-        Variable  = '#c678dd'  # Purple
-        String    = '#e5c07b'  # Yellow
-        Number    = '#d19a66'  # Orange
-        Type      = '#7f91a8'  # Steel Blue
-        Comment   = '#837a86'  # Dusty Mauve
-        Keyword   = '#d16d9e'  # Pink
-        Error     = '#e06c75'  # Red
+if ($global:isInteractiveTerminal) {
+    $PSReadLineOptions = @{
+        EditMode                      = 'Windows'
+        HistoryNoDuplicates           = $true
+        HistorySearchCursorMovesToEnd = $true
+        Colors                        = @{
+            Command   = '#61afef'  # Blue
+            Parameter = '#98c379'  # Green
+            Operator  = '#56b6c2'  # Cyan
+            Variable  = '#c678dd'  # Purple
+            String    = '#e5c07b'  # Yellow
+            Number    = '#d19a66'  # Orange
+            Type      = '#7f91a8'  # Steel Blue
+            Comment   = '#837a86'  # Dusty Mauve
+            Keyword   = '#d16d9e'  # Pink
+            Error     = '#e06c75'  # Red
+        }
+        PredictionSource              = 'HistoryAndPlugin'
+        PredictionViewStyle           = 'ListView'
+        BellStyle                     = 'None'
     }
-    PredictionSource              = 'History'
-    PredictionViewStyle           = 'ListView'
-    BellStyle                     = 'None'
-}
-Set-PSReadLineOption @PSReadLineOptions
+    Set-PSReadLineOption @PSReadLineOptions
+    Remove-Variable PSReadLineOptions
 
-# Custom functions for PSReadLine
-Set-PSReadLineOption -AddToHistoryHandler {
-    param($line)
-    $sensitive = @('password', 'secret', 'token', 'apikey', 'connectionstring')
-    $hasSensitive = $sensitive | Where-Object { $line -match $_ }
-    return ($null -eq $hasSensitive)
-}
+    # Custom functions for PSReadLine
+    Set-PSReadLineOption -AddToHistoryHandler {
+        param($line)
+        $sensitive = @('password', 'secret', 'token', 'apikey', 'connectionstring')
+        $hasSensitive = $sensitive | Where-Object { $line -match $_ }
+        return ($null -eq $hasSensitive)
+    }
 
-# Improved prediction settings
-Set-PSReadLineOption -PredictionSource HistoryAndPlugin
-Set-PSReadLineOption -MaximumHistoryCount 10000
+    # Improved prediction settings
+    Set-PSReadLineOption -MaximumHistoryCount 10000
+}
 
 function mkcd {
     param(
@@ -284,8 +300,18 @@ function Manage-GitHubAction {
     & "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Manage-GitHubAction.ps1" @PSBoundParameters @args
 }
 
-# pkgmngr - unified Scoop + Winget package manager
-. 'C:\Users\Fahim\Git\pkgmngr\pkg.ps1'
+# pkgmngr - unified Scoop + Winget package manager (lazy-loaded on first use)
+function pkg {
+    Remove-Item Function:\pkg -Force
+    $pkgScript = "$env:UserProfile\Git\pkgmngr\pkg.ps1"
+    if (Test-Path $pkgScript) {
+        . $pkgScript
+        pkg @args
+    }
+    else {
+        Write-Error "pkgmngr not found: $pkgScript"
+    }
+}
 
 function Update-AllPackages {
     pkg update; pkg upgrade
@@ -314,7 +340,14 @@ function Update-AllPackages {
     gum style --border normal --border-foreground 42 --margin "1 0" --padding "0 3" --bold "All packages and repositories updated successfully!"
 }
 
-# Zoxide Initialization
-. ([ScriptBlock]::Create((zoxide init powershell | Out-String)))
+# Zoxide Initialization (cached to avoid spawning zoxide on every launch)
+if ($global:isInteractiveTerminal) {
+    $zoxideBin = (Get-Command zoxide -ErrorAction SilentlyContinue).Source
+    $zoxideCache = Join-Path $global:profileCacheDir 'zoxide-init.ps1'
+    if ($zoxideBin -and (-not (Test-Path $zoxideCache) -or (Get-Item $zoxideBin).LastWriteTime -gt (Get-Item $zoxideCache).LastWriteTime)) {
+        zoxide init powershell | Out-File $zoxideCache -Encoding utf8
+    }
+    if (Test-Path $zoxideCache) { . $zoxideCache }
+}
 
 

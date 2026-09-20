@@ -60,7 +60,8 @@ function Clear-WindowsCache {
 }
 
 function Clear-Folder {
-    $defaultConfig = "$env:UserProfile\Git\dotfiles\shell\pwsh\configs\clear_folders_$computer.json"
+    $comp = if ($global:computer) { $global:computer } else { $env:COMPUTERNAME.ToLowerInvariant() }
+    $defaultConfig = "$env:UserProfile\Git\dotfiles\shell\pwsh\configs\clear_folders_$comp.json"
     if ($args -notcontains '-ConfigPath') {
         & "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Clear-Folder.ps1" -ConfigPath $defaultConfig @args
     }
@@ -74,5 +75,7 @@ function Add-RemoveRegFiles {
 }
 
 function Remove-DesktopIcons { Clear-Folder "$env:UserProfile\Desktop\*.lnk" "$env:PUBLIC\Desktop\*.lnk" -Force }
+
+Export-ModuleMember -Function Clear-WindowsCache, Clear-Folder, Add-RemoveRegFiles, Remove-DesktopIcons
 
 
