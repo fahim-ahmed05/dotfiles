@@ -5,10 +5,10 @@ $global:computer = $env:COMPUTERNAME.ToLowerInvariant()
 chcp 65001 >$null
 $global:utf8NoBom = [System.Text.UTF8Encoding]::new($false)
 [Console]::OutputEncoding = $global:utf8NoBom
-[Console]::InputEncoding  = $global:utf8NoBom
-$OutputEncoding           = $global:utf8NoBom
-$env:PYTHONIOENCODING     = "utf-8"
-$env:PYTHONUTF8           = "1"
+[Console]::InputEncoding = $global:utf8NoBom
+$OutputEncoding = $global:utf8NoBom
+$env:PYTHONIOENCODING = "utf-8"
+$env:PYTHONUTF8 = "1"
 
 # Modules
 Import-Module -Name PkgOps -Force -ErrorAction SilentlyContinue
@@ -282,6 +282,36 @@ function Manage-GitHubAction {
         [switch]$Force
     )
     & "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Manage-GitHubAction.ps1" @PSBoundParameters @args
+}
+
+# pkgmngr - unified Scoop + Winget package manager
+. 'C:\Users\Fahim\Git\pkgmngr\pkg.ps1'
+
+function Update-AllPackages {
+    pkg update; pkg upgrade
+
+    gum style --border normal --border-foreground 42 --margin "1 0" --padding "0 2" --bold "Upgrading UV Tools"
+    uv tool upgrade --all
+
+    gum style --border normal --border-foreground 212 --margin "1 0" --padding "0 2" --bold "Updating Git Repositories"
+
+    $comp = if ($global:computer) { $global:computer } else { $env:COMPUTERNAME.ToLowerInvariant() }
+    $gitScriptPath = "$env:UserProfile\Git\dotfiles\shell\pwsh\scripts\Pull-GitRepos.ps1"
+    $gitConfigPath = "$env:UserProfile\Git\dotfiles\shell\pwsh\configs\git_repos_$comp.json"
+
+    if ((Test-Path $gitScriptPath) -and (Test-Path $gitConfigPath)) {
+        & $gitScriptPath -ConfigPath $gitConfigPath
+    }
+    else {
+        gum style --foreground 214 "[-] Git pull script or config for '$comp' not found. Skipping repository updates..."
+    }
+
+    gum style --border normal --border-foreground 245 --margin "1 0" --padding "0 2" --bold "Removing Desktop Icons"
+    if (Get-Command Remove-DesktopIcons -ErrorAction SilentlyContinue) {
+        Remove-DesktopIcons
+    }
+
+    gum style --border normal --border-foreground 42 --margin "1 0" --padding "0 3" --bold "All packages and repositories updated successfully!"
 }
 
 # Zoxide Initialization
