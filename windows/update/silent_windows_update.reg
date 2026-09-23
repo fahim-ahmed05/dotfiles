@@ -1,10 +1,19 @@
 Windows Registry Editor Version 5.00
 
+; To revert everything to Windows defaults run: reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /f
+
 [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate]
+; Display options for update notifications: 1=custom level
 "SetUpdateNotificationLevel"=dword:00000001
+; 0=default notifications, 1=disable all except restart warnings, 2=disable all incl. restart warnings
 "UpdateNotificationLevel"=dword:00000002
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU]
+; Don't force reboot while a user is logged in
 "NoAutoRebootWithLoggedOnUsers"=dword:00000001
-"AUOptions"=dword:00000004
-"AutomaticMaintenanceEnabled"=dword:00000001
+; 2=Notify for download and notify for install
+; 4=Auto download + auto schedule install
+"AUOptions"=dword:00000002
+; Prevent Windows Update from triggering via idle Automatic Maintenance window
+"AutomaticMaintenanceEnabled"=dword:00000000
+
