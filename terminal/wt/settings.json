@@ -38,7 +38,8 @@
             "colorScheme": {
                 "light": "Campbell"
             },
-            "suppressApplicationTitle": true
+            "suppressApplicationTitle": true,
+            "cursorShape": "bar"
         },
         "list": [
             {
