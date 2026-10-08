@@ -69,8 +69,32 @@
 				},
 				{
 					"mode": "junction",
-					"from": "%USERPROFILE%\\Backups\\AppData\\Mozilla\\Firefox\\Local",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Firefox\\Local",
 					"to": "%LOCALAPPDATA%\\Mozilla\\Firefox"
+				}
+			]
+		},
+		"floorp": {
+			"enabled": true,
+			"items": [
+				{
+					"admin": true,
+					"from": "%USERPROFILE%\\Git\\dotfiles\\browser\\firefox\\policies.json",
+					"to": "C:\\Program Files\\Ablaze Floorp\\distribution\\policies.json"
+				},
+				{
+					"from": "%USERPROFILE%\\Git\\dotfiles\\browser\\firefox\\user.js",
+					"to": "%APPDATA%\\Floorp\\Profiles\\27b2g3ph.Personal\\user.js"
+				},
+				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Floorp\\Roaming",
+					"to": "%APPDATA%\\Floorp"
+				},
+				{
+					"mode": "junction",
+					"from": "%USERPROFILE%\\Backups\\AppData\\Floorp\\Local",
+					"to": "%LOCALAPPDATA%\\Floorp"
 				}
 			]
 		},
