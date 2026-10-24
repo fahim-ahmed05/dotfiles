@@ -18,11 +18,11 @@
         },
         {
             "id": null,
-            "keys": "ctrl+v"
+            "keys": "ctrl+shift+f"
         },
         {
             "id": null,
-            "keys": "ctrl+shift+f"
+            "keys": "ctrl+v"
         },
         {
             "id": null,
@@ -91,6 +91,18 @@
                 "hidden": false,
                 "name": "Ubuntu",
                 "source": "Microsoft.WSL"
+            },
+            {
+                "guid": "{0674875c-23a9-5769-bd1f-ae21069b0a28}",
+                "hidden": true,
+                "name": "Developer Command Prompt for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{4a711d22-bd03-5631-a1d9-f7eb659c154d}",
+                "hidden": true,
+                "name": "Developer PowerShell for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
