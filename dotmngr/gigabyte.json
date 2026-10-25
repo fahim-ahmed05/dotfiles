@@ -272,11 +272,11 @@
 			]
 		},
 		"stremiokai": {
-			"enabled": false,
+			"enabled": true,
 			"mode": "junction",
 			"items": [
 				{
-					"from": "%USERPROFILE%\\Backups\\AppData\\Stremio Kai",
+					"from": "%USERPROFILE%\\Backups\\AppData\\StremioKai",
 					"to": "%USERPROFILE%\\scoop\\persist\\stremio-kai\\stremio.exe.WebView2\\EBWebView"
 				}
 			]
