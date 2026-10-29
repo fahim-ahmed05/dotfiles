@@ -19,8 +19,21 @@ $global:utf8NoBom = New-Object System.Text.UTF8Encoding $false
 [Console]::InputEncoding = $global:utf8NoBom
 $OutputEncoding = $global:utf8NoBom
 
-if (-not (Test-Path (Split-Path $HistoryFile))) { New-Item -ItemType Directory -Path (Split-Path $HistoryFile) | Out-Null }
-if (-not (Test-Path $OutDir)) { New-Item -ItemType Directory -Path $OutDir | Out-Null }
+function Ensure-Directory ([string]$Path) {
+    if ([string]::IsNullOrWhiteSpace($Path)) { return }
+    if (Test-Path -LiteralPath $Path -PathType Container) { return }
+    if (Test-Path -LiteralPath $Path) { throw "Cannot create folder '$Path' because a non-directory item already exists there." }
+    try {
+        $null = New-Item -ItemType Directory -Path $Path -Force -ErrorAction Stop
+    }
+    catch {
+        # A sibling parallel job may have won the race; only a missing folder is a real error.
+        if (-not (Test-Path -LiteralPath $Path -PathType Container)) { throw }
+    }
+}
+
+Ensure-Directory (Split-Path $HistoryFile)
+Ensure-Directory $OutDir
 
 # --- Load History ---
 $global:Hist = @{ Channels = @(); Playlists = @() }
@@ -285,7 +298,7 @@ function Invoke-Download (
 ) {
     $SafeTitle = Get-SafeName $Meta.Title
 
-    if (-not (Test-Path $DestPath)) { New-Item -ItemType Directory -Path $DestPath | Out-Null }
+    Ensure-Directory $DestPath
 
     $trackTitle = Get-TrackTitle -Meta $Meta -IsMulti:$IsMulti -TrackNumber $TrackNumber
     $safeTrackTitle = Get-SafeName $trackTitle
@@ -300,8 +313,8 @@ function Invoke-Download (
 
     $e = [char]27
     $filledChar = [char]0x2588 # █
-    $emptyChar  = [char]0x2591 # ░
-    $barWidth   = 10
+    $emptyChar = [char]0x2591 # ░
+    $barWidth = 10
 
     $baseArgs = @(
         "--encoding", "utf-8",
@@ -544,6 +557,9 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
     while ($downloadJobs.Count -gt 0) {
         $failedJobs = @()
         $totalSlots = $downloadJobs.Count
+
+        # Create destination folders up front so parallel jobs never race on them
+        $downloadJobs.DestPath | Select-Object -Unique | ForEach-Object { Ensure-Directory $_ }
         
         # Attach SlotIndex to each job and print initial [START] lines
         $e = [char]27
@@ -551,7 +567,8 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
             $downloadJobs[$i] | Add-Member -NotePropertyName SlotIndex -NotePropertyValue $i -Force
             $titleDisp = if ($downloadJobs[$i].IsMulti) { 
                 Get-TrackTitle -Meta $downloadJobs[$i].Meta -IsMulti:$downloadJobs[$i].IsMulti -TrackNumber $downloadJobs[$i].TrackNum 
-            } else { 
+            }
+            else { 
                 $downloadJobs[$i].Meta.Title 
             }
             [Console]::WriteLine("$e[90m[QUEUED]$e[0m      $titleDisp...")
@@ -559,8 +576,18 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
         
         $results = $downloadJobs | ForEach-Object -Parallel {
             . $using:scriptPath
-            $success = Invoke-Download -Url $_.Url -Meta $_.Meta -IsMulti $_.IsMulti -TrackNumber $_.TrackNum -DestPath $_.DestPath -SlotIndex $_.SlotIndex -TotalSlots $using:totalSlots -ConsoleLock $using:consoleLock
-            if (-not $success) { return $_ }
+            $job = $_
+            try {
+                $success = Invoke-Download -Url $job.Url -Meta $job.Meta -IsMulti $job.IsMulti -TrackNumber $job.TrackNum -DestPath $job.DestPath -SlotIndex $job.SlotIndex -TotalSlots $using:totalSlots -ConsoleLock $using:consoleLock
+                if (-not $success) { return $job }
+            }
+            catch {
+                # Never let one job abort the whole batch; report it back for the retry menu.
+                $e = [char]27
+                $failTitle = if ($job.IsMulti) { Get-TrackTitle -Meta $job.Meta -IsMulti:$job.IsMulti -TrackNumber $job.TrackNum } else { $job.Meta.Title }
+                Update-TerminalLine -SlotIndex $job.SlotIndex -TotalSlots $using:totalSlots -ConsoleLock $using:consoleLock -Content "$e[31m[FAIL]$e[0m        $failTitle ($_)"
+                return $job
+            }
         } -ThrottleLimit $ParallelLimit
         
         if ($results) {
@@ -611,7 +638,8 @@ function Confirm-And-Process ([object[]]$Selections) {
     if (Get-Command gum -ErrorAction SilentlyContinue) {
         $opts = if ($Urls.Count -eq 1) {
             @("Single Book", "Part of a Multi-part Book")
-        } else {
+        }
+        else {
             @("Multiple Individual Books", "Parts of ONE Book")
         }
         Write-Host "Select Processing Mode:" -ForegroundColor Cyan
