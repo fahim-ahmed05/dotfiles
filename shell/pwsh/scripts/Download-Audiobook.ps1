@@ -55,10 +55,11 @@ foreach ($dep in "yt-dlp", "ffmpeg", "fzf") {
 
 # --- Helper Functions ---
 function Clear-ConsoleInput {
+    # Never call ReadKey unless a key event is actually pending. A console input buffer that
+    # also receives mouse events makes an unguarded ReadKey block until the user hits a key,
+    # which stalls the script right before the next full-screen picker opens.
     try {
-        if ($Host.UI.RawUI.KeyAvailable) {
-            while ($Host.UI.RawUI.KeyAvailable) { $null = [Console]::ReadKey($true) }
-        }
+        while ([Console]::KeyAvailable) { $null = [Console]::ReadKey($true) }
         $Host.UI.RawUI.FlushInputBuffer()
     }
     catch {}
@@ -88,6 +89,8 @@ function Invoke-WithSpinner ([string]$Title, [string]$Command, [string[]]$Argume
 
     $proc = [System.Diagnostics.Process]::Start($psi)
     $stdoutTask = $proc.StandardOutput.ReadToEndAsync()
+    # Must be drained even when unused, otherwise a filled stderr pipe blocks the child forever.
+    $stderrTask = $proc.StandardError.ReadToEndAsync()
 
     $spinChars = @('⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏')
     $i = 0
@@ -98,10 +101,17 @@ function Invoke-WithSpinner ([string]$Title, [string]$Command, [string[]]$Argume
         [Console]::Write("`r$e[35m$frame$e[0m $Title")
         $i++
     }
-    [Console]::Write("`r$e[2K")
+    [Console]::Write("`r$e[2K`r")
     Clear-ConsoleInput
 
-    return $stdoutTask.GetAwaiter().GetResult()
+    $text = $stdoutTask.GetAwaiter().GetResult()
+    $errText = $stderrTask.GetAwaiter().GetResult()
+    if ($proc.ExitCode -ne 0 -and -not [string]::IsNullOrWhiteSpace($errText)) {
+        Write-Host $errText.Trim() -ForegroundColor DarkRed
+    }
+    $proc.Dispose()
+
+    return $text
 }
 
 function Get-SafeName ([string]$name) {
@@ -481,6 +491,38 @@ function Invoke-Download (
     }
 }
 
+function Get-JobDisplayTitle ($Job) {
+    if ($Job.IsMulti) { return Get-TrackTitle -Meta $Job.Meta -IsMulti:$Job.IsMulti -TrackNumber $Job.TrackNum }
+    return $Job.Meta.Title
+}
+
+function Show-RecoveryMenu ([int]$FailedCount) {
+    if (Get-Command gum -ErrorAction SilentlyContinue) {
+        $chosen = gum choose --header "Retry $FailedCount failed part(s)?" "Retry all $FailedCount" "Pick which parts to retry" "Stop and return to menu"
+        Clear-ConsoleInput
+        if ($chosen -like "Retry all*") { return "all" }
+        if ($chosen -like "Pick which*") { return "pick" }
+        return "stop"
+    }
+    $q = Read-Host "`n[$FailedCount failed] [1] Retry all  [2] Pick which  [3] Stop (Enter = 1)"
+    switch ($q) {
+        '2' { return "pick" }
+        '3' { return "stop" }
+        default { return "all" }
+    }
+}
+
+function Select-FailedJobs ($FailedJobs) {
+    $fzfInput = @()
+    for ($i = 0; $i -lt $FailedJobs.Count; $i++) {
+        $fzfInput += "$i|$(Get-JobDisplayTitle $FailedJobs[$i]) - $($FailedJobs[$i].Url)"
+    }
+
+    $fzfOut = @($fzfInput | fzf -m --delimiter="\|" --with-nth=2.. --prompt="Select parts to retry (TAB: multi, Enter: ok)> ")
+    if (-not $fzfOut) { return @() }
+    return @($fzfOut | ForEach-Object { $FailedJobs[[int]($_ -split '\|')[0]] })
+}
+
 function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$VideoTitles) {
     $downloadJobs = @()
 
@@ -565,13 +607,7 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
         $e = [char]27
         for ($i = 0; $i -lt $totalSlots; $i++) {
             $downloadJobs[$i] | Add-Member -NotePropertyName SlotIndex -NotePropertyValue $i -Force
-            $titleDisp = if ($downloadJobs[$i].IsMulti) { 
-                Get-TrackTitle -Meta $downloadJobs[$i].Meta -IsMulti:$downloadJobs[$i].IsMulti -TrackNumber $downloadJobs[$i].TrackNum 
-            }
-            else { 
-                $downloadJobs[$i].Meta.Title 
-            }
-            [Console]::WriteLine("$e[90m[QUEUED]$e[0m      $titleDisp...")
+            [Console]::WriteLine("$e[90m[QUEUED]$e[0m      $(Get-JobDisplayTitle $downloadJobs[$i])...")
         }
         
         $results = $downloadJobs | ForEach-Object -Parallel {
@@ -584,8 +620,7 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
             catch {
                 # Never let one job abort the whole batch; report it back for the retry menu.
                 $e = [char]27
-                $failTitle = if ($job.IsMulti) { Get-TrackTitle -Meta $job.Meta -IsMulti:$job.IsMulti -TrackNumber $job.TrackNum } else { $job.Meta.Title }
-                Update-TerminalLine -SlotIndex $job.SlotIndex -TotalSlots $using:totalSlots -ConsoleLock $using:consoleLock -Content "$e[31m[FAIL]$e[0m        $failTitle ($_)"
+                Update-TerminalLine -SlotIndex $job.SlotIndex -TotalSlots $using:totalSlots -ConsoleLock $using:consoleLock -Content "$e[31m[FAIL]$e[0m        $(Get-JobDisplayTitle $job) ($)"
                 return $job
             }
         } -ThrottleLimit $ParallelLimit
@@ -595,28 +630,27 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
         }
 
         if ($failedJobs.Count -gt 0) {
+            $okCount = $totalSlots - $failedJobs.Count
             Write-Host "`n=============================================" -ForegroundColor Red
-            Write-Host "             FAILED DOWNLOADS                " -ForegroundColor Red
+            Write-Host "   FAILED: $($failedJobs.Count)   |   DONE: $okCount" -ForegroundColor Red
             Write-Host "=============================================" -ForegroundColor Red
-            
-            $fzfInput = @()
-            for ($i = 0; $i -lt $failedJobs.Count; $i++) {
-                $fj = $failedJobs[$i]
-                $titleDisplay = if ($fj.IsMulti) { Get-TrackTitle -Meta $fj.Meta -IsMulti:$fj.IsMulti -TrackNumber $fj.TrackNum } else { $fj.Meta.Title }
-                $fzfInput += "$i|$titleDisplay - $($fj.Url)"
-            }
-            
-            $fzfOut = @($fzfInput | fzf -m --delimiter="\|" --with-nth=2.. --prompt="Select jobs to retry (TAB: multi, ESC: continue)> ")
-            
-            if (-not $fzfOut -or $fzfOut.Count -eq 0) {
+            foreach ($fj in $failedJobs) { Write-Host "   x $(Get-JobDisplayTitle $fj)" -ForegroundColor DarkRed }
+
+            # Retry straight from here - no need to walk back through the menus.
+            $action = Show-RecoveryMenu -FailedCount $failedJobs.Count
+            $retryJobs = @(switch ($action) {
+                'all'   { $failedJobs }
+                'pick'  { Select-FailedJobs $failedJobs }
+                default { @() }
+            })
+
+            if ($retryJobs.Count -eq 0) {
+                Write-Host "`nStopped with $($failedJobs.Count) part(s) still missing.`n" -ForegroundColor Yellow
                 break
             }
-            
-            $downloadJobs = @()
-            foreach ($selection in $fzfOut) {
-                $idx = [int]($selection -split '\|')[0]
-                $downloadJobs += $failedJobs[$idx]
-            }
+
+            $downloadJobs = $retryJobs
+            Write-Host "`nRetrying $($retryJobs.Count) part(s)...`n" -ForegroundColor Cyan
         }
         else {
             Write-Host "`nFinished: All parts downloaded and tagged successfully.`n" -ForegroundColor Green
