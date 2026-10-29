@@ -639,10 +639,10 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
             # Retry straight from here - no need to walk back through the menus.
             $action = Show-RecoveryMenu -FailedCount $failedJobs.Count
             $retryJobs = @(switch ($action) {
-                'all'   { $failedJobs }
-                'pick'  { Select-FailedJobs $failedJobs }
-                default { @() }
-            })
+                    'all' { $failedJobs }
+                    'pick' { Select-FailedJobs $failedJobs }
+                    default { @() }
+                })
 
             if ($retryJobs.Count -eq 0) {
                 Write-Host "`nStopped with $($failedJobs.Count) part(s) still missing.`n" -ForegroundColor Yellow
