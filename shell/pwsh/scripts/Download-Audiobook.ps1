@@ -19,7 +19,7 @@ $global:utf8NoBom = New-Object System.Text.UTF8Encoding $false
 [Console]::InputEncoding = $global:utf8NoBom
 $OutputEncoding = $global:utf8NoBom
 
-function Ensure-Directory ([string]$Path) {
+function New-Directory ([string]$Path) {
     if ([string]::IsNullOrWhiteSpace($Path)) { return }
     if (Test-Path -LiteralPath $Path -PathType Container) { return }
     if (Test-Path -LiteralPath $Path) { throw "Cannot create folder '$Path' because a non-directory item already exists there." }
@@ -32,8 +32,8 @@ function Ensure-Directory ([string]$Path) {
     }
 }
 
-Ensure-Directory (Split-Path $HistoryFile)
-Ensure-Directory $OutDir
+New-Directory (Split-Path $HistoryFile)
+New-Directory $OutDir
 
 # --- Load History ---
 $global:Hist = @{ Channels = @(); Playlists = @() }
@@ -308,7 +308,7 @@ function Invoke-Download (
 ) {
     $SafeTitle = Get-SafeName $Meta.Title
 
-    Ensure-Directory $DestPath
+    New-Directory $DestPath
 
     $trackTitle = Get-TrackTitle -Meta $Meta -IsMulti:$IsMulti -TrackNumber $TrackNumber
     $safeTrackTitle = Get-SafeName $trackTitle
@@ -601,7 +601,7 @@ function Start-AudiobookDownload ([string[]]$Urls, [bool]$IsMulti, [string[]]$Vi
         $totalSlots = $downloadJobs.Count
 
         # Create destination folders up front so parallel jobs never race on them
-        $downloadJobs.DestPath | Select-Object -Unique | ForEach-Object { Ensure-Directory $_ }
+        $downloadJobs.DestPath | Select-Object -Unique | ForEach-Object { New-Directory $_ }
         
         # Attach SlotIndex to each job and print initial [START] lines
         $e = [char]27
