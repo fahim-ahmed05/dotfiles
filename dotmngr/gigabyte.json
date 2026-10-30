@@ -585,6 +585,17 @@
 					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\Harbor (PowerToys).lnk"
 				}
 			]
+		},
+		"mrrss": {
+			"enabled": true,
+			"mode": "shortcut",
+			"items": [
+				{
+					"from": "%USERPROFILE%\\scoop\\apps\\mrrss\\1.3.41\\MrRSS.exe",
+					"to": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Shortcuts\\MrRSS (Custom).lnk",
+					"workingDirectory": "%USERPROFILE%\\scoop\\apps\\mrrss\\1.3.41"
+				}
+			]
 		}
 	}
 }
