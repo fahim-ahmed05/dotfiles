@@ -10,7 +10,7 @@
     "UtilityModifier": "alt",
     "PrevDesktopKey": "Z",
     "NextDesktopKey": "X",
-    "LastDesktopKey": "~",
     "EnablePinWindow": "1",
-    "PinKey": "P"
+    "PinKey": "P",
+    "LastDesktopKey": "S"
 }

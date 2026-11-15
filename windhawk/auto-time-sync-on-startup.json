@@ -1,0 +1,6 @@
+{
+    "initialDelaySeconds": "30",
+    "retryCount": "4",
+    "retryIntervalSeconds": "30",
+    "useScheduledTaskFallback": "1"
+}

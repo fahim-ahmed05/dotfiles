@@ -1,0 +1,19 @@
+{
+    "mode": "labelsWithCombining",
+    "runningIndicatorStyle": "fullWidth",
+    "progressIndicatorStyle": "fullWidth",
+    "excludedPrograms[0]": "",
+    "minimumTaskbarItemWidth": "50",
+    "fontSize": "12",
+    "fontFamily": "JetBrainsMono Nerd Font",
+    "textTrimming": "characterEllipsis",
+    "leftAndRightPaddingSize": "8",
+    "spaceBetweenIconAndLabel": "8",
+    "runningIndicatorHeight": "0",
+    "runningIndicatorVerticalOffset": "0",
+    "alwaysShowThumbnailLabels": "0",
+    "labelForSingleItem": "%name%",
+    "labelForMultipleItems": "[%amount%] %name%",
+    "taskbarItemWidth": "115",
+    "maximumTaskbarItemWidth": "176"
+}
