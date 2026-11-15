@@ -1,0 +1,17 @@
+{
+    "backgroundStyle": "acrylicBlur",
+    "color.red": "255",
+    "color.green": "255",
+    "color.blue": "255",
+    "color.accentColor": "0",
+    "onlyWhenMaximized": "1",
+    "excludedPrograms[0]": "",
+    "styleForDarkMode.use": "1",
+    "styleForDarkMode.backgroundStyle": "acrylicBlur",
+    "styleForDarkMode.color.red": "0",
+    "styleForDarkMode.color.green": "0",
+    "styleForDarkMode.color.blue": "0",
+    "styleForDarkMode.color.accentColor": "0",
+    "styleForDarkMode.color.transparency": "240",
+    "color.transparency": "240"
+}

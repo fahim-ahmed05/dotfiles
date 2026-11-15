@@ -1,4 +1,6 @@
 {
+    "theme": "",
+    "styleConstants[0]": "",
     "controlStyles[0].target": "SystemTray.ChevronIconView",
     "controlStyles[0].styles[0]": "MinWidth=25",
     "controlStyles[1].target": "SystemTray.ImageIconContent > Grid#ContainerGrid > Image",
@@ -22,5 +24,10 @@
     "controlStyles[8].target": "SystemTray.SystemTrayFrame",
     "controlStyles[8].styles[0]": "RenderTransform:=<TranslateTransform Y=\"1.5\" />",
     "controlStyles[9].target": "Taskbar.ExperienceToggleButton",
-    "controlStyles[9].styles[0]": "RenderTransform:=<TranslateTransform Y=\"1.5\" />"
+    "controlStyles[9].styles[0]": "RenderTransform:=<TranslateTransform Y=\"1.5\" />",
+    "controlStyles[10].target": "Rectangle#BackgroundStroke",
+    "controlStyles[10].styles[0]": "Fill=Transparent",
+    "themeResourceVariables[0]": "",
+    "clickThroughTaskbar": "0",
+    "xamlDiagnosticsHandling": "alert"
 }

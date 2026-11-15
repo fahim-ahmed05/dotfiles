@@ -11,4 +11,4 @@
 - [Taskbar Labels for Windows 11](https://windhawk.net/mods/taskbar-labels) `taskbar-labels`
 - [Windows 11 Accent Window Border](https://windhawk.net/mods/win11-accent-border) `win11-accent-border`
 - [Windows 11 Taskbar Styler](https://windhawk.net/mods/windows-11-taskbar-styler) `windows-11-taskbar-styler`
-
+- [Taskbar Background Helper](https://windhawk.net/mods/taskbar-background-helper) `taskbar-background-helper`
