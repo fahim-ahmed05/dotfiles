@@ -14,7 +14,12 @@ ipv4_servers = true
 ipv6_servers = false
 
 # These will be only used for one-shot queries when retrieving the initial resolvers list
-bootstrap_resolvers = ['9.9.9.9:53', '1.1.1.1:53', '94.140.14.14:53', '185.250.250.61:53']
+bootstrap_resolvers = [
+    '9.9.9.9:53',
+    '1.1.1.1:53',
+    '94.140.14.14:53',
+    '185.250.250.61:53',
+]
 
 # DNS cache
 cache = true
@@ -37,8 +42,6 @@ prefix = ''
 [static]
 [static.'dnsbunker-doh']
 stamp = 'sdns://AgMAAAAAAAAADjE4NS4yNTAuMjUwLjYxAA1kbnNidW5rZXIub3JnCi9kbnMtcXVlcnk'
+
 [static.'adguard-dns']
 stamp = 'sdns://AQMAAAAAAAAAETk0LjE0MC4xNC4xNDo1NDQzINErR_JS3PLCu_iZEIbq95zkSV2LFsigxDIuUso_OQhzIjIuZG5zY3J5cHQuZGVmYXVsdC5uczEuYWRndWFyZC5jb20'
-
-
-
