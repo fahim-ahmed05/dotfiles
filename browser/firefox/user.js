@@ -84,9 +84,9 @@ user_pref("dom.security.https_only_mode_error_page_user_suggestions", true);
 /** DNS-over-HTTPS ***/
 user_pref("network.trr.mode", 3);
 user_pref("network.trr.max-fails", 5);
-user_pref("network.trr.bootstrapAddress", "9.9.9.9");
-user_pref("network.trr.uri", "https://dns.quad9.net/dns-query");
-user_pref("network.trr.custom_uri", "https://dns.quad9.net/dns-query");
+user_pref("network.trr.bootstrapAddress", "185.250.250.61");
+user_pref("network.trr.uri", "https://dnsbunker.org/dns-query");
+user_pref("network.trr.custom_uri", "https://dnsbunker.org/dns-query");
 
 /** PASSWORDS & AUTOFILL ***/
 user_pref("signon.formlessCapture.enabled", false);
