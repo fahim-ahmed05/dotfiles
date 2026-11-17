@@ -1,6 +1,6 @@
 # DNS
 
-## [DNSBunker](https://dnsbunker.org/)
+## DNSBunker [↗️](https://dnsbunker.org/)
 
 _Blocks ads, trackers, phising, and malware_
 
@@ -28,7 +28,7 @@ https://dnsbunker.org/dns-query
 dnsbunker.org
 ```
 
-## [Quad9](https://quad9.net/)
+## Quad9 [↗️](https://quad9.net/)
 
 _Blocks phising, and malware_
 
@@ -58,7 +58,7 @@ https://dns.quad9.net/dns-query
 dns.quad9.net
 ```
 
-## [AdGuard](https://adguard-dns.io/en/public-dns.html)
+## AdGuard [↗️](https://adguard-dns.io/en/public-dns.html)
 
 _Blocks ads, trackers, phising, and malware_
 
